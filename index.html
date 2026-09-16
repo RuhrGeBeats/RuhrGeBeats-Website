@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RuhrGeBeats – DJ für dein Event</title>
+  <meta
+    name="description"
+    content="RuhrGeBeats – DJ & Veranstaltungstechnik für Geburtstage, Hochzeiten und private Events im Ruhrgebiet und NRW."
+  >
+  <meta name="theme-color" content="#07111f">
+
+  <style>
+    /* =========================================================
+       RUHRGEBEATS – WEBSITE V1
+       ========================================================= */
+
+    :root {
+      --blue: #168cff;
+      --blue-dark: #0870d8;
+      --navy: #07111f;
+      --navy-2: #0b1728;
+      --text: #111827;
+      --muted: #64748b;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --border: #e5eaf0;
+
+      --max: 1180px;
+      --radius: 18px;
+      --shadow: 0 18px 50px rgba(7, 17, 31, .10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: .3s ease;
+    }
+
+    header.scrolled {
+      background: rgba(7, 17, 31, .94);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 35px rgba(0,0,0,.16);
+    }
+
+    .nav {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+    }
+
+    .logo-fallback {
+      display: none;
+      color: white;
+      font-weight: 900;
+      font-size: 21px;
+      letter-spacing: -.7px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,.86);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-cta {
+      background: var(--blue);
+      color: white !important;
+      padding: 12px 19px;
+      border-radius: 9px;
+      box-shadow: 0 8px 25px rgba(22,140,255,.25);
+    }
+
+    .nav-cta:hover {
+      background: #329aff;
+    }
+
+    .mobile-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 29px;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 75% 45%, rgba(22,140,255,.22), transparent 30%),
+        linear-gradient(135deg, #050b14 0%, #081423 52%, #07111f 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      right: -160px;
+      top: 10%;
+      background: rgba(22,140,255,.15);
+      filter: blur(90px);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 150px 0 100px;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #7ec4ff;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--blue);
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: clamp(46px, 7vw, 86px);
+      line-height: .98;
+      letter-spacing: -4px;
+      font-weight: 900;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-text {
+      max-width: 620px;
+      color: rgba(255,255,255,.72);
+      font-size: 19px;
+      line-height: 1.75;
+      margin-bottom: 38px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 23px;
+      border-radius: 9px;
+      font-weight: 800;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: white;
+      background: var(--blue);
+      box-shadow: 0 12px 35px rgba(22,140,255,.25);
+    }
+
+    .button-primary:hover {
+      background: #329aff;
+    }
+
+    .button-secondary {
+      color: white;
+      border-color: rgba(255,255,255,.2);
+      background: rgba(255,255,255,.05);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    /* Soundwave */
+
+    .soundwave {
+      position: absolute;
+      right: 7%;
+      bottom: 12%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      opacity: .65;
+    }
+
+    .soundwave span {
+      display: block;
+      width: 4px;
+      border-radius: 20px;
+      background: var(--blue);
+      animation: wave 1.15s ease-in-out infinite alternate;
+    }
+
+    .soundwave span:nth-child(1) { height: 20px; animation-delay: -.1s; }
+    .soundwave span:nth-child(2) { height: 45px; animation-delay: -.35s; }
+    .soundwave span:nth-child(3) { height: 28px; animation-delay: -.7s; }
+    .soundwave span:nth-child(4) { height: 62px; animation-delay: -.2s; }
+    .soundwave span:nth-child(5) { height: 38px; animation-delay: -.5s; }
+    .soundwave span:nth-child(6) { height: 72px; animation-delay: -.9s; }
+    .soundwave span:nth-child(7) { height: 44px; animation-delay: -.4s; }
+    .soundwave span:nth-child(8) { height: 65px; animation-delay: -.75s; }
+    .soundwave span:nth-child(9) { height: 30px; animation-delay: -.15s; }
+    .soundwave span:nth-child(10) { height: 52px; animation-delay: -.6s; }
+    .soundwave span:nth-child(11) { height: 25px; animation-delay: -.3s; }
+
+    @keyframes wave {
+      from { transform: scaleY(.55); opacity: .45; }
+      to { transform: scaleY(1); opacity: 1; }
+    }
+
+    /* =========================================================
+       SECTIONS
+       ========================================================= */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 55px;
+    }
+
+    .section-label {
+      color: var(--blue-dark);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 13px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(34px, 5vw, 55px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* =========================================================
+       SERVICES
+       ========================================================= */
+
+    .services {
+      background: var(--light);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      position: relative;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      min-height: 245px;
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+      border-color: rgba(22,140,255,.25);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      background: #eaf5ff;
+      color: var(--blue-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      margin-bottom: 28px;
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      min-height: 510px;
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(22,140,255,.4), transparent 28%),
+        linear-gradient(145deg, #07111f, #0c1d32);
+      display: flex;
+      align-items: flex-end;
+      padding: 34px;
+    }
+
+    .about-visual::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      top: 70px;
+      right: -70px;
+    }
+
+    .about-visual::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border: 1px solid rgba(22,140,255,.5);
+      border-radius: 50%;
+      top: 125px;
+      right: -15px;
+    }
+
+    .about-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,.95);
+      border-radius: 15px;
+      padding: 24px;
+      max-width: 360px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    }
+
+    .about-card strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .about-card span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .about-copy h2 {
+      font-size: clamp(35px, 5vw, 55px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    .about-points {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .about-points li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .about-points li::before {
+      content: "✓";
+      width: 23px;
+      height: 23px;
+      flex: 0 0 23px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #eaf5ff;
+      color: var(--blue-dark);
+      border-radius: 50%;
+      font-size: 12px;
+    }
+
+    /* =========================================================
+       PROCESS
+       ========================================================= */
+
+    .process {
+      background: var(--navy);
+      color: white;
+    }
+
+    .process .section-label {
+      color: #7ec4ff;
+    }
+
+    .process .section-heading p {
+      color: rgba(255,255,255,.62);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .process-card {
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 17px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .process-number {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 50px;
+    }
+
+    .process-card h3 {
+      font-size: 21px;
+      margin-bottom: 12px;
+    }
+
+    .process-card p {
+      color: rgba(255,255,255,.6);
+      font-size: 14px;
+    }
+
+    /* =========================================================
+       TECHNIK
+       ========================================================= */
+
+    .equipment {
+      background: var(--light);
+    }
+
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .equipment-item {
+      padding: 28px;
+      border-radius: 17px;
+      background: white;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .equipment-item-icon {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eaf5ff;
+      border-radius: 14px;
+      font-size: 22px;
+    }
+
+    .equipment-item h3 {
+      font-size: 17px;
+      margin-bottom: 3px;
+    }
+
+    .equipment-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       GALLERY
+       ========================================================= */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .8fr .8fr;
+      grid-template-rows: 260px 260px;
+      gap: 15px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 17px;
+      background:
+        linear-gradient(135deg, #07111f, #0b213a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.4);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item::after {
+      content: "RUHRGEBEATS";
+      position: absolute;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      opacity: .4;
+    }
+
+    .gallery-note {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       CTA
+       ========================================================= */
+
+    .cta {
+      padding: 90px 0;
+    }
+
+    .cta-box {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 50%, rgba(22,140,255,.4), transparent 32%),
+        var(--navy);
+      color: white;
+      border-radius: 25px;
+      padding: 70px;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(35px, 5vw, 57px);
+      letter-spacing: -2px;
+      line-height: 1.05;
+      max-width: 650px;
+      margin-bottom: 20px;
+    }
+
+    .cta-box p {
+      color: rgba(255,255,255,.65);
+      max-width: 590px;
+      margin-bottom: 30px;
+    }
+
+    /* =========================================================
+       CONTACT
+       ========================================================= */
+
+    .contact {
+      background: var(--light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+    }
+
+    .contact-info h2 {
+      font-size: 45px;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .contact-info > p {
+      color: var(--muted);
+      margin-bottom: 35px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .contact-item-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .contact-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-form {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-title {
+      font-size: 23px;
+      font-weight: 900;
+      margin-bottom: 24px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 12px;
+      font-weight: 800;
+      color: #334155;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid #dbe2ea;
+      background: #fbfcfd;
+      border-radius: 9px;
+      padding: 13px 14px;
+      outline: none;
+      color: var(--text);
+      transition: border .2s ease, box-shadow .2s ease;
+    }
+
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(22,140,255,.1);
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .form-hint {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      background: #040a12;
+      color: white;
+      padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      gap: 60px;
+      padding-bottom: 50px;
+    }
+
+    .footer-brand img {
+      width: 60px;
+      margin-bottom: 18px;
+    }
+
+    .footer-brand p {
+      max-width: 350px;
+      color: rgba(255,255,255,.5);
+      font-size: 14px;
+    }
+
+    .footer-col h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+      transition: color .2s ease;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(255,255,255,.35);
+      font-size: 11px;
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 1000px) {
+      .service-grid,
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid {
+        gap: 45px;
+      }
+
+      .soundwave {
+        right: 4%;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(var(--max), calc(100% - 28px));
+      }
+
+      .nav {
+        height: 72px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 14px;
+        right: 14px;
+        background: rgba(7,17,31,.98);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 14px;
+        padding: 18px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px;
+      }
+
+      .nav-cta {
+        text-align: center;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .hero-content {
+        padding: 125px 0 100px;
+      }
+
+      .hero h1 {
+        font-size: clamp(43px, 14vw, 68px);
+        letter-spacing: -3px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .soundwave {
+        display: none;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 38px;
+      }
+
+      .service-grid,
+      .process-grid,
+      .equipment-grid,
+      .about-grid,
+      .contact-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-visual {
+        min-height: 380px;
+      }
+
+      .process-number {
+        margin-bottom: 30px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 210px 210px 210px;
+      }
+
+      .gallery-item:first-child {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+
+      .cta-box {
+        padding: 42px 27px;
+      }
+
+      .contact-grid {
+        gap: 40px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .contact-form {
+        padding: 24px;
+      }
+
+      .footer-grid {
+        gap: 35px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .logo img {
+        width: 45px;
+        height: 45px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .service-card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
+  <header id="header">
+    <div class="container nav">
+
+      <a href="#start" class="logo">
+        <img
+          src="logo.png"
+          alt="RuhrGeBeats Logo"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        >
+        <span class="logo-fallback">RUHRGEBEATS</span>
+      </a>
+
+      <button
+        class="mobile-toggle"
+        id="mobileToggle"
+        aria-label="Menü öffnen"
+      >
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#technik">Technik</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li>
+          <a class="nav-cta" href="#kontakt">
+            Anfrage
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </header>
+
+
+  <!-- =======================================================
+       HERO
+       ======================================================= -->
+
+  <main>
+
+    <section class="hero" id="start">
+
+      <div class="hero-glow"></div>
+
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            DJ & Veranstaltungstechnik
+          </div>
+
+          <h1>
+            Musik, die verbindet.<br>
+            <span>Momente, die bleiben.</span>
+          </h1>
+
+          <p class="hero-text">
+            RuhrGeBeats bringt Musik, Licht und die richtige Atmosphäre
+            auf deine Veranstaltung. Persönlich geplant, professionell
+            umgesetzt und mit dem Anspruch, dass dein Abend genau so wird,
+            wie du ihn dir vorstellst.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#kontakt">
+              Jetzt unverbindlich anfragen
+            </a>
+
+            <a class="button button-secondary" href="#leistungen">
+              Leistungen entdecken
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="soundwave" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LEISTUNGEN
+         ===================================================== -->
+
+    <section class="services" id="leistungen">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Unser Service</div>
+
+          <h2>
+            Alles für eine gute Party.
+          </h2>
+
+          <p>
+            Von der Musik bis zur Beleuchtung kümmern wir uns um die
+            technische und musikalische Grundlage für einen gelungenen Abend.
+          </p>
+        </div>
+
+        <div class="service-grid">
+
+          <article class="service-card">
+            <div class="service-icon">♫</div>
+
+            <h3>DJ-Service</h3>
+
+            <p>
+              Die passende Musik für den gesamten Abend – abgestimmt
+              auf euch, eure Gäste und den Charakter eurer Veranstaltung.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">◉</div>
+
+            <h3>Musikanlage</h3>
+
+            <p>
+              Leistungsfähige Beschallung für kleine und mittlere
+              Veranstaltungen – sauber abgestimmt und professionell aufgebaut.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">✦</div>
+
+            <h3>Lichttechnik</h3>
+
+            <p>
+              Moving Heads, Lichtbars und weitere Effekte sorgen dafür,
+              dass nicht nur die Musik, sondern auch der Raum wirkt.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">◌</div>
+
+            <h3>Individuelle Planung</h3>
+
+            <p>
+              Jede Veranstaltung ist anders. Deshalb sprechen wir vorher
+              genau ab, was ihr braucht und was vor Ort möglich ist.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ÜBER UNS
+         ===================================================== -->
+
+    <section id="ueber-uns">
+
+      <div class="container">
+
+        <div class="about-grid">
+
+          <div class="about-visual">
+
+            <div class="about-card">
+              <strong>RuhrGeBeats</strong>
+              <span>
+                DJ-Team aus dem Ruhrgebiet
+              </span>
+            </div>
+
+          </div>
+
+          <div class="about-copy">
+
+            <div class="section-label">Über uns</div>
+
+            <h2>
+              Zwei DJs.<br>
+              Eine Leidenschaft.
+            </h2>
+
+            <p>
+              Hinter RuhrGeBeats stehen Tom Karpa und Lenny Günther.
+              Gemeinsam haben wir uns zum Ziel gesetzt, Veranstaltungen
+              musikalisch und technisch zuverlässig zu begleiten.
+            </p>
+
+            <p>
+              Dabei geht es für uns nicht darum, einfach eine Playlist
+              abzuspielen. Wir wollen auf den Abend reagieren, die Stimmung
+              aufnehmen und gemeinsam mit euch eine Veranstaltung gestalten,
+              an die man sich gerne erinnert.
+            </p>
+
+            <ul class="about-points">
+              <li>Persönliche Abstimmung vor der Veranstaltung</li>
+              <li>Musik passend zu euch und euren Gästen</li>
+              <li>Professionelle Ton- und Lichttechnik</li>
+              <li>Persönlicher Ansprechpartner</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABLAUF
+         ===================================================== -->
+
+    <section class="process" id="ablauf">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">So läuft es ab</div>
+
+          <h2>
+            Von der ersten Anfrage<br>
+            bis zur letzten Minute.
+          </h2>
+
+          <p>
+            Wir halten die Planung unkompliziert und sprechen alles
+            Wichtige rechtzeitig mit euch ab.
+          </p>
+        </div>
+
+        <div class="process-grid">
+
+          <article class="process-card">
+            <div class="process-number">01 / ANFRAGE</div>
+
+            <h3>Ihr erzählt uns von eurem Event.</h3>
+
+            <p>
+              Datum, Location, Gäste und eure Vorstellungen –
+              damit wir direkt einschätzen können, was ihr benötigt.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <div class="process-number">02 / PLANUNG</div>
+
+            <h3>Wir besprechen die Details.</h3>
+
+            <p>
+              Musik, Technik, Ablauf und besondere Wünsche werden
+              gemeinsam abgestimmt.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <div class="process-number">03 / AUFBAU</div>
+
+            <h3>Wir kümmern uns um die Technik.</h3>
+
+            <p>
+              Zum vereinbarten Zeitpunkt kommen wir zur Location,
+              bauen auf und bereiten alles für den Abend vor.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <div class="process-number">04 / PARTY</div>
+
+            <h3>Ihr feiert. Wir kümmern uns um den Rest.</h3>
+
+            <p>
+              Musik, Übergänge und Licht laufen – während ihr euch
+              auf eure Gäste und euren Abend konzentrieren könnt.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TECHNIK
+         ===================================================== -->
+
+    <section class="equipment" id="technik">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Technik</div>
+
+          <h2>
+            Sound & Licht,<br>
+            passend zur Location.
+          </h2>
+
+          <p>
+            Unsere Technik wird passend zur Veranstaltung geplant.
+            Dadurch bleibt das Setup flexibel und kann je nach Größe
+            und Anforderungen angepasst werden.
+          </p>
+        </div>
+
+        <div class="equipment-grid">
+
+          <div class="equipment-item">
+            <div class="equipment-item-icon">♫</div>
+
+            <div>
+              <h3>DJ-Setup</h3>
+              <p>Professionelles DJ-Setup für einen reibungslosen Abend.</p>
+            </div>
+          </div>
+
+          <div class="equipment-item">
+            <div class="equipment-item-icon">▰</div>
+
+            <div>
+              <h3>Beschallung</h3>
+              <p>Musikanlage passend zur Größe eurer Veranstaltung.</p>
+            </div>
+          </div>
+
+          <div class="equipment-item">
+            <div class="equipment-item-icon">✦</div>
+
+            <div>
+              <h3>Moving Heads</h3>
+              <p>Dynamische Lichteffekte für Tanzfläche und Raum.</p>
+            </div>
+          </div>
+
+          <div class="equipment-item">
+            <div class="equipment-item-icon">▥</div>
+
+            <div>
+              <h3>Lichtbars & Spots</h3>
+              <p>Zusätzliche Ambientebeleuchtung und Effekte.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         GALERIE
+         ===================================================== -->
+
+    <section id="galerie">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Galerie</div>
+
+          <h2>
+            So kann RuhrGeBeats aussehen.
+          </h2>
+
+          <p>
+            Hier entsteht nach und nach unsere Galerie mit Eindrücken
+            von vergangenen Veranstaltungen.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+
+          <div class="gallery-item">
+            Erstes Eventfoto
+          </div>
+
+          <div class="gallery-item">
+            Event
+          </div>
+
+          <div class="gallery-item">
+            Lichttechnik
+          </div>
+
+          <div class="gallery-item">
+            DJ-Setup
+          </div>
+
+          <div class="gallery-item">
+            Party
+          </div>
+
+        </div>
+
+        <p class="gallery-note">
+          Weitere Fotos werden ergänzt.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CTA
+         ===================================================== -->
+
+    <section class="cta">
+
+      <div class="container">
+
+        <div class="cta-box">
+
+          <h2>
+            Eure Feier.<br>
+            Unser Sound.
+          </h2>
+
+          <p>
+            Erzählt uns von eurem Event und wir melden uns
+            persönlich bei euch.
+          </p>
+
+          <a class="button button-primary" href="#kontakt">
+            Anfrage starten
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         KONTAKT
+         ===================================================== -->
+
+    <section class="contact" id="kontakt">
+
+      <div class="container">
+
+        <div class="contact-grid">
+
+          <div class="contact-info">
+
+            <div class="section-label">Kontakt</div>
+
+            <h2>
+              Lasst uns<br>
+              eure Feier planen.
+            </h2>
+
+            <p>
+              Schickt uns zunächst die wichtigsten Informationen
+              zu eurer Veranstaltung. Die Anfrage ist unverbindlich.
+            </p>
+
+            <div class="contact-list">
+
+              <a
+                class="contact-item"
+                href="mailto:ruhrgebeats@gmail.com"
+              >
+                <div class="contact-item-icon">✉</div>
+
+                <div>
+                  <strong>E-Mail</strong>
+                  <span>ruhrgebeats@gmail.com</span>
+                </div>
+              </a>
+
+              <a
+                class="contact-item"
+                href="https://www.instagram.com/ruhrgebeats_gbr/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="contact-item-icon">◎</div>
+
+                <div>
+                  <strong>Instagram</strong>
+                  <span>@ruhrgebeats_gbr</span>
+                </div>
+              </a>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">⌂</div>
+
+                <div>
+                  <strong>Ruhrgebiet & NRW</strong>
+                  <span>Mobil für eure Veranstaltung unterwegs</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <form
+            class="contact-form"
+            id="contactForm"
+            action="mailto:ruhrgebeats@gmail.com"
+            method="post"
+            enctype="text/plain"
+          >
+
+            <div class="form-title">
+              Unverbindliche Anfrage
+            </div>
+
+            <div class="form-grid">
+
+              <div class="field">
+                <label for="name">Name *</label>
+                <input
+                  id="name"
+                  name="Name"
+                  type="text"
+                  required
+                  placeholder="Vor- und Nachname"
+                >
+              </div>
+
+              <div class="field">
+                <label for="email">E-Mail *</label>
+                <input
+                  id="email"
+                  name="E-Mail"
+                  type="email"
+                  required
+                  placeholder="name@beispiel.de"
+                >
+              </div>
+
+              <div class="field">
+                <label for="phone">Telefon</label>
+                <input
+                  id="phone"
+                  name="Telefon"
+                  type="tel"
+                  placeholder="Telefonnummer"
+                >
+              </div>
+
+              <div class="field">
+                <label for="eventType">Veranstaltung</label>
+                <select id="eventType" name="Veranstaltung">
+                  <option value="">Bitte auswählen</option>
+                  <option>Geburtstag</option>
+                  <option>Hochzeit</option>
+                  <option>Private Feier</option>
+                  <option>Sonstige Veranstaltung</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="date">Veranstaltungsdatum</label>
+                <input
+                  id="date"
+                  name="Veranstaltungsdatum"
+                  type="date"
+                >
+              </div>
+
+              <div class="field">
+                <label for="guests">Anzahl Gäste</label>
+                <input
+                  id="guests"
+                  name="Gäste"
+                  type="number"
+                  min="1"
+                  placeholder="ca. 100"
+                >
+              </div>
+
+              <div class="field full">
+                <label for="location">Veranstaltungsort</label>
+                <input
+                  id="location"
+                  name="Veranstaltungsort"
+                  type="text"
+                  placeholder="Location / Ort"
+                >
+              </div>
+
+              <div class="field full">
+                <label for="message">Erzählt uns von eurem Event</label>
+                <textarea
+                  id="message"
+                  name="Nachricht"
+                  placeholder="Was habt ihr geplant? Welche Musik mögt ihr? Gibt es besondere Wünsche?"
+                ></textarea>
+              </div>
+
+            </div>
+
+            <button
+              class="button button-primary form-submit"
+              type="submit"
+            >
+              Anfrage per E-Mail senden
+            </button>
+
+            <div class="form-hint">
+              Mit dem Absenden wird dein E-Mail-Programm geöffnet.
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+
+          <img
+            src="logo.png"
+            alt="RuhrGeBeats"
+            onerror="this.style.display='none';"
+          >
+
+          <p>
+            RuhrGeBeats GbR – DJ & Veranstaltungstechnik
+            für besondere Momente im Ruhrgebiet und NRW.
+          </p>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h3>Navigation</h3>
+
+          <ul>
+            <li><a href="#start">Start</a></li>
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#ueber-uns">Über uns</a></li>
+            <li><a href="#ablauf">Ablauf</a></li>
+            <li><a href="#technik">Technik</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h3>Rechtliches</h3>
+
+          <ul>
+            <li>
+              <a href="impressum.html">
+                Impressum
+              </a>
+            </li>
+
+            <li>
+              <a href="datenschutz.html">
+                Datenschutz
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © <span id="year"></span> RuhrGeBeats GbR
+        </span>
+
+        <span>
+          Musik, die verbindet. Für Momente, die bleiben.
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+       ======================================================= -->
+
+  <script>
+
+    /* Header beim Scrollen */
+
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 25) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+
+    /* Mobile Navigation */
+
+    const mobileToggle =
+      document.getElementById("mobileToggle");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+    mobileToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+
+    /* Mobile Menü nach Klick schließen */
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+
+    });
+
+
+    /* Jahr automatisch */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
