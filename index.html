@@ -95,25 +95,20 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-
       transition: .3s ease;
     }
 
     header.scrolled {
       background: rgba(7, 17, 31, .94);
       backdrop-filter: blur(18px);
-
-      box-shadow:
-        0 10px 35px rgba(0,0,0,.16);
+      box-shadow: 0 10px 35px rgba(0,0,0,.16);
     }
 
     .nav {
       height: 82px;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 30px;
     }
 
@@ -126,13 +121,11 @@
     .logo img {
       width: 58px;
       height: 58px;
-
       object-fit: contain;
     }
 
     .logo-fallback {
       display: none;
-
       color: white;
       font-weight: 900;
       font-size: 21px;
@@ -142,16 +135,13 @@
       display: flex;
       align-items: center;
       gap: 28px;
-
       list-style: none;
     }
 
     .nav-links a {
       color: rgba(255,255,255,.86);
-
       font-size: 14px;
       font-weight: 600;
-
       transition: color .2s ease;
     }
 
@@ -161,15 +151,10 @@
 
     .nav-cta {
       background: var(--blue);
-
       color: white !important;
-
       padding: 12px 19px;
-
       border-radius: 9px;
-
-      box-shadow:
-        0 8px 25px rgba(22,140,255,.25);
+      box-shadow: 0 8px 25px rgba(22,140,255,.25);
     }
 
     .nav-cta:hover {
@@ -178,14 +163,10 @@
 
     .mobile-toggle {
       display: none;
-
       border: 0;
       background: transparent;
-
       color: white;
-
       font-size: 29px;
-
       cursor: pointer;
     }
 
@@ -196,9 +177,7 @@
 
     .hero {
       position: relative;
-
       min-height: 100vh;
-
       display: flex;
       align-items: center;
 
@@ -220,10 +199,8 @@
 
     .hero::before {
       content: "";
-
       position: absolute;
       inset: 0;
-
       opacity: .18;
 
       background-image:
@@ -249,26 +226,20 @@
 
     .hero-glow {
       position: absolute;
-
       width: 500px;
       height: 500px;
-
       right: -160px;
       top: 10%;
 
       background: rgba(22,140,255,.15);
-
       filter: blur(90px);
-
       border-radius: 50%;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-
       padding: 150px 0 100px;
-
       max-width: 760px;
     }
 
@@ -290,10 +261,8 @@
 
     .eyebrow::before {
       content: "";
-
       width: 28px;
       height: 2px;
-
       background: var(--blue);
     }
 
@@ -303,9 +272,7 @@
       font-size: clamp(46px, 7vw, 86px);
 
       line-height: .98;
-
       letter-spacing: -4px;
-
       font-weight: 900;
 
       margin-bottom: 30px;
@@ -321,7 +288,6 @@
       color: rgba(255,255,255,.72);
 
       font-size: 19px;
-
       line-height: 1.75;
 
       margin-bottom: 38px;
@@ -330,18 +296,15 @@
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-
       gap: 14px;
     }
 
     .button {
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
 
       min-height: 52px;
-
       padding: 0 23px;
 
       border-radius: 9px;
@@ -364,7 +327,6 @@
 
     .button-primary {
       color: white;
-
       background: var(--blue);
 
       box-shadow:
@@ -402,7 +364,6 @@
 
       display: flex;
       align-items: center;
-
       gap: 5px;
 
       opacity: .65;
@@ -421,49 +382,17 @@
         wave 1.15s ease-in-out infinite alternate;
     }
 
-    .soundwave span:nth-child(1) {
-      height: 20px;
-    }
-
-    .soundwave span:nth-child(2) {
-      height: 45px;
-    }
-
-    .soundwave span:nth-child(3) {
-      height: 28px;
-    }
-
-    .soundwave span:nth-child(4) {
-      height: 62px;
-    }
-
-    .soundwave span:nth-child(5) {
-      height: 38px;
-    }
-
-    .soundwave span:nth-child(6) {
-      height: 72px;
-    }
-
-    .soundwave span:nth-child(7) {
-      height: 44px;
-    }
-
-    .soundwave span:nth-child(8) {
-      height: 65px;
-    }
-
-    .soundwave span:nth-child(9) {
-      height: 30px;
-    }
-
-    .soundwave span:nth-child(10) {
-      height: 52px;
-    }
-
-    .soundwave span:nth-child(11) {
-      height: 25px;
-    }
+    .soundwave span:nth-child(1) { height: 20px; }
+    .soundwave span:nth-child(2) { height: 45px; }
+    .soundwave span:nth-child(3) { height: 28px; }
+    .soundwave span:nth-child(4) { height: 62px; }
+    .soundwave span:nth-child(5) { height: 38px; }
+    .soundwave span:nth-child(6) { height: 72px; }
+    .soundwave span:nth-child(7) { height: 44px; }
+    .soundwave span:nth-child(8) { height: 65px; }
+    .soundwave span:nth-child(9) { height: 30px; }
+    .soundwave span:nth-child(10) { height: 52px; }
+    .soundwave span:nth-child(11) { height: 25px; }
 
     @keyframes wave {
       from {
@@ -488,7 +417,6 @@
 
     .section-heading {
       max-width: 700px;
-
       margin-bottom: 55px;
     }
 
@@ -509,9 +437,7 @@
       font-size: clamp(34px, 5vw, 55px);
 
       line-height: 1.05;
-
       letter-spacing: -2px;
-
       font-weight: 900;
 
       margin-bottom: 20px;
@@ -519,7 +445,6 @@
 
     .section-heading p {
       color: var(--muted);
-
       font-size: 17px;
     }
 
@@ -534,10 +459,7 @@
 
     .service-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
 
@@ -590,13 +512,11 @@
 
     .service-card h3 {
       font-size: 20px;
-
       margin-bottom: 12px;
     }
 
     .service-card p {
       color: var(--muted);
-
       font-size: 14px;
     }
 
@@ -608,107 +528,49 @@
     .about-grid {
       display: grid;
 
-      grid-template-columns:
-        1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 
       gap: 80px;
 
       align-items: center;
     }
 
-    .about-visual {
-      min-height: 510px;
+    /*
+      Quadratisches Video
+    */
 
-      border-radius: 25px;
+    .about-visual {
+      position: relative;
+
+      width: 100%;
+
+      aspect-ratio: 1 / 1;
 
       overflow: hidden;
 
-      position: relative;
+      border-radius: 25px;
 
-      background:
-        radial-gradient(
-          circle at 30% 25%,
-          rgba(22,140,255,.4),
-          transparent 28%
-        ),
-        linear-gradient(
-          145deg,
-          #07111f,
-          #0c1d32
-        );
-
-      display: flex;
-      align-items: flex-end;
-
-      padding: 34px;
-    }
-
-    .about-visual::before {
-      content: "";
-
-      position: absolute;
-
-      width: 300px;
-      height: 300px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.12);
-
-      border-radius: 50%;
-
-      top: 70px;
-      right: -70px;
-    }
-
-    .about-visual::after {
-      content: "";
-
-      position: absolute;
-
-      width: 190px;
-      height: 190px;
-
-      border:
-        1px solid
-        rgba(22,140,255,.5);
-
-      border-radius: 50%;
-
-      top: 125px;
-      right: -15px;
-    }
-
-    .about-card {
-      position: relative;
-      z-index: 2;
-
-      background:
-        rgba(255,255,255,.95);
-
-      border-radius: 15px;
-
-      padding: 24px;
-
-      max-width: 360px;
+      background: #07111f;
 
       box-shadow:
-        0 20px 50px
-        rgba(0,0,0,.25);
+        0 20px 60px
+        rgba(7,17,31,.16);
     }
 
-    .about-card strong {
+    .about-visual video {
+      width: 100%;
+      height: 100%;
+
       display: block;
 
-      font-size: 24px;
+      object-fit: cover;
 
-      margin-bottom: 5px;
-    }
-
-    .about-card span {
-      color: var(--muted);
-
-      font-size: 14px;
+      /*
+        Das Video wird quadratisch zugeschnitten.
+        Der mittlere Bereich bleibt sichtbar,
+        sodass der DJ im Bild bleibt.
+      */
+      object-position: center center;
     }
 
     .about-copy h2 {
@@ -780,7 +642,6 @@
 
     .process {
       background: var(--navy);
-
       color: white;
     }
 
@@ -827,13 +688,11 @@
 
     .process-card h3 {
       font-size: 21px;
-
       margin-bottom: 12px;
     }
 
     .process-card p {
       color: rgba(255,255,255,.6);
-
       font-size: 14px;
     }
 
@@ -891,13 +750,11 @@
 
     .equipment-item h3 {
       font-size: 17px;
-
       margin-bottom: 3px;
     }
 
     .equipment-item p {
       color: var(--muted);
-
       font-size: 13px;
     }
 
@@ -932,8 +789,7 @@
       grid-row: span 2;
     }
 
-    .gallery-item img,
-    .gallery-item video {
+    .gallery-item img {
       width: 100%;
       height: 100%;
 
@@ -945,8 +801,7 @@
         transform .6s ease;
     }
 
-    .gallery-item:hover img,
-    .gallery-item:hover video {
+    .gallery-item:hover img {
       transform: scale(1.04);
     }
 
@@ -1055,13 +910,11 @@
 
     .contact-info > p {
       color: var(--muted);
-
       margin-bottom: 35px;
     }
 
     .contact-list {
       display: grid;
-
       gap: 18px;
     }
 
@@ -1095,13 +948,11 @@
 
     .contact-item strong {
       display: block;
-
       font-size: 14px;
     }
 
     .contact-item span {
       color: var(--muted);
-
       font-size: 14px;
     }
 
@@ -1138,7 +989,6 @@
 
     .field {
       display: grid;
-
       gap: 7px;
     }
 
@@ -1180,7 +1030,6 @@
 
     .field textarea {
       min-height: 130px;
-
       resize: vertical;
     }
 
@@ -1196,7 +1045,6 @@
 
     .form-submit {
       width: 100%;
-
       margin-top: 20px;
     }
 
@@ -1236,7 +1084,6 @@
 
     .footer-brand img {
       width: 60px;
-
       margin-bottom: 18px;
     }
 
@@ -1367,7 +1214,6 @@
 
       .nav-links a {
         display: block;
-
         padding: 12px;
       }
 
@@ -1421,15 +1267,18 @@
         grid-template-columns: 1fr;
       }
 
+      /*
+        Auf dem Handy bleibt das Video ebenfalls
+        quadratisch.
+      */
+
       .about-visual {
-        min-height: 380px;
+        aspect-ratio: 1 / 1;
       }
 
       .process-number {
         margin-bottom: 30px;
       }
-
-      /* Galerie auf Mobilgeräten */
 
       .gallery-grid {
         grid-template-columns:
@@ -1443,7 +1292,6 @@
 
       .gallery-item:first-child {
         grid-column: 1 / -1;
-
         grid-row: auto;
       }
 
@@ -1486,7 +1334,6 @@
 
       .hero-actions {
         flex-direction: column;
-
         align-items: stretch;
       }
 
@@ -1500,6 +1347,7 @@
     }
 
   </style>
+
 </head>
 
 
@@ -1514,11 +1362,15 @@
 
     <div class="container nav">
 
-      <a href="#start" class="logo">
+      <a
+        href="#start"
+        class="logo"
+      >
 
         <img
           src="logo.png"
           alt="RuhrGeBeats Logo"
+
           onerror="
             this.style.display='none';
             this.nextElementSibling.style.display='block';
@@ -1541,7 +1393,10 @@
       </button>
 
 
-      <ul class="nav-links" id="navLinks">
+      <ul
+        class="nav-links"
+        id="navLinks"
+      >
 
         <li>
           <a href="#leistungen">
@@ -1620,14 +1475,10 @@
 
 
           <p class="hero-text">
-
             RuhrGeBeats bringt Musik, Licht und die richtige
-            Atmosphäre auf deine Veranstaltung.
-
-            Persönlich geplant, professionell umgesetzt und
-            mit dem Anspruch, dass dein Abend genau so wird,
-            wie du ihn dir vorstellst.
-
+            Atmosphäre auf deine Veranstaltung. Persönlich geplant,
+            professionell umgesetzt und mit dem Anspruch, dass dein
+            Abend genau so wird, wie du ihn dir vorstellst.
           </p>
 
 
@@ -1805,28 +1656,40 @@
         <div class="about-grid">
 
 
+          <!-- VIDEO -->
+
           <div class="about-visual">
 
-            <div class="about-card">
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
 
-              <strong>
-                RuhrGeBeats
-              </strong>
+              aria-label="RuhrGeBeats bei einer Veranstaltung"
+            >
 
-              <span>
-                DJ-Team aus dem Ruhrgebiet
-              </span>
+              <source
+                src="video-01.mp4"
+                type="video/mp4"
+              >
 
-            </div>
+              Dein Browser unterstützt dieses Videoformat nicht.
+
+            </video>
 
           </div>
 
+
+          <!-- TEXT -->
 
           <div class="about-copy">
 
             <div class="section-label">
               Über uns
             </div>
+
 
             <h2>
               Zwei DJs.<br>
@@ -2158,8 +2021,6 @@
         <div class="gallery-grid">
 
 
-          <!-- FOTO 01 -->
-
           <div class="gallery-item">
 
             <img
@@ -2170,8 +2031,6 @@
 
           </div>
 
-
-          <!-- FOTO 02 -->
 
           <div class="gallery-item">
 
@@ -2184,8 +2043,6 @@
           </div>
 
 
-          <!-- FOTO 03 -->
-
           <div class="gallery-item">
 
             <img
@@ -2196,8 +2053,6 @@
 
           </div>
 
-
-          <!-- FOTO 04 -->
 
           <div class="gallery-item">
 
@@ -2210,8 +2065,6 @@
           </div>
 
 
-          <!-- FOTO 05 -->
-
           <div class="gallery-item">
 
             <img
@@ -2219,31 +2072,6 @@
               alt="RuhrGeBeats Veranstaltung"
               loading="lazy"
             >
-
-          </div>
-
-
-          <!-- VIDEO -->
-
-          <div class="gallery-item">
-
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              aria-label="RuhrGeBeats Video von einer Veranstaltung"
-            >
-
-              <source
-                src="video-01.mp4"
-                type="video/mp4"
-              >
-
-              Dein Browser unterstützt dieses Videoformat nicht.
-
-            </video>
 
           </div>
 
@@ -2748,9 +2576,13 @@
     window.addEventListener("scroll", () => {
 
       if (window.scrollY > 30) {
+
         header.classList.add("scrolled");
+
       } else {
+
         header.classList.remove("scrolled");
+
       }
 
     });
@@ -2793,32 +2625,24 @@
       new Date().getFullYear();
 
 
-    /* =====================================================
-       GALERIE-VIDEO
-       ===================================================== */
+    /* Video automatisch starten */
 
-    const galleryVideo =
-      document.querySelector(".gallery-item video");
+    const aboutVideo =
+      document.querySelector(".about-visual video");
 
 
-    if (galleryVideo) {
+    if (aboutVideo) {
 
-      galleryVideo.muted = true;
-
-      galleryVideo.loop = true;
-
-      galleryVideo.playsInline = true;
+      aboutVideo.muted = true;
+      aboutVideo.loop = true;
+      aboutVideo.playsInline = true;
 
 
       const startVideo = () => {
 
-        galleryVideo.play().catch(() => {
-          /*
-            Manche Browser blockieren Autoplay zunächst.
-            Da das Video stumm ist, darf es normalerweise
-            automatisch gestartet werden.
-          */
-        });
+        aboutVideo
+          .play()
+          .catch(() => {});
 
       };
 
@@ -2832,7 +2656,7 @@
 
           if (
             !document.hidden &&
-            galleryVideo.paused
+            aboutVideo.paused
           ) {
 
             startVideo();
