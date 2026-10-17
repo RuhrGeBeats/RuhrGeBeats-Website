@@ -535,10 +535,6 @@
       align-items: center;
     }
 
-    /*
-      Quadratisches Video
-    */
-
     .about-visual {
       position: relative;
 
@@ -565,11 +561,6 @@
 
       object-fit: cover;
 
-      /*
-        Das Video wird quadratisch zugeschnitten.
-        Der mittlere Bereich bleibt sichtbar,
-        sodass der DJ im Bild bleibt.
-      */
       object-position: center center;
     }
 
@@ -882,184 +873,6 @@
 
 
     /* =====================================================
-       KONTAKT
-       ===================================================== */
-
-    .contact {
-      background: var(--light);
-    }
-
-    .contact-grid {
-      display: grid;
-
-      grid-template-columns:
-        .8fr 1.2fr;
-
-      gap: 70px;
-    }
-
-    .contact-info h2 {
-      font-size: 45px;
-
-      line-height: 1.05;
-
-      letter-spacing: -2px;
-
-      margin-bottom: 20px;
-    }
-
-    .contact-info > p {
-      color: var(--muted);
-      margin-bottom: 35px;
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 18px;
-    }
-
-    .contact-item {
-      display: flex;
-
-      gap: 14px;
-
-      align-items: flex-start;
-    }
-
-    .contact-item-icon {
-      width: 42px;
-      height: 42px;
-
-      flex: 0 0 42px;
-
-      display: flex;
-
-      justify-content: center;
-      align-items: center;
-
-      background: white;
-
-      border-radius: 11px;
-
-      border:
-        1px solid
-        var(--border);
-    }
-
-    .contact-item strong {
-      display: block;
-      font-size: 14px;
-    }
-
-    .contact-item span {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .contact-form {
-      background: white;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius: 20px;
-
-      padding: 35px;
-
-      box-shadow: var(--shadow);
-    }
-
-    .form-title {
-      font-size: 23px;
-
-      font-weight: 900;
-
-      margin-bottom: 24px;
-    }
-
-    .form-grid {
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 17px;
-    }
-
-    .field {
-      display: grid;
-      gap: 7px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field label {
-      font-size: 12px;
-
-      font-weight: 800;
-
-      color: #334155;
-    }
-
-    .field input,
-    .field textarea,
-    .field select {
-      width: 100%;
-
-      border:
-        1px solid
-        #dbe2ea;
-
-      background: #fbfcfd;
-
-      border-radius: 9px;
-
-      padding: 13px 14px;
-
-      outline: none;
-
-      color: var(--text);
-
-      transition:
-        border .2s ease,
-        box-shadow .2s ease;
-    }
-
-    .field textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: var(--blue);
-
-      box-shadow:
-        0 0 0 3px
-        rgba(22,140,255,.1);
-    }
-
-    .form-submit {
-      width: 100%;
-      margin-top: 20px;
-    }
-
-    .form-hint {
-      color: var(--muted);
-
-      font-size: 11px;
-
-      margin-top: 12px;
-
-      text-align: center;
-    }
-
-
-    /* =====================================================
        FOOTER
        ===================================================== */
 
@@ -1262,15 +1075,9 @@
       .process-grid,
       .equipment-grid,
       .about-grid,
-      .contact-grid,
       .footer-grid {
         grid-template-columns: 1fr;
       }
-
-      /*
-        Auf dem Handy bleibt das Video ebenfalls
-        quadratisch.
-      */
 
       .about-visual {
         aspect-ratio: 1 / 1;
@@ -1297,22 +1104,6 @@
 
       .cta-box {
         padding: 42px 27px;
-      }
-
-      .contact-grid {
-        gap: 40px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .contact-form {
-        padding: 24px;
       }
 
       .footer-grid {
@@ -1431,7 +1222,7 @@
         <li>
           <a
             class="nav-cta"
-            href="#kontakt"
+            href="/anfrage"
           >
             Anfrage
           </a>
@@ -1486,7 +1277,7 @@
 
             <a
               class="button button-primary"
-              href="#kontakt"
+              href="/anfrage"
             >
               Jetzt unverbindlich anfragen
             </a>
@@ -1581,6 +1372,7 @@
           </article>
 
 
+
           <article class="service-card">
 
             <div class="service-icon">
@@ -1597,6 +1389,7 @@
             </p>
 
           </article>
+
 
 
           <article class="service-card">
@@ -1616,6 +1409,7 @@
             </p>
 
           </article>
+
 
 
           <article class="service-card">
@@ -1680,6 +1474,7 @@
             </video>
 
           </div>
+
 
 
           <!-- TEXT -->
@@ -1775,6 +1570,7 @@
         </div>
 
 
+
         <div class="process-grid">
 
 
@@ -1797,6 +1593,7 @@
           </article>
 
 
+
           <article class="process-card">
 
             <div class="process-number">
@@ -1815,6 +1612,7 @@
           </article>
 
 
+
           <article class="process-card">
 
             <div class="process-number">
@@ -1831,6 +1629,7 @@
             </p>
 
           </article>
+
 
 
           <article class="process-card">
@@ -1891,6 +1690,7 @@
         </div>
 
 
+
         <div class="equipment-grid">
 
 
@@ -1916,6 +1716,7 @@
           </div>
 
 
+
           <div class="equipment-item">
 
             <div class="equipment-item-icon">
@@ -1938,6 +1739,7 @@
           </div>
 
 
+
           <div class="equipment-item">
 
             <div class="equipment-item-icon">
@@ -1958,6 +1760,7 @@
             </div>
 
           </div>
+
 
 
           <div class="equipment-item">
@@ -2018,6 +1821,7 @@
         </div>
 
 
+
         <div class="gallery-grid">
 
 
@@ -2032,6 +1836,7 @@
           </div>
 
 
+
           <div class="gallery-item">
 
             <img
@@ -2041,6 +1846,7 @@
             >
 
           </div>
+
 
 
           <div class="gallery-item">
@@ -2054,6 +1860,7 @@
           </div>
 
 
+
           <div class="gallery-item">
 
             <img
@@ -2063,6 +1870,7 @@
             >
 
           </div>
+
 
 
           <div class="gallery-item">
@@ -2111,7 +1919,7 @@
 
           <a
             class="button button-primary"
-            href="#kontakt"
+            href="/anfrage"
           >
             Anfrage starten
           </a>
@@ -2122,310 +1930,6 @@
 
     </section>
 
-
-
-    <!-- =====================================================
-         KONTAKT
-         ===================================================== -->
-
-    <section
-      class="contact"
-      id="kontakt"
-    >
-
-      <div class="container">
-
-        <div class="contact-grid">
-
-
-          <div class="contact-info">
-
-            <div class="section-label">
-              Kontakt
-            </div>
-
-            <h2>
-              Lasst uns<br>
-              eure Feier planen.
-            </h2>
-
-            <p>
-              Schickt uns zunächst die wichtigsten Informationen
-              zu eurer Veranstaltung. Die Anfrage ist unverbindlich.
-            </p>
-
-
-            <div class="contact-list">
-
-
-              <a
-                class="contact-item"
-                href="mailto:ruhrgebeats@gmail.com"
-              >
-
-                <div class="contact-item-icon">
-                  ✉
-                </div>
-
-                <div>
-
-                  <strong>
-                    E-Mail
-                  </strong>
-
-                  <span>
-                    ruhrgebeats@gmail.com
-                  </span>
-
-                </div>
-
-              </a>
-
-
-              <a
-                class="contact-item"
-                href="https://www.instagram.com/ruhrgebeats_gbr/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-
-                <div class="contact-item-icon">
-                  ◎
-                </div>
-
-                <div>
-
-                  <strong>
-                    Instagram
-                  </strong>
-
-                  <span>
-                    @ruhrgebeats_gbr
-                  </span>
-
-                </div>
-
-              </a>
-
-
-              <div class="contact-item">
-
-                <div class="contact-item-icon">
-                  ⌂
-                </div>
-
-                <div>
-
-                  <strong>
-                    Ruhrgebiet
-                  </strong>
-
-                  <span>
-                    Mobil für eure Veranstaltung unterwegs
-                  </span>
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-          </div>
-
-
-
-          <form
-            class="contact-form"
-            action="mailto:ruhrgebeats@gmail.com"
-            method="post"
-            enctype="text/plain"
-          >
-
-            <div class="form-title">
-              Unverbindliche Anfrage
-            </div>
-
-
-            <div class="form-grid">
-
-
-              <div class="field">
-
-                <label for="name">
-                  Name *
-                </label>
-
-                <input
-                  id="name"
-                  name="Name"
-                  type="text"
-                  required
-                  placeholder="Vor- und Nachname"
-                >
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="email">
-                  E-Mail *
-                </label>
-
-                <input
-                  id="email"
-                  name="E-Mail"
-                  type="email"
-                  required
-                  placeholder="name@beispiel.de"
-                >
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="phone">
-                  Telefon
-                </label>
-
-                <input
-                  id="phone"
-                  name="Telefon"
-                  type="tel"
-                  placeholder="Telefonnummer"
-                >
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="eventType">
-                  Veranstaltung
-                </label>
-
-                <select
-                  id="eventType"
-                  name="Veranstaltung"
-                >
-
-                  <option value="">
-                    Bitte auswählen
-                  </option>
-
-                  <option>
-                    Geburtstag
-                  </option>
-
-                  <option>
-                    Hochzeit
-                  </option>
-
-                  <option>
-                    Private Feier
-                  </option>
-
-                  <option>
-                    Firmenfeier
-                  </option>
-
-                  <option>
-                    Sonstige Veranstaltung
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="date">
-                  Veranstaltungsdatum
-                </label>
-
-                <input
-                  id="date"
-                  name="Veranstaltungsdatum"
-                  type="date"
-                >
-
-              </div>
-
-
-              <div class="field">
-
-                <label for="guests">
-                  Anzahl Gäste
-                </label>
-
-                <input
-                  id="guests"
-                  name="Gäste"
-                  type="number"
-                  min="1"
-                  placeholder="ca. 100"
-                >
-
-              </div>
-
-
-              <div class="field full">
-
-                <label for="location">
-                  Veranstaltungsort
-                </label>
-
-                <input
-                  id="location"
-                  name="Veranstaltungsort"
-                  type="text"
-                  placeholder="Location / Ort"
-                >
-
-              </div>
-
-
-              <div class="field full">
-
-                <label for="message">
-                  Erzählt uns von eurem Event
-                </label>
-
-                <textarea
-                  id="message"
-                  name="Nachricht"
-                  placeholder="Was habt ihr geplant? Welche Musik mögt ihr? Gibt es besondere Wünsche?"
-                ></textarea>
-
-              </div>
-
-
-            </div>
-
-
-            <button
-              class="button button-primary form-submit"
-              type="submit"
-            >
-              Anfrage per E-Mail senden
-            </button>
-
-
-            <div class="form-hint">
-              Mit dem Absenden wird dein E-Mail-Programm geöffnet.
-            </div>
-
-          </form>
-
-
-        </div>
-
-      </div>
-
-    </section>
 
   </main>
 
@@ -2455,6 +1959,7 @@
           </p>
 
         </div>
+
 
 
         <div class="footer-col">
@@ -2490,14 +1995,15 @@
             </li>
 
             <li>
-              <a href="#kontakt">
-                Kontakt
+              <a href="/anfrage">
+                Anfrage
               </a>
             </li>
 
           </ul>
 
         </div>
+
 
 
         <div class="footer-col">
@@ -2544,6 +2050,7 @@
       </div>
 
 
+
       <div class="footer-bottom">
 
         <span>
@@ -2588,6 +2095,7 @@
     });
 
 
+
     /* Mobile Menü */
 
     const mobileToggle =
@@ -2602,6 +2110,7 @@
       navLinks.classList.toggle("open");
 
     });
+
 
 
     /* Mobile Menü nach Klick schließen */
@@ -2619,10 +2128,12 @@
       });
 
 
+
     /* Aktuelles Jahr */
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
+
 
 
     /* Video automatisch starten */
@@ -2669,6 +2180,7 @@
     }
 
   </script>
+
 
 </body>
 </html>
