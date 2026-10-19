@@ -38,9 +38,9 @@
 
   <style>
 
-    /* =========================================
+    /* =========================================================
        ANFRAGEN
-       ========================================= */
+       ========================================================= */
 
     .page-header {
       display: flex;
@@ -85,9 +85,9 @@
     }
 
 
-    /* =========================================
+    /* =========================================================
        STATUS
-       ========================================= */
+       ========================================================= */
 
     .request-status {
       background: white;
@@ -102,7 +102,6 @@
       margin-bottom: 20px;
     }
 
-
     .request-status.error {
       color: var(--danger);
       background: #fff6f6;
@@ -110,16 +109,15 @@
     }
 
 
-    /* =========================================
+    /* =========================================================
        REQUEST CARD
-       ========================================= */
+       ========================================================= */
 
     .requests-list {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-
 
     .request-card {
       background: var(--white);
@@ -133,7 +131,6 @@
       overflow: hidden;
     }
 
-
     .request-top {
       padding: 24px 26px;
 
@@ -146,14 +143,12 @@
       border-bottom: 1px solid var(--border);
     }
 
-
     .request-title {
       margin: 0;
 
       font-size: 22px;
       letter-spacing: -.025em;
     }
-
 
     .request-type {
       margin-top: 4px;
@@ -163,7 +158,6 @@
       font-size: 13px;
       font-weight: 800;
     }
-
 
     .request-date {
       flex-shrink: 0;
@@ -185,9 +179,9 @@
     }
 
 
-    /* =========================================
+    /* =========================================================
        DATA GRID
-       ========================================= */
+       ========================================================= */
 
     .request-grid {
       display: grid;
@@ -198,16 +192,13 @@
       gap: 24px;
     }
 
-
     .request-section {
       min-width: 0;
     }
 
-
     .request-section.full {
       grid-column: 1 / -1;
     }
-
 
     .request-section h3 {
       margin: 0 0 12px;
@@ -220,7 +211,6 @@
       color: var(--muted);
     }
 
-
     .request-info {
       display: flex;
       flex-direction: column;
@@ -229,13 +219,11 @@
       font-size: 14px;
     }
 
-
     .request-row {
       display: flex;
       gap: 8px;
       align-items: flex-start;
     }
-
 
     .request-label {
       flex: 0 0 125px;
@@ -243,7 +231,6 @@
       color: var(--muted);
       font-size: 13px;
     }
-
 
     .request-value {
       min-width: 0;
@@ -253,20 +240,18 @@
       overflow-wrap: anywhere;
     }
 
-
     .request-value a {
       color: var(--blue-dark);
     }
-
 
     .request-value a:hover {
       text-decoration: underline;
     }
 
 
-    /* =========================================
+    /* =========================================================
        MESSAGE
-       ========================================= */
+       ========================================================= */
 
     .request-message {
       padding: 16px;
@@ -283,16 +268,15 @@
       overflow-wrap: anywhere;
     }
 
-
     .request-message.empty {
       color: var(--muted);
       font-style: italic;
     }
 
 
-    /* =========================================
-       REQUEST META
-       ========================================= */
+    /* =========================================================
+       META
+       ========================================================= */
 
     .request-meta {
       padding: 13px 26px;
@@ -307,55 +291,9 @@
     }
 
 
-    /* =========================================
-       MOBILE
-       ========================================= */
-
-    @media (max-width: 700px) {
-
-      .page-header {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-
-      .request-top {
-        padding: 21px;
-        flex-direction: column;
-      }
-
-
-      .request-body {
-        padding: 21px;
-      }
-
-
-      .request-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-
-      .request-section.full {
-        grid-column: auto;
-      }
-
-
-      .request-label {
-        flex-basis: 105px;
-      }
-
-
-      .request-meta {
-        padding: 13px 21px;
-      }
-
-    }
-
-
-    /* =========================================
-       ANGEBOT – ZUSATZ
-       ========================================= */
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
 
     .request-actions {
       display: flex;
@@ -368,7 +306,6 @@
       background: #fafbfc;
       border-top: 1px solid var(--border);
     }
-
 
     .request-action-button {
       border: 1px solid #d5dfe7;
@@ -388,14 +325,12 @@
       transition: .2s ease;
     }
 
-
     .request-action-button:hover {
       border-color: #a9d4f5;
       color: var(--blue-dark);
 
       transform: translateY(-1px);
     }
-
 
     .request-action-button.primary {
       border-color: #0b5e9f;
@@ -404,16 +339,15 @@
       color: white;
     }
 
-
     .request-action-button.primary:hover {
       background: #084f87;
       color: white;
     }
 
 
-    /* =========================================
+    /* =========================================================
        ANGEBOT MODAL
-       ========================================= */
+       ========================================================= */
 
     .offer-overlay {
       position: fixed;
@@ -433,11 +367,9 @@
       backdrop-filter: blur(5px);
     }
 
-
     .offer-overlay.open {
       display: flex;
     }
-
 
     .offer-modal {
       width: min(980px, 100%);
@@ -455,7 +387,6 @@
       box-shadow:
         0 25px 80px rgba(0,0,0,.25);
     }
-
 
     .offer-modal-head {
       position: sticky;
@@ -479,13 +410,11 @@
         1px solid #e5ebf0;
     }
 
-
     .offer-modal-head h2 {
       margin: 0 0 5px;
 
       font-size: 24px;
     }
-
 
     .offer-modal-head p {
       margin: 0;
@@ -494,7 +423,6 @@
 
       font-size: 13px;
     }
-
 
     .offer-close {
       width: 38px;
@@ -515,11 +443,14 @@
       flex-shrink: 0;
     }
 
-
     .offer-modal-body {
       padding: 26px;
     }
 
+
+    /* =========================================================
+       OFFER FORM
+       ========================================================= */
 
     .offer-form-grid {
       display: grid;
@@ -532,11 +463,9 @@
       margin-bottom: 26px;
     }
 
-
     .offer-field.full {
       grid-column: 1 / -1;
     }
-
 
     .offer-field label {
       display: block;
@@ -548,7 +477,6 @@
       font-size: 12px;
       font-weight: 800;
     }
-
 
     .offer-field input,
     .offer-field textarea {
@@ -572,7 +500,6 @@
       outline: none;
     }
 
-
     .offer-field input:focus,
     .offer-field textarea:focus {
       border-color: #168cff;
@@ -584,6 +511,10 @@
       background: white;
     }
 
+
+    /* =========================================================
+       POSITIONEN
+       ========================================================= */
 
     .offer-items-head {
       display: flex;
@@ -597,13 +528,11 @@
       margin-bottom: 12px;
     }
 
-
     .offer-items-head h3 {
       margin: 0;
 
       font-size: 17px;
     }
-
 
     .add-item-button {
       border:
@@ -624,13 +553,11 @@
       cursor: pointer;
     }
 
-
     .offer-items {
       display: grid;
 
       gap: 8px;
     }
-
 
     .offer-item-row {
       display: grid;
@@ -646,7 +573,6 @@
 
       align-items: center;
     }
-
 
     .offer-item-row input {
       width: 100%;
@@ -668,7 +594,6 @@
       font-size: 13px;
     }
 
-
     .offer-item-total {
       padding: 9px 8px;
 
@@ -683,7 +608,6 @@
       font-size: 13px;
       font-weight: 800;
     }
-
 
     .remove-item-button {
       width: 38px;
@@ -703,6 +627,10 @@
     }
 
 
+    /* =========================================================
+       ANGEBOT SUMMEN
+       ========================================================= */
+
     .offer-summary {
       width:
         min(430px, 100%);
@@ -713,7 +641,6 @@
       border-top:
         1px solid #dce4eb;
     }
-
 
     .offer-summary-row {
       display: flex;
@@ -729,7 +656,6 @@
 
       font-size: 14px;
     }
-
 
     .offer-summary-row.total {
       padding-top: 11px;
@@ -761,7 +687,6 @@
       background: #fafbfc;
     }
 
-
     .offer-cancel,
     .offer-create-pdf {
       border-radius: 10px;
@@ -776,7 +701,6 @@
       cursor: pointer;
     }
 
-
     .offer-cancel {
       border:
         1px solid #d6dfe6;
@@ -784,7 +708,6 @@
       background: white;
       color: #42515d;
     }
-
 
     .offer-create-pdf {
       border:
@@ -796,27 +719,58 @@
     }
 
 
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
     @media (max-width: 700px) {
+
+      .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .request-top {
+        padding: 21px;
+        flex-direction: column;
+      }
+
+      .request-body {
+        padding: 21px;
+      }
+
+      .request-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .request-section.full {
+        grid-column: auto;
+      }
+
+      .request-label {
+        flex-basis: 105px;
+      }
+
+      .request-meta {
+        padding: 13px 21px;
+      }
 
       .request-actions {
         justify-content: stretch;
       }
 
-
       .request-action-button {
         flex: 1;
       }
-
 
       .offer-form-grid {
         grid-template-columns: 1fr;
       }
 
-
       .offer-field.full {
         grid-column: auto;
       }
-
 
       .offer-item-row {
         grid-template-columns:
@@ -829,11 +783,9 @@
         overflow-x: auto;
       }
 
-
       .offer-modal-body {
         padding: 20px;
       }
-
 
       .offer-modal-foot {
         padding: 15px 20px;
@@ -841,7 +793,6 @@
         flex-direction:
           column-reverse;
       }
-
 
       .offer-cancel,
       .offer-create-pdf {
@@ -858,7 +809,9 @@
 <body>
 
 
-  <!-- HEADER -->
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
 
   <header class="intern-header">
 
@@ -900,12 +853,12 @@
 
 
 
-  <!-- MAIN -->
+  <!-- =======================================================
+       MAIN
+       ======================================================= -->
 
   <main class="intern-layout">
 
-
-    <!-- PAGE HEADER -->
 
     <section class="page-header">
 
@@ -937,8 +890,6 @@
 
 
 
-    <!-- STATUS -->
-
     <div
       id="requestStatus"
       class="request-status"
@@ -947,8 +898,6 @@
     </div>
 
 
-
-    <!-- REQUESTS -->
 
     <section
       id="requestsList"
@@ -960,7 +909,9 @@
 
 
 
-  <!-- ANGEBOT MODAL -->
+  <!-- =======================================================
+       ANGEBOT MODAL
+       ======================================================= -->
 
   <div
     id="offerOverlay"
@@ -984,8 +935,7 @@
           </h2>
 
           <p>
-            Die Anfrage ist vorausgefüllt.
-            Preise werden netto eingegeben.
+            Die Daten aus der Anfrage wurden bereits übernommen.
           </p>
 
         </div>
@@ -1004,6 +954,7 @@
 
 
       <div class="offer-modal-body">
+
 
         <div class="offer-form-grid">
 
@@ -1105,7 +1056,9 @@
 
           </div>
 
+
         </div>
+
 
 
         <div class="offer-items-head">
@@ -1130,6 +1083,7 @@
           id="offerItems"
           class="offer-items"
         ></div>
+
 
 
         <div class="offer-summary">
@@ -1174,6 +1128,7 @@
 
         </div>
 
+
       </div>
 
 
@@ -1199,13 +1154,16 @@
 
       </div>
 
+
     </div>
 
   </div>
 
 
 
-  <!-- FOOTER -->
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
 
   <footer class="intern-footer">
 
@@ -1226,9 +1184,16 @@
 
 
 
-  <!-- SUPABASE -->
+  <!-- =======================================================
+       JAVASCRIPT
+       ======================================================= -->
 
   <script>
+
+
+    /* =======================================================
+       SUPABASE
+       ======================================================= */
 
     const SUPABASE_URL =
       "https://spqsuedpmrxcbefpocho.supabase.co";
@@ -1257,12 +1222,13 @@
       );
 
 
-    /*
-      =========================================
-      HILFSFUNKTIONEN
-      =========================================
-    */
+    let currentOfferRequest =
+      null;
 
+
+    /* =======================================================
+       HILFSFUNKTIONEN
+       ======================================================= */
 
     function escapeHtml(value) {
 
@@ -1275,11 +1241,26 @@
 
 
       return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
 
     }
 
@@ -1293,7 +1274,8 @@
 
       const date =
         new Date(
-          value + "T00:00:00"
+          value +
+          "T00:00:00"
         );
 
 
@@ -1316,11 +1298,9 @@
       }
 
 
-      const date =
-        new Date(value);
-
-
-      return date.toLocaleString(
+      return new Date(
+        value
+      ).toLocaleString(
         "de-DE",
         {
           day: "2-digit",
@@ -1360,13 +1340,20 @@
       }
 
 
-      if (start && end) {
+      if (
+        start &&
+        end
+      ) {
+
         return `${start} – ${end} Uhr`;
+
       }
 
 
       if (start) {
+
         return `ab ${start} Uhr`;
+
       }
 
 
@@ -1375,12 +1362,157 @@
     }
 
 
-    /*
-      =========================================
-      ANFRAGE DARSTELLEN
-      =========================================
-    */
+    function money(value) {
 
+      return new Intl.NumberFormat(
+        "de-DE",
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      ).format(
+        Number(value) || 0
+      ) + " €";
+
+    }
+
+
+    function numberValue(value) {
+
+      const raw =
+        String(
+          value ?? ""
+        ).trim();
+
+
+      if (!raw) {
+        return 0;
+      }
+
+
+      const normalized =
+        raw.includes(",")
+          ? raw
+              .replace(
+                /\./g,
+                ""
+              )
+              .replace(
+                ",",
+                "."
+              )
+          : raw.replace(
+              /[^0-9.-]/g,
+              ""
+            );
+
+
+      const number =
+        Number(
+          normalized
+        );
+
+
+      return Number.isFinite(
+        number
+      )
+        ? number
+        : 0;
+
+    }
+
+
+    function todayIso() {
+
+      const date =
+        new Date();
+
+
+      return (
+        date.getFullYear() +
+        "-" +
+        String(
+          date.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        ) +
+        "-" +
+        String(
+          date.getDate()
+        ).padStart(
+          2,
+          "0"
+        )
+      );
+
+    }
+
+
+    function nextOfferNumber() {
+
+      const date =
+        new Date();
+
+
+      return (
+        date.getFullYear() +
+        "-" +
+        String(
+          date.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        ) +
+        "-" +
+        String(
+          Math.floor(
+            Math.random() *
+            900
+          ) + 100
+        )
+      );
+
+    }
+
+
+    function offerDate(
+      value
+    ) {
+
+      if (!value) {
+        return "";
+      }
+
+
+      const date =
+        new Date(
+          value +
+          "T00:00:00"
+        );
+
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return value;
+
+      }
+
+
+      return date.toLocaleDateString(
+        "de-DE"
+      );
+
+    }
+
+
+    /* =======================================================
+       REQUEST CARD
+       ======================================================= */
 
     function createRequestCard(
       request
@@ -1388,7 +1520,8 @@
 
       const name =
         escapeHtml(
-          request.name || "Unbekannt"
+          request.name ||
+          "Unbekannt"
         );
 
 
@@ -1401,49 +1534,58 @@
 
       const location =
         escapeHtml(
-          request.location || "–"
+          request.location ||
+          "–"
         );
 
 
       const billingName =
         escapeHtml(
-          request.billing_name || "–"
+          request.billing_name ||
+          "–"
         );
 
 
       const billingStreet =
         escapeHtml(
-          request.billing_street || "–"
+          request.billing_street ||
+          "–"
         );
 
 
       const billingZip =
         escapeHtml(
-          request.billing_zip || "–"
+          request.billing_zip ||
+          "–"
         );
 
 
       const billingCity =
         escapeHtml(
-          request.billing_city || "–"
+          request.billing_city ||
+          "–"
         );
 
 
       const phone =
         escapeHtml(
-          request.phone || "–"
+          request.phone ||
+          "–"
         );
 
 
       const email =
         escapeHtml(
-          request.email || "–"
+          request.email ||
+          "–"
         );
 
 
       const message =
         request.message
-          ? escapeHtml(request.message)
+          ? escapeHtml(
+              request.message
+            )
           : "";
 
 
@@ -1464,7 +1606,9 @@
 
 
       const card =
-        document.createElement("article");
+        document.createElement(
+          "article"
+        );
 
 
       card.className =
@@ -1503,8 +1647,6 @@
 
           <div class="request-grid">
 
-
-            <!-- EVENT -->
 
             <div class="request-section">
 
@@ -1578,8 +1720,6 @@
             </div>
 
 
-            <!-- CONTACT -->
-
             <div class="request-section">
 
               <h3>
@@ -1588,7 +1728,6 @@
 
 
               <div class="request-info">
-
 
                 <div class="request-row">
 
@@ -1644,8 +1783,6 @@
             </div>
 
 
-            <!-- BILLING -->
-
             <div class="request-section">
 
               <h3>
@@ -1699,8 +1836,6 @@
             </div>
 
 
-            <!-- MESSAGE -->
-
             <div class="request-section">
 
               <h3>
@@ -1723,6 +1858,7 @@
               </div>
 
             </div>
+
 
           </div>
 
@@ -1768,12 +1904,9 @@
     }
 
 
-    /*
-      =========================================
-      LOGIN PRÜFEN
-      =========================================
-    */
-
+    /* =======================================================
+       LOGIN
+       ======================================================= */
 
     async function checkLogin() {
 
@@ -1809,12 +1942,9 @@
     }
 
 
-    /*
-      =========================================
-      ANFRAGEN LADEN
-      =========================================
-    */
-
+    /* =======================================================
+       ANFRAGEN LADEN
+       ======================================================= */
 
     async function loadRequests() {
 
@@ -1848,7 +1978,7 @@
       if (error) {
 
         console.error(
-          "Fehler beim Laden der Anfragen:",
+          "Fehler beim Laden:",
           error
         );
 
@@ -1892,7 +2022,7 @@
 
 
       data.forEach(
-        function(request) {
+        request => {
 
           requestsList.appendChild(
             createRequestCard(
@@ -1906,166 +2036,19 @@
     }
 
 
-    /*
-      =========================================
-      ANGEBOT ERSTELLEN
-      =========================================
-    */
-
-
-    let currentOfferRequest = null;
-
-
-    function money(value) {
-
-      return new Intl.NumberFormat(
-        "de-DE",
-        {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }
-      ).format(
-        Number(value) || 0
-      ) + " €";
-
-    }
-
-
-    function todayIso() {
-
-      const d =
-        new Date();
-
-
-      return (
-        d.getFullYear() +
-        "-" +
-        String(
-          d.getMonth() + 1
-        ).padStart(
-          2,
-          "0"
-        ) +
-        "-" +
-        String(
-          d.getDate()
-        ).padStart(
-          2,
-          "0"
-        )
-      );
-
-    }
-
-
-    function offerDate(
-      value
-    ) {
-
-      if (!value) {
-        return "";
-      }
-
-
-      const d =
-        new Date(
-          value +
-          "T00:00:00"
-        );
-
-
-      if (
-        Number.isNaN(
-          d.getTime()
-        )
-      ) {
-
-        return value;
-
-      }
-
-
-      return d.toLocaleDateString(
-        "de-DE"
-      );
-
-    }
-
-
-    function nextOfferNumber() {
-
-      const d =
-        new Date();
-
-
-      return (
-        String(
-          d.getFullYear()
-        ).slice(-2) +
-        "-" +
-        String(
-          (
-            Date.now() % 900
-          ) + 100
-        ).padStart(
-          3,
-          "0"
-        )
-      );
-
-    }
-
-
-    function numberValue(
-      value
-    ) {
-
-      const raw =
-        String(
-          value ?? ""
-        ).trim();
-
-
-      if (!raw) {
-        return 0;
-      }
-
-
-      const normalized =
-        raw.includes(",")
-          ? raw
-              .replace(
-                /\./g,
-                ""
-              )
-              .replace(
-                ",",
-                "."
-              )
-          : raw.replace(
-              /[^0-9.-]/g,
-              ""
-            );
-
-
-      const n =
-        Number(
-          normalized
-        );
-
-
-      return Number.isFinite(
-        n
-      )
-        ? n
-        : 0;
-
-    }
-
+    /* =======================================================
+       ANGEBOT ÖFFNEN
+       ======================================================= */
 
     function openOfferModal(
       button
     ) {
+
+      const card =
+        button.closest(
+          ".request-card"
+        );
+
 
       const cards =
         [
@@ -2077,9 +2060,7 @@
 
       const index =
         cards.indexOf(
-          button.closest(
-            ".request-card"
-          )
+          card
         );
 
 
@@ -2150,11 +2131,11 @@
       ).value =
         [
           request.billing_name ||
-            request.name ||
-            "",
+          request.name ||
+          "",
 
           request.billing_street ||
-            "",
+          "",
 
           `${
             request.billing_zip ||
@@ -2183,14 +2164,14 @@
 
 
       addOfferItem(
-        "Auf-/Abbau, Anfahrt",
+        "Auf- und Abbau",
         1,
         ""
       );
 
 
       addOfferItem(
-        "Musikanlage",
+        "Anfahrt",
         1,
         ""
       );
@@ -2253,6 +2234,10 @@
 
     }
 
+
+    /* =======================================================
+       POSITION HINZUFÜGEN
+       ======================================================= */
 
     function addOfferItem(
       description = "",
@@ -2412,6 +2397,10 @@
     }
 
 
+    /* =======================================================
+       SUMMEN
+       ======================================================= */
+
     function updateOfferTotals() {
 
       let subtotal =
@@ -2445,13 +2434,13 @@
               );
 
 
-            const line =
+            const lineTotal =
               quantity *
               price;
 
 
             subtotal +=
-              line;
+              lineTotal;
 
 
             row
@@ -2460,11 +2449,21 @@
               )
               .textContent =
                 money(
-                  line
+                  lineTotal
                 );
 
           }
         );
+
+
+      const vat =
+        subtotal *
+        0.19;
+
+
+      const total =
+        subtotal +
+        vat;
 
 
       document.getElementById(
@@ -2479,8 +2478,7 @@
         "offerVat"
       ).textContent =
         money(
-          subtotal *
-          0.19
+          vat
         );
 
 
@@ -2488,12 +2486,15 @@
         "offerTotal"
       ).textContent =
         money(
-          subtotal *
-          1.19
+          total
         );
 
     }
 
+
+    /* =======================================================
+       BILD LADEN
+       ======================================================= */
 
     async function loadImageData(
       src
@@ -2502,11 +2503,11 @@
       return new Promise(
         resolve => {
 
-          const img =
+          const image =
             new Image();
 
 
-          img.onload =
+          image.onload =
             () => {
 
               try {
@@ -2518,20 +2519,21 @@
 
 
                 canvas.width =
-                  img.naturalWidth;
+                  image.naturalWidth;
+
 
                 canvas.height =
-                  img.naturalHeight;
+                  image.naturalHeight;
 
 
-                const ctx =
+                const context =
                   canvas.getContext(
                     "2d"
                   );
 
 
-                ctx.drawImage(
-                  img,
+                context.drawImage(
+                  image,
                   0,
                   0
                 );
@@ -2543,7 +2545,7 @@
                   )
                 );
 
-              } catch (e) {
+              } catch {
 
                 resolve(
                   null
@@ -2554,14 +2556,14 @@
             };
 
 
-          img.onerror =
+          image.onerror =
             () =>
               resolve(
                 null
               );
 
 
-          img.src =
+          image.src =
             src;
 
         }
@@ -2570,12 +2572,9 @@
     }
 
 
-    /*
-      =========================================
-      ANGEBOT PDF
-      =========================================
-    */
-
+    /* =======================================================
+       ANGEBOT PDF
+       ======================================================= */
 
     async function createOfferPdf() {
 
@@ -2669,21 +2668,33 @@
           });
 
 
+        /*
+          ===============================================
+          FARBEN
+          ===============================================
+        */
+
         const blue =
-          [27,67,112];
+          [27, 67, 112];
 
 
         const dark =
-          [35,35,35];
+          [35, 35, 35];
 
 
         const muted =
-          [75,75,75];
+          [85, 85, 85];
 
 
-        const line =
-          [205,205,205];
+        const lightLine =
+          [205, 205, 205];
 
+
+        /*
+          ===============================================
+          DATEN
+          ===============================================
+        */
 
         const offerDateValue =
           document.getElementById(
@@ -2720,14 +2731,20 @@
           ).value;
 
 
+        const location =
+          document.getElementById(
+            "offerLocation"
+          ).value.trim();
+
+
         const address =
           document.getElementById(
             "offerAddress"
           ).value
           .split("\n")
           .map(
-            value =>
-              value.trim()
+            line =>
+              line.trim()
           )
           .filter(
             Boolean
@@ -2760,7 +2777,9 @@
 
 
         /*
-          Wasserzeichen
+          ===============================================
+          WASSERZEICHEN
+          ===============================================
         */
 
         const logo =
@@ -2780,7 +2799,7 @@
 
               doc.setGState(
                 new doc.GState({
-                  opacity: 0.065
+                  opacity: 0.055
                 })
               );
 
@@ -2789,7 +2808,7 @@
                 logo,
                 "PNG",
                 31,
-                83,
+                76,
                 148,
                 112
               );
@@ -2801,26 +2820,24 @@
                 })
               );
 
-            } else {
-
-              doc.addImage(
-                logo,
-                "PNG",
-                31,
-                83,
-                148,
-                112
-              );
-
             }
 
-          } catch (e) {}
+          } catch {
+
+            /*
+              Falls GState nicht verfügbar ist,
+              wird das Wasserzeichen weggelassen.
+            */
+
+          }
 
         }
 
 
         /*
-          KOPF
+          ===============================================
+          KOPFBEREICH
+          ===============================================
         */
 
         doc.setTextColor(
@@ -2835,7 +2852,7 @@
 
 
         doc.setFontSize(
-          21.5
+          21
         );
 
 
@@ -2846,29 +2863,44 @@
         );
 
 
+        /*
+          Datum / Nummer
+        */
+
         doc.setFontSize(
-          9.5
+          8.5
+        );
+
+
+        doc.setTextColor(
+          ...muted
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "bold"
         );
 
 
         doc.text(
           "DATUM",
           20,
-          31
+          30
         );
 
 
         doc.text(
-          "Vorgangsnummer:",
-          75,
-          31
+          "VORGANGSNUMMER",
+          68,
+          30
         );
 
 
         doc.text(
-          "RuhrGeBeats",
+          "RUHRGEBEATS",
           145,
-          31
+          30
         );
 
 
@@ -2878,8 +2910,8 @@
         );
 
 
-        doc.setFontSize(
-          9.5
+        doc.setTextColor(
+          ...dark
         );
 
 
@@ -2888,34 +2920,16 @@
             offerDateValue
           ),
           20,
-          38
+          36
         );
 
 
         doc.text(
           offerNumber,
-          75,
-          38
+          68,
+          36
         );
 
-
-        doc.text(
-          "Tom Karpa & Lenny Günther",
-          145,
-          37
-        );
-
-
-        doc.text(
-          "ruhrgebeats@gmail.com",
-          145,
-          43
-        );
-
-
-        /*
-          KUNDENADRESSE
-        */
 
         doc.setFont(
           "helvetica",
@@ -2923,15 +2937,10 @@
         );
 
 
-        doc.setFontSize(
-          9.5
-        );
-
-
         doc.text(
-          "Angebot an:",
-          20,
-          61
+          "RuhrGeBeats",
+          145,
+          36
         );
 
 
@@ -2941,66 +2950,24 @@
         );
 
 
-        doc.setFontSize(
-          9.5
+        doc.text(
+          "Tom Karpa & Lenny Günther",
+          145,
+          42
         );
 
 
         doc.text(
-          address.length
-            ? address
-            : [customer],
-          20,
-          68
+          "ruhrgebeats@gmail.com",
+          145,
+          48
         );
 
 
         /*
-          EINLEITUNG
-        */
-
-        const intro =
-          `Wir bedanken uns für Ihre Anfrage. Gerne teilen wir Ihnen unser Angebot für Ihre ${event}${
-            eventDate
-              ? ` am ${offerDate(eventDate)}`
-              : ""
-          } mit.`;
-
-
-        const introLines =
-          doc.splitTextToSize(
-            intro,
-            170
-          );
-
-
-        doc.setFontSize(
-          9.1
-        );
-
-
-        doc.text(
-          introLines,
-          20,
-          95
-        );
-
-
-        const tableTop =
-          Math.max(
-            108,
-            95 +
-            (
-              introLines.length -
-              1
-            ) *
-            4.3 +
-            8
-          );
-
-
-        /*
-          TABELLE
+          ===============================================
+          ANGEBOT AN
+          ===============================================
         */
 
         doc.setTextColor(
@@ -3015,68 +2982,15 @@
 
 
         doc.setFontSize(
-          9.1
+          9
         );
 
 
         doc.text(
-          "BESCHREIBUNG",
+          "ANGEBOT AN",
           20,
-          tableTop
+          62
         );
-
-
-        doc.text(
-          "MENGE",
-          83,
-          tableTop,
-          {
-            align: "center"
-          }
-        );
-
-
-        doc.text(
-          "EINZELPREIS",
-          132,
-          tableTop,
-          {
-            align: "center"
-          }
-        );
-
-
-        doc.text(
-          "ZEILENSUMME",
-          190,
-          tableTop,
-          {
-            align: "right"
-          }
-        );
-
-
-        doc.setDrawColor(
-          ...line
-        );
-
-
-        doc.setLineWidth(
-          .3
-        );
-
-
-        doc.line(
-          20,
-          tableTop + 3.5,
-          190,
-          tableTop + 3.5
-        );
-
-
-        let y =
-          tableTop +
-          14;
 
 
         doc.setTextColor(
@@ -3091,96 +3005,278 @@
 
 
         doc.setFontSize(
+          9.5
+        );
+
+
+        const customerAddress =
+          address.length
+            ? address
+            : [customer];
+
+
+        doc.text(
+          customerAddress,
+          20,
+          70
+        );
+
+
+        /*
+          ===============================================
+          EINLEITUNG
+          ===============================================
+        */
+
+        const introText =
+          `Wir bedanken uns für Ihre Anfrage. Gerne teilen wir Ihnen unser Angebot für Ihre ${event}${
+            eventDate
+              ? ` am ${offerDate(eventDate)}`
+              : ""
+          } mit.`;
+
+
+        const introLines =
+          doc.splitTextToSize(
+            introText,
+            170
+          );
+
+
+        const introY =
+          93;
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(
+          9
+        );
+
+
+        doc.text(
+          introLines,
+          20,
+          introY
+        );
+
+
+        /*
+          ===============================================
+          TABELLE
+          ===============================================
+        */
+
+        const tableY =
+          introY +
+          (
+            introLines.length *
+            4.3
+          ) +
+          12;
+
+
+        doc.setTextColor(
+          ...blue
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "bold"
+        );
+
+
+        doc.setFontSize(
           8.7
         );
 
 
-        for (
-          const item of items
-        ) {
-
-          const desc =
-            doc.splitTextToSize(
-              item.description,
-              70
-            );
+        doc.text(
+          "BESCHREIBUNG",
+          20,
+          tableY
+        );
 
 
-          doc.text(
-            desc,
-            20,
-            y
-          );
+        doc.text(
+          "MENGE",
+          87,
+          tableY,
+          {
+            align: "center"
+          }
+        );
 
 
-          doc.text(
-            String(
-              item.quantity
-            ).replace(
-              ".",
-              ","
-            ),
-            83,
-            y,
-            {
-              align: "center"
-            }
-          );
+        doc.text(
+          "EINZELPREIS",
+          137,
+          tableY,
+          {
+            align: "center"
+          }
+        );
 
 
-          doc.text(
-            money(
-              item.unitPrice
-            ),
-            132,
-            y,
-            {
-              align: "center"
-            }
-          );
+        doc.text(
+          "ZEILENSUMME",
+          190,
+          tableY,
+          {
+            align: "right"
+          }
+        );
 
 
-          doc.text(
-            money(
-              item.quantity *
-              item.unitPrice
-            ),
-            190,
-            y,
-            {
-              align: "right"
-            }
-          );
+        doc.setDrawColor(
+          ...lightLine
+        );
 
 
-          y +=
-            Math.max(
-              7.5,
-              desc.length *
-              4.2 +
-              3
-            );
+        doc.setLineWidth(
+          .3
+        );
 
-        }
+
+        doc.line(
+          20,
+          tableY + 3.5,
+          190,
+          tableY + 3.5
+        );
+
+
+        let y =
+          tableY +
+          13;
 
 
         /*
+          ===============================================
+          POSITIONEN
+          ===============================================
+        */
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(
+          8.8
+        );
+
+
+        items.forEach(
+          item => {
+
+            const descriptionLines =
+              doc.splitTextToSize(
+                item.description,
+                62
+              );
+
+
+            doc.text(
+              descriptionLines,
+              20,
+              y
+            );
+
+
+            doc.text(
+              String(
+                item.quantity
+              ).replace(
+                ".",
+                ","
+              ),
+              87,
+              y,
+              {
+                align: "center"
+              }
+            );
+
+
+            doc.text(
+              money(
+                item.unitPrice
+              ),
+              137,
+              y,
+              {
+                align: "center"
+              }
+            );
+
+
+            doc.text(
+              money(
+                item.quantity *
+                item.unitPrice
+              ),
+              190,
+              y,
+              {
+                align: "right"
+              }
+            );
+
+
+            y +=
+              Math.max(
+                7,
+                (
+                  descriptionLines.length *
+                  4.2
+                ) + 3
+              );
+
+          }
+        );
+
+
+        /*
+          ===============================================
           SUMMEN
+          ===============================================
         */
 
         const summaryY =
           Math.max(
-            y + 2,
-            171
+            y + 4,
+            170
           );
 
 
-        const labelX =
-          163;
+        doc.setDrawColor(
+          ...lightLine
+        );
 
 
-        const valueX =
-          190;
+        doc.line(
+          125,
+          summaryY,
+          190,
+          summaryY
+        );
 
 
         doc.setFontSize(
@@ -3193,10 +3289,16 @@
         );
 
 
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
         doc.text(
           "Zwischensumme",
-          labelX,
-          summaryY + 5.5,
+          160,
+          summaryY + 7,
           {
             align: "right"
           }
@@ -3205,8 +3307,8 @@
 
         doc.text(
           "Zzgl. 19% Mehrwertsteuer",
-          labelX,
-          summaryY + 13.5,
+          160,
+          summaryY + 15,
           {
             align: "right"
           }
@@ -3218,63 +3320,12 @@
         );
 
 
-        doc.setFont(
-          "helvetica",
-          "bold"
-        );
-
-
-        doc.text(
-          "Summe*",
-          labelX,
-          summaryY + 21.5,
-          {
-            align: "right"
-          }
-        );
-
-
-        doc.setDrawColor(
-          ...line
-        );
-
-
-        doc.rect(
-          164,
-          summaryY,
-          26,
-          8
-        );
-
-
-        doc.rect(
-          164,
-          summaryY + 8,
-          26,
-          8
-        );
-
-
-        doc.rect(
-          164,
-          summaryY + 16,
-          26,
-          8
-        );
-
-
-        doc.setFont(
-          "helvetica",
-          "normal"
-        );
-
-
         doc.text(
           money(
             subtotal
           ),
-          valueX - 2,
-          summaryY + 5.5,
+          190,
+          summaryY + 7,
           {
             align: "right"
           }
@@ -3285,8 +3336,8 @@
           money(
             vat
           ),
-          valueX - 2,
-          summaryY + 13.5,
+          190,
+          summaryY + 15,
           {
             align: "right"
           }
@@ -3299,26 +3350,61 @@
         );
 
 
+        doc.setFontSize(
+          9.5
+        );
+
+
         doc.text(
-          money(
-            total
-          ),
-          valueX - 2,
-          summaryY + 21.5,
+          "SUMME*",
+          160,
+          summaryY + 25,
           {
             align: "right"
           }
         );
 
 
+        doc.text(
+          money(
+            total
+          ),
+          190,
+          summaryY + 25,
+          {
+            align: "right"
+          }
+        );
+
+
+        doc.setDrawColor(
+          ...blue
+        );
+
+
+        doc.setLineWidth(
+          .5
+        );
+
+
+        doc.line(
+          125,
+          summaryY + 28,
+          190,
+          summaryY + 28
+        );
+
+
         /*
+          ===============================================
           SCHLUSSTEXT
+          ===============================================
         */
 
         const closingY =
           Math.max(
-            summaryY + 39,
-            218
+            summaryY + 45,
+            220
           );
 
 
@@ -3339,29 +3425,40 @@
 
 
         doc.text(
-          "Wir würden uns sehr freuen, wenn das Angebot ihre Zustimmung findet.",
+          "Wir würden uns sehr freuen, wenn das Angebot Ihre Zustimmung findet.",
           20,
           closingY
         );
 
 
-        const contact =
-          "Sollte es ihrerseits Fragen geben können sie uns jederzeit per E-Mail unter ruhrgebeats@gmail.com oder telefonisch unter +49 172 7630206 oder +49 1631353478 erreichen.";
+        const contactText =
+          "Sollte es Ihrerseits Fragen geben, können Sie uns jederzeit per E-Mail unter ruhrgebeats@gmail.com oder telefonisch unter +49 172 7630206 oder +49 163 1353478 erreichen.";
+
+
+        const contactLines =
+          doc.splitTextToSize(
+            contactText,
+            170
+          );
 
 
         doc.text(
-          doc.splitTextToSize(
-            contact,
-            170
-          ),
+          contactLines,
           20,
-          closingY + 6
+          closingY + 7
         );
 
 
         /*
-          FOOTER
+          ===============================================
+          FUSSZEILE
+          KOMPLETT MITTELBÜNDIG
+          ===============================================
         */
+
+        const footerLineY =
+          269;
+
 
         doc.setDrawColor(
           190,
@@ -3377,14 +3474,20 @@
 
         doc.line(
           20,
-          272,
+          footerLineY,
           190,
-          272
+          footerLineY
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
         );
 
 
         doc.setFontSize(
-          7.2
+          7.4
         );
 
 
@@ -3393,74 +3496,56 @@
         );
 
 
-        doc.text(
-          "RuhrGeBeats GbR",
-          20,
-          279
-        );
-
+        /*
+          Alles exakt mittig:
+          x = 105 mm
+        */
 
         doc.text(
-          "Lenny Günther, Tom Karpa",
-          20,
-          284
-        );
-
-
-        doc.text(
-          "ruhrgebeats@gmail.com",
-          20,
-          289
-        );
-
-
-        doc.text(
-          "Kreditinstitut: Vivid",
-          82,
-          279
-        );
-
-
-        doc.text(
-          "IBAN: DE05 2022 0800 0056 7389 69",
-          82,
-          284
-        );
-
-
-        doc.text(
-          "BIC: SXPYDEHHXXX",
-          82,
-          289
-        );
-
-
-        doc.text(
-          "Kontoinhaber: Lenny Günther, Tom Karpa",
-          82,
-          294
-        );
-
-
-        doc.text(
-          "Steuernummer: 359/5837/1808",
-          190,
-          279,
+          "RuhrGeBeats GbR · Lenny Günther & Tom Karpa",
+          105,
+          278,
           {
-            align: "right"
+            align: "center"
           }
         );
 
 
         doc.text(
-          "Finanzamt Marl",
-          190,
-          284,
+          "Mertenweg 19 · 45966 Gladbeck · ruhrgebeats@gmail.com",
+          105,
+          283,
           {
-            align: "right"
+            align: "center"
           }
         );
 
+
+        doc.text(
+          "Vivid · IBAN: DE05 2022 0800 0056 7389 69 · BIC: SXPYDEHHXXX",
+          105,
+          288,
+          {
+            align: "center"
+          }
+        );
+
+
+        doc.text(
+          "Steuernummer: 359/5837/1808 · Finanzamt Marl",
+          105,
+          293,
+          {
+            align: "center"
+          }
+        );
+
+
+        /*
+          ===============================================
+          SPEICHERN
+          ===============================================
+        */
 
         const safeCustomer =
           customer
@@ -3486,6 +3571,7 @@
       } catch (error) {
 
         console.error(
+          "Fehler beim Erstellen des Angebots:",
           error
         );
 
@@ -3512,16 +3598,19 @@
     }
 
 
-    /*
-      =========================================
-      ANFRAGE ALS PDF
-      =========================================
-    */
-
+    /* =======================================================
+       ANFRAGE ALS PDF
+       ======================================================= */
 
     async function createRequestPdf(
       button
     ) {
+
+      const card =
+        button.closest(
+          ".request-card"
+        );
+
 
       const cards =
         [
@@ -3533,9 +3622,7 @@
 
       const index =
         cards.indexOf(
-          button.closest(
-            ".request-card"
-          )
+          card
         );
 
 
@@ -3569,12 +3656,12 @@
       }
 
 
-      button.disabled =
-        true;
-
-
       const oldText =
         button.textContent;
+
+
+      button.disabled =
+        true;
 
 
       button.textContent =
@@ -3596,10 +3683,20 @@
           });
 
 
+        const blue =
+          [27,67,112];
+
+
+        const dark =
+          [35,35,35];
+
+
+        const muted =
+          [85,85,85];
+
+
         doc.setTextColor(
-          35,
-          35,
-          35
+          ...dark
         );
 
 
@@ -3650,84 +3747,78 @@
           46;
 
 
-        const section =
-          title => {
+        function sectionTitle(
+          title
+        ) {
 
-            doc.setFont(
-              "helvetica",
-              "bold"
-            );
-
-
-            doc.setFontSize(
-              9
-            );
+          doc.setFont(
+            "helvetica",
+            "bold"
+          );
 
 
-            doc.setTextColor(
-              27,
-              67,
-              112
-            );
+          doc.setFontSize(
+            9
+          );
 
 
-            doc.text(
-              title.toUpperCase(),
-              20,
-              y
-            );
+          doc.setTextColor(
+            ...blue
+          );
 
 
-            doc.setDrawColor(
-              205,
-              205,
-              205
-            );
+          doc.text(
+            title.toUpperCase(),
+            20,
+            y
+          );
 
 
-            doc.line(
-              20,
-              y + 2,
-              190,
-              y + 2
-            );
+          doc.setDrawColor(
+            205,
+            205,
+            205
+          );
 
 
-            y += 9;
+          doc.line(
+            20,
+            y + 2,
+            190,
+            y + 2
+          );
 
 
-            doc.setTextColor(
-              35,
-              35,
-              35
-            );
+          y += 9;
 
 
-            doc.setFont(
-              "helvetica",
-              "normal"
-            );
+          doc.setTextColor(
+            ...dark
+          );
 
 
-            doc.setFontSize(
-              9
-            );
+          doc.setFont(
+            "helvetica",
+            "normal"
+          );
 
-          };
+
+          doc.setFontSize(
+            9
+          );
+
+        }
 
 
-        section(
+        sectionTitle(
           "Anfrage von"
         );
 
 
         doc.text(
-          doc.splitTextToSize(
-            request.billing_name ||
-            request.name ||
-            "–",
-            170
-          ),
+          request.billing_name ||
+          request.name ||
+          "–",
           20,
           y
         );
@@ -3769,7 +3860,7 @@
         y += 12;
 
 
-        section(
+        sectionTitle(
           "Veranstaltung"
         );
 
@@ -3814,7 +3905,7 @@
 
 
         eventRows.forEach(
-          ([label, value]) => {
+          row => {
 
             doc.setFont(
               "helvetica",
@@ -3823,7 +3914,7 @@
 
 
             doc.text(
-              label + ":",
+              row[0] + ":",
               20,
               y
             );
@@ -3836,9 +3927,8 @@
 
 
             doc.text(
-              doc.splitTextToSize(
-                String(value),
-                145
+              String(
+                row[1]
               ),
               43,
               y
@@ -3854,7 +3944,7 @@
         y += 5;
 
 
-        section(
+        sectionTitle(
           "Kontakt"
         );
 
@@ -3898,37 +3988,37 @@
         y += 10;
 
 
-        section(
+        sectionTitle(
           "Nachricht"
         );
 
 
-        const msg =
+        const message =
           request.message ||
           "Keine zusätzliche Nachricht angegeben.";
 
 
-        const msgLines =
+        const messageLines =
           doc.splitTextToSize(
-            msg,
+            message,
             170
           );
 
 
         doc.text(
-          msgLines,
+          messageLines,
           20,
           y
         );
 
 
         y +=
-          msgLines.length *
+          messageLines.length *
           4.5 +
           8;
 
 
-        section(
+        sectionTitle(
           "Rechnungsadresse"
         );
 
@@ -3982,27 +4072,31 @@
 
 
         doc.setTextColor(
-          90,
-          90,
-          90
+          ...muted
         );
 
 
         doc.text(
-          "RuhrGeBeats GbR · Tom Karpa & Lenny Günther",
-          20,
-          285
+          "RuhrGeBeats GbR · Tom Karpa & Lenny Günther · ruhrgebeats@gmail.com",
+          105,
+          285,
+          {
+            align: "center"
+          }
         );
 
 
         doc.text(
-          "ruhrgebeats@gmail.com",
-          20,
-          290
+          "Mertenweg 19 · 45966 Gladbeck",
+          105,
+          290,
+          {
+            align: "center"
+          }
         );
 
 
-        const safe =
+        const safeName =
           (
             request.name ||
             "Anfrage"
@@ -4014,7 +4108,7 @@
 
 
         doc.save(
-          `RuhrGeBeats_Anfrage_${safe}_${request.event_date || todayIso()}.pdf`
+          `RuhrGeBeats_Anfrage_${safeName}_${request.event_date || todayIso()}.pdf`
         );
 
 
@@ -4047,9 +4141,9 @@
     }
 
 
-    /*
-      MODAL SCHLIESSEN
-    */
+    /* =======================================================
+       MODAL EVENTS
+       ======================================================= */
 
     document
       .getElementById(
@@ -4089,35 +4183,31 @@
     );
 
 
-    /*
-      =========================================
-      LOGOUT
-      =========================================
-    */
+    /* =======================================================
+       LOGOUT
+       ======================================================= */
+
+    document
+      .getElementById(
+        "logoutButton"
+      )
+      .addEventListener(
+        "click",
+        async function() {
+
+          await supabaseClient.auth.signOut();
+
+          window.location.replace(
+            "./"
+          );
+
+        }
+      );
 
 
-    document.getElementById(
-      "logoutButton"
-    ).addEventListener(
-      "click",
-      async function() {
-
-        await supabaseClient.auth.signOut();
-
-        window.location.replace(
-          "./"
-        );
-
-      }
-    );
-
-
-    /*
-      =========================================
-      START
-      =========================================
-    */
-
+    /* =======================================================
+       START
+       ======================================================= */
 
     async function init() {
 
