@@ -485,30 +485,20 @@
        ===================================================== */
 
     .news-section {
-      background: var(--white);
+      background: white;
     }
 
     .public-news-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
     .public-news-card {
       background: var(--light);
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        var(--radius);
-
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 28px;
-
       transition:
         transform .25s ease,
         box-shadow .25s ease,
@@ -516,59 +506,31 @@
     }
 
     .public-news-card:hover {
-      transform:
-        translateY(-5px);
-
-      box-shadow:
-        var(--shadow);
-
-      border-color:
-        rgba(22,140,255,.25);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: rgba(22,140,255,.25);
     }
 
     .public-news-date {
-      color:
-        var(--blue-dark);
-
-      font-size:
-        11px;
-
-      font-weight:
-        900;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        1.5px;
-
-      margin-bottom:
-        13px;
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 13px;
     }
 
     .public-news-card h3 {
-      font-size:
-        21px;
-
-      line-height:
-        1.25;
-
-      margin-bottom:
-        12px;
+      font-size: 21px;
+      line-height: 1.25;
+      margin-bottom: 12px;
     }
 
     .public-news-card p {
-      color:
-        var(--muted);
-
-      font-size:
-        14px;
-
-      line-height:
-        1.7;
-
-      white-space:
-        pre-line;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      white-space: pre-line;
     }
 
 
@@ -1168,6 +1130,16 @@
         white;
     }
 
+    .footer-ceo {
+      opacity: .45;
+      font-size: 11px !important;
+    }
+
+    .footer-ceo:hover {
+      opacity: 1;
+      color: var(--blue) !important;
+    }
+
     .footer-bottom {
       display: flex;
 
@@ -1755,8 +1727,6 @@
         <div class="about-grid">
 
 
-          <!-- VIDEO -->
-
           <div class="about-visual">
 
             <video
@@ -1780,8 +1750,6 @@
 
           </div>
 
-
-          <!-- TEXT -->
 
           <div class="about-copy">
 
@@ -2333,6 +2301,15 @@
               </a>
             </li>
 
+            <li>
+              <a
+                class="footer-ceo"
+                href="/intern/"
+              >
+                CEO-Anmeldung
+              </a>
+            </li>
+
           </ul>
 
         </div>
@@ -2567,11 +2544,6 @@
 
       }
 
-
-      /*
-        Wenn keine News vorhanden sind,
-        bleibt der komplette Bereich unsichtbar.
-      */
 
       if (
         !data ||
