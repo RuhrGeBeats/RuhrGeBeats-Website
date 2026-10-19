@@ -1,410 +1,246 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CEO-Bereich | RuhrGeBeats</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <title>CEO Dashboard – RuhrGeBeats</title>
 
-  <style>
-    :root {
-      --blue: #168cff;
-      --blue-dark: #0870d8;
-      --navy: #07111f;
-      --light: #f5f7fa;
-      --text: #172033;
-      --muted: #6d7787;
-      --border: #dfe5ec;
-      --white: #ffffff;
-      --danger: #c62828;
-    }
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <link
+    rel="icon"
+    href="../logo.png"
+  >
 
-    body {
-      min-height: 100vh;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background: var(--light);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-    }
+  <link
+    rel="stylesheet"
+    href="./intern.css"
+  >
 
-    header {
-      height: 78px;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 6%;
-    }
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
 
-    header img {
-      width: 150px;
-      height: auto;
-    }
-
-    .header-label {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 50px 20px;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 620px;
-      background: var(--white);
-      border-radius: 20px;
-      padding: 48px;
-      box-shadow: 0 15px 45px rgba(7, 17, 31, 0.08);
-      border: 1px solid rgba(223, 229, 236, 0.8);
-    }
-
-    .icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 16px;
-      background: rgba(22, 140, 255, 0.1);
-      color: var(--blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      font-size: 27px;
-      font-weight: 700;
-    }
-
-    .icon::before {
-      content: "✓";
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--blue);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 34px;
-      line-height: 1.15;
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-
-    .intro {
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 15px;
-      margin-bottom: 30px;
-    }
-
-    .account {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 17px 18px;
-      background: #fafbfd;
-      margin-bottom: 28px;
-    }
-
-    .account-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 5px;
-    }
-
-    .account-email {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--navy);
-      word-break: break-word;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      flex: 1;
-      min-width: 190px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 14px 18px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .primary {
-      background: var(--blue);
-      color: white;
-      border: 1px solid var(--blue);
-    }
-
-    .primary:hover {
-      background: var(--blue-dark);
-      border-color: var(--blue-dark);
-      transform: translateY(-1px);
-    }
-
-    .secondary {
-      background: white;
-      color: var(--navy);
-      border: 1px solid var(--border);
-    }
-
-    .secondary:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      transform: translateY(-1px);
-    }
-
-    .logout {
-      width: 100%;
-      margin-top: 20px;
-      padding: 9px;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .logout:hover {
-      color: var(--danger);
-    }
-
-    #loading {
-      color: var(--muted);
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 20px;
-      color: #8a94a3;
-      font-size: 12px;
-    }
-
-    @media (max-width: 600px) {
-
-      header {
-        height: 68px;
-        padding: 0 20px;
-      }
-
-      header img {
-        width: 130px;
-      }
-
-      .header-label {
-        display: none;
-      }
-
-      main {
-        padding: 30px 16px;
-      }
-
-      .card {
-        padding: 32px 24px;
-        border-radius: 16px;
-      }
-
-      h1 {
-        font-size: 28px;
-      }
-
-      .buttons {
-        flex-direction: column;
-      }
-
-      .button {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
+
 
 <body>
 
-  <header>
 
-    <a href="/">
-      <img src="/logo.png" alt="RuhrGeBeats">
-    </a>
+  <!-- HEADER -->
 
-    <div class="header-label">
-      Interner Bereich
+  <header class="intern-header">
+
+    <div class="intern-header-inner">
+
+      <a
+        href="./dashboard.html"
+        class="intern-logo"
+      >
+        <img
+          src="../logo.png"
+          alt="RuhrGeBeats"
+        >
+      </a>
+
+
+      <div class="intern-header-right">
+
+        <span
+          id="userEmail"
+          class="intern-user"
+        ></span>
+
+        <a
+          href="../"
+          class="intern-public-link"
+        >
+          Zur Website
+        </a>
+
+      </div>
+
     </div>
 
   </header>
 
 
-  <main>
+  <!-- MAIN -->
 
-    <div id="loading">
-      Anmeldung wird überprüft …
-    </div>
+  <main class="intern-layout">
 
 
-    <div id="content" class="card" style="display: none;">
+    <section class="intern-welcome">
 
-      <div class="icon"></div>
-
-      <div class="eyebrow">
-        RuhrGeBeats
+      <div class="intern-eyebrow">
+        Interner Bereich
       </div>
 
       <h1>
-        Willkommen im CEO-Bereich.
+        CEO Dashboard
       </h1>
 
-      <p class="intro">
-        Du bist erfolgreich angemeldet. Dieser Bereich ist
-        ausschließlich für die Geschäftsführung von RuhrGeBeats vorgesehen.
+      <p>
+        Willkommen im internen Bereich von RuhrGeBeats.
       </p>
 
+    </section>
 
-      <div class="account">
 
-        <div class="account-label">
-          Angemeldet als
+    <!-- DASHBOARD -->
+
+    <section class="dashboard-grid">
+
+
+      <!-- ANFRAGEN -->
+
+      <a
+        href="./anfragen.html"
+        class="dashboard-card available"
+      >
+
+        <div class="dashboard-card-icon">
+          📩
         </div>
 
-        <div id="email" class="account-email">
-          –
+        <div class="dashboard-card-arrow">
+          →
         </div>
+
+        <h2>
+          Anfragen
+        </h2>
+
+        <p>
+          Eingegangene Veranstaltungsanfragen ansehen,
+          Kundendaten prüfen und Rechnungsadressen
+          einsehen.
+        </p>
+
+      </a>
+
+
+      <!-- NEWS -->
+
+      <div class="dashboard-card disabled">
+
+        <div class="dashboard-card-icon">
+          📰
+        </div>
+
+        <h2>
+          News
+        </h2>
+
+        <p>
+          Öffentliche News von RuhrGeBeats erstellen,
+          bearbeiten und auf der Website veröffentlichen.
+        </p>
+
+        <span class="dashboard-card-status">
+          Demnächst
+        </span>
 
       </div>
 
 
-      <div class="buttons">
-
-        <a href="/" class="button primary">
-          Zur öffentlichen Website
-        </a>
-
-      </div>
-
-
-      <button id="logout" class="logout">
-        Abmelden
-      </button>
-
-    </div>
+    </section>
 
   </main>
 
 
-  <footer>
-    © <span id="year"></span> RuhrGeBeats GbR
+  <!-- FOOTER -->
+
+  <footer class="intern-footer">
+
+    <span>
+      RuhrGeBeats GbR · Interner Bereich
+    </span>
+
+    <button
+      type="button"
+      id="logoutButton"
+      class="logout-button"
+    >
+      Abmelden
+    </button>
+
   </footer>
 
+
+  <!-- SUPABASE AUTH -->
 
   <script>
 
     const SUPABASE_URL =
       "https://spqsuedpmrxcbefpocho.supabase.co";
 
-    const SUPABASE_KEY =
+    const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
 
 
     const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_KEY
+        SUPABASE_PUBLISHABLE_KEY
       );
 
 
-    async function checkSession() {
+    async function checkLogin() {
 
       const {
         data,
         error
-      } = await supabaseClient.auth.getSession();
+      } =
+        await supabaseClient.auth.getSession();
 
 
       if (error || !data.session) {
 
-        window.location.replace("/intern/");
+        window.location.replace("./");
+
         return;
 
       }
 
 
-      document.getElementById("email").textContent =
-        data.session.user.email || "CEO";
+      document.getElementById(
+        "userEmail"
+      ).textContent =
+        data.session.user.email;
 
-
-      document.getElementById("loading").style.display =
-        "none";
-
-      document.getElementById("content").style.display =
-        "block";
     }
 
 
-    document.getElementById("logout").addEventListener(
+    document.getElementById(
+      "logoutButton"
+    ).addEventListener(
       "click",
       async function() {
 
-        const button =
-          document.getElementById("logout");
+        await supabaseClient.auth.signOut();
 
-        button.disabled = true;
-        button.textContent = "Abmeldung …";
-
-
-        const { error } =
-          await supabaseClient.auth.signOut();
-
-
-        if (error) {
-
-          console.error(error);
-
-          button.disabled = false;
-          button.textContent = "Abmelden";
-
-          return;
-        }
-
-
-        window.location.replace("/intern/");
+        window.location.replace("./");
 
       }
     );
 
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-
-    checkSession();
+    checkLogin();
 
   </script>
 
+
 </body>
+
 </html>
