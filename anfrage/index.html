@@ -8,12 +8,11 @@
 
   <meta
     name="description"
-    content="Unverbindliche Anfrage bei RuhrGeBeats – DJ & Veranstaltungstechnik für Geburtstage, Hochzeiten, private Feiern und Events im Ruhrgebiet und NRW."
+    content="Unverbindliche Anfrage an RuhrGeBeats – DJ, Licht und Musik für Hochzeiten, Geburtstage, Abibälle und private Feiern im Ruhrgebiet und NRW."
   >
 
-  <meta name="theme-color" content="#07111f">
+  <link rel="icon" href="../logo.png">
 
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -21,21 +20,18 @@
       --blue: #168cff;
       --blue-dark: #0870d8;
       --navy: #07111f;
-      --navy-2: #0b1728;
-      --text: #111827;
-      --muted: #64748b;
+      --navy-2: #0d1c2e;
       --light: #f5f7fa;
       --white: #ffffff;
-      --border: #e1e7ef;
-      --max: 1080px;
-      --radius: 18px;
-      --shadow: 0 20px 60px rgba(7, 17, 31, .10);
+      --text: #17202b;
+      --muted: #66717f;
+      --border: #dfe5eb;
+      --success: #138a4b;
+      --danger: #c62828;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html {
@@ -43,35 +39,24 @@
     }
 
     body {
+      margin: 0;
       font-family:
         Inter,
-        ui-sans-serif,
-        system-ui,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
         sans-serif;
       color: var(--text);
       background: var(--light);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
     }
 
     /* HEADER */
@@ -82,17 +67,19 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(7, 17, 31, .96);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 8px 30px rgba(0,0,0,.12);
+      background: rgba(7, 17, 31, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .nav {
-      height: 82px;
+      max-width: 1180px;
+      margin: 0 auto;
+      height: 78px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 30px;
     }
 
     .logo {
@@ -106,98 +93,46 @@
       object-fit: contain;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: rgba(255,255,255,.82);
+    .back-link {
+      color: #fff;
+      font-weight: 700;
       font-size: 14px;
-      font-weight: 600;
-      transition: color .2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--blue);
-    }
-
-    .nav-back {
+      padding: 10px 18px;
       border: 1px solid rgba(255,255,255,.18);
-      padding: 11px 18px;
-      border-radius: 9px;
+      border-radius: 999px;
+      transition: .2s ease;
     }
 
-    .nav-back:hover {
-      background: rgba(255,255,255,.06);
-    }
-
-    .mobile-toggle {
-      display: none;
-      border: 0;
-      background: transparent;
-      color: white;
-      font-size: 29px;
-      cursor: pointer;
+    .back-link:hover {
+      background: var(--blue);
+      border-color: var(--blue);
     }
 
     /* HERO */
 
-    .page-hero {
-      position: relative;
-      padding: 170px 0 85px;
+    .hero {
       background:
-        radial-gradient(
-          circle at 82% 45%,
-          rgba(22,140,255,.20),
-          transparent 30%
-        ),
-        linear-gradient(
-          135deg,
-          #050b14 0%,
-          #081423 55%,
-          #07111f 100%
-        );
+        radial-gradient(circle at 20% 20%, rgba(22,140,255,.18), transparent 35%),
+        linear-gradient(135deg, #07111f, #0d1c2e);
       color: white;
-      overflow: hidden;
-    }
-
-    .page-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: .13;
-      background-image:
-        linear-gradient(
-          rgba(255,255,255,.05) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,.05) 1px,
-          transparent 1px
-        );
-      background-size: 55px 55px;
+      padding: 155px 24px 85px;
     }
 
     .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 760px;
+      max-width: 1180px;
+      margin: 0 auto;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      color: #7ec4ff;
+      gap: 8px;
+      color: #8bc7ff;
       font-size: 13px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
+      letter-spacing: .12em;
+      margin-bottom: 16px;
     }
 
     .eyebrow::before {
@@ -207,163 +142,108 @@
       background: var(--blue);
     }
 
-    .page-hero h1 {
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 1;
-      letter-spacing: -3px;
-      font-weight: 900;
-      margin-bottom: 25px;
+    h1 {
+      margin: 0;
+      max-width: 800px;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.03;
+      letter-spacing: -0.04em;
     }
 
-    .page-hero h1 span {
-      color: var(--blue);
+    .hero p {
+      max-width: 700px;
+      margin: 22px 0 0;
+      color: #c7d2df;
+      font-size: 18px;
     }
 
-    .page-hero p {
-      max-width: 650px;
-      color: rgba(255,255,255,.68);
-      font-size: 17px;
-      line-height: 1.75;
+    /* MAIN */
+
+    main {
+      padding: 70px 24px 90px;
     }
 
-    /* FORMULAR BEREICH */
-
-    .request-section {
-      padding: 75px 0 110px;
-    }
-
-    .request-layout {
+    .content {
+      max-width: 1180px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: .72fr 1.28fr;
+      grid-template-columns: .8fr 1.2fr;
       gap: 28px;
       align-items: start;
     }
 
-    /* INFO */
+    .info-card,
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 18px 50px rgba(7,17,31,.07);
+    }
 
-    .request-info {
-      background: var(--navy);
-      color: white;
-      border-radius: var(--radius);
-      padding: 34px;
+    .info-card {
+      padding: 32px;
       position: sticky;
       top: 105px;
     }
 
-    .request-info .section-label {
-      color: #7ec4ff;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 13px;
+    .info-card h2,
+    .form-card h2 {
+      margin: 0 0 12px;
+      font-size: 25px;
+      letter-spacing: -.025em;
     }
 
-    .request-info h2 {
-      font-size: 29px;
-      line-height: 1.12;
-      letter-spacing: -1px;
-      margin-bottom: 17px;
+    .info-card p {
+      color: var(--muted);
+      margin: 0 0 24px;
     }
 
-    .request-info > p {
-      color: rgba(255,255,255,.62);
-      font-size: 14px;
-      margin-bottom: 30px;
+    .info-item {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
     }
 
-    .info-points {
-      list-style: none;
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
       display: grid;
-      gap: 17px;
+      place-items: center;
+      border-radius: 12px;
+      background: #eaf5ff;
+      color: var(--blue);
+      font-size: 18px;
     }
 
-    .info-points li {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      color: rgba(255,255,255,.78);
-      font-size: 14px;
+    .info-item strong {
+      display: block;
+      margin-bottom: 2px;
     }
 
-    .info-check {
-      width: 24px;
-      height: 24px;
-      flex: 0 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(22,140,255,.16);
-      color: #69b7ff;
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .info-contact {
-      margin-top: 35px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(255,255,255,.09);
-    }
-
-    .info-contact-label {
-      color: rgba(255,255,255,.4);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 10px;
-      font-weight: 800;
-      margin-bottom: 7px;
-    }
-
-    .info-contact a {
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    /* FORM CARD */
-
-    .request-form-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 38px;
-      box-shadow: var(--shadow);
-    }
-
-    .form-header {
-      margin-bottom: 32px;
-    }
-
-    .form-header h2 {
-      font-size: 27px;
-      line-height: 1.15;
-      letter-spacing: -.8px;
-      margin-bottom: 8px;
-    }
-
-    .form-header p {
+    .info-item span {
       color: var(--muted);
       font-size: 14px;
     }
 
-    .form-section {
-      padding-top: 28px;
-      margin-top: 28px;
-      border-top: 1px solid var(--border);
+    .form-card {
+      padding: 34px;
     }
 
-    .form-section:first-of-type {
-      padding-top: 0;
-      margin-top: 0;
-      border-top: 0;
+    .section-title {
+      margin-top: 32px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 18px;
+      font-weight: 800;
     }
 
-    .form-section-title {
-      font-size: 17px;
-      font-weight: 850;
-      margin-bottom: 20px;
+    .section-title:first-of-type {
+      margin-top: 24px;
     }
+
+    /* FORM */
 
     .form-grid {
       display: grid;
@@ -371,73 +251,59 @@
       gap: 18px;
     }
 
-    .field {
+    .form-group {
       display: flex;
       flex-direction: column;
       gap: 7px;
     }
 
-    .field.full {
+    .form-group.full {
       grid-column: 1 / -1;
     }
 
-    .field label {
-      font-size: 12px;
-      font-weight: 800;
-      color: #263244;
+    label {
+      font-size: 14px;
+      font-weight: 750;
     }
 
     .required {
       color: var(--blue);
     }
 
-    .field input,
-    .field select,
-    .field textarea {
+    input,
+    textarea,
+    select {
       width: 100%;
-      border: 1px solid #dce3eb;
-      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      padding: 13px 14px;
+      font: inherit;
       color: var(--text);
-      border-radius: 9px;
       outline: none;
-      transition:
-        border-color .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
+      transition: border-color .2s ease, box-shadow .2s ease;
     }
 
-    .field input,
-    .field select {
-      height: 49px;
-      padding: 0 14px;
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(22,140,255,.10);
     }
 
-    .field textarea {
+    textarea {
       min-height: 130px;
       resize: vertical;
-      padding: 13px 14px;
-      line-height: 1.5;
     }
 
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: #9aa5b4;
+    .field-hint {
+      font-size: 12px;
+      color: var(--muted);
     }
 
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(22,140,255,.10);
-    }
+    /* EVENT TYPES */
 
-    .field select {
-      cursor: pointer;
-    }
-
-    /* EVENT TYPE */
-
-    .event-options {
+    .event-types {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
@@ -454,96 +320,50 @@
     }
 
     .event-option label {
-      min-height: 66px;
-      padding: 10px;
+      min-height: 54px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      border: 1px solid #dce3eb;
-      border-radius: 10px;
-      background: white;
       cursor: pointer;
-      font-size: 12px;
-      font-weight: 750;
-      color: #354154;
-      transition:
-        border-color .2s ease,
-        background .2s ease,
-        color .2s ease;
+      font-size: 13px;
+      transition: .2s ease;
     }
 
     .event-option input:checked + label {
       border-color: var(--blue);
-      background: #eef7ff;
+      background: #edf7ff;
       color: var(--blue-dark);
-      box-shadow: inset 0 0 0 1px var(--blue);
+      box-shadow: 0 0 0 2px rgba(22,140,255,.08);
     }
 
-    /* TECHNIK */
-
-    .future-box {
-      border: 1px dashed #cbd6e3;
-      border-radius: 12px;
-      background: #f8fafc;
-      padding: 18px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
+    .event-option label:hover {
+      border-color: #a8d4ff;
     }
 
-    .future-icon {
-      width: 35px;
-      height: 35px;
-      flex: 0 0 35px;
-      border-radius: 9px;
-      background: #eaf5ff;
-      color: var(--blue-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-    }
-
-    .future-box strong {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 4px;
-    }
-
-    .future-box p {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    /* SUBMIT */
-
-    .form-submit-area {
-      margin-top: 30px;
-      padding-top: 25px;
-      border-top: 1px solid var(--border);
-    }
+    /* BUTTON */
 
     .submit-button {
       width: 100%;
-      min-height: 55px;
       border: 0;
-      border-radius: 10px;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-top: 28px;
       background: var(--blue);
       color: white;
-      font-weight: 850;
-      font-size: 14px;
+      font: inherit;
+      font-weight: 800;
+      font-size: 16px;
       cursor: pointer;
-      box-shadow: 0 12px 30px rgba(22,140,255,.20);
-      transition:
-        background .2s ease,
-        transform .2s ease,
-        opacity .2s ease;
+      transition: .2s ease;
+      box-shadow: 0 10px 25px rgba(22,140,255,.22);
     }
 
     .submit-button:hover {
-      background: #329aff;
+      background: var(--blue-dark);
       transform: translateY(-1px);
     }
 
@@ -554,188 +374,117 @@
     }
 
     .form-hint {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 12px;
       text-align: center;
-      color: #8a96a6;
-      font-size: 11px;
-      line-height: 1.5;
-      margin-top: 12px;
     }
 
     .form-hint a {
       color: var(--blue-dark);
-      text-decoration: underline;
+      font-weight: 700;
     }
 
     #formStatus {
-      font-weight: 700;
+      padding: 12px 14px;
+      border-radius: 10px;
+      text-align: center;
     }
 
     /* FOOTER */
 
     footer {
-      background: #040a12;
-      color: white;
-      padding: 60px 0 25px;
+      background: var(--navy);
+      color: #b9c4d0;
+      padding: 42px 24px;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.4fr .8fr .8fr;
-      gap: 60px;
-      padding-bottom: 45px;
-    }
-
-    .footer-brand img {
-      width: 60px;
-      margin-bottom: 18px;
-    }
-
-    .footer-brand p {
-      max-width: 350px;
-      color: rgba(255,255,255,.5);
-      font-size: 14px;
-    }
-
-    .footer-col h3 {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 20px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .footer-col a {
-      color: rgba(255,255,255,.55);
-      font-size: 13px;
-      transition: color .2s ease;
-    }
-
-    .footer-col a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      padding-top: 22px;
-      border-top: 1px solid rgba(255,255,255,.08);
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      color: rgba(255,255,255,.35);
-      font-size: 11px;
+      gap: 25px;
+      align-items: center;
     }
 
-    /* MOBILE */
+    .footer-brand {
+      color: white;
+      font-weight: 800;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 13px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* RESPONSIVE */
 
     @media (max-width: 850px) {
-      .request-layout {
+      .content {
         grid-template-columns: 1fr;
       }
 
-      .request-info {
+      .info-card {
         position: static;
       }
 
-      .footer-grid {
+      .event-types {
         grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 700px) {
-      .container {
-        width: min(var(--max), calc(100% - 28px));
-      }
-
+    @media (max-width: 600px) {
       .nav {
-        height: 72px;
+        height: 68px;
+        padding: 0 16px;
       }
 
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 72px;
-        left: 14px;
-        right: 14px;
-        background: rgba(7,17,31,.98);
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 14px;
-        padding: 15px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 3px;
+      .logo img {
+        width: 50px;
+        height: 50px;
       }
 
-      .nav-links.open {
-        display: flex;
+      .back-link {
+        font-size: 13px;
+        padding: 8px 13px;
       }
 
-      .nav-links a {
-        display: block;
-        padding: 11px;
+      .hero {
+        padding: 125px 18px 65px;
       }
 
-      .mobile-toggle {
-        display: block;
+      main {
+        padding: 45px 16px 65px;
       }
 
-      .nav-back {
-        text-align: center;
-      }
-
-      .page-hero {
-        padding: 135px 0 65px;
-      }
-
-      .page-hero h1 {
-        letter-spacing: -2px;
-      }
-
-      .request-section {
-        padding: 50px 0 75px;
-      }
-
-      .request-form-card {
-        padding: 25px 20px;
+      .form-card,
+      .info-card {
+        padding: 23px;
+        border-radius: 18px;
       }
 
       .form-grid {
         grid-template-columns: 1fr;
       }
 
-      .field.full {
+      .form-group.full {
         grid-column: auto;
       }
 
-      .event-options {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .footer-grid {
+      .event-types {
         grid-template-columns: 1fr;
-        gap: 35px;
       }
 
-      .footer-bottom {
+      .footer-inner {
         flex-direction: column;
-      }
-    }
-
-    @media (max-width: 430px) {
-      .logo img {
-        width: 46px;
-        height: 46px;
-      }
-
-      .event-options {
-        grid-template-columns: 1fr;
-      }
-
-      .request-info {
-        padding: 27px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -746,62 +495,15 @@
   <!-- HEADER -->
 
   <header>
-    <div class="container nav">
+    <div class="nav">
 
-      <a href="../index.html" class="logo">
-        <img
-          src="../logo.png"
-          alt="RuhrGeBeats Logo"
-        >
+      <a class="logo" href="../">
+        <img src="../logo.png" alt="RuhrGeBeats Logo">
       </a>
 
-      <button
-        class="mobile-toggle"
-        id="mobileToggle"
-        aria-label="Menü öffnen"
-      >
-        ☰
-      </button>
-
-      <ul class="nav-links" id="navLinks">
-
-        <li>
-          <a href="../index.html#leistungen">
-            Leistungen
-          </a>
-        </li>
-
-        <li>
-          <a href="../index.html#ueber-uns">
-            Über uns
-          </a>
-        </li>
-
-        <li>
-          <a href="../index.html#ablauf">
-            Ablauf
-          </a>
-        </li>
-
-        <li>
-          <a href="../index.html#technik">
-            Technik
-          </a>
-        </li>
-
-        <li>
-          <a href="../index.html#galerie">
-            Galerie
-          </a>
-        </li>
-
-        <li>
-          <a class="nav-back" href="../index.html">
-            ← Zur Startseite
-          </a>
-        </li>
-
-      </ul>
+      <a class="back-link" href="../">
+        ← Zur Website
+      </a>
 
     </div>
   </header>
@@ -809,501 +511,497 @@
 
   <!-- HERO -->
 
-  <section class="page-hero">
+  <section class="hero">
 
-    <div class="container">
+    <div class="hero-inner">
 
-      <div class="hero-inner">
-
-        <div class="eyebrow">
-          Unverbindliche Anfrage
-        </div>
-
-        <h1>
-          Erzählt uns von<br>
-          <span>eurem Event.</span>
-        </h1>
-
-        <p>
-          Füllt die folgenden Angaben möglichst vollständig aus.
-          Wir schauen uns eure Anfrage persönlich an und melden
-          uns anschließend bei euch.
-        </p>
-
+      <div class="eyebrow">
+        Unverbindliche Anfrage
       </div>
+
+      <h1>
+        Erzählt uns von eurem Event.
+      </h1>
+
+      <p>
+        Füllt kurz das Formular aus und wir melden uns persönlich
+        bei euch. Je mehr wir über eure Feier wissen, desto besser
+        können wir euch beraten.
+      </p>
 
     </div>
 
   </section>
 
 
-  <!-- ANFRAGE -->
+  <!-- MAIN -->
 
   <main>
 
-    <section class="request-section">
+    <div class="content">
 
-      <div class="container">
+      <!-- INFO -->
 
-        <div class="request-layout">
+      <aside class="info-card">
 
-          <!-- INFO -->
+        <h2>
+          Lasst uns eure Feier planen.
+        </h2>
 
-          <aside class="request-info">
+        <p>
+          Egal ob Geburtstag, Hochzeit, Abiball oder private Feier –
+          schickt uns einfach die wichtigsten Eckdaten.
+        </p>
 
-            <div class="section-label">
-              RuhrGeBeats
-            </div>
 
-            <h2>
-              Gemeinsam planen wir
-              euren Abend.
-            </h2>
+        <div class="info-item">
 
-            <p>
-              Eine Anfrage ist zunächst völlig unverbindlich.
-              Je mehr wir über eure Veranstaltung wissen,
-              desto besser können wir einschätzen, was ihr
-              für euren Abend benötigt.
-            </p>
+          <div class="info-icon">
+            🎧
+          </div>
 
-            <ul class="info-points">
-
-              <li>
-                <span class="info-check">✓</span>
-                <span>
-                  Persönliche Rückmeldung
-                </span>
-              </li>
-
-              <li>
-                <span class="info-check">✓</span>
-                <span>
-                  Individuelle Planung statt Standardpaket
-                </span>
-              </li>
-
-              <li>
-                <span class="info-check">✓</span>
-                <span>
-                  DJ, Ton- und Lichttechnik aus einer Hand
-                </span>
-              </li>
-
-              <li>
-                <span class="info-check">✓</span>
-                <span>
-                  Einsatz im Ruhrgebiet und in NRW
-                </span>
-              </li>
-
-            </ul>
-
-            <div class="info-contact">
-
-              <div class="info-contact-label">
-                Direktkontakt
-              </div>
-
-              <a href="mailto:ruhrgebeats@gmail.com">
-                ruhrgebeats@gmail.com
-              </a>
-
-            </div>
-
-          </aside>
-
-
-          <!-- FORMULAR -->
-
-          <div class="request-form-card">
-
-            <div class="form-header">
-
-              <h2>
-                Eure Veranstaltung
-              </h2>
-
-              <p>
-                Die mit <span class="required">*</span>
-                markierten Felder sind erforderlich.
-              </p>
-
-            </div>
-
-
-            <!-- WICHTIG:
-                 Kein mailto mehr.
-                 Das Formular wird über JavaScript
-                 direkt an Supabase übermittelt.
-            -->
-
-            <form id="requestForm">
-
-              <!-- VERANSTALTUNG -->
-
-              <div class="form-section">
-
-                <div class="form-section-title">
-                  1. Veranstaltung
-                </div>
-
-                <div class="field">
-
-                  <label>
-                    Art der Veranstaltung
-                    <span class="required">*</span>
-                  </label>
-
-                  <div class="event-options">
-
-                    <div class="event-option">
-                      <input
-                        type="radio"
-                        id="birthday"
-                        name="Veranstaltungsart"
-                        value="Geburtstag"
-                        required
-                      >
-                      <label for="birthday">
-                        Geburtstag
-                      </label>
-                    </div>
-
-                    <div class="event-option">
-                      <input
-                        type="radio"
-                        id="wedding"
-                        name="Veranstaltungsart"
-                        value="Hochzeit"
-                      >
-                      <label for="wedding">
-                        Hochzeit
-                      </label>
-                    </div>
-
-                    <div class="event-option">
-                      <input
-                        type="radio"
-                        id="private"
-                        name="Veranstaltungsart"
-                        value="Private Feier"
-                      >
-                      <label for="private">
-                        Private Feier
-                      </label>
-                    </div>
-
-                    <div class="event-option">
-                      <input
-                        type="radio"
-                        id="company"
-                        name="Veranstaltungsart"
-                        value="Firmenfeier"
-                      >
-                      <label for="company">
-                        Firmenfeier
-                      </label>
-                    </div>
-
-                    <div class="event-option">
-                      <input
-                        type="radio"
-                        id="graduation"
-                        name="Veranstaltungsart"
-                        value="Abiball"
-                      >
-                      <label for="graduation">
-                        Abiball
-                      </label>
-                    </div>
-
-                    <div class="event-option">
-                      <input
-                        type="radio"
-                        id="other"
-                        name="Veranstaltungsart"
-                        value="Sonstige Veranstaltung"
-                      >
-                      <label for="other">
-                        Sonstige
-                      </label>
-                    </div>
-
-                  </div>
-
-                </div>
-
-
-                <div
-                  class="form-grid"
-                  style="margin-top: 18px;"
-                >
-
-                  <div class="field">
-
-                    <label for="date">
-                      Veranstaltungsdatum
-                      <span class="required">*</span>
-                    </label>
-
-                    <input
-                      id="date"
-                      name="Veranstaltungsdatum"
-                      type="date"
-                      required
-                    >
-
-                  </div>
-
-
-                  <div class="field">
-
-                    <label for="guests">
-                      Anzahl Gäste
-                      <span class="required">*</span>
-                    </label>
-
-                    <input
-                      id="guests"
-                      name="Anzahl Gäste"
-                      type="number"
-                      min="1"
-                      placeholder="z. B. 100"
-                      required
-                    >
-
-                  </div>
-
-
-                  <div class="field full">
-
-                    <label for="location">
-                      Veranstaltungsort / Location
-                      <span class="required">*</span>
-                    </label>
-
-                    <input
-                      id="location"
-                      name="Veranstaltungsort"
-                      type="text"
-                      placeholder="z. B. Gladbeck / Eventlocation"
-                      required
-                    >
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              <!-- ABLAUF -->
-
-              <div class="form-section">
-
-                <div class="form-section-title">
-                  2. Ablauf
-                </div>
-
-                <div class="form-grid">
-
-                  <div class="field">
-
-                    <label for="startTime">
-                      Beginn
-                    </label>
-
-                    <input
-                      id="startTime"
-                      name="Gewünschter Beginn"
-                      type="time"
-                    >
-
-                  </div>
-
-
-                  <div class="field">
-
-                    <label for="endTime">
-                      Gewünschtes Ende
-                    </label>
-
-                    <input
-                      id="endTime"
-                      name="Gewünschtes Ende"
-                      type="time"
-                    >
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              <!-- KONTAKT -->
-
-              <div class="form-section">
-
-                <div class="form-section-title">
-                  3. Eure Kontaktdaten
-                </div>
-
-                <div class="form-grid">
-
-                  <div class="field">
-
-                    <label for="name">
-                      Vor- und Nachname
-                      <span class="required">*</span>
-                    </label>
-
-                    <input
-                      id="name"
-                      name="Name"
-                      type="text"
-                      placeholder="Vor- und Nachname"
-                      autocomplete="name"
-                      required
-                    >
-
-                  </div>
-
-
-                  <div class="field">
-
-                    <label for="email">
-                      E-Mail-Adresse
-                      <span class="required">*</span>
-                    </label>
-
-                    <input
-                      id="email"
-                      name="E-Mail"
-                      type="email"
-                      placeholder="name@beispiel.de"
-                      autocomplete="email"
-                      required
-                    >
-
-                  </div>
-
-
-                  <div class="field full">
-
-                    <label for="phone">
-                      Telefonnummer
-                    </label>
-
-                    <input
-                      id="phone"
-                      name="Telefon"
-                      type="tel"
-                      placeholder="z. B. 0176 12345678"
-                      autocomplete="tel"
-                    >
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              <!-- TECHNIK -->
-
-              <div class="form-section">
-
-                <div class="form-section-title">
-                  4. Technik & Wünsche
-                </div>
-
-                <div class="future-box">
-
-                  <div class="future-icon">
-                    ✦
-                  </div>
-
-                  <div>
-
-                    <strong>
-                      Individuelle Technik-Auswahl kommt hier.
-                    </strong>
-
-                    <p>
-                      Dieser Bereich ist bereits für die spätere
-                      Auswahl von DJ-Paketen, Lichttechnik und
-                      zusätzlichen Leistungen vorbereitet.
-                    </p>
-
-                  </div>
-
-                </div>
-
-
-                <div
-                  class="field"
-                  style="margin-top: 18px;"
-                >
-
-                  <label for="message">
-                    Erzählt uns von eurem Event
-                  </label>
-
-                  <textarea
-                    id="message"
-                    name="Nachricht"
-                    placeholder="Welche Musik mögt ihr? Gibt es besondere Wünsche, einen bestimmten Ablauf oder etwas, das wir wissen sollten?"
-                  ></textarea>
-
-                </div>
-
-              </div>
-
-
-              <!-- ABSENDEN -->
-
-              <div class="form-submit-area">
-
-                <button
-                  class="submit-button"
-                  type="submit"
-                >
-                  Unverbindliche Anfrage senden
-                </button>
-
-                <p class="form-hint">
-                  Deine Anfrage wird sicher an RuhrGeBeats
-                  übermittelt und ist selbstverständlich
-                  unverbindlich.
-                  Es gelten unsere
-                  <a href="../datenschutz.html">
-                    Datenschutzhinweise
-                  </a>.
-                </p>
-
-                <p
-                  id="formStatus"
-                  class="form-hint"
-                  style="
-                    display:none;
-                    margin-top:14px;
-                    font-weight:700;
-                  "
-                ></p>
-
-              </div>
-
-            </form>
-
+          <div>
+            <strong>Persönliche Planung</strong>
+            <span>
+              Wir besprechen eure Wünsche direkt mit euch.
+            </span>
           </div>
 
         </div>
 
-      </div>
 
-    </section>
+        <div class="info-item">
+
+          <div class="info-icon">
+            💡
+          </div>
+
+          <div>
+            <strong>DJ & Licht</strong>
+            <span>
+              Professionelle Musik- und Lichttechnik für eure Feier.
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+            📍
+          </div>
+
+          <div>
+            <strong>Ruhrgebiet & NRW</strong>
+            <span>
+              Wir sind in Gladbeck zuhause und in ganz NRW unterwegs.
+            </span>
+          </div>
+
+        </div>
+
+      </aside>
+
+
+      <!-- FORM -->
+
+      <section class="form-card">
+
+        <h2>
+          Eure Anfrage
+        </h2>
+
+        <p style="color:var(--muted); margin-top:0;">
+          Die Anfrage ist selbstverständlich unverbindlich.
+        </p>
+
+
+        <form id="requestForm">
+
+
+          <!-- EVENT -->
+
+          <div class="section-title">
+            1. Eure Veranstaltung
+          </div>
+
+
+          <div class="form-group full">
+
+            <label>
+              Veranstaltungsart <span class="required">*</span>
+            </label>
+
+            <div class="event-types">
+
+              <div class="event-option">
+                <input
+                  type="radio"
+                  id="birthday"
+                  name="Veranstaltungsart"
+                  value="Geburtstag"
+                  required
+                >
+                <label for="birthday">
+                  Geburtstag
+                </label>
+              </div>
+
+
+              <div class="event-option">
+                <input
+                  type="radio"
+                  id="wedding"
+                  name="Veranstaltungsart"
+                  value="Hochzeit"
+                >
+                <label for="wedding">
+                  Hochzeit
+                </label>
+              </div>
+
+
+              <div class="event-option">
+                <input
+                  type="radio"
+                  id="private"
+                  name="Veranstaltungsart"
+                  value="Private Feier"
+                >
+                <label for="private">
+                  Private Feier
+                </label>
+              </div>
+
+
+              <div class="event-option">
+                <input
+                  type="radio"
+                  id="company"
+                  name="Veranstaltungsart"
+                  value="Firmenfeier"
+                >
+                <label for="company">
+                  Firmenfeier
+                </label>
+              </div>
+
+
+              <div class="event-option">
+                <input
+                  type="radio"
+                  id="abiball"
+                  name="Veranstaltungsart"
+                  value="Abiball"
+                >
+                <label for="abiball">
+                  Abiball
+                </label>
+              </div>
+
+
+              <div class="event-option">
+                <input
+                  type="radio"
+                  id="other"
+                  name="Veranstaltungsart"
+                  value="Sonstige Veranstaltung"
+                >
+                <label for="other">
+                  Sonstige Veranstaltung
+                </label>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-grid" style="margin-top:18px;">
+
+            <div class="form-group">
+
+              <label for="date">
+                Veranstaltungsdatum <span class="required">*</span>
+              </label>
+
+              <input
+                type="date"
+                id="date"
+                name="Veranstaltungsdatum"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="guests">
+                Anzahl Gäste <span class="required">*</span>
+              </label>
+
+              <input
+                type="number"
+                id="guests"
+                name="Anzahl Gäste"
+                min="1"
+                placeholder="z. B. 80"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group full">
+
+              <label for="location">
+                Veranstaltungsort <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="location"
+                name="Veranstaltungsort"
+                placeholder="z. B. Gladbeck"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="startTime">
+                Gewünschter Beginn
+              </label>
+
+              <input
+                type="time"
+                id="startTime"
+                name="Gewünschter Beginn"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="endTime">
+                Gewünschtes Ende
+              </label>
+
+              <input
+                type="time"
+                id="endTime"
+                name="Gewünschtes Ende"
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- CONTACT -->
+
+          <div class="section-title">
+            2. Eure Kontaktdaten
+          </div>
+
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label for="name">
+                Name <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="name"
+                name="Name"
+                placeholder="Vor- und Nachname"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="email">
+                E-Mail <span class="required">*</span>
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                name="E-Mail"
+                placeholder="name@beispiel.de"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group full">
+
+              <label for="phone">
+                Telefon
+              </label>
+
+              <input
+                type="tel"
+                id="phone"
+                name="Telefon"
+                placeholder="z. B. 0176 12345678"
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- BILLING ADDRESS -->
+
+          <div class="section-title">
+            3. Rechnungsadresse
+          </div>
+
+          <p class="field-hint" style="margin-top:-5px; margin-bottom:18px;">
+            Bitte gebt hier die Adresse an, auf die eine spätere Rechnung
+            ausgestellt werden soll. Bei einer Firmenfeier könnt ihr hier
+            auch die Firmendaten eintragen.
+          </p>
+
+
+          <div class="form-grid">
+
+            <div class="form-group full">
+
+              <label for="billingName">
+                Name / Firma <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="billingName"
+                name="Rechnungsname"
+                placeholder="Vor- und Nachname oder Firmenname"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group full">
+
+              <label for="billingStreet">
+                Straße & Hausnummer <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="billingStreet"
+                name="Rechnungsstraße"
+                placeholder="z. B. Mertenweg 19"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="billingZip">
+                PLZ <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="billingZip"
+                name="Rechnungs-PLZ"
+                placeholder="45966"
+                inputmode="numeric"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="billingCity">
+                Ort <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="billingCity"
+                name="Rechnungsort"
+                placeholder="Gladbeck"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- MESSAGE -->
+
+          <div class="section-title">
+            4. Weitere Wünsche
+          </div>
+
+
+          <div class="form-group full">
+
+            <label for="message">
+              Nachricht
+            </label>
+
+            <textarea
+              id="message"
+              name="Nachricht"
+              placeholder="Erzählt uns gerne mehr über eure Feier, Musikwünsche, besondere Programmpunkte oder sonstige Fragen."
+            ></textarea>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="submit-button"
+            id="submitButton"
+          >
+            Unverbindliche Anfrage senden
+          </button>
+
+
+          <p class="form-hint">
+            Deine Anfrage wird sicher an RuhrGeBeats übermittelt
+            und ist selbstverständlich unverbindlich.
+            Es gelten unsere
+            <a href="../datenschutz.html">
+              Datenschutzhinweise
+            </a>.
+          </p>
+
+
+          <p
+            id="formStatus"
+            class="form-hint"
+            style="display:none; margin-top:14px; font-weight:700;"
+          ></p>
+
+        </form>
+
+      </section>
+
+    </div>
 
   </main>
 
@@ -1312,120 +1010,42 @@
 
   <footer>
 
-    <div class="container">
+    <div class="footer-inner">
 
-      <div class="footer-grid">
+      <div>
 
         <div class="footer-brand">
-
-          <img
-            src="../logo.png"
-            alt="RuhrGeBeats"
-          >
-
-          <p>
-            RuhrGeBeats GbR – DJ & Veranstaltungstechnik
-            für besondere Momente im Ruhrgebiet.
-          </p>
-
+          RuhrGeBeats GbR
         </div>
 
-
-        <div class="footer-col">
-
-          <h3>
-            Navigation
-          </h3>
-
-          <ul>
-
-            <li>
-              <a href="../index.html">
-                Start
-              </a>
-            </li>
-
-            <li>
-              <a href="../index.html#leistungen">
-                Leistungen
-              </a>
-            </li>
-
-            <li>
-              <a href="../index.html#ueber-uns">
-                Über uns
-              </a>
-            </li>
-
-            <li>
-              <a href="../index.html#galerie">
-                Galerie
-              </a>
-            </li>
-
-            <li>
-              <a href="/anfrage">
-                Anfrage
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <div class="footer-col">
-
-          <h3>
-            Kontakt
-          </h3>
-
-          <ul>
-
-            <li>
-              <a href="mailto:ruhrgebeats@gmail.com">
-                ruhrgebeats@gmail.com
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="https://www.instagram.com/ruhrgebeats_gbr/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram
-              </a>
-            </li>
-
-            <li>
-              <a href="../impressum.html">
-                Impressum
-              </a>
-            </li>
-
-            <li>
-              <a href="../datenschutz.html">
-                Datenschutz
-              </a>
-            </li>
-
-          </ul>
-
+        <div style="font-size:13px; margin-top:4px;">
+          DJ • Licht • Musik
         </div>
 
       </div>
 
 
-      <div class="footer-bottom">
+      <div class="footer-links">
 
-        <span>
-          © <span id="year"></span> RuhrGeBeats GbR
-        </span>
+        <a href="mailto:ruhrgebeats@gmail.com">
+          E-Mail
+        </a>
 
-        <span>
-          DJ & Veranstaltungstechnik im Ruhrgebiet
-        </span>
+        <a
+          href="https://www.instagram.com/ruhrgebeats_gbr/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+
+        <a href="../impressum.html">
+          Impressum
+        </a>
+
+        <a href="../datenschutz.html">
+          Datenschutz
+        </a>
 
       </div>
 
@@ -1434,38 +1054,9 @@
   </footer>
 
 
-  <!-- JAVASCRIPT -->
+  <!-- SUPABASE / FORM SCRIPT -->
 
   <script>
-
-    /* =====================================================
-       MOBILES MENÜ
-       ===================================================== */
-
-    const mobileToggle =
-      document.getElementById("mobileToggle");
-
-    const navLinks =
-      document.getElementById("navLinks");
-
-    mobileToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
-
-    document
-      .querySelectorAll(".nav-links a")
-      .forEach(link => {
-
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("open");
-        });
-
-      });
-
-
-    /* =====================================================
-       SUPABASE
-       ===================================================== */
 
     const SUPABASE_URL =
       "https://spqsuedpmrxcbefpocho.supabase.co";
@@ -1480,32 +1071,42 @@
       );
 
 
-    /* =====================================================
-       FORMULAR
-       ===================================================== */
-
     const requestForm =
       document.getElementById("requestForm");
+
+    const submitButton =
+      document.getElementById("submitButton");
 
     const formStatus =
       document.getElementById("formStatus");
 
-    const submitButton =
-      requestForm.querySelector(".submit-button");
+    const dateInput =
+      document.getElementById("date");
 
+
+    /* Mindestdatum = heute */
+
+    if (dateInput) {
+
+      const today =
+        new Date().toISOString().split("T")[0];
+
+      dateInput.min = today;
+
+    }
+
+
+    /* Formular absenden */
 
     requestForm.addEventListener(
       "submit",
-      async (event) => {
+      async function(event) {
 
         event.preventDefault();
 
+
         formStatus.style.display = "none";
         formStatus.textContent = "";
-
-        submitButton.disabled = true;
-        submitButton.textContent =
-          "Anfrage wird gesendet …";
 
 
         const formData =
@@ -1518,7 +1119,13 @@
           );
 
 
+        const guestsValue =
+          formData.get("Anzahl Gäste");
+
+
         const payload = {
+
+          /* Veranstaltung */
 
           name:
             formData.get("Name")?.trim() || "",
@@ -1533,37 +1140,53 @@
             selectedEvent?.value || null,
 
           event_date:
-            formData.get("Veranstaltungsdatum")
-            || null,
+            formData.get("Veranstaltungsdatum") || null,
 
           guests:
-            formData.get("Anzahl Gäste")
-              ? Number(
-                  formData.get("Anzahl Gäste")
-                )
+            guestsValue
+              ? Number(guestsValue)
               : null,
 
           location:
-            formData
-              .get("Veranstaltungsort")
-              ?.trim() || "",
+            formData.get("Veranstaltungsort")?.trim() || "",
 
           start_time:
-            formData.get("Gewünschter Beginn")
-            || null,
+            formData.get("Gewünschter Beginn") || null,
 
           end_time:
-            formData.get("Gewünschtes Ende")
-            || null,
+            formData.get("Gewünschtes Ende") || null,
+
+
+          /* Weitere Wünsche */
 
           technical_wishes:
             null,
 
           message:
-            formData.get("Nachricht")
-              ?.trim() || null
+            formData.get("Nachricht")?.trim() || null,
+
+
+          /* Rechnungsadresse */
+
+          billing_name:
+            formData.get("Rechnungsname")?.trim() || "",
+
+          billing_street:
+            formData.get("Rechnungsstraße")?.trim() || "",
+
+          billing_zip:
+            formData.get("Rechnungs-PLZ")?.trim() || "",
+
+          billing_city:
+            formData.get("Rechnungsort")?.trim() || ""
 
         };
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          "Anfrage wird gesendet …";
 
 
         try {
@@ -1579,13 +1202,13 @@
           }
 
 
-          /* ERFOLG */
+          formStatus.style.display = "block";
 
-          formStatus.style.display =
-            "block";
+          formStatus.style.background =
+            "#eaf8f0";
 
           formStatus.style.color =
-            "#168cff";
+            "#138a4b";
 
           formStatus.textContent =
             "✓ Vielen Dank! Eure Anfrage wurde erfolgreich übermittelt. Wir melden uns persönlich bei euch.";
@@ -1594,17 +1217,10 @@
           requestForm.reset();
 
 
-          /* Datum weiterhin auf heute begrenzen */
-
-          const dateInput =
-            document.getElementById("date");
-
           if (dateInput) {
 
             const today =
-              new Date()
-                .toISOString()
-                .split("T")[0];
+              new Date().toISOString().split("T")[0];
 
             dateInput.min = today;
 
@@ -1612,13 +1228,11 @@
 
 
           window.scrollTo({
-
             top:
-              requestForm.offsetTop - 120,
-
-            behavior:
-              "smooth"
-
+              formStatus.getBoundingClientRect().top +
+              window.scrollY -
+              140,
+            behavior: "smooth"
           });
 
 
@@ -1630,19 +1244,21 @@
           );
 
 
-          formStatus.style.display =
-            "block";
+          formStatus.style.display = "block";
+
+          formStatus.style.background =
+            "#fff0f0";
 
           formStatus.style.color =
-            "#dc2626";
+            "#c62828";
 
           formStatus.textContent =
             "Leider konnte die Anfrage gerade nicht gesendet werden. Bitte versucht es erneut oder schreibt uns direkt an ruhrgebeats@gmail.com.";
 
+
         } finally {
 
-          submitButton.disabled =
-            false;
+          submitButton.disabled = false;
 
           submitButton.textContent =
             "Unverbindliche Anfrage senden";
@@ -1651,34 +1267,6 @@
 
       }
     );
-
-
-    /* =====================================================
-       AKTUELLES JAHR
-       ===================================================== */
-
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-
-    /* =====================================================
-       DATUM NICHT IN DER VERGANGENHEIT
-       ===================================================== */
-
-    const dateInput =
-      document.getElementById("date");
-
-
-    if (dateInput) {
-
-      const today =
-        new Date()
-          .toISOString()
-          .split("T")[0];
-
-      dateInput.min = today;
-
-    }
 
   </script>
 
