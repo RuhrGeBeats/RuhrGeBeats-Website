@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CEO-Anmeldung | RuhrGeBeats</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --blue: #168cff;
+      --blue-dark: #0870d8;
+      --navy: #07111f;
+      --light: #f5f7fa;
+      --text: #172033;
+      --muted: #6d7787;
+      --border: #dfe5ec;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      height: 78px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 6%;
+    }
+
+    header img {
+      width: 150px;
+      height: auto;
+      display: block;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 430px;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 42px;
+      box-shadow: 0 15px 45px rgba(7, 17, 31, 0.08);
+      border: 1px solid rgba(223, 229, 236, 0.8);
+    }
+
+    .login-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(22, 140, 255, 0.1);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+      color: var(--text);
+    }
+
+    input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(22, 140, 255, 0.12);
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 18px;
+      background: var(--blue);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 6px;
+    }
+
+    button:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff0f0;
+      color: #b42318;
+      border: 1px solid #ffd2d2;
+    }
+
+    .message.success {
+      display: block;
+      background: #effbf3;
+      color: #16733b;
+      border: 1px solid #c8efd6;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 25px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      color: var(--blue);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 20px;
+      color: #8a94a3;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        height: 68px;
+        padding: 0 20px;
+      }
+
+      header img {
+        width: 130px;
+      }
+
+      main {
+        padding: 30px 16px;
+      }
+
+      .login-card {
+        padding: 30px 24px;
+        border-radius: 16px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="/">
+      <img src="/logo.png" alt="RuhrGeBeats">
+    </a>
+  </header>
+
+  <main>
+    <div class="login-card">
+
+      <div class="login-icon">RG</div>
+
+      <h1>CEO-Anmeldung</h1>
+
+      <p class="subtitle">
+        Dieser Bereich ist ausschließlich für die Geschäftsführung von RuhrGeBeats vorgesehen.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="field">
+          <label for="email">E-Mail-Adresse</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="username"
+            placeholder="E-Mail-Adresse"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="password">Passwort</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="Passwort"
+            required
+          >
+        </div>
+
+        <button type="submit" id="loginButton">
+          Anmelden
+        </button>
+
+      </form>
+
+      <div id="message" class="message"></div>
+
+      <a href="/" class="back-link">
+        ← Zurück zur Website
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> RuhrGeBeats GbR
+  </footer>
+
+
+  <script>
+    const SUPABASE_URL = "https://spqsuedpmrxcbefpocho.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+    const loginForm = document.getElementById("loginForm");
+    const loginButton = document.getElementById("loginButton");
+    const message = document.getElementById("message");
+
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+
+    loginForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      loginButton.disabled = true;
+      loginButton.textContent = "Anmeldung läuft …";
+
+      message.className = "message";
+      message.textContent = "";
+
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+
+      if (error) {
+        console.error(error);
+
+        showMessage(
+          "Die Anmeldung ist fehlgeschlagen. Bitte überprüfe E-Mail-Adresse und Passwort.",
+          "error"
+        );
+
+        loginButton.disabled = false;
+        loginButton.textContent = "Anmelden";
+        return;
+      }
+
+
+      if (data.session) {
+        showMessage(
+          "Anmeldung erfolgreich.",
+          "success"
+        );
+
+        /*
+          Vorerst nur Test.
+          Später können wir hier die eigentliche
+          geschützte CEO-Seite öffnen.
+        */
+
+        setTimeout(function() {
+          window.location.href = "/intern/";
+        }, 700);
+      }
+    });
+
+
+    // Prüfen, ob bereits eine Anmeldung besteht
+    supabaseClient.auth.getSession().then(function(result) {
+
+      const session = result.data.session;
+
+      if (session) {
+        showMessage(
+          "Du bist bereits angemeldet.",
+          "success"
+        );
+      }
+
+    });
+
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
