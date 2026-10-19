@@ -13,8 +13,10 @@
 
   <meta name="theme-color" content="#07111f">
 
-  <style>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <style>
     :root {
       --blue: #168cff;
       --blue-dark: #0870d8;
@@ -25,16 +27,10 @@
       --light: #f5f7fa;
       --white: #ffffff;
       --border: #e1e7ef;
-
       --max: 1080px;
       --radius: 18px;
       --shadow: 0 20px 60px rgba(7, 17, 31, .10);
     }
-
-
-    /* =====================================================
-       RESET
-       ===================================================== */
 
     * {
       box-sizing: border-box;
@@ -55,12 +51,9 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
-
       color: var(--text);
       background: var(--light);
-
       line-height: 1.6;
-
       overflow-x: hidden;
     }
 
@@ -76,48 +69,29 @@
       font: inherit;
     }
 
-
-    /* =====================================================
-       CONTAINER
-       ===================================================== */
-
     .container {
       width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
     }
 
-
-    /* =====================================================
-       HEADER
-       ===================================================== */
+    /* HEADER */
 
     header {
       position: fixed;
-
       top: 0;
       left: 0;
-
       width: 100%;
-
       z-index: 1000;
-
       background: rgba(7, 17, 31, .96);
-
       backdrop-filter: blur(18px);
-
-      box-shadow:
-        0 8px 30px rgba(0,0,0,.12);
+      box-shadow: 0 8px 30px rgba(0,0,0,.12);
     }
 
     .nav {
       height: 82px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 30px;
     }
 
@@ -129,27 +103,20 @@
     .logo img {
       width: 58px;
       height: 58px;
-
       object-fit: contain;
     }
 
     .nav-links {
       display: flex;
-
       align-items: center;
-
       gap: 28px;
-
       list-style: none;
     }
 
     .nav-links a {
       color: rgba(255,255,255,.82);
-
       font-size: 14px;
-
       font-weight: 600;
-
       transition: color .2s ease;
     }
 
@@ -158,46 +125,29 @@
     }
 
     .nav-back {
-      border:
-        1px solid
-        rgba(255,255,255,.18);
-
+      border: 1px solid rgba(255,255,255,.18);
       padding: 11px 18px;
-
       border-radius: 9px;
     }
 
     .nav-back:hover {
-      background:
-        rgba(255,255,255,.06);
+      background: rgba(255,255,255,.06);
     }
 
     .mobile-toggle {
       display: none;
-
       border: 0;
-
       background: transparent;
-
       color: white;
-
       font-size: 29px;
-
       cursor: pointer;
     }
 
-
-    /* =====================================================
-       HERO
-       ===================================================== */
+    /* HERO */
 
     .page-hero {
       position: relative;
-
-      padding:
-        170px 0
-        85px;
-
+      padding: 170px 0 85px;
       background:
         radial-gradient(
           circle at 82% 45%,
@@ -210,21 +160,15 @@
           #081423 55%,
           #07111f 100%
         );
-
       color: white;
-
       overflow: hidden;
     }
 
     .page-hero::before {
       content: "";
-
       position: absolute;
-
       inset: 0;
-
       opacity: .13;
-
       background-image:
         linear-gradient(
           rgba(255,255,255,.05) 1px,
@@ -235,62 +179,39 @@
           rgba(255,255,255,.05) 1px,
           transparent 1px
         );
-
       background-size: 55px 55px;
     }
 
     .hero-inner {
       position: relative;
-
       z-index: 2;
-
       max-width: 760px;
     }
 
     .eyebrow {
       display: inline-flex;
-
       align-items: center;
-
       gap: 9px;
-
       color: #7ec4ff;
-
       font-size: 13px;
-
       font-weight: 800;
-
       text-transform: uppercase;
-
       letter-spacing: 2px;
-
       margin-bottom: 20px;
     }
 
     .eyebrow::before {
       content: "";
-
       width: 28px;
       height: 2px;
-
-      background:
-        var(--blue);
+      background: var(--blue);
     }
 
     .page-hero h1 {
-      font-size:
-        clamp(
-          42px,
-          7vw,
-          72px
-        );
-
+      font-size: clamp(42px, 7vw, 72px);
       line-height: 1;
-
       letter-spacing: -3px;
-
       font-weight: 900;
-
       margin-bottom: 25px;
     }
 
@@ -300,19 +221,12 @@
 
     .page-hero p {
       max-width: 650px;
-
-      color:
-        rgba(255,255,255,.68);
-
+      color: rgba(255,255,255,.68);
       font-size: 17px;
-
       line-height: 1.75;
     }
 
-
-    /* =====================================================
-       FORMULAR BEREICH
-       ===================================================== */
+    /* FORMULAR BEREICH */
 
     .request-section {
       padding: 75px 0 110px;
@@ -320,165 +234,101 @@
 
     .request-layout {
       display: grid;
-
-      grid-template-columns:
-        .72fr 1.28fr;
-
+      grid-template-columns: .72fr 1.28fr;
       gap: 28px;
-
       align-items: start;
     }
 
-
-    /* =====================================================
-       INFO
-       ===================================================== */
+    /* INFO */
 
     .request-info {
       background: var(--navy);
-
       color: white;
-
-      border-radius:
-        var(--radius);
-
+      border-radius: var(--radius);
       padding: 34px;
-
       position: sticky;
-
       top: 105px;
     }
 
     .request-info .section-label {
       color: #7ec4ff;
-
       text-transform: uppercase;
-
       font-size: 12px;
-
       font-weight: 900;
-
       letter-spacing: 2px;
-
       margin-bottom: 13px;
     }
 
     .request-info h2 {
       font-size: 29px;
-
       line-height: 1.12;
-
       letter-spacing: -1px;
-
       margin-bottom: 17px;
     }
 
     .request-info > p {
-      color:
-        rgba(255,255,255,.62);
-
+      color: rgba(255,255,255,.62);
       font-size: 14px;
-
       margin-bottom: 30px;
     }
 
     .info-points {
       list-style: none;
-
       display: grid;
-
       gap: 17px;
     }
 
     .info-points li {
       display: flex;
-
       gap: 12px;
-
       align-items: flex-start;
-
-      color:
-        rgba(255,255,255,.78);
-
+      color: rgba(255,255,255,.78);
       font-size: 14px;
     }
 
     .info-check {
       width: 24px;
       height: 24px;
-
       flex: 0 0 24px;
-
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       border-radius: 50%;
-
-      background:
-        rgba(22,140,255,.16);
-
-      color:
-        #69b7ff;
-
+      background: rgba(22,140,255,.16);
+      color: #69b7ff;
       font-size: 12px;
-
       font-weight: 900;
     }
 
     .info-contact {
       margin-top: 35px;
-
       padding-top: 25px;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,.09);
+      border-top: 1px solid rgba(255,255,255,.09);
     }
 
     .info-contact-label {
-      color:
-        rgba(255,255,255,.4);
-
+      color: rgba(255,255,255,.4);
       text-transform: uppercase;
-
       letter-spacing: 1.5px;
-
       font-size: 10px;
-
       font-weight: 800;
-
       margin-bottom: 7px;
     }
 
     .info-contact a {
       color: white;
-
       font-size: 14px;
-
       font-weight: 700;
     }
 
-
-    /* =====================================================
-       FORM CARD
-       ===================================================== */
+    /* FORM CARD */
 
     .request-form-card {
       background: white;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        var(--radius);
-
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 38px;
-
-      box-shadow:
-        var(--shadow);
+      box-shadow: var(--shadow);
     }
 
     .form-header {
@@ -487,65 +337,43 @@
 
     .form-header h2 {
       font-size: 27px;
-
       line-height: 1.15;
-
       letter-spacing: -.8px;
-
       margin-bottom: 8px;
     }
 
     .form-header p {
       color: var(--muted);
-
       font-size: 14px;
     }
 
-
-    /* =====================================================
-       FORM SECTIONS
-       ===================================================== */
-
     .form-section {
       padding-top: 28px;
-
       margin-top: 28px;
-
-      border-top:
-        1px solid
-        var(--border);
+      border-top: 1px solid var(--border);
     }
 
     .form-section:first-of-type {
       padding-top: 0;
-
       margin-top: 0;
-
       border-top: 0;
     }
 
     .form-section-title {
       font-size: 17px;
-
       font-weight: 850;
-
       margin-bottom: 20px;
     }
 
     .form-grid {
       display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
+      grid-template-columns: 1fr 1fr;
       gap: 18px;
     }
 
     .field {
       display: flex;
-
       flex-direction: column;
-
       gap: 7px;
     }
 
@@ -555,9 +383,7 @@
 
     .field label {
       font-size: 12px;
-
       font-weight: 800;
-
       color: #263244;
     }
 
@@ -565,29 +391,15 @@
       color: var(--blue);
     }
 
-
-    /* =====================================================
-       INPUTS
-       ===================================================== */
-
     .field input,
     .field select,
     .field textarea {
-
       width: 100%;
-
-      border:
-        1px solid
-        #dce3eb;
-
+      border: 1px solid #dce3eb;
       background: white;
-
       color: var(--text);
-
       border-radius: 9px;
-
       outline: none;
-
       transition:
         border-color .2s ease,
         box-shadow .2s ease,
@@ -597,18 +409,13 @@
     .field input,
     .field select {
       height: 49px;
-
-      padding:
-        0 14px;
+      padding: 0 14px;
     }
 
     .field textarea {
       min-height: 130px;
-
       resize: vertical;
-
       padding: 13px 14px;
-
       line-height: 1.5;
     }
 
@@ -620,29 +427,19 @@
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
-      border-color:
-        var(--blue);
-
-      box-shadow:
-        0 0 0 3px
-        rgba(22,140,255,.10);
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(22,140,255,.10);
     }
 
     .field select {
       cursor: pointer;
     }
 
-
-    /* =====================================================
-       EVENT TYPE OPTIONS
-       ===================================================== */
+    /* EVENT TYPE */
 
     .event-options {
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
 
@@ -652,41 +449,24 @@
 
     .event-option input {
       position: absolute;
-
       opacity: 0;
-
       pointer-events: none;
     }
 
     .event-option label {
       min-height: 66px;
-
       padding: 10px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       text-align: center;
-
-      border:
-        1px solid
-        #dce3eb;
-
+      border: 1px solid #dce3eb;
       border-radius: 10px;
-
       background: white;
-
       cursor: pointer;
-
       font-size: 12px;
-
       font-weight: 750;
-
       color: #354154;
-
       transition:
         border-color .2s ease,
         background .2s ease,
@@ -694,217 +474,145 @@
     }
 
     .event-option input:checked + label {
-      border-color:
-        var(--blue);
-
-      background:
-        #eef7ff;
-
-      color:
-        var(--blue-dark);
-
-      box-shadow:
-        inset 0 0 0 1px
-        var(--blue);
+      border-color: var(--blue);
+      background: #eef7ff;
+      color: var(--blue-dark);
+      box-shadow: inset 0 0 0 1px var(--blue);
     }
 
-
-    /* =====================================================
-       TECHNIK VORBEREITUNG
-       ===================================================== */
+    /* TECHNIK */
 
     .future-box {
-      border:
-        1px dashed
-        #cbd6e3;
-
+      border: 1px dashed #cbd6e3;
       border-radius: 12px;
-
-      background:
-        #f8fafc;
-
+      background: #f8fafc;
       padding: 18px;
-
       display: flex;
-
       gap: 14px;
-
       align-items: flex-start;
     }
 
     .future-icon {
       width: 35px;
       height: 35px;
-
       flex: 0 0 35px;
-
       border-radius: 9px;
-
-      background:
-        #eaf5ff;
-
-      color:
-        var(--blue-dark);
-
+      background: #eaf5ff;
+      color: var(--blue-dark);
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       font-size: 15px;
     }
 
     .future-box strong {
       display: block;
-
       font-size: 13px;
-
       margin-bottom: 4px;
     }
 
     .future-box p {
       color: var(--muted);
-
       font-size: 12px;
-
       line-height: 1.5;
     }
 
-
-    /* =====================================================
-       SUBMIT
-       ===================================================== */
+    /* SUBMIT */
 
     .form-submit-area {
       margin-top: 30px;
-
       padding-top: 25px;
-
-      border-top:
-        1px solid
-        var(--border);
+      border-top: 1px solid var(--border);
     }
 
     .submit-button {
       width: 100%;
-
       min-height: 55px;
-
       border: 0;
-
       border-radius: 10px;
-
-      background:
-        var(--blue);
-
+      background: var(--blue);
       color: white;
-
       font-weight: 850;
-
       font-size: 14px;
-
       cursor: pointer;
-
-      box-shadow:
-        0 12px 30px
-        rgba(22,140,255,.20);
-
+      box-shadow: 0 12px 30px rgba(22,140,255,.20);
       transition:
         background .2s ease,
-        transform .2s ease;
+        transform .2s ease,
+        opacity .2s ease;
     }
 
     .submit-button:hover {
-      background:
-        #329aff;
+      background: #329aff;
+      transform: translateY(-1px);
+    }
 
-      transform:
-        translateY(-1px);
+    .submit-button:disabled {
+      opacity: .65;
+      cursor: wait;
+      transform: none;
     }
 
     .form-hint {
       text-align: center;
-
       color: #8a96a6;
-
       font-size: 11px;
-
       line-height: 1.5;
-
       margin-top: 12px;
     }
 
     .form-hint a {
       color: var(--blue-dark);
-
       text-decoration: underline;
     }
 
+    #formStatus {
+      font-weight: 700;
+    }
 
-    /* =====================================================
-       FOOTER
-       ===================================================== */
+    /* FOOTER */
 
     footer {
       background: #040a12;
-
       color: white;
-
       padding: 60px 0 25px;
     }
 
     .footer-grid {
       display: grid;
-
-      grid-template-columns:
-        1.4fr .8fr .8fr;
-
+      grid-template-columns: 1.4fr .8fr .8fr;
       gap: 60px;
-
       padding-bottom: 45px;
     }
 
     .footer-brand img {
       width: 60px;
-
       margin-bottom: 18px;
     }
 
     .footer-brand p {
       max-width: 350px;
-
-      color:
-        rgba(255,255,255,.5);
-
+      color: rgba(255,255,255,.5);
       font-size: 14px;
     }
 
     .footer-col h3 {
       font-size: 13px;
-
       text-transform: uppercase;
-
       letter-spacing: 1.5px;
-
       margin-bottom: 20px;
     }
 
     .footer-col ul {
       list-style: none;
-
       display: grid;
-
       gap: 10px;
     }
 
     .footer-col a {
-      color:
-        rgba(255,255,255,.55);
-
+      color: rgba(255,255,255,.55);
       font-size: 13px;
-
-      transition:
-        color .2s ease;
+      transition: color .2s ease;
     }
 
     .footer-col a:hover {
@@ -913,30 +621,17 @@
 
     .footer-bottom {
       padding-top: 22px;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,.08);
-
+      border-top: 1px solid rgba(255,255,255,.08);
       display: flex;
-
       justify-content: space-between;
-
       gap: 20px;
-
-      color:
-        rgba(255,255,255,.35);
-
+      color: rgba(255,255,255,.35);
       font-size: 11px;
     }
 
-
-    /* =====================================================
-       MOBILE
-       ===================================================== */
+    /* MOBILE */
 
     @media (max-width: 850px) {
-
       .request-layout {
         grid-template-columns: 1fr;
       }
@@ -946,21 +641,13 @@
       }
 
       .footer-grid {
-        grid-template-columns:
-          1fr 1fr;
+        grid-template-columns: 1fr 1fr;
       }
-
     }
 
-
     @media (max-width: 700px) {
-
       .container {
-        width:
-          min(
-            var(--max),
-            calc(100% - 28px)
-          );
+        width: min(var(--max), calc(100% - 28px));
       }
 
       .nav {
@@ -969,29 +656,16 @@
 
       .nav-links {
         display: none;
-
         position: absolute;
-
         top: 72px;
-
         left: 14px;
         right: 14px;
-
-        background:
-          rgba(7,17,31,.98);
-
-        border:
-          1px solid
-          rgba(255,255,255,.08);
-
+        background: rgba(7,17,31,.98);
+        border: 1px solid rgba(255,255,255,.08);
         border-radius: 14px;
-
         padding: 15px;
-
         flex-direction: column;
-
         align-items: stretch;
-
         gap: 3px;
       }
 
@@ -1001,7 +675,6 @@
 
       .nav-links a {
         display: block;
-
         padding: 11px;
       }
 
@@ -1014,9 +687,7 @@
       }
 
       .page-hero {
-        padding:
-          135px 0
-          65px;
+        padding: 135px 0 65px;
       }
 
       .page-hero h1 {
@@ -1024,9 +695,7 @@
       }
 
       .request-section {
-        padding:
-          50px 0
-          75px;
+        padding: 50px 0 75px;
       }
 
       .request-form-card {
@@ -1042,25 +711,20 @@
       }
 
       .event-options {
-        grid-template-columns:
-          1fr 1fr;
+        grid-template-columns: 1fr 1fr;
       }
 
       .footer-grid {
         grid-template-columns: 1fr;
-
         gap: 35px;
       }
 
       .footer-bottom {
         flex-direction: column;
       }
-
     }
 
-
     @media (max-width: 430px) {
-
       .logo img {
         width: 46px;
         height: 46px;
@@ -1073,38 +737,23 @@
       .request-info {
         padding: 27px;
       }
-
     }
-
   </style>
-
 </head>
-
 
 <body>
 
-
-  <!-- =====================================================
-       HEADER
-       ===================================================== -->
+  <!-- HEADER -->
 
   <header>
-
     <div class="container nav">
 
-
-      <a
-        href="../index.html"
-        class="logo"
-      >
-
+      <a href="../index.html" class="logo">
         <img
           src="../logo.png"
           alt="RuhrGeBeats Logo"
         >
-
       </a>
-
 
       <button
         class="mobile-toggle"
@@ -1114,11 +763,7 @@
         ☰
       </button>
 
-
-      <ul
-        class="nav-links"
-        id="navLinks"
-      >
+      <ul class="nav-links" id="navLinks">
 
         <li>
           <a href="../index.html#leistungen">
@@ -1151,10 +796,7 @@
         </li>
 
         <li>
-          <a
-            class="nav-back"
-            href="../index.html"
-          >
+          <a class="nav-back" href="../index.html">
             ← Zur Startseite
           </a>
         </li>
@@ -1162,14 +804,10 @@
       </ul>
 
     </div>
-
   </header>
 
 
-
-  <!-- =====================================================
-       HERO
-       ===================================================== -->
+  <!-- HERO -->
 
   <section class="page-hero">
 
@@ -1181,12 +819,10 @@
           Unverbindliche Anfrage
         </div>
 
-
         <h1>
           Erzählt uns von<br>
           <span>eurem Event.</span>
         </h1>
-
 
         <p>
           Füllt die folgenden Angaben möglichst vollständig aus.
@@ -1201,10 +837,7 @@
   </section>
 
 
-
-  <!-- =====================================================
-       ANFRAGE
-       ===================================================== -->
+  <!-- ANFRAGE -->
 
   <main>
 
@@ -1214,10 +847,7 @@
 
         <div class="request-layout">
 
-
-          <!-- =================================================
-               INFO
-               ================================================= -->
+          <!-- INFO -->
 
           <aside class="request-info">
 
@@ -1225,12 +855,10 @@
               RuhrGeBeats
             </div>
 
-
             <h2>
               Gemeinsam planen wir
               euren Abend.
             </h2>
-
 
             <p>
               Eine Anfrage ist zunächst völlig unverbindlich.
@@ -1239,62 +867,37 @@
               für euren Abend benötigt.
             </p>
 
-
             <ul class="info-points">
 
               <li>
-
-                <span class="info-check">
-                  ✓
-                </span>
-
+                <span class="info-check">✓</span>
                 <span>
                   Persönliche Rückmeldung
                 </span>
-
               </li>
 
-
               <li>
-
-                <span class="info-check">
-                  ✓
-                </span>
-
+                <span class="info-check">✓</span>
                 <span>
                   Individuelle Planung statt Standardpaket
                 </span>
-
               </li>
 
-
               <li>
-
-                <span class="info-check">
-                  ✓
-                </span>
-
+                <span class="info-check">✓</span>
                 <span>
                   DJ, Ton- und Lichttechnik aus einer Hand
                 </span>
-
               </li>
 
-
               <li>
-
-                <span class="info-check">
-                  ✓
-                </span>
-
+                <span class="info-check">✓</span>
                 <span>
                   Einsatz im Ruhrgebiet und in NRW
                 </span>
-
               </li>
 
             </ul>
-
 
             <div class="info-contact">
 
@@ -1311,13 +914,9 @@
           </aside>
 
 
-
-          <!-- =================================================
-               FORMULAR
-               ================================================= -->
+          <!-- FORMULAR -->
 
           <div class="request-form-card">
-
 
             <div class="form-header">
 
@@ -1333,28 +932,21 @@
             </div>
 
 
+            <!-- WICHTIG:
+                 Kein mailto mehr.
+                 Das Formular wird über JavaScript
+                 direkt an Supabase übermittelt.
+            -->
 
-            <!-- =================================================
-                 FORM
-                 ================================================= -->
+            <form id="requestForm">
 
-            <form
-              action="mailto:ruhrgebeats@gmail.com"
-              method="post"
-              enctype="text/plain"
-            >
-
-
-              <!-- =============================================
-                   VERANSTALTUNG
-                   ============================================= -->
+              <!-- VERANSTALTUNG -->
 
               <div class="form-section">
 
                 <div class="form-section-title">
                   1. Veranstaltung
                 </div>
-
 
                 <div class="field">
 
@@ -1363,12 +955,9 @@
                     <span class="required">*</span>
                   </label>
 
-
                   <div class="event-options">
 
-
                     <div class="event-option">
-
                       <input
                         type="radio"
                         id="birthday"
@@ -1376,98 +965,70 @@
                         value="Geburtstag"
                         required
                       >
-
                       <label for="birthday">
                         Geburtstag
                       </label>
-
                     </div>
 
-
-
                     <div class="event-option">
-
                       <input
                         type="radio"
                         id="wedding"
                         name="Veranstaltungsart"
                         value="Hochzeit"
                       >
-
                       <label for="wedding">
                         Hochzeit
                       </label>
-
                     </div>
 
-
-
                     <div class="event-option">
-
                       <input
                         type="radio"
                         id="private"
                         name="Veranstaltungsart"
                         value="Private Feier"
                       >
-
                       <label for="private">
                         Private Feier
                       </label>
-
                     </div>
 
-
-
                     <div class="event-option">
-
                       <input
                         type="radio"
                         id="company"
                         name="Veranstaltungsart"
                         value="Firmenfeier"
                       >
-
                       <label for="company">
                         Firmenfeier
                       </label>
-
                     </div>
 
-
-
                     <div class="event-option">
-
                       <input
                         type="radio"
                         id="graduation"
                         name="Veranstaltungsart"
                         value="Abiball"
                       >
-
                       <label for="graduation">
                         Abiball
                       </label>
-
                     </div>
 
-
-
                     <div class="event-option">
-
                       <input
                         type="radio"
                         id="other"
                         name="Veranstaltungsart"
                         value="Sonstige Veranstaltung"
                       >
-
                       <label for="other">
                         Sonstige
                       </label>
-
                     </div>
-
 
                   </div>
 
@@ -1478,7 +1039,6 @@
                   class="form-grid"
                   style="margin-top: 18px;"
                 >
-
 
                   <div class="field">
 
@@ -1495,7 +1055,6 @@
                     >
 
                   </div>
-
 
 
                   <div class="field">
@@ -1517,7 +1076,6 @@
                   </div>
 
 
-
                   <div class="field full">
 
                     <label for="location">
@@ -1535,16 +1093,12 @@
 
                   </div>
 
-
                 </div>
 
               </div>
 
 
-
-              <!-- =============================================
-                   ZEIT
-                   ============================================= -->
+              <!-- ABLAUF -->
 
               <div class="form-section">
 
@@ -1552,9 +1106,7 @@
                   2. Ablauf
                 </div>
 
-
                 <div class="form-grid">
-
 
                   <div class="field">
 
@@ -1571,7 +1123,6 @@
                   </div>
 
 
-
                   <div class="field">
 
                     <label for="endTime">
@@ -1586,16 +1137,12 @@
 
                   </div>
 
-
                 </div>
 
               </div>
 
 
-
-              <!-- =============================================
-                   KONTAKT
-                   ============================================= -->
+              <!-- KONTAKT -->
 
               <div class="form-section">
 
@@ -1603,9 +1150,7 @@
                   3. Eure Kontaktdaten
                 </div>
 
-
                 <div class="form-grid">
-
 
                   <div class="field">
 
@@ -1624,7 +1169,6 @@
                     >
 
                   </div>
-
 
 
                   <div class="field">
@@ -1646,7 +1190,6 @@
                   </div>
 
 
-
                   <div class="field full">
 
                     <label for="phone">
@@ -1663,23 +1206,18 @@
 
                   </div>
 
-
                 </div>
 
               </div>
 
 
-
-              <!-- =============================================
-                   TECHNIK
-                   ============================================= -->
+              <!-- TECHNIK -->
 
               <div class="form-section">
 
                 <div class="form-section-title">
                   4. Technik & Wünsche
                 </div>
-
 
                 <div class="future-box">
 
@@ -1724,10 +1262,7 @@
               </div>
 
 
-
-              <!-- =============================================
-                   ABSENDEN
-                   ============================================= -->
+              <!-- ABSENDEN -->
 
               <div class="form-submit-area">
 
@@ -1738,18 +1273,27 @@
                   Unverbindliche Anfrage senden
                 </button>
 
-
                 <p class="form-hint">
-                  Mit dem Absenden wird dein E-Mail-Programm
-                  geöffnet. Die Anfrage ist unverbindlich.
+                  Deine Anfrage wird sicher an RuhrGeBeats
+                  übermittelt und ist selbstverständlich
+                  unverbindlich.
                   Es gelten unsere
                   <a href="../datenschutz.html">
                     Datenschutzhinweise
                   </a>.
                 </p>
 
-              </div>
+                <p
+                  id="formStatus"
+                  class="form-hint"
+                  style="
+                    display:none;
+                    margin-top:14px;
+                    font-weight:700;
+                  "
+                ></p>
 
+              </div>
 
             </form>
 
@@ -1764,17 +1308,13 @@
   </main>
 
 
-
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
+  <!-- FOOTER -->
 
   <footer>
 
     <div class="container">
 
       <div class="footer-grid">
-
 
         <div class="footer-brand">
 
@@ -1789,7 +1329,6 @@
           </p>
 
         </div>
-
 
 
         <div class="footer-col">
@@ -1835,7 +1374,6 @@
         </div>
 
 
-
         <div class="footer-col">
 
           <h3>
@@ -1876,9 +1414,7 @@
 
         </div>
 
-
       </div>
-
 
 
       <div class="footer-bottom">
@@ -1898,10 +1434,7 @@
   </footer>
 
 
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
+  <!-- JAVASCRIPT -->
 
   <script>
 
@@ -1915,26 +1448,209 @@
     const navLinks =
       document.getElementById("navLinks");
 
-
     mobileToggle.addEventListener("click", () => {
-
       navLinks.classList.toggle("open");
-
     });
-
 
     document
       .querySelectorAll(".nav-links a")
       .forEach(link => {
 
         link.addEventListener("click", () => {
-
           navLinks.classList.remove("open");
-
         });
 
       });
 
+
+    /* =====================================================
+       SUPABASE
+       ===================================================== */
+
+    const SUPABASE_URL =
+      "https://spqsuedpmrxcbefpocho.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    /* =====================================================
+       FORMULAR
+       ===================================================== */
+
+    const requestForm =
+      document.getElementById("requestForm");
+
+    const formStatus =
+      document.getElementById("formStatus");
+
+    const submitButton =
+      requestForm.querySelector(".submit-button");
+
+
+    requestForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+        formStatus.style.display = "none";
+        formStatus.textContent = "";
+
+        submitButton.disabled = true;
+        submitButton.textContent =
+          "Anfrage wird gesendet …";
+
+
+        const formData =
+          new FormData(requestForm);
+
+
+        const selectedEvent =
+          requestForm.querySelector(
+            'input[name="Veranstaltungsart"]:checked'
+          );
+
+
+        const payload = {
+
+          name:
+            formData.get("Name")?.trim() || "",
+
+          email:
+            formData.get("E-Mail")?.trim() || "",
+
+          phone:
+            formData.get("Telefon")?.trim() || null,
+
+          event_type:
+            selectedEvent?.value || null,
+
+          event_date:
+            formData.get("Veranstaltungsdatum")
+            || null,
+
+          guests:
+            formData.get("Anzahl Gäste")
+              ? Number(
+                  formData.get("Anzahl Gäste")
+                )
+              : null,
+
+          location:
+            formData
+              .get("Veranstaltungsort")
+              ?.trim() || "",
+
+          start_time:
+            formData.get("Gewünschter Beginn")
+            || null,
+
+          end_time:
+            formData.get("Gewünschtes Ende")
+            || null,
+
+          technical_wishes:
+            null,
+
+          message:
+            formData.get("Nachricht")
+              ?.trim() || null
+
+        };
+
+
+        try {
+
+          const { error } =
+            await supabaseClient
+              .from("anfragen")
+              .insert([payload]);
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          /* ERFOLG */
+
+          formStatus.style.display =
+            "block";
+
+          formStatus.style.color =
+            "#168cff";
+
+          formStatus.textContent =
+            "✓ Vielen Dank! Eure Anfrage wurde erfolgreich übermittelt. Wir melden uns persönlich bei euch.";
+
+
+          requestForm.reset();
+
+
+          /* Datum weiterhin auf heute begrenzen */
+
+          const dateInput =
+            document.getElementById("date");
+
+          if (dateInput) {
+
+            const today =
+              new Date()
+                .toISOString()
+                .split("T")[0];
+
+            dateInput.min = today;
+
+          }
+
+
+          window.scrollTo({
+
+            top:
+              requestForm.offsetTop - 120,
+
+            behavior:
+              "smooth"
+
+          });
+
+
+        } catch (error) {
+
+          console.error(
+            "Fehler beim Speichern der Anfrage:",
+            error
+          );
+
+
+          formStatus.style.display =
+            "block";
+
+          formStatus.style.color =
+            "#dc2626";
+
+          formStatus.textContent =
+            "Leider konnte die Anfrage gerade nicht gesendet werden. Bitte versucht es erneut oder schreibt uns direkt an ruhrgebeats@gmail.com.";
+
+        } finally {
+
+          submitButton.disabled =
+            false;
+
+          submitButton.textContent =
+            "Unverbindliche Anfrage senden";
+
+        }
+
+      }
+    );
 
 
     /* =====================================================
@@ -1943,7 +1659,6 @@
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
-
 
 
     /* =====================================================
@@ -1966,7 +1681,6 @@
     }
 
   </script>
-
 
 </body>
 </html>
