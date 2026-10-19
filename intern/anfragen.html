@@ -27,6 +27,10 @@
     href="./intern.css"
   >
 
+  <!-- PDF-Bibliothek -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Supabase -->
   <script
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
   ></script>
@@ -46,6 +50,7 @@
       margin-bottom: 30px;
     }
 
+
     .page-header h1 {
       margin: 8px 0 5px;
       font-size: clamp(32px, 5vw, 46px);
@@ -53,10 +58,12 @@
       letter-spacing: -.035em;
     }
 
+
     .page-header p {
       margin: 0;
       color: var(--muted);
     }
+
 
     .back-dashboard {
       display: inline-flex;
@@ -74,6 +81,7 @@
 
       transition: .2s ease;
     }
+
 
     .back-dashboard:hover {
       border-color: #b8dcfa;
@@ -287,6 +295,57 @@
 
 
     /* =========================================
+       PDF BUTTON
+       ========================================= */
+
+    .request-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+
+      padding: 14px 26px;
+
+      border-top: 1px solid var(--border);
+
+      background: #fbfcfd;
+    }
+
+
+    .pdf-button {
+      border: 0;
+      border-radius: 10px;
+
+      padding: 10px 15px;
+
+      background: #07589f;
+      color: #ffffff;
+
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition:
+        background .2s ease,
+        transform .2s ease;
+    }
+
+
+    .pdf-button:hover {
+      background: #06477f;
+      transform: translateY(-1px);
+    }
+
+
+    .pdf-button:disabled {
+      opacity: .65;
+      cursor: wait;
+      transform: none;
+    }
+
+
+    /* =========================================
        REQUEST META
        ========================================= */
 
@@ -342,6 +401,16 @@
       }
 
 
+      .request-actions {
+        padding: 14px 21px;
+      }
+
+
+      .pdf-button {
+        width: 100%;
+      }
+
+
       .request-meta {
         padding: 13px 21px;
       }
@@ -356,7 +425,9 @@
 <body>
 
 
-  <!-- HEADER -->
+  <!-- =========================================
+       HEADER
+       ========================================= -->
 
   <header class="intern-header">
 
@@ -397,8 +468,9 @@
   </header>
 
 
-
-  <!-- MAIN -->
+  <!-- =========================================
+       MAIN
+       ========================================= -->
 
   <main class="intern-layout">
 
@@ -434,7 +506,6 @@
     </section>
 
 
-
     <!-- STATUS -->
 
     <div
@@ -443,7 +514,6 @@
     >
       Anfragen werden geladen …
     </div>
-
 
 
     <!-- REQUESTS -->
@@ -457,8 +527,9 @@
   </main>
 
 
-
-  <!-- FOOTER -->
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
 
   <footer class="intern-footer">
 
@@ -478,8 +549,9 @@
   </footer>
 
 
-
-  <!-- SUPABASE -->
+  <!-- =========================================
+       JAVASCRIPT
+       ========================================= -->
 
   <script>
 
@@ -510,11 +582,9 @@
       );
 
 
-    /*
-      =========================================
-      HILFSFUNKTIONEN
-      =========================================
-    */
+    /* =========================================
+       HILFSFUNKTIONEN
+       ========================================= */
 
 
     function escapeHtml(value) {
@@ -628,11 +698,9 @@
     }
 
 
-    /*
-      =========================================
-      ANFRAGE DARSTELLEN
-      =========================================
-    */
+    /* =========================================
+       ANFRAGE DARSTELLEN
+       ========================================= */
 
 
     function createRequestCard(
@@ -977,6 +1045,7 @@
 
             </div>
 
+
           </div>
 
         </div>
@@ -991,6 +1060,21 @@
 
         </div>
 
+
+        <!-- PDF BUTTON -->
+
+        <div class="request-actions">
+
+          <button
+            type="button"
+            class="pdf-button"
+            onclick="createRequestPdf(this)"
+          >
+            📄 PDF erstellen
+          </button>
+
+        </div>
+
       `;
 
 
@@ -999,11 +1083,1324 @@
     }
 
 
-    /*
-      =========================================
-      LOGIN PRÜFEN
-      =========================================
-    */
+    /* =========================================
+       PDF HILFSFUNKTIONEN
+       ========================================= */
+
+
+    function pdfText(value) {
+
+      return String(
+        value ?? ""
+      )
+        .replace(/\u00a0/g, " ")
+        .trim();
+
+    }
+
+
+    function pdfDate(value) {
+
+      if (!value) {
+        return "–";
+      }
+
+
+      const date =
+        new Date(
+          value + "T00:00:00"
+        );
+
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return pdfText(value);
+      }
+
+
+      return date.toLocaleDateString(
+        "de-DE"
+      );
+
+    }
+
+
+    function pdfDateTime(value) {
+
+      if (!value) {
+        return "–";
+      }
+
+
+      const date =
+        new Date(value);
+
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return pdfText(value);
+      }
+
+
+      return date.toLocaleString(
+        "de-DE",
+        {
+          dateStyle: "short",
+          timeStyle: "short"
+        }
+      );
+
+    }
+
+
+    function pdfLines(
+      doc,
+      text,
+      width
+    ) {
+
+      return doc.splitTextToSize(
+        pdfText(text) || "–",
+        width
+      );
+
+    }
+
+
+    function pdfSection(
+      doc,
+      title,
+      y
+    ) {
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+      doc.setFontSize(10);
+
+      doc.setTextColor(
+        31,
+        70,
+        112
+      );
+
+      doc.text(
+        title.toUpperCase(),
+        20,
+        y
+      );
+
+      doc.setDrawColor(
+        170,
+        180,
+        190
+      );
+
+      doc.setLineWidth(.25);
+
+      doc.line(
+        20,
+        y + 2.5,
+        190,
+        y + 2.5
+      );
+
+      return y + 9;
+
+    }
+
+
+    function logoData() {
+
+      return new Promise(
+        (
+          resolve,
+          reject
+        ) => {
+
+          const image =
+            new Image();
+
+
+          image.onload =
+            function() {
+
+              const canvas =
+                document.createElement(
+                  "canvas"
+                );
+
+
+              canvas.width =
+                image.naturalWidth;
+
+              canvas.height =
+                image.naturalHeight;
+
+
+              const context =
+                canvas.getContext(
+                  "2d"
+                );
+
+
+              context.drawImage(
+                image,
+                0,
+                0
+              );
+
+
+              resolve(
+                canvas.toDataURL(
+                  "image/png"
+                )
+              );
+
+            };
+
+
+          image.onerror =
+            reject;
+
+
+          image.src =
+            "../logo.png";
+
+        }
+      );
+
+    }
+
+
+    /* =========================================
+       PDF ERSTELLEN
+       ========================================= */
+
+
+    async function createRequestPdf(
+      button
+    ) {
+
+      const card =
+        button.closest(
+          ".request-card"
+        );
+
+
+      const cards =
+        [
+          ...document.querySelectorAll(
+            ".request-card"
+          )
+        ];
+
+
+      const index =
+        cards.indexOf(card);
+
+
+      try {
+
+        button.disabled = true;
+
+        button.textContent =
+          "PDF wird erstellt …";
+
+
+        /*
+          Anfrage erneut aus Supabase laden.
+          Dadurch verwenden wir garantiert
+          die aktuellen Daten.
+        */
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .from("anfragen")
+            .select("*")
+            .order(
+              "created_at",
+              {
+                ascending: false
+              }
+            );
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        const request =
+          data?.[index];
+
+
+        if (!request) {
+
+          throw new Error(
+            "Die Anfrage konnte nicht geladen werden."
+          );
+
+        }
+
+
+        if (
+          !window.jspdf ||
+          !window.jspdf.jsPDF
+        ) {
+
+          throw new Error(
+            "Die PDF-Bibliothek konnte nicht geladen werden."
+          );
+
+        }
+
+
+        const {
+          jsPDF
+        } =
+          window.jspdf;
+
+
+        const doc =
+          new jsPDF({
+            orientation: "portrait",
+            unit: "mm",
+            format: "a4"
+          });
+
+
+        const blue = [
+          31,
+          91,
+          145
+        ];
+
+
+        const dark = [
+          25,
+          25,
+          25
+        ];
+
+
+        const muted = [
+          90,
+          90,
+          90
+        ];
+
+
+        /* =====================================
+           LOGO LADEN
+           ===================================== */
+
+        let logo = null;
+
+
+        try {
+
+          logo =
+            await logoData();
+
+        } catch (error) {
+
+          console.warn(
+            "RuhrGeBeats Logo konnte nicht geladen werden.",
+            error
+          );
+
+        }
+
+
+        /* =====================================
+           HINTERGRUND
+           ===================================== */
+
+        doc.setFillColor(
+          255,
+          255,
+          255
+        );
+
+
+        doc.rect(
+          0,
+          0,
+          210,
+          297,
+          "F"
+        );
+
+
+        /*
+          Großes dezentes Logo als
+          Wasserzeichen – wie bei
+          euren Angeboten/Rechnungen.
+        */
+
+        if (logo) {
+
+          try {
+
+            if (
+              typeof doc.GState === "function" &&
+              typeof doc.setGState === "function"
+            ) {
+
+              doc.setGState(
+                new doc.GState({
+                  opacity: 0.08
+                })
+              );
+
+            }
+
+
+            doc.addImage(
+              logo,
+              "PNG",
+              28,
+              60,
+              154,
+              110
+            );
+
+
+            if (
+              typeof doc.GState === "function" &&
+              typeof doc.setGState === "function"
+            ) {
+
+              doc.setGState(
+                new doc.GState({
+                  opacity: 1
+                })
+              );
+
+            }
+
+          } catch (error) {
+
+            console.warn(
+              "Logo-Wasserzeichen konnte nicht gesetzt werden.",
+              error
+            );
+
+          }
+
+        }
+
+
+        /* =====================================
+           KOPF
+           ===================================== */
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(25);
+
+
+        doc.text(
+          "ANFRAGE",
+          20,
+          18
+        );
+
+
+        doc.setFontSize(8.5);
+
+
+        doc.setTextColor(
+          ...muted
+        );
+
+
+        doc.text(
+          "DATUM",
+          20,
+          30
+        );
+
+
+        doc.text(
+          "VORGANGSNUMMER",
+          75,
+          30
+        );
+
+
+        doc.setFontSize(10);
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.text(
+          pdfDate(
+            request.created_at
+              ? request.created_at.slice(
+                  0,
+                  10
+                )
+              : new Date()
+                  .toISOString()
+                  .slice(
+                    0,
+                    10
+                  )
+          ),
+          20,
+          36
+        );
+
+
+        const year =
+          request.created_at
+            ? new Date(
+                request.created_at
+              ).getFullYear()
+            : new Date().getFullYear();
+
+
+        const requestId =
+          String(
+            request.id ||
+            "ANFR"
+          )
+            .replaceAll(
+              "-",
+              ""
+            )
+            .slice(
+              0,
+              6
+            )
+            .toUpperCase();
+
+
+        doc.text(
+          `${year}-${requestId}`,
+          75,
+          36
+        );
+
+
+        /* =====================================
+           RUHRGEBEATS KOPFBEREICH
+           ===================================== */
+
+        doc.setFont(
+          "helvetica",
+          "bold"
+        );
+
+
+        doc.setFontSize(11);
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.text(
+          "RuhrGeBeats",
+          20,
+          48
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(8.5);
+
+
+        doc.setTextColor(
+          ...muted
+        );
+
+
+        doc.text(
+          "Tom Karpa & Lenny Günther",
+          20,
+          53
+        );
+
+
+        doc.text(
+          "ruhrgebeats@gmail.com",
+          20,
+          58
+        );
+
+
+        /*
+          Kleines Logo oben rechts
+        */
+
+        if (logo) {
+
+          try {
+
+            doc.addImage(
+              logo,
+              "PNG",
+              164,
+              23,
+              26,
+              26
+            );
+
+          } catch (error) {}
+
+        }
+
+
+        /* =====================================
+           ANFRAGE VON
+           ===================================== */
+
+        let y = 72;
+
+
+        y =
+          pdfSection(
+            doc,
+            "Anfrage von",
+            y
+          );
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "bold"
+        );
+
+
+        doc.setFontSize(10);
+
+
+        let lines =
+          pdfLines(
+            doc,
+            request.billing_name ||
+            request.name,
+            75
+          );
+
+
+        doc.text(
+          lines,
+          20,
+          y
+        );
+
+
+        y +=
+          lines.length * 5;
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(9);
+
+
+        doc.text(
+          pdfText(
+            request.billing_street
+          ) || "–",
+          20,
+          y
+        );
+
+
+        y += 5;
+
+
+        doc.text(
+          (
+            pdfText(
+              request.billing_zip
+            ) +
+            " " +
+            pdfText(
+              request.billing_city
+            )
+          ).trim() || "–",
+          20,
+          y
+        );
+
+
+        /* =====================================
+           VERANSTALTUNG
+           ===================================== */
+
+        let rightY = 81;
+
+
+        doc.setFont(
+          "helvetica",
+          "bold"
+        );
+
+
+        doc.setFontSize(10);
+
+
+        doc.setTextColor(
+          ...blue
+        );
+
+
+        doc.text(
+          "VERANSTALTUNG",
+          110,
+          rightY
+        );
+
+
+        rightY += 8;
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.text(
+          pdfText(
+            request.event_type
+          ) ||
+          "Veranstaltung",
+          110,
+          rightY
+        );
+
+
+        rightY += 7;
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(9);
+
+
+        const eventData = [
+
+          [
+            "Datum",
+            pdfDate(
+              request.event_date
+            )
+          ],
+
+          [
+            "Gäste",
+            formatGuests(
+              request.guests
+            )
+          ],
+
+          [
+            "Ort",
+            request.location ||
+            "–"
+          ],
+
+          [
+            "Zeit",
+            formatTimeRange(
+              request.start_time,
+              request.end_time
+            )
+          ]
+
+        ];
+
+
+        eventData.forEach(
+          function([
+            label,
+            value
+          ]) {
+
+            doc.setTextColor(
+              ...muted
+            );
+
+
+            doc.text(
+              `${label}:`,
+              110,
+              rightY
+            );
+
+
+            doc.setTextColor(
+              ...dark
+            );
+
+
+            const valueLines =
+              pdfLines(
+                doc,
+                value,
+                58
+              );
+
+
+            doc.text(
+              valueLines,
+              130,
+              rightY
+            );
+
+
+            rightY += Math.max(
+              5,
+              valueLines.length * 4.5
+            );
+
+          }
+        );
+
+
+        y =
+          Math.max(
+            y,
+            rightY
+          ) + 8;
+
+
+        /* =====================================
+           KONTAKT
+           ===================================== */
+
+        y =
+          pdfSection(
+            doc,
+            "Kontakt",
+            y
+          );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(9);
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.text(
+          "Name:",
+          20,
+          y
+        );
+
+
+        doc.text(
+          pdfText(
+            request.name
+          ) || "–",
+          40,
+          y
+        );
+
+
+        doc.text(
+          "E-Mail:",
+          110,
+          y
+        );
+
+
+        doc.text(
+          pdfText(
+            request.email
+          ) || "–",
+          132,
+          y
+        );
+
+
+        y += 6;
+
+
+        doc.text(
+          "Telefon:",
+          20,
+          y
+        );
+
+
+        doc.text(
+          pdfText(
+            request.phone
+          ) || "–",
+          40,
+          y
+        );
+
+
+        y += 10;
+
+
+        /* =====================================
+           WÜNSCHE
+           ===================================== */
+
+        y =
+          pdfSection(
+            doc,
+            "Wünsche & Angaben",
+            y
+          );
+
+
+        doc.setFont(
+          "helvetica",
+          "bold"
+        );
+
+
+        doc.setFontSize(9);
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        if (
+          request.technical_wishes
+        ) {
+
+          doc.text(
+            "Technische Wünsche:",
+            20,
+            y
+          );
+
+
+          y += 5;
+
+
+          doc.setFont(
+            "helvetica",
+            "normal"
+          );
+
+
+          let wishLines =
+            pdfLines(
+              doc,
+              request.technical_wishes,
+              170
+            );
+
+
+          doc.text(
+            wishLines,
+            20,
+            y
+          );
+
+
+          y +=
+            wishLines.length *
+            4.5 +
+            4;
+
+
+          doc.setFont(
+            "helvetica",
+            "bold"
+          );
+
+        }
+
+
+        if (
+          request.message
+        ) {
+
+          doc.text(
+            "Nachricht:",
+            20,
+            y
+          );
+
+
+          y += 5;
+
+
+          doc.setFont(
+            "helvetica",
+            "normal"
+          );
+
+
+          let messageLines =
+            pdfLines(
+              doc,
+              request.message,
+              170
+            );
+
+
+          doc.text(
+            messageLines,
+            20,
+            y
+          );
+
+
+          y +=
+            messageLines.length *
+            4.5 +
+            4;
+
+        }
+
+
+        if (
+          !request.technical_wishes &&
+          !request.message
+        ) {
+
+          doc.setFont(
+            "helvetica",
+            "normal"
+          );
+
+
+          doc.setTextColor(
+            ...muted
+          );
+
+
+          doc.text(
+            "Keine zusätzlichen Angaben.",
+            20,
+            y
+          );
+
+
+          y += 8;
+
+        }
+
+
+        /* =====================================
+           RECHNUNGSADRESSE
+           ===================================== */
+
+        y += 3;
+
+
+        y =
+          pdfSection(
+            doc,
+            "Rechnungsadresse",
+            y
+          );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(9);
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        const address = [
+
+          request.billing_name ||
+          request.name,
+
+          request.billing_street,
+
+          (
+            pdfText(
+              request.billing_zip
+            ) +
+            " " +
+            pdfText(
+              request.billing_city
+            )
+          ).trim()
+
+        ]
+          .filter(Boolean)
+          .join("\n");
+
+
+        const addressLines =
+          address
+            ? address.split("\n")
+            : [
+                "Keine Rechnungsadresse angegeben."
+              ];
+
+
+        doc.text(
+          addressLines,
+          20,
+          y
+        );
+
+
+        y +=
+          Math.max(
+            12,
+            addressLines.length * 4.5
+          ) + 4;
+
+
+        /* =====================================
+           EINGANG
+           ===================================== */
+
+        doc.setFillColor(
+          241,
+          247,
+          252
+        );
+
+
+        doc.roundedRect(
+          20,
+          y,
+          170,
+          18,
+          3,
+          3,
+          "F"
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "bold"
+        );
+
+
+        doc.setFontSize(9);
+
+
+        doc.setTextColor(
+          ...blue
+        );
+
+
+        doc.text(
+          "ANFRAGE EINGEGANGEN",
+          27,
+          y + 7
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.text(
+          pdfDateTime(
+            request.created_at
+          ),
+          27,
+          y + 13
+        );
+
+
+        /* =====================================
+           FOOTER
+           ===================================== */
+
+        doc.setDrawColor(
+          190,
+          190,
+          190
+        );
+
+
+        doc.setLineWidth(
+          0.25
+        );
+
+
+        doc.line(
+          20,
+          278,
+          190,
+          278
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
+        doc.setFontSize(
+          7.5
+        );
+
+
+        doc.setTextColor(
+          ...muted
+        );
+
+
+        doc.text(
+          "RuhrGeBeats GbR · Tom Karpa & Lenny Günther",
+          20,
+          285
+        );
+
+
+        doc.text(
+          "ruhrgebeats@gmail.com",
+          20,
+          290
+        );
+
+
+        /* =====================================
+           DATEINAME
+           ===================================== */
+
+        const safeName =
+          (
+            request.billing_name ||
+            request.name ||
+            "Anfrage"
+          )
+            .toString()
+            .replace(
+              /[^a-zA-Z0-9äöüÄÖÜß_-]+/g,
+              "_"
+            )
+            .replace(
+              /^_+|_+$/g,
+              ""
+            );
+
+
+        const eventDate =
+          request.event_date ||
+          new Date()
+            .toISOString()
+            .slice(
+              0,
+              10
+            );
+
+
+        const filename =
+          `RuhrGeBeats_Anfrage_${safeName || "Anfrage"}_${eventDate}.pdf`;
+
+
+        doc.save(
+          filename
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Fehler beim Erstellen der Anfrage-PDF:",
+          error
+        );
+
+
+        alert(
+          "Die PDF konnte leider nicht erstellt werden.\n\n" +
+          (
+            error?.message ||
+            "Unbekannter Fehler"
+          )
+        );
+
+      } finally {
+
+        button.disabled =
+          false;
+
+
+        button.textContent =
+          "📄 PDF erstellen";
+
+      }
+
+    }
+
+
+    /* =========================================
+       LOGIN PRÜFEN
+       ========================================= */
 
 
     async function checkLogin() {
@@ -1040,11 +2437,9 @@
     }
 
 
-    /*
-      =========================================
-      ANFRAGEN LADEN
-      =========================================
-    */
+    /* =========================================
+       ANFRAGEN LADEN
+       ========================================= */
 
 
     async function loadRequests() {
@@ -1133,11 +2528,9 @@
     }
 
 
-    /*
-      =========================================
-      LOGOUT
-      =========================================
-    */
+    /* =========================================
+       LOGOUT
+       ========================================= */
 
 
     document.getElementById(
@@ -1156,11 +2549,9 @@
     );
 
 
-    /*
-      =========================================
-      START
-      =========================================
-    */
+    /* =========================================
+       START
+       ========================================= */
 
 
     async function init() {
