@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CEO-Bereich | RuhrGeBeats</title>
+  <title>CEO-Anmeldung | RuhrGeBeats</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -18,7 +18,6 @@
       --muted: #6d7787;
       --border: #dfe5ec;
       --white: #ffffff;
-      --danger: #c62828;
     }
 
     * {
@@ -42,7 +41,6 @@
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      justify-content: space-between;
       padding: 0 6%;
     }
 
@@ -50,11 +48,6 @@
       width: 150px;
       height: auto;
       display: block;
-    }
-
-    .header-label {
-      font-size: 13px;
-      color: var(--muted);
     }
 
     main {
@@ -65,141 +58,132 @@
       padding: 50px 20px;
     }
 
-    .ceo-card {
+    .login-card {
       width: 100%;
-      max-width: 620px;
+      max-width: 430px;
       background: var(--white);
       border-radius: 20px;
-      padding: 48px;
+      padding: 42px;
       box-shadow: 0 15px 45px rgba(7, 17, 31, 0.08);
       border: 1px solid rgba(223, 229, 236, 0.8);
     }
 
-    .status-icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 16px;
+    .login-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       background: rgba(22, 140, 255, 0.1);
       color: var(--blue);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 24px;
-      font-size: 27px;
+      margin-bottom: 22px;
+      font-size: 18px;
       font-weight: 700;
-    }
-
-    .status-icon::before {
-      content: "✓";
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--blue);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
     }
 
     h1 {
-      font-size: 34px;
+      font-size: 30px;
       line-height: 1.15;
+      margin-bottom: 10px;
       color: var(--navy);
-      margin-bottom: 12px;
     }
 
-    .intro {
+    .subtitle {
       color: var(--muted);
-      line-height: 1.65;
-      font-size: 15px;
+      line-height: 1.6;
       margin-bottom: 30px;
-    }
-
-    .account-box {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 17px 18px;
-      background: #fafbfd;
-      margin-bottom: 28px;
-    }
-
-    .account-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 5px;
-    }
-
-    .account-email {
       font-size: 15px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--navy);
-      word-break: break-word;
     }
 
-    .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      flex: 1;
-      min-width: 190px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 14px 18px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .button-primary {
-      background: var(--blue);
-      color: white;
-      border: 1px solid var(--blue);
-    }
-
-    .button-primary:hover {
-      background: var(--blue-dark);
-      border-color: var(--blue-dark);
-      transform: translateY(-1px);
-    }
-
-    .button-secondary {
-      background: white;
-      color: var(--navy);
+    input {
+      width: 100%;
+      padding: 14px 15px;
       border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+      color: var(--text);
     }
 
-    .button-secondary:hover {
+    input:focus {
       border-color: var(--blue);
-      color: var(--blue);
-      transform: translateY(-1px);
+      box-shadow: 0 0 0 3px rgba(22, 140, 255, 0.12);
     }
 
-    .logout {
-      margin-top: 20px;
+    button {
       width: 100%;
       border: none;
-      background: transparent;
-      color: var(--muted);
-      font-size: 13px;
+      border-radius: 10px;
+      padding: 14px 18px;
+      background: var(--blue);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
       cursor: pointer;
-      padding: 8px;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 6px;
     }
 
-    .logout:hover {
-      color: var(--danger);
+    button:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
     }
 
-    .loading {
-      color: var(--muted);
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff0f0;
+      color: #b42318;
+      border: 1px solid #ffd2d2;
+    }
+
+    .message.success {
+      display: block;
+      background: #effbf3;
+      color: #16733b;
+      border: 1px solid #c8efd6;
+    }
+
+    .back-link {
+      display: block;
       text-align: center;
+      margin-top: 25px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      color: var(--blue);
     }
 
     footer {
@@ -220,29 +204,17 @@
         width: 130px;
       }
 
-      .header-label {
-        display: none;
-      }
-
       main {
         padding: 30px 16px;
       }
 
-      .ceo-card {
-        padding: 32px 24px;
+      .login-card {
+        padding: 30px 24px;
         border-radius: 16px;
       }
 
       h1 {
-        font-size: 28px;
-      }
-
-      .actions {
-        flex-direction: column;
-      }
-
-      .button {
-        width: 100%;
+        font-size: 26px;
       }
     }
   </style>
@@ -251,66 +223,92 @@
 <body>
 
   <header>
+
     <a href="/">
       <img src="/logo.png" alt="RuhrGeBeats">
     </a>
 
-    <div class="header-label">
-      Interner Bereich
-    </div>
   </header>
 
 
   <main>
 
-    <div id="loading" class="loading">
-      Anmeldung wird überprüft …
-    </div>
+    <div class="login-card">
 
-
-    <div id="ceoContent" class="ceo-card" style="display: none;">
-
-      <div class="status-icon"></div>
-
-      <div class="eyebrow">
-        RuhrGeBeats
+      <div class="login-icon">
+        RG
       </div>
 
       <h1>
-        Willkommen im CEO-Bereich.
+        CEO-Anmeldung
       </h1>
 
-      <p class="intro">
-        Du bist erfolgreich angemeldet. Dieser Bereich ist ausschließlich
-        für die Geschäftsführung von RuhrGeBeats vorgesehen.
+      <p class="subtitle">
+        Dieser Bereich ist ausschließlich für die Geschäftsführung
+        von RuhrGeBeats vorgesehen.
       </p>
 
 
-      <div class="account-box">
+      <form id="loginForm">
 
-        <div class="account-label">
-          Angemeldet als
+        <div class="field">
+
+          <label for="email">
+            E-Mail-Adresse
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="username"
+            placeholder="E-Mail-Adresse"
+            required
+          >
+
         </div>
 
-        <div id="accountEmail" class="account-email">
-          –
+
+        <div class="field">
+
+          <label for="password">
+            Passwort
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="Passwort"
+            required
+          >
+
         </div>
 
-      </div>
+
+        <button
+          type="submit"
+          id="loginButton"
+        >
+          Anmelden
+        </button>
+
+      </form>
 
 
-      <div class="actions">
-
-        <a href="/" class="button button-primary">
-          Zur öffentlichen Website
-        </a>
-
-      </div>
+      <div
+        id="message"
+        class="message"
+      ></div>
 
 
-      <button id="logoutButton" class="logout">
-        Abmelden
-      </button>
+      <a
+        href="/"
+        class="back-link"
+      >
+        ← Zurück zur Website
+      </a>
 
     </div>
 
@@ -338,20 +336,27 @@
       );
 
 
-    const loading =
-      document.getElementById("loading");
+    const loginForm =
+      document.getElementById("loginForm");
 
-    const ceoContent =
-      document.getElementById("ceoContent");
+    const loginButton =
+      document.getElementById("loginButton");
 
-    const accountEmail =
-      document.getElementById("accountEmail");
-
-    const logoutButton =
-      document.getElementById("logoutButton");
+    const message =
+      document.getElementById("message");
 
 
-    async function checkLogin() {
+    function showMessage(text, type) {
+
+      message.textContent = text;
+
+      message.className =
+        "message " + type;
+
+    }
+
+
+    async function checkExistingSession() {
 
       const {
         data,
@@ -359,51 +364,118 @@
       } = await supabaseClient.auth.getSession();
 
 
-      if (error || !data.session) {
+      if (error) {
 
-        window.location.href = "/intern/";
+        console.error(error);
 
         return;
       }
 
 
-      const user =
-        data.session.user;
+      if (data.session) {
 
+        window.location.replace(
+          "/intern/dashboard.html"
+        );
 
-      accountEmail.textContent =
-        user.email || "CEO";
+      }
 
-
-      loading.style.display = "none";
-
-      ceoContent.style.display = "block";
     }
 
 
-    logoutButton.addEventListener(
-      "click",
-      async function() {
+    loginForm.addEventListener(
+      "submit",
+      async function(event) {
 
-        logoutButton.disabled = true;
-        logoutButton.textContent =
-          "Abmeldung …";
+        event.preventDefault();
 
 
-        await supabaseClient.auth.signOut();
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
 
 
-        window.location.href =
-          "/intern/";
+        const password =
+          document
+            .getElementById("password")
+            .value;
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+          "Anmeldung läuft …";
+
+
+        message.className =
+          "message";
+
+        message.textContent =
+          "";
+
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
+
+
+        if (error) {
+
+          console.error(error);
+
+
+          showMessage(
+            "Die Anmeldung ist fehlgeschlagen. Bitte überprüfe E-Mail-Adresse und Passwort.",
+            "error"
+          );
+
+
+          loginButton.disabled = false;
+
+          loginButton.textContent =
+            "Anmelden";
+
+
+          return;
+        }
+
+
+        if (data.session) {
+
+          showMessage(
+            "Anmeldung erfolgreich.",
+            "success"
+          );
+
+
+          setTimeout(function() {
+
+            window.location.replace(
+              "/intern/dashboard.html"
+            );
+
+          }, 500);
+
+        }
+
       }
     );
 
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+    document
+      .getElementById("year")
+      .textContent =
+        new Date().getFullYear();
 
 
-    checkLogin();
+    checkExistingSession();
 
   </script>
 
