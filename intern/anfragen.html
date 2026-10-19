@@ -100,6 +100,7 @@
       margin-bottom: 20px;
     }
 
+
     .request-status.error {
       color: var(--danger);
       background: #fff6f6;
@@ -118,75 +119,45 @@
     }
 
     .request-card {
-      background: var(--white);
-
+      background: white;
       border: 1px solid var(--border);
-      border-radius: 22px;
-
-      box-shadow:
-        0 15px 40px rgba(7,17,31,.06);
-
+      border-radius: 18px;
       overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15, 35, 50, .05);
     }
 
-    .request-top {
-      padding: 24px 26px;
-
+    .request-card-head {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-
       gap: 20px;
 
+      padding: 24px 26px;
+
       border-bottom: 1px solid var(--border);
+      background: #fbfcfd;
     }
 
-    .request-title {
-      margin: 0;
-
+    .request-card-head h2 {
+      margin: 0 0 6px;
       font-size: 22px;
-      letter-spacing: -.025em;
+      line-height: 1.2;
     }
 
-    .request-type {
-      margin-top: 4px;
-
-      color: var(--blue-dark);
-
+    .request-card-head p {
+      margin: 0;
+      color: var(--muted);
       font-size: 13px;
-      font-weight: 800;
     }
 
-    .request-date {
-      flex-shrink: 0;
-
-      padding: 6px 11px;
-
-      background: #eaf5ff;
-      color: var(--blue-dark);
-
-      border-radius: 999px;
-
-      font-size: 12px;
-      font-weight: 800;
+    .request-card-body {
+      padding: 26px;
     }
-
-    .request-body {
-      padding: 25px 26px;
-    }
-
-
-    /* =========================================
-       DATA GRID
-       ========================================= */
 
     .request-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-      gap: 24px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
     }
 
     .request-section {
@@ -198,169 +169,101 @@
     }
 
     .request-section h3 {
-      margin: 0 0 12px;
-
-      font-size: 13px;
-
+      margin: 0 0 9px;
+      color: #40505e;
+      font-size: 12px;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .08em;
-
-      color: var(--muted);
     }
 
-    .request-info {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-
+    .request-section p,
+    .request-section div {
+      color: #1d2933;
       font-size: 14px;
+      line-height: 1.65;
     }
 
-    .request-row {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .request-label {
-      flex: 0 0 125px;
-
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .request-value {
-      min-width: 0;
-
-      font-weight: 650;
-
-      overflow-wrap: anywhere;
-    }
-
-    .request-value a {
+    .request-section a {
       color: var(--blue-dark);
+      text-decoration: none;
     }
 
-    .request-value a:hover {
+    .request-section a:hover {
       text-decoration: underline;
     }
 
-
-    /* =========================================
-       MESSAGE
-       ========================================= */
-
     .request-message {
-      padding: 16px;
-
-      background: var(--light);
-
-      border-radius: 13px;
-
-      color: #3f4b57;
-
-      font-size: 14px;
-
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
+      padding: 15px 17px;
+      background: #f5f8fb;
+      border: 1px solid #e1e8ee;
+      border-radius: 12px;
+      white-space: pre-line;
     }
 
     .request-message.empty {
       color: var(--muted);
-      font-style: italic;
     }
 
+    .request-meta {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
 
-    /* =========================================
-       REQUEST ACTIONS
-       ========================================= */
+      color: var(--muted);
+      font-size: 12px;
+    }
 
     .request-actions {
       display: flex;
+      flex-wrap: wrap;
       justify-content: flex-end;
       gap: 10px;
 
-      padding: 14px 26px;
-
-      border-top: 1px solid var(--border);
-
-      background: #fbfcfd;
+      margin-top: 18px;
     }
 
-    .pdf-button {
-      border: 0;
+    .pdf-button,
+    .offer-button {
       border-radius: 10px;
-
       padding: 10px 15px;
-
-      background: #07589f;
-      color: #fff;
 
       font: inherit;
       font-size: 13px;
       font-weight: 800;
 
       cursor: pointer;
-
       transition: .2s ease;
     }
 
-    .pdf-button:hover {
-      background: #06477f;
-      transform: translateY(-1px);
+    .pdf-button {
+      border: 1px solid #d4dee6;
+      background: white;
+      color: #42515d;
     }
 
-    .pdf-button:disabled {
-      opacity: .65;
-      cursor: wait;
-      transform: none;
+    .pdf-button:hover {
+      border-color: #b8dcfa;
+      color: var(--blue-dark);
+      transform: translateY(-1px);
     }
 
     .offer-button {
       border: 1px solid #07589f;
-      border-radius: 10px;
-
-      padding: 10px 15px;
-
-      background: white;
-      color: #07589f;
-
-      font: inherit;
-      font-size: 13px;
-      font-weight: 800;
-
-      cursor: pointer;
-
-      transition: .2s ease;
+      background: #07589f;
+      color: white;
     }
 
     .offer-button:hover {
-      background: #07589f;
-      color: white;
+      background: #064b87;
       transform: translateY(-1px);
     }
 
+    .pdf-button:disabled,
     .offer-button:disabled {
       opacity: .65;
       cursor: wait;
       transform: none;
-    }
-
-
-    /* =========================================
-       REQUEST META
-       ========================================= */
-
-    .request-meta {
-      padding: 13px 26px;
-
-      background: #fafbfc;
-
-      border-top: 1px solid var(--border);
-
-      color: var(--muted);
-
-      font-size: 11px;
     }
 
 
@@ -371,19 +274,15 @@
     .offer-overlay {
       position: fixed;
       inset: 0;
-
       z-index: 9999;
 
       display: none;
-
       align-items: center;
       justify-content: center;
 
       padding: 22px;
 
-      background:
-        rgba(10,20,32,.62);
-
+      background: rgba(10, 20, 32, .62);
       backdrop-filter: blur(5px);
     }
 
@@ -393,55 +292,41 @@
 
     .offer-modal {
       width: min(980px, 100%);
-
-      max-height:
-        min(900px, calc(100vh - 44px));
+      max-height: min(900px, calc(100vh - 44px));
 
       overflow: auto;
 
       background: white;
-
       border: 1px solid #dce4eb;
-
       border-radius: 18px;
 
-      box-shadow:
-        0 25px 80px rgba(0,0,0,.25);
+      box-shadow: 0 25px 80px rgba(0,0,0,.25);
     }
 
     .offer-modal-head {
       position: sticky;
       top: 0;
-
       z-index: 2;
 
       display: flex;
-
       align-items: flex-start;
       justify-content: space-between;
-
       gap: 20px;
 
       padding: 24px 26px;
 
-      background:
-        rgba(255,255,255,.97);
-
-      border-bottom:
-        1px solid #e5ebf0;
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid #e5ebf0;
     }
 
     .offer-modal-head h2 {
       margin: 0 0 5px;
-
       font-size: 24px;
     }
 
     .offer-modal-head p {
       margin: 0;
-
       color: #697784;
-
       font-size: 13px;
     }
 
@@ -449,16 +334,13 @@
       width: 38px;
       height: 38px;
 
-      border:
-        1px solid #d9e1e8;
-
+      border: 1px solid #d9e1e8;
       border-radius: 50%;
 
       background: white;
       color: #34424e;
 
       font-size: 21px;
-
       cursor: pointer;
     }
 
@@ -468,10 +350,7 @@
 
     .offer-form-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0,1fr));
-
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 17px;
 
       margin-bottom: 25px;
@@ -485,29 +364,23 @@
       color: #40505e;
 
       font-size: 12px;
-
       font-weight: 800;
     }
 
     .offer-field input,
     .offer-field textarea {
       width: 100%;
-
       box-sizing: border-box;
 
-      border:
-        1px solid #d7e0e7;
-
+      border: 1px solid #d7e0e7;
       border-radius: 10px;
 
       padding: 11px 12px;
 
       background: #fbfcfd;
-
       color: #18232d;
 
       font: inherit;
-
       font-size: 14px;
 
       outline: none;
@@ -516,10 +389,7 @@
     .offer-field input:focus,
     .offer-field textarea:focus {
       border-color: #168cff;
-
-      box-shadow:
-        0 0 0 3px rgba(22,140,255,.10);
-
+      box-shadow: 0 0 0 3px rgba(22,140,255,.10);
       background: white;
     }
 
@@ -527,80 +397,58 @@
       grid-column: 1 / -1;
     }
 
-
-    /* =========================================
-       POSITIONEN
-       ========================================= */
-
     .offer-items-head {
       display: flex;
-
       justify-content: space-between;
       align-items: center;
-
       gap: 15px;
 
-      margin:
-        8px 0 12px;
+      margin: 8px 0 12px;
     }
 
     .offer-items-head h3 {
       margin: 0;
-
       font-size: 17px;
     }
 
     .add-item-button {
-      border:
-        1px solid #07589f;
-
+      border: 1px solid #07589f;
       border-radius: 9px;
 
-      padding: 8px 12px;
+      padding: 9px 13px;
 
-      background: #07589f;
-      color: white;
+      background: white;
+      color: #07589f;
 
       font: inherit;
-
       font-size: 12px;
-
       font-weight: 800;
 
       cursor: pointer;
     }
 
+    .add-item-button:hover {
+      background: #f1f7fc;
+    }
+
     .offer-items {
       display: grid;
-
       gap: 9px;
     }
 
     .offer-item-row {
       display: grid;
-
-      grid-template-columns:
-        minmax(0,1fr)
-        85px
-        135px
-        120px
-        40px;
-
+      grid-template-columns: minmax(0, 1fr) 85px 135px 120px 40px;
       gap: 9px;
-
       align-items: center;
     }
 
     .offer-item-row input {
       min-width: 0;
-
       width: 100%;
-
       box-sizing: border-box;
 
-      border:
-        1px solid #d7e0e7;
-
+      border: 1px solid #d7e0e7;
       border-radius: 9px;
 
       padding: 10px;
@@ -608,7 +456,6 @@
       background: #fbfcfd;
 
       font: inherit;
-
       font-size: 13px;
     }
 
@@ -618,13 +465,11 @@
       border-radius: 9px;
 
       background: #f3f7fa;
-
       color: #1e2c37;
 
       text-align: right;
 
       font-size: 13px;
-
       font-weight: 800;
     }
 
@@ -632,85 +477,63 @@
       width: 38px;
       height: 38px;
 
-      border:
-        1px solid #dce4eb;
-
+      border: 1px solid #e0e5e9;
       border-radius: 9px;
 
       background: white;
+      color: #7a8791;
 
-      color: #8b4a4a;
-
+      font-size: 18px;
       cursor: pointer;
-
-      font-size: 17px;
     }
 
-
-    /* =========================================
-       ANGEBOT SUMMEN
-       ========================================= */
+    .remove-item-button:hover {
+      color: #b00020;
+      border-color: #e7b8c0;
+      background: #fff8f9;
+    }
 
     .offer-summary {
-      width:
-        min(430px,100%);
+      width: min(430px, 100%);
 
-      margin:
-        20px 0 0 auto;
+      margin: 20px 0 0 auto;
 
-      border-top:
-        1px solid #dce4eb;
+      border-top: 1px solid #dce4eb;
     }
 
     .offer-summary-row {
       display: flex;
-
       justify-content: space-between;
-
       gap: 20px;
 
       padding: 9px 0;
 
       color: #53616d;
-
       font-size: 14px;
     }
 
     .offer-summary-row.total {
       margin-top: 3px;
-
       padding-top: 12px;
 
-      border-top:
-        1px solid #cdd7df;
+      border-top: 1px solid #cdd7df;
 
       color: #16212a;
 
       font-size: 17px;
-
       font-weight: 900;
     }
 
-
-    /* =========================================
-       ANGEBOT FOOTER
-       ========================================= */
-
     .offer-modal-foot {
       display: flex;
-
       justify-content: flex-end;
-
       gap: 10px;
 
-      padding:
-        18px 26px;
+      padding: 18px 26px;
 
-      border-top:
-        1px solid #e5ebf0;
+      border-top: 1px solid #e5ebf0;
 
-      background:
-        #fbfcfd;
+      background: #fbfcfd;
     }
 
     .offer-cancel,
@@ -720,29 +543,21 @@
       padding: 11px 17px;
 
       font: inherit;
-
       font-size: 13px;
-
       font-weight: 800;
 
       cursor: pointer;
     }
 
     .offer-cancel {
-      border:
-        1px solid #d6dfe6;
-
+      border: 1px solid #d6dfe6;
       background: white;
-
       color: #42515d;
     }
 
     .offer-create-pdf {
-      border:
-        1px solid #07589f;
-
+      border: 1px solid #07589f;
       background: #07589f;
-
       color: white;
     }
 
@@ -758,6 +573,32 @@
 
     @media (max-width: 760px) {
 
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .request-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .request-section.full {
+        grid-column: auto;
+      }
+
+      .request-card-head {
+        flex-direction: column;
+      }
+
+      .request-actions {
+        justify-content: stretch;
+      }
+
+      .pdf-button,
+      .offer-button {
+        flex: 1;
+      }
+
       .offer-form-grid {
         grid-template-columns: 1fr;
       }
@@ -768,10 +609,10 @@
 
       .offer-item-row {
         grid-template-columns:
-          minmax(0,1fr)
+          minmax(180px, 1fr)
           70px
           110px
-          95px
+          100px
           38px;
 
         overflow-x: auto;
@@ -782,63 +623,14 @@
       }
 
       .offer-modal-foot {
-        padding:
-          15px 20px;
-
-        flex-direction:
-          column-reverse;
+        padding: 15px 20px;
+        flex-direction: column-reverse;
       }
 
       .offer-cancel,
       .offer-create-pdf {
         width: 100%;
       }
-    }
-
-    @media (max-width: 700px) {
-
-      .page-header {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .request-top {
-        padding: 21px;
-        flex-direction: column;
-      }
-
-      .request-body {
-        padding: 21px;
-      }
-
-      .request-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .request-section.full {
-        grid-column: auto;
-      }
-
-      .request-label {
-        flex-basis: 105px;
-      }
-
-      .request-actions {
-        padding: 14px 21px;
-
-        flex-direction: column;
-      }
-
-      .pdf-button,
-      .offer-button {
-        width: 100%;
-      }
-
-      .request-meta {
-        padding: 13px 21px;
-      }
-
     }
 
   </style>
@@ -868,20 +660,27 @@
       </a>
 
 
-      <div class="intern-header-right">
+      <div class="intern-user">
 
-        <span
-          id="userEmail"
-          class="intern-user"
-        ></span>
-
+        <span id="userEmail">
+          Wird geladen …
+        </span>
 
         <a
           href="../"
+          target="_blank"
           class="intern-public-link"
         >
-          Zur Website
+          Website öffnen ↗
         </a>
+
+        <button
+          type="button"
+          class="logout-button"
+          onclick="logout()"
+        >
+          Abmelden
+        </button>
 
       </div>
 
@@ -890,46 +689,37 @@
   </header>
 
 
+
   <!-- MAIN -->
 
-  <main class="intern-layout">
+  <main class="intern-main">
 
-
-    <!-- PAGE HEADER -->
-
-    <section class="page-header">
+    <div class="page-header">
 
       <div>
 
-        <div class="intern-eyebrow">
-          Interner Bereich
-        </div>
+        <a
+          href="./dashboard.html"
+          class="back-dashboard"
+        >
+          ← Dashboard
+        </a>
 
         <h1>
           Anfragen
         </h1>
 
         <p>
-          Eingegangene Veranstaltungsanfragen von eurer Website.
+          Eingegangene Kundenanfragen von der Website.
         </p>
 
       </div>
 
+    </div>
 
-      <a
-        href="./dashboard.html"
-        class="back-dashboard"
-      >
-        ← Dashboard
-      </a>
-
-    </section>
-
-
-    <!-- STATUS -->
 
     <div
-      id="requestStatus"
+      id="status"
       class="request-status"
     >
       Anfragen werden geladen …
@@ -947,7 +737,10 @@
   </main>
 
 
-  <!-- ANGEBOT MODAL -->
+
+  <!-- =========================================
+       ANGEBOT MODAL
+       ========================================= -->
 
   <div
     id="offerOverlay"
@@ -977,6 +770,7 @@
 
         </div>
 
+
         <button
           type="button"
           class="offer-close"
@@ -990,9 +784,6 @@
 
 
       <div class="offer-modal-body">
-
-
-        <!-- ANGEBOTSDATEN -->
 
         <div class="offer-form-grid">
 
@@ -1090,15 +881,12 @@
             <textarea
               id="offerAddress"
               rows="3"
-              placeholder="Name / Firma&#10;Straße Hausnummer&#10;PLZ Ort"
             ></textarea>
 
           </div>
 
         </div>
 
-
-        <!-- POSITIONEN -->
 
         <div class="offer-items-head">
 
@@ -1122,8 +910,6 @@
           id="offerItems"
         ></div>
 
-
-        <!-- SUMMEN -->
 
         <div class="offer-summary">
 
@@ -1170,8 +956,6 @@
       </div>
 
 
-      <!-- MODAL FOOTER -->
-
       <div class="offer-modal-foot">
 
         <button
@@ -1199,7 +983,10 @@
   </div>
 
 
-  <!-- FOOTER -->
+
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
 
   <footer class="intern-footer">
 
@@ -1207,97 +994,44 @@
       RuhrGeBeats GbR · Interner Bereich
     </span>
 
-
-    <button
-      type="button"
-      id="logoutButton"
-      class="logout-button"
-    >
-      Abmelden
-    </button>
-
   </footer>
 
 
-  <!-- SUPABASE -->
 
   <script>
+
+    /* =========================================
+       SUPABASE
+       ========================================= */
 
     const SUPABASE_URL =
       "https://spqsuedpmrxcbefpocho.supabase.co";
 
-
-    const SUPABASE_PUBLISHABLE_KEY =
+    const SUPABASE_KEY =
       "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
-
 
     const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+        SUPABASE_KEY
       );
 
 
-    const requestStatus =
-      document.getElementById(
-        "requestStatus"
-      );
+    let currentOfferRequest = null;
 
 
-    const requestsList =
-      document.getElementById(
-        "requestsList"
-      );
-
-
-    /*
-      =========================================
-      HILFSFUNKTIONEN
-      =========================================
-    */
-
+    /* =========================================
+       HILFSFUNKTIONEN
+       ========================================= */
 
     function escapeHtml(value) {
 
-      if (
-        value === null ||
-        value === undefined
-      ) {
-        return "";
-      }
-
-
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
-    }
-
-
-    function formatDate(value) {
-
-      if (!value) {
-        return "–";
-      }
-
-
-      const date =
-        new Date(
-          value + "T00:00:00"
-        );
-
-
-      return date.toLocaleDateString(
-        "de-DE",
-        {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric"
-        }
-      );
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
     }
 
@@ -1308,20 +1042,39 @@
         return "–";
       }
 
-
       const date =
         new Date(value);
 
+      if (Number.isNaN(date.getTime())) {
+        return value;
+      }
 
       return date.toLocaleString(
         "de-DE",
         {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit"
+          dateStyle: "medium",
+          timeStyle: "short"
         }
+      );
+
+    }
+
+
+    function formatDate(value) {
+
+      if (!value) {
+        return "–";
+      }
+
+      const date =
+        new Date(value + "T00:00:00");
+
+      if (Number.isNaN(date.getTime())) {
+        return value;
+      }
+
+      return date.toLocaleDateString(
+        "de-DE"
       );
 
     }
@@ -1329,16 +1082,11 @@
 
     function formatGuests(value) {
 
-      if (
-        value === null ||
-        value === undefined ||
-        value === ""
-      ) {
+      if (!value) {
         return "–";
       }
 
-
-      return `${value} Gäste`;
+      return `${value} Personen`;
 
     }
 
@@ -1352,152 +1100,78 @@
         return "–";
       }
 
-
       if (start && end) {
         return `${start} – ${end} Uhr`;
       }
 
-
-      if (start) {
-        return `ab ${start} Uhr`;
-      }
-
-
-      return `bis ${end} Uhr`;
+      return `${start || end} Uhr`;
 
     }
 
 
-    /*
-      =========================================
-      ANFRAGE DARSTELLEN
-      =========================================
-    */
+    /* =========================================
+       REQUEST CARD
+       ========================================= */
 
-
-    function createRequestCard(
-      request
-    ) {
-
-      const name =
-        escapeHtml(
-          request.name || "Unbekannt"
-        );
-
-
-      const eventType =
-        escapeHtml(
-          request.event_type ||
-          "Veranstaltung"
-        );
-
-
-      const location =
-        escapeHtml(
-          request.location || "–"
-        );
-
-
-      const billingName =
-        escapeHtml(
-          request.billing_name || "–"
-        );
-
-
-      const billingStreet =
-        escapeHtml(
-          request.billing_street || "–"
-        );
-
-
-      const billingZip =
-        escapeHtml(
-          request.billing_zip || "–"
-        );
-
-
-      const billingCity =
-        escapeHtml(
-          request.billing_city || "–"
-        );
-
-
-      const phone =
-        escapeHtml(
-          request.phone || "–"
-        );
-
-
-      const email =
-        escapeHtml(
-          request.email || "–"
-        );
-
-
-      const message =
-        request.message
-          ? escapeHtml(request.message)
-          : "";
-
-
-      const safeEmail =
-        request.email
-          ? encodeURIComponent(
-              request.email
-            )
-          : "";
-
-
-      const safePhone =
-        request.phone
-          ? encodeURIComponent(
-              request.phone
-            )
-          : "";
-
+    function createRequestCard(request) {
 
       const card =
         document.createElement("article");
-
 
       card.className =
         "request-card";
 
 
+      const message =
+        escapeHtml(request.message);
+
+
+      const technicalWishes =
+        escapeHtml(
+          request.technical_wishes
+        );
+
+
       card.innerHTML = `
 
-        <div class="request-top">
+        <div class="request-card-head">
 
           <div>
 
-            <h2 class="request-title">
-              ${name}
+            <h2>
+              ${escapeHtml(
+                request.name ||
+                request.billing_name ||
+                "Unbekannte Anfrage"
+              )}
             </h2>
 
-            <div class="request-type">
-              ${eventType}
-            </div>
+            <p>
+              ${escapeHtml(
+                request.event_type ||
+                "Veranstaltung"
+              )}
 
-          </div>
-
-
-          <div class="request-date">
-
-            ${formatDate(
-              request.event_date
-            )}
+              ${
+                request.event_date
+                  ? ` · ${formatDate(
+                      request.event_date
+                    )}`
+                  : ""
+              }
+            </p>
 
           </div>
 
         </div>
 
 
-        <div class="request-body">
+        <div class="request-card-body">
 
           <div class="request-grid">
 
 
-            <!-- EVENT -->
+            <!-- VERANSTALTUNG -->
 
             <div class="request-section">
 
@@ -1505,73 +1179,53 @@
                 Veranstaltung
               </h3>
 
+              <div>
 
-              <div class="request-info">
+                <strong>
+                  ${escapeHtml(
+                    request.event_type ||
+                    "–"
+                  )}
+                </strong>
 
-                <div class="request-row">
+                <br>
 
-                  <span class="request-label">
-                    Datum
-                  </span>
+                Datum:
+                ${formatDate(
+                  request.event_date
+                )}
 
-                  <span class="request-value">
-                    ${formatDate(
-                      request.event_date
-                    )}
-                  </span>
+                <br>
 
-                </div>
+                Gäste:
+                ${formatGuests(
+                  request.guests
+                )}
 
+                <br>
 
-                <div class="request-row">
+                Ort:
+                ${escapeHtml(
+                  request.location ||
+                  "–"
+                )}
 
-                  <span class="request-label">
-                    Gäste
-                  </span>
+                <br>
 
-                  <span class="request-value">
-                    ${formatGuests(
-                      request.guests
-                    )}
-                  </span>
-
-                </div>
-
-
-                <div class="request-row">
-
-                  <span class="request-label">
-                    Ort
-                  </span>
-
-                  <span class="request-value">
-                    ${location}
-                  </span>
-
-                </div>
-
-
-                <div class="request-row">
-
-                  <span class="request-label">
-                    Zeit
-                  </span>
-
-                  <span class="request-value">
-                    ${formatTimeRange(
-                      request.start_time,
-                      request.end_time
-                    )}
-                  </span>
-
-                </div>
+                Zeit:
+                ${escapeHtml(
+                  formatTimeRange(
+                    request.start_time,
+                    request.end_time
+                  )
+                )}
 
               </div>
 
             </div>
 
 
-            <!-- CONTACT -->
+            <!-- KONTAKT -->
 
             <div class="request-section">
 
@@ -1579,65 +1233,47 @@
                 Kontakt
               </h3>
 
+              <div>
 
-              <div class="request-info">
+                <strong>
+                  ${escapeHtml(
+                    request.name ||
+                    "–"
+                  )}
+                </strong>
 
+                <br>
 
-                <div class="request-row">
+                <a
+                  href="mailto:${encodeURIComponent(
+                    request.email || ""
+                  )}"
+                >
+                  ${escapeHtml(
+                    request.email ||
+                    "–"
+                  )}
+                </a>
 
-                  <span class="request-label">
-                    E-Mail
-                  </span>
+                <br>
 
-                  <span class="request-value">
-
-                    ${
-                      request.email
-                        ? `
-                          <a
-                            href="mailto:${safeEmail}"
-                          >
-                            ${email}
-                          </a>
-                        `
-                        : "–"
-                    }
-
-                  </span>
-
-                </div>
-
-
-                <div class="request-row">
-
-                  <span class="request-label">
-                    Telefon
-                  </span>
-
-                  <span class="request-value">
-
-                    ${
-                      request.phone
-                        ? `
-                          <a
-                            href="tel:${safePhone}"
-                          >
-                            ${phone}
-                          </a>
-                        `
-                        : "–"
-                    }
-
-                  </span>
-
-                </div>
+                <a
+                  href="tel:${encodeURIComponent(
+                    request.phone || ""
+                  )}"
+                >
+                  ${escapeHtml(
+                    request.phone ||
+                    "–"
+                  )}
+                </a>
 
               </div>
 
             </div>
 
 
-            <!-- BILLING -->
+            <!-- RECHNUNGSADRESSE -->
 
             <div class="request-section">
 
@@ -1645,47 +1281,59 @@
                 Rechnungsadresse
               </h3>
 
+              <div>
 
-              <div class="request-info">
+                ${escapeHtml(
+                  request.billing_name ||
+                  request.name ||
+                  "–"
+                )}
 
-                <div class="request-row">
+                <br>
 
-                  <span class="request-label">
-                    Name / Firma
-                  </span>
+                ${escapeHtml(
+                  request.billing_street ||
+                  ""
+                )}
 
-                  <span class="request-value">
-                    ${billingName}
-                  </span>
+                <br>
 
-                </div>
+                ${escapeHtml(
+                  (
+                    request.billing_zip ||
+                    ""
+                  ) +
+                  " " +
+                  (
+                    request.billing_city ||
+                    ""
+                  )
+                )}
+
+              </div>
+
+            </div>
 
 
-                <div class="request-row">
+            <!-- TECHNISCHE WÜNSCHE -->
 
-                  <span class="request-label">
-                    Straße
-                  </span>
+            <div class="request-section">
 
-                  <span class="request-value">
-                    ${billingStreet}
-                  </span>
+              <h3>
+                Technische Wünsche
+              </h3>
 
-                </div>
+              <div
+                class="
+                  request-message
+                  ${technicalWishes ? "" : "empty"}
+                "
+              >
 
-
-                <div class="request-row">
-
-                  <span class="request-label">
-                    PLZ / Ort
-                  </span>
-
-                  <span class="request-value">
-                    ${billingZip}
-                    ${billingCity}
-                  </span>
-
-                </div>
+                ${
+                  technicalWishes ||
+                  "Keine technischen Wünsche angegeben."
+                }
 
               </div>
 
@@ -1694,12 +1342,11 @@
 
             <!-- MESSAGE -->
 
-            <div class="request-section">
+            <div class="request-section full">
 
               <h3>
                 Nachricht
               </h3>
-
 
               <div
                 class="
@@ -1719,37 +1366,37 @@
 
           </div>
 
-        </div>
+
+          <div class="request-meta">
+
+            Anfrage eingegangen:
+            ${formatDateTime(
+              request.created_at
+            )}
+
+          </div>
 
 
-        <div class="request-meta">
+          <div class="request-actions">
 
-          Anfrage eingegangen:
-          ${formatDateTime(
-            request.created_at
-          )}
-
-        </div>
-
-
-        <div class="request-actions">
-
-          <button
-            type="button"
-            class="offer-button"
-            onclick="openOfferModal(this)"
-          >
-            📋 Angebot erstellen
-          </button>
+            <button
+              type="button"
+              class="offer-button"
+              onclick="openOfferModal(this)"
+            >
+              📋 Angebot erstellen
+            </button>
 
 
-          <button
-            type="button"
-            class="pdf-button"
-            onclick="createRequestPdf(this)"
-          >
-            📄 PDF erstellen
-          </button>
+            <button
+              type="button"
+              class="pdf-button"
+              onclick="createRequestPdf(this)"
+            >
+              📄 PDF erstellen
+            </button>
+
+          </div>
 
         </div>
 
@@ -1761,11 +1408,113 @@
     }
 
 
-    /*
-      =========================================
-      NORMALES ANFRAGE-PDF
-      =========================================
-    */
+    /* =========================================
+       ANFRAGEN LADEN
+       ========================================= */
+
+    async function loadRequests() {
+
+      const status =
+        document.getElementById("status");
+
+      const list =
+        document.getElementById("requestsList");
+
+
+      const {
+        data: {
+          session
+        }
+      } =
+        await supabaseClient.auth.getSession();
+
+
+      if (!session) {
+
+        window.location.replace("./");
+
+        return;
+
+      }
+
+
+      document.getElementById(
+        "userEmail"
+      ).textContent =
+        session.user.email ||
+        "Angemeldeter Benutzer";
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("anfragen")
+          .select("*")
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        console.error(error);
+
+        status.classList.add(
+          "error"
+        );
+
+        status.textContent =
+          "Die Anfragen konnten nicht geladen werden.";
+
+        return;
+
+      }
+
+
+      window.__requests =
+        data || [];
+
+
+      if (!data || data.length === 0) {
+
+        status.textContent =
+          "Noch keine Anfragen vorhanden.";
+
+        return;
+
+      }
+
+
+      status.style.display =
+        "none";
+
+
+      list.innerHTML = "";
+
+
+      data.forEach(
+        request => {
+
+          list.appendChild(
+            createRequestCard(
+              request
+            )
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================================
+       REQUEST PDF
+       ========================================= */
 
     function pdfText(value) {
 
@@ -1784,20 +1533,24 @@
         return "–";
       }
 
-
       const date =
         new Date(
           value + "T00:00:00"
         );
 
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return pdfText(
+          value
+        );
+      }
 
-      return Number.isNaN(
-        date.getTime()
-      )
-        ? pdfText(value)
-        : date.toLocaleDateString(
-            "de-DE"
-          );
+      return date.toLocaleDateString(
+        "de-DE"
+      );
 
     }
 
@@ -1808,22 +1561,26 @@
         return "–";
       }
 
-
       const date =
         new Date(value);
 
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return pdfText(
+          value
+        );
+      }
 
-      return Number.isNaN(
-        date.getTime()
-      )
-        ? pdfText(value)
-        : date.toLocaleString(
-            "de-DE",
-            {
-              dateStyle: "short",
-              timeStyle: "short"
-            }
-          );
+      return date.toLocaleString(
+        "de-DE",
+        {
+          dateStyle: "short",
+          timeStyle: "short"
+        }
+      );
 
     }
 
@@ -1890,16 +1647,14 @@
     function logoData() {
 
       return new Promise(
-        (
-          resolve,
-          reject
-        ) => {
+        (resolve, reject) => {
 
           const image =
             new Image();
 
-          image.onload =
-            () => {
+          image.onload = () => {
+
+            try {
 
               const canvas =
                 document.createElement(
@@ -1912,13 +1667,16 @@
               canvas.height =
                 image.naturalHeight;
 
-              canvas
-                .getContext("2d")
-                .drawImage(
-                  image,
-                  0,
-                  0
+              const context =
+                canvas.getContext(
+                  "2d"
                 );
+
+              context.drawImage(
+                image,
+                0,
+                0
+              );
 
               resolve(
                 canvas.toDataURL(
@@ -1926,11 +1684,18 @@
                 )
               );
 
-            };
+            } catch (error) {
+
+              reject(error);
+
+            }
+
+          };
 
 
           image.onerror =
             reject;
+
 
           image.src =
             "../logo.png";
@@ -1965,7 +1730,8 @@
 
       try {
 
-        button.disabled = true;
+        button.disabled =
+          true;
 
         button.textContent =
           "PDF wird erstellt …";
@@ -1996,9 +1762,11 @@
 
 
         if (!request) {
+
           throw new Error(
             "Die Anfrage konnte nicht geladen werden."
           );
+
         }
 
 
@@ -2040,72 +1808,57 @@
 
 
         try {
-          logo = await logoData();
-        }
-        catch (error) {}
+
+          logo =
+            await logoData();
+
+        } catch (error) {}
 
 
         if (logo) {
 
           try {
 
-            doc.addImage(
-              logo,
-              "PNG",
-              28,
-              60,
-              154,
-              110
-            );
+            if (
+              doc.GState &&
+              doc.setGState
+            ) {
 
-          }
-          catch (error) {}
+              doc.setGState(
+                new doc.GState({
+                  opacity: .08
+                })
+              );
 
-        }
+              doc.addImage(
+                logo,
+                "PNG",
+                28,
+                60,
+                154,
+                110
+              );
 
+              doc.setGState(
+                new doc.GState({
+                  opacity: 1
+                })
+              );
 
-        doc.setFillColor(
-          255,
-          255,
-          255
-        );
+            } else {
 
-        doc.rect(
-          0,
-          0,
-          210,
-          297,
-          "F"
-        );
+              doc.addImage(
+                logo,
+                "PNG",
+                28,
+                60,
+                154,
+                110
+              );
 
+            }
 
-        if (logo) {
-
-          try {
-
-            doc.setGState(
-              new doc.GState({
-                opacity: .08
-              })
-            );
-
-            doc.addImage(
-              logo,
-              "PNG",
-              28,
-              60,
-              154,
-              110
-            );
-
-            doc.setGState(
-              new doc.GState({
-                opacity: 1
-              })
-            );
-
-          }
-          catch (error) {}
+          } catch (error) {}
 
         }
 
@@ -2159,14 +1912,11 @@
               0,
               10
             ) ||
-            new Date()
-              .toISOString()
-              .slice(0,10)
+            todayIso()
           ),
           20,
           36
         );
-
 
         doc.text(
           (
@@ -2231,25 +1981,6 @@
           20,
           58
         );
-
-
-        if (logo) {
-
-          try {
-
-            doc.addImage(
-              logo,
-              "PNG",
-              164,
-              23,
-              26,
-              26
-            );
-
-          }
-          catch (error) {}
-
-        }
 
 
         let y = 72;
@@ -2405,14 +2136,8 @@
               request.end_time
             )
           ]
-        ]
-        .forEach(
-          (
-            [
-              label,
-              value
-            ]
-          ) => {
+        ].forEach(
+          ([label, value]) => {
 
             doc.setTextColor(
               ...muted
@@ -2428,7 +2153,7 @@
               ...dark
             );
 
-            const textLines =
+            const valueLines =
               pdfLines(
                 doc,
                 value,
@@ -2436,15 +2161,14 @@
               );
 
             doc.text(
-              textLines,
+              valueLines,
               130,
               ry
             );
 
             ry += Math.max(
               5,
-              textLines.length *
-                4.5
+              valueLines.length * 4.5
             );
 
           }
@@ -2487,8 +2211,7 @@
         doc.text(
           pdfText(
             request.name
-          ) ||
-          "–",
+          ) || "–",
           40,
           y
         );
@@ -2503,8 +2226,7 @@
         doc.text(
           pdfText(
             request.email
-          ) ||
-          "–",
+          ) || "–",
           132,
           y
         );
@@ -2522,8 +2244,7 @@
         doc.text(
           pdfText(
             request.phone
-          ) ||
-          "–",
+          ) || "–",
           40,
           y
         );
@@ -2719,8 +2440,7 @@
         y +=
           Math.max(
             12,
-            address.split("\n")
-              .length * 4.5
+            address.split("\n").length * 4.5
           ) + 4;
 
 
@@ -2753,6 +2473,7 @@
           ...blue
         );
 
+
         doc.text(
           "ANFRAGE EINGEGANGEN",
           27,
@@ -2768,6 +2489,7 @@
         doc.setTextColor(
           ...dark
         );
+
 
         doc.text(
           pdfDateTime(
@@ -2797,6 +2519,7 @@
         doc.setTextColor(
           ...muted
         );
+
 
         doc.text(
           "RuhrGeBeats GbR · Tom Karpa & Lenny Günther",
@@ -2829,11 +2552,11 @@
 
 
         doc.save(
-          `RuhrGeBeats_Anfrage_${safe || "Anfrage"}_${request.event_date || new Date().toISOString().slice(0,10)}.pdf`
+          `RuhrGeBeats_Anfrage_${safe || "Anfrage"}_${request.event_date || todayIso()}.pdf`
         );
 
-      }
-      catch (error) {
+
+      } catch (error) {
 
         console.error(
           error
@@ -2847,10 +2570,10 @@
           )
         );
 
-      }
-      finally {
+      } finally {
 
-        button.disabled = false;
+        button.disabled =
+          false;
 
         button.textContent =
           "📄 PDF erstellen";
@@ -2860,56 +2583,80 @@
     }
 
 
-    /*
-      =========================================
-      ANGEBOT ERSTELLEN
-      =========================================
-    */
+    /* =========================================
+       ANGEBOT ERSTELLEN
+       ========================================= */
 
-
-    let currentOfferRequest =
-      null;
-
-
-    function money(
-      value
-    ) {
+    function money(value) {
 
       return new Intl.NumberFormat(
         "de-DE",
         {
-          style: "currency",
-          currency: "EUR"
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
         }
-      )
-      .format(
+      ).format(
         Number(value) || 0
-      );
+      ) + " €";
 
     }
 
 
-    function numberValue(
-      value
-    ) {
+    function lineMoney(value) {
+
+      const number =
+        Number(value) || 0;
+
+      return new Intl.NumberFormat(
+        "de-DE",
+        {
+          minimumFractionDigits:
+            Number.isInteger(number)
+              ? 0
+              : 2,
+
+          maximumFractionDigits: 2
+        }
+      ).format(
+        number
+      ) + "-€";
+
+    }
+
+
+    function numberValue(value) {
+
+      const raw =
+        String(
+          value ?? ""
+        ).trim();
+
+
+      if (!raw) {
+        return 0;
+      }
+
+
+      const normalized =
+        raw.includes(",")
+          ? raw
+              .replace(
+                /\./g,
+                ""
+              )
+              .replace(
+                ",",
+                "."
+              )
+          : raw.replace(
+              /[^0-9.-]/g,
+              ""
+            );
+
 
       const number =
         Number(
-          String(
-            value ?? ""
-          )
-          .replace(
-            /\./g,
-            ""
-          )
-          .replace(
-            ",",
-            "."
-          )
-          .replace(
-            /[^0-9.-]/g,
-            ""
-          )
+          normalized
         );
 
 
@@ -2929,13 +2676,21 @@
 
 
       return (
-        `${date.getFullYear()}-` +
-        `${String(
+        date.getFullYear() +
+        "-" +
+        String(
           date.getMonth() + 1
-        ).padStart(2,"0")}-` +
-        `${String(
+        ).padStart(
+          2,
+          "0"
+        ) +
+        "-" +
+        String(
           date.getDate()
-        ).padStart(2,"0")}`
+        ).padStart(
+          2,
+          "0"
+        )
       );
 
     }
@@ -2943,28 +2698,20 @@
 
     function nextOfferNumber() {
 
-      const year =
+      return (
         String(
           new Date()
             .getFullYear()
-        )
-        .slice(-2);
-
-
-      const suffix =
+        ).slice(-2) +
+        "-" +
         String(
           (
             Date.now() % 900
           ) + 100
-        )
-        .padStart(
+        ).padStart(
           3,
           "0"
-        );
-
-
-      return (
-        `${year}-${suffix}`
+        )
       );
 
     }
@@ -2979,8 +2726,7 @@
           ...document.querySelectorAll(
             ".request-card"
           )
-        ]
-        .indexOf(
+        ].indexOf(
           button.closest(
             ".request-card"
           )
@@ -3058,21 +2804,10 @@
 
           request.billing_street,
 
-          (
-            request.billing_zip ||
-            ""
-          ) +
-          " " +
-          (
-            request.billing_city ||
-            ""
-          )
+          `${request.billing_zip || ""} ${
+            request.billing_city || ""
+          }`.trim()
         ]
-        .map(
-          value =>
-            String(value || "")
-              .trim()
-        )
         .filter(Boolean)
         .join("\n");
 
@@ -3114,18 +2849,16 @@
       updateOfferTotals();
 
 
-      const overlay =
-        document.getElementById(
-          "offerOverlay"
-        );
-
-
-      overlay.classList.add(
+      document.getElementById(
+        "offerOverlay"
+      ).classList.add(
         "open"
       );
 
 
-      overlay.setAttribute(
+      document.getElementById(
+        "offerOverlay"
+      ).setAttribute(
         "aria-hidden",
         "false"
       );
@@ -3139,18 +2872,16 @@
 
     function closeOfferModal() {
 
-      const overlay =
-        document.getElementById(
-          "offerOverlay"
-        );
-
-
-      overlay.classList.remove(
+      document.getElementById(
+        "offerOverlay"
+      ).classList.remove(
         "open"
       );
 
 
-      overlay.setAttribute(
+      document.getElementById(
+        "offerOverlay"
+      ).setAttribute(
         "aria-hidden",
         "true"
       );
@@ -3219,7 +2950,6 @@
           type="button"
           class="remove-item-button"
           title="Position entfernen"
-          aria-label="Position entfernen"
         >
           ×
         </button>
@@ -3261,8 +2991,7 @@
 
       document.getElementById(
         "offerItems"
-      )
-      .appendChild(
+      ).appendChild(
         row
       );
 
@@ -3332,17 +3061,14 @@
         .forEach(
           row => {
 
-            const quantity =
+            const line =
               numberValue(
                 row
                   .querySelector(
                     ".offer-quantity"
                   )
                   .value
-              );
-
-
-            const price =
+              ) *
               numberValue(
                 row
                   .querySelector(
@@ -3350,11 +3076,6 @@
                   )
                   .value
               );
-
-
-            const line =
-              quantity *
-              price;
 
 
             subtotal +=
@@ -3374,16 +3095,6 @@
         );
 
 
-      const vat =
-        subtotal *
-        .19;
-
-
-      const total =
-        subtotal +
-        vat;
-
-
       document.getElementById(
         "offerSubtotal"
       ).textContent =
@@ -3396,7 +3107,7 @@
         "offerVat"
       ).textContent =
         money(
-          vat
+          subtotal * 0.19
         );
 
 
@@ -3404,7 +3115,7 @@
         "offerTotal"
       ).textContent =
         money(
-          total
+          subtotal * 1.19
         );
 
     }
@@ -3431,7 +3142,9 @@
           date.getTime()
         )
       ) {
+
         return value;
+
       }
 
 
@@ -3447,16 +3160,11 @@
     }
 
 
-    /*
-      =========================================
-      LOGO FÜR ANGEBOT
-      =========================================
-    */
+    /* =========================================
+       LOGO ALS WASSERZEICHEN
+       ========================================= */
 
-
-    async function addOfferLogo(
-      doc
-    ) {
+    async function getOfferLogoData() {
 
       return new Promise(
         resolve => {
@@ -3465,93 +3173,69 @@
             new Image();
 
 
-          image.onload =
-            () => {
+          image.onload = () => {
 
-              try {
+            try {
 
-                const canvas =
-                  document.createElement(
-                    "canvas"
-                  );
-
-
-                canvas.width =
-                  image.naturalWidth;
+              const canvas =
+                document.createElement(
+                  "canvas"
+                );
 
 
-                canvas.height =
-                  image.naturalHeight;
+              canvas.width =
+                image.naturalWidth;
+
+              canvas.height =
+                image.naturalHeight;
 
 
-                canvas
-                  .getContext("2d")
-                  .drawImage(
-                    image,
-                    0,
-                    0
-                  );
+              const context =
+                canvas.getContext(
+                  "2d"
+                );
 
 
-                const data =
-                  canvas.toDataURL(
-                    "image/png"
-                  );
+              /*
+               * Das Logo wird bereits beim
+               * Erzeugen des PNG stark aufgehellt.
+               * Dadurch funktioniert das Wasserzeichen
+               * auch ohne PDF-GState.
+               */
+
+              context.globalAlpha =
+                0.075;
 
 
-                if (
-                  doc.GState &&
-                  doc.setGState
-                ) {
-
-                  doc.setGState(
-                    new doc.GState({
-                      opacity: .075
-                    })
-                  );
+              context.drawImage(
+                image,
+                0,
+                0
+              );
 
 
-                  doc.addImage(
-                    data,
-                    "PNG",
-                    31,
-                    72,
-                    148,
-                    120
-                  );
+              resolve(
+                canvas.toDataURL(
+                  "image/png"
+                )
+              );
 
 
-                  doc.setGState(
-                    new doc.GState({
-                      opacity: 1
-                    })
-                  );
+            } catch (error) {
 
-                }
-                else {
+              resolve(
+                null
+              );
 
-                  doc.addImage(
-                    data,
-                    "PNG",
-                    31,
-                    72,
-                    148,
-                    120
-                  );
+            }
 
-                }
-
-              }
-              catch (error) {}
-
-
-              resolve();
-
-            };
+          };
 
 
           image.onerror =
-            () => resolve();
+            () => resolve(
+              null
+            );
 
 
           image.src =
@@ -3563,41 +3247,20 @@
     }
 
 
-    /*
-      =========================================
-      ANGEBOT FOOTER
-      =========================================
-    */
-
+    /* =========================================
+       ANGEBOTS-FOOTER
+       ========================================= */
 
     function drawOfferFooter(
       doc
     ) {
 
-      doc.setDrawColor(
-        205,
-        212,
-        218
-      );
-
-
-      doc.setLineWidth(
-        .25
-      );
-
-
-      doc.line(
-        20,
-        268,
-        190,
-        268
-      );
+      const dark =
+        [45,45,45];
 
 
       doc.setTextColor(
-        70,
-        70,
-        70
+        ...dark
       );
 
 
@@ -3612,59 +3275,71 @@
       );
 
 
+      /*
+       * Linker Block
+       */
+
       doc.text(
         "RuhrGeBeats GbR",
         20,
-        277
+        278
       );
 
 
       doc.text(
         "Lenny Günther, Tom Karpa",
         20,
-        282
+        283
       );
 
 
       doc.text(
         "ruhrgebeats@gmail.com",
         20,
-        287
+        288
       );
 
 
+      /*
+       * Mittlerer Block
+       */
+
       doc.text(
         "Kreditinstitut: Vivid",
-        85,
-        277
+        82,
+        278
       );
 
 
       doc.text(
         "IBAN: DE05 2022 0800 0056 7389 69",
-        85,
-        282
+        82,
+        283
       );
 
 
       doc.text(
         "BIC: SXPYDEHHXXX",
-        85,
-        287
+        82,
+        288
       );
 
 
       doc.text(
         "Kontoinhaber: Lenny Günther, Tom Karpa",
-        85,
-        292
+        82,
+        293
       );
 
+
+      /*
+       * Rechter Block
+       */
 
       doc.text(
         "Steuernummer: 359/5837/1808",
         190,
-        277,
+        278,
         {
           align: "right"
         }
@@ -3674,7 +3349,7 @@
       doc.text(
         "Finanzamt Marl",
         190,
-        282,
+        283,
         {
           align: "right"
         }
@@ -3683,12 +3358,9 @@
     }
 
 
-    /*
-      =========================================
-      ANGEBOT ALS PDF ERSTELLEN
-      =========================================
-    */
-
+    /* =========================================
+       ANGEBOT ALS PDF
+       ========================================= */
 
     async function createOfferPdf() {
 
@@ -3775,18 +3447,22 @@
         const doc =
           new jsPDF({
             unit: "mm",
-            format: "a4"
+            format: "a4",
+            compress: true
           });
 
 
         const blue =
-          [25, 70, 120];
+          [27,67,112];
 
         const dark =
-          [25, 25, 25];
+          [28,28,28];
 
         const muted =
-          [80, 80, 80];
+          [70,70,70];
+
+        const lightLine =
+          [205,205,205];
 
 
         const offerDateValue =
@@ -3824,24 +3500,23 @@
           ).value;
 
 
-        const location =
-          document.getElementById(
-            "offerLocation"
-          ).value.trim();
-
-
         const address =
           document.getElementById(
             "offerAddress"
-          )
-          .value
+          ).value
           .split("\n")
           .map(
             line =>
               line.trim()
           )
-          .filter(Boolean);
+          .filter(
+            Boolean
+          );
 
+
+        /*
+         * Berechnung
+         */
 
         const subtotal =
           items.reduce(
@@ -3850,15 +3525,17 @@
               item
             ) =>
               sum +
-              item.quantity *
-              item.unitPrice,
+              (
+                item.quantity *
+                item.unitPrice
+              ),
             0
           );
 
 
         const vat =
           subtotal *
-          .19;
+          0.19;
 
 
         const total =
@@ -3867,19 +3544,34 @@
 
 
         /*
-          Wasserzeichen
-        */
+         * Wasserzeichen
+         */
 
-        await addOfferLogo(
-          doc
-        );
+        const watermark =
+          await getOfferLogoData();
 
 
-        /*
-          =====================================
-          KOPF
-          =====================================
-        */
+        if (watermark) {
+
+          try {
+
+            doc.addImage(
+              watermark,
+              "PNG",
+              31,
+              84,
+              148,
+              115
+            );
+
+          } catch (error) {}
+
+        }
+
+
+        /* =====================================
+           KOPF
+           ===================================== */
 
         doc.setTextColor(
           ...dark
@@ -3888,12 +3580,12 @@
 
         doc.setFont(
           "helvetica",
-          "normal"
+          "bold"
         );
 
 
         doc.setFontSize(
-          24
+          21.5
         );
 
 
@@ -3923,6 +3615,19 @@
         );
 
 
+        doc.text(
+          "RuhrGeBeats",
+          145,
+          31
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
         doc.setFontSize(
           10
         );
@@ -3944,54 +3649,28 @@
         );
 
 
-        doc.setFont(
-          "helvetica",
-          "bold"
-        );
-
-
         doc.setFontSize(
-          10.5
-        );
-
-
-        doc.text(
-          "RuhrGeBeats",
-          145,
-          31
-        );
-
-
-        doc.setFont(
-          "helvetica",
-          "normal"
-        );
-
-
-        doc.setFontSize(
-          8.5
+          9.3
         );
 
 
         doc.text(
           "Tom Karpa & Lenny Günther",
           145,
-          36
+          37
         );
 
 
         doc.text(
           "ruhrgebeats@gmail.com",
           145,
-          41
+          43
         );
 
 
-        /*
-          =====================================
-          EMPFÄNGER
-          =====================================
-        */
+        /* =====================================
+           KUNDENADRESSE
+           ===================================== */
 
         doc.setFont(
           "helvetica",
@@ -4007,7 +3686,7 @@
         doc.text(
           "Angebot an:",
           20,
-          58
+          61
         );
 
 
@@ -4022,34 +3701,33 @@
         );
 
 
-        doc.text(
+        if (
           address.length
-            ? address
-            : customer,
-          20,
-          64
-        );
+        ) {
+
+          doc.text(
+            address,
+            20,
+            68
+          );
+
+        } else {
+
+          doc.text(
+            customer,
+            20,
+            68
+          );
+
+        }
 
 
-        /*
-          =====================================
-          EINLEITUNG
-          =====================================
-        */
+        /* =====================================
+           EINLEITUNG
+           ===================================== */
 
         const intro =
-          `Wir bedanken uns für Ihre Anfrage. Gerne teilen wir Ihnen unser Angebot für Ihre ${event}` +
-          (
-            eventDate
-              ? ` am ${offerDate(eventDate)}`
-              : ""
-          ) +
-          (
-            location
-              ? ` im ${location}`
-              : ""
-          ) +
-          ` mit.`;
+          `Wir bedanken uns für Ihre Anfrage. Gerne teilen wir Ihnen unser Angebot für Ihre ${event}${eventDate ? ` am ${offerDate(eventDate)}` : ""} mit.`;
 
 
         const introLines =
@@ -4059,31 +3737,43 @@
           );
 
 
+        doc.setTextColor(
+          ...dark
+        );
+
+
+        doc.setFont(
+          "helvetica",
+          "normal"
+        );
+
+
         doc.setFontSize(
-          8.8
+          9.1
         );
 
 
         doc.text(
           introLines,
           20,
-          91
+          95
         );
 
 
-        /*
-          =====================================
-          POSITIONSTABELLE
-          =====================================
-        */
+        /* =====================================
+           POSITIONSTABELLE
+           ===================================== */
 
         const tableTop =
           Math.max(
-            101,
-            91 +
-              introLines.length *
-              4.2 +
-              5
+            108,
+            95 +
+              (
+                introLines.length -
+                1
+              ) *
+              4.3 +
+              8
           );
 
 
@@ -4099,7 +3789,7 @@
 
 
         doc.setFontSize(
-          9.5
+          9.3
         );
 
 
@@ -4112,7 +3802,7 @@
 
         doc.text(
           "MENGE",
-          105,
+          83,
           tableTop,
           {
             align: "center"
@@ -4122,7 +3812,7 @@
 
         doc.text(
           "EINZELPREIS",
-          140,
+          132,
           tableTop,
           {
             align: "center"
@@ -4141,9 +3831,9 @@
 
 
         doc.setDrawColor(
-          100,
-          100,
-          100
+          95,
+          95,
+          95
         );
 
 
@@ -4154,14 +3844,15 @@
 
         doc.line(
           20,
-          tableTop + 3,
+          tableTop + 3.5,
           190,
-          tableTop + 3
+          tableTop + 3.5
         );
 
 
         let y =
-          tableTop + 13;
+          tableTop +
+          17;
 
 
         doc.setTextColor(
@@ -4181,19 +3872,18 @@
 
 
         for (
-          const item
-          of items
+          const item of items
         ) {
 
-          const lines =
+          const descriptionLines =
             doc.splitTextToSize(
               item.description,
-              72
+              70
             );
 
 
           doc.text(
-            lines,
+            descriptionLines,
             20,
             y
           );
@@ -4202,12 +3892,11 @@
           doc.text(
             String(
               item.quantity
-            )
-            .replace(
+            ).replace(
               ".",
               ","
             ),
-            105,
+            83,
             y,
             {
               align: "center"
@@ -4216,10 +3905,10 @@
 
 
           doc.text(
-            money(
+            lineMoney(
               item.unitPrice
             ),
-            140,
+            132,
             y,
             {
               align: "center"
@@ -4228,7 +3917,7 @@
 
 
           doc.text(
-            money(
+            lineMoney(
               item.quantity *
               item.unitPrice
             ),
@@ -4240,36 +3929,41 @@
           );
 
 
-          y +=
-            Math.max(
-              7,
-              lines.length *
-                4.2 +
-                3
-            );
+          y += Math.max(
+            7.5,
+            descriptionLines.length *
+              4.2 +
+              3
+          );
 
         }
 
 
-        /*
-          =====================================
-          SUMMENBLOCK
-          =====================================
-        */
+        /* =====================================
+           SUMMENBLOCK
+           ===================================== */
 
         const summaryY =
           Math.max(
             y + 1,
-            tableTop + 48
+            171
           );
 
 
+        const labelX =
+          165;
+
+
+        const valueX =
+          190;
+
+
         const boxX =
-          148;
+          164;
 
 
         const boxW =
-          42;
+          26;
 
 
         const rowH =
@@ -4283,7 +3977,7 @@
 
 
         doc.setFontSize(
-          8.5
+          8.6
         );
 
 
@@ -4294,7 +3988,7 @@
 
         doc.text(
           "Zwischensumme",
-          boxX - 2,
+          labelX,
           summaryY + 5.5,
           {
             align: "right"
@@ -4304,7 +3998,7 @@
 
         doc.text(
           "Zzgl. 19% Mehrwertsteuer",
-          boxX - 2,
+          labelX,
           summaryY + 13.5,
           {
             align: "right"
@@ -4325,7 +4019,7 @@
 
         doc.text(
           "Summe*",
-          boxX - 2,
+          labelX,
           summaryY + 21.5,
           {
             align: "right"
@@ -4334,9 +4028,7 @@
 
 
         doc.setDrawColor(
-          170,
-          170,
-          170
+          ...lightLine
         );
 
 
@@ -4379,7 +4071,7 @@
           money(
             subtotal
           ),
-          boxX + boxW - 3,
+          valueX - 2,
           summaryY + 5.5,
           {
             align: "right"
@@ -4391,7 +4083,7 @@
           money(
             vat
           ),
-          boxX + boxW - 3,
+          valueX - 2,
           summaryY + 13.5,
           {
             align: "right"
@@ -4409,7 +4101,7 @@
           money(
             total
           ),
-          boxX + boxW - 3,
+          valueX - 2,
           summaryY + 21.5,
           {
             align: "right"
@@ -4417,17 +4109,20 @@
         );
 
 
-        /*
-          =====================================
-          ABSCHLUSSTEXT
-          =====================================
-        */
+        /* =====================================
+           SCHLUSSTEXT
+           ===================================== */
 
-        const bottomY =
+        const closingY =
           Math.max(
             summaryY + 39,
-            205
+            218
           );
+
+
+        doc.setTextColor(
+          ...dark
+        );
 
 
         doc.setFont(
@@ -4444,7 +4139,7 @@
         doc.text(
           "Wir würden uns sehr freuen, wenn das Angebot ihre Zustimmung findet.",
           20,
-          bottomY
+          closingY
         );
 
 
@@ -4462,26 +4157,22 @@
         doc.text(
           contactLines,
           20,
-          bottomY + 6
+          closingY + 6
         );
 
 
-        /*
-          =====================================
-          FUSSZEILE
-          =====================================
-        */
+        /* =====================================
+           FOOTER
+           ===================================== */
 
         drawOfferFooter(
           doc
         );
 
 
-        /*
-          =====================================
-          DATEINAME
-          =====================================
-        */
+        /* =====================================
+           DATEINAME
+           ===================================== */
 
         const safe =
           customer
@@ -4503,8 +4194,8 @@
 
         closeOfferModal();
 
-      }
-      catch (error) {
+
+      } catch (error) {
 
         console.error(
           error
@@ -4519,11 +4210,11 @@
           )
         );
 
-      }
-      finally {
+      } finally {
 
         button.disabled =
           false;
+
 
         button.textContent =
           "📄 Angebot als PDF erstellen";
@@ -4533,12 +4224,9 @@
     }
 
 
-    /*
-      =========================================
-      MODAL EVENTS
-      =========================================
-    */
-
+    /* =========================================
+       MODAL SCHLIESSEN
+       ========================================= */
 
     document
       .getElementById(
@@ -4578,204 +4266,31 @@
     );
 
 
-    /*
-      =========================================
-      LOGIN PRÜFEN
-      =========================================
-    */
+    /* =========================================
+       LOGOUT
+       ========================================= */
+
+    async function logout() {
+
+      await supabaseClient
+        .auth
+        .signOut();
 
 
-    async function checkLogin() {
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient.auth.getSession();
-
-
-      if (
-        error ||
-        !data.session
-      ) {
-
-        window.location.replace(
-          "./"
-        );
-
-        return false;
-
-      }
-
-
-      document.getElementById(
-        "userEmail"
-      ).textContent =
-        data.session.user.email;
-
-
-      return true;
-
-    }
-
-
-    /*
-      =========================================
-      ANFRAGEN LADEN
-      =========================================
-    */
-
-
-    async function loadRequests() {
-
-      requestStatus.style.display =
-        "block";
-
-
-      requestStatus.className =
-        "request-status";
-
-
-      requestStatus.textContent =
-        "Anfragen werden geladen …";
-
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .from("anfragen")
-          .select("*")
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-      if (error) {
-
-        console.error(
-          "Fehler beim Laden der Anfragen:",
-          error
-        );
-
-
-        requestStatus.className =
-          "request-status error";
-
-
-        requestStatus.textContent =
-          "Die Anfragen konnten leider nicht geladen werden.";
-
-
-        return;
-
-      }
-
-
-      /*
-        Anfragen global merken,
-        damit das Angebotsfenster
-        genau die angeklickte Anfrage
-        verwenden kann.
-      */
-
-      window.__requests =
-        data || [];
-
-
-      requestsList.innerHTML =
-        "";
-
-
-      if (
-        !data ||
-        data.length === 0
-      ) {
-
-        requestStatus.textContent =
-          "Noch keine Anfragen vorhanden.";
-
-        return;
-
-      }
-
-
-      requestStatus.style.display =
-        "none";
-
-
-      data.forEach(
-        function(request) {
-
-          requestsList.appendChild(
-            createRequestCard(
-              request
-            )
-          );
-
-        }
+      window.location.replace(
+        "./"
       );
 
     }
 
 
-    /*
-      =========================================
-      LOGOUT
-      =========================================
-    */
+    /* =========================================
+       START
+       ========================================= */
 
-
-    document.getElementById(
-      "logoutButton"
-    ).addEventListener(
-      "click",
-      async function() {
-
-        await supabaseClient
-          .auth
-          .signOut();
-
-
-        window.location.replace(
-          "./"
-        );
-
-      }
-    );
-
-
-    /*
-      =========================================
-      START
-      =========================================
-    */
-
-
-    async function init() {
-
-      const loggedIn =
-        await checkLogin();
-
-
-      if (!loggedIn) {
-        return;
-      }
-
-
-      await loadRequests();
-
-    }
-
-
-    init();
+    loadRequests();
 
   </script>
-
 
 </body>
 
