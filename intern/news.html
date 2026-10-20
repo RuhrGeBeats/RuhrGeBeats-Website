@@ -34,11 +34,16 @@
 
   <style>
 
+    /* =========================================
+       NEWS PAGE
+    ========================================== */
+
     .news-page {
       max-width: 1180px;
       margin: 0 auto;
       padding: 42px 24px 80px;
     }
+
 
     .news-page-head {
       display: flex;
@@ -48,9 +53,11 @@
       margin-bottom: 34px;
     }
 
+
     .news-page-head-left {
       min-width: 0;
     }
+
 
     .news-back {
       display: inline-flex;
@@ -63,9 +70,11 @@
       font-weight: 700;
     }
 
+
     .news-back:hover {
       color: #168cff;
     }
+
 
     .news-eyebrow {
       margin-bottom: 8px;
@@ -76,498 +85,505 @@
       text-transform: uppercase;
     }
 
+
     .news-page h1 {
       margin: 0;
       color: #07111f;
       font-size: clamp(30px, 4vw, 46px);
       line-height: 1.05;
-      letter-spacing: -1.4px;
+      letter-spacing: -1.5px;
     }
 
+
     .news-page-intro {
-      max-width: 680px;
-      margin: 12px 0 0;
+      max-width: 700px;
+      margin-top: 14px;
       color: #64748b;
       font-size: 15px;
       line-height: 1.7;
     }
 
-    .news-public-link {
+
+    .news-create-button {
+      flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 17px;
-      border-radius: 11px;
-      background: #07111f;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 12px;
+      background: #168cff;
       color: white;
-      text-decoration: none;
+      font-family: inherit;
       font-size: 13px;
       font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .news-public-link:hover {
-      background: #168cff;
-    }
-
-
-    /* EDITOR */
-
-    .news-editor {
-      background: white;
-      border: 1px solid #e5eaf0;
-      border-radius: 20px;
-      box-shadow: 0 12px 35px rgba(7, 17, 31, .06);
-      padding: 32px;
-      margin-bottom: 46px;
-    }
-
-    .news-editor-head {
-      margin-bottom: 28px;
-    }
-
-    .news-editor-head h2 {
-      margin: 0 0 7px;
-      color: #07111f;
-      font-size: 24px;
-      letter-spacing: -.4px;
-    }
-
-    .news-editor-head p {
-      margin: 0;
-      color: #64748b;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .news-form-group {
-      margin-bottom: 23px;
-    }
-
-    .news-form-label {
-      display: block;
-      margin-bottom: 8px;
-      color: #1e293b;
-      font-size: 13px;
-      font-weight: 850;
-    }
-
-    .news-form-label span {
-      color: #ef4444;
-    }
-
-    .news-input,
-    .news-textarea {
-      width: 100%;
-      box-sizing: border-box;
-      border: 1px solid #dbe2ea;
-      border-radius: 12px;
-      background: #fbfcfe;
-      color: #07111f;
-      font-family: inherit;
-      font-size: 15px;
-      outline: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(22, 140, 255, .18);
       transition:
-        border-color .2s ease,
+        transform .2s ease,
         box-shadow .2s ease,
         background .2s ease;
     }
 
-    .news-input {
-      min-height: 50px;
-      padding: 13px 15px;
-    }
 
-    .news-textarea {
-      min-height: 220px;
-      padding: 15px;
-      resize: vertical;
-      line-height: 1.7;
-    }
-
-    .news-input:focus,
-    .news-textarea:focus {
-      border-color: #168cff;
-      background: white;
-      box-shadow: 0 0 0 4px rgba(22, 140, 255, .10);
+    .news-create-button:hover {
+      background: #0879e6;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(22, 140, 255, .24);
     }
 
 
-    /* BILDER */
+    /* =========================================
+       STATUS
+    ========================================== */
 
-    .news-upload-area {
-      position: relative;
-      border: 1.5px dashed #b9c7d8;
-      border-radius: 17px;
-      background: #f8fafc;
-      padding: 28px;
-      text-align: center;
-      cursor: pointer;
-      transition:
-        border-color .2s ease,
-        background .2s ease,
-        transform .2s ease;
+    .news-status-message {
+      display: none;
+      margin-bottom: 24px;
+      padding: 14px 17px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 700;
     }
 
-    .news-upload-area:hover {
-      border-color: #168cff;
-      background: #f3f9ff;
+
+    .news-status-message.success {
+      display: block;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #047857;
     }
 
-    .news-upload-area.dragover {
-      border-color: #168cff;
-      background: #eaf5ff;
-      transform: scale(1.005);
+
+    .news-status-message.error {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
     }
 
-    .news-upload-icon {
-      width: 54px;
-      height: 54px;
+
+    /* =========================================
+       EDITOR
+    ========================================== */
+
+    .news-editor {
+      display: none;
+      margin-bottom: 36px;
+      padding: 30px;
+      border: 1px solid #dfe5ec;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, .06);
+    }
+
+
+    .news-editor.visible {
+      display: block;
+    }
+
+
+    .news-editor-head {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 13px;
-      border-radius: 15px;
-      background: white;
-      box-shadow: 0 6px 20px rgba(7, 17, 31, .07);
-      font-size: 25px;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
     }
 
-    .news-upload-title {
+
+    .news-editor-head h2 {
+      margin: 0;
       color: #07111f;
-      font-size: 15px;
-      font-weight: 850;
-      margin-bottom: 5px;
+      font-size: 22px;
     }
 
-    .news-upload-text {
+
+    .news-editor-close {
+      width: 38px;
+      height: 38px;
+      border: 1px solid #dbe2ea;
+      border-radius: 10px;
+      background: #ffffff;
       color: #64748b;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+
+    .news-editor-close:hover {
+      color: #07111f;
+      background: #f8fafc;
+    }
+
+
+    .news-form-group {
+      margin-bottom: 20px;
+    }
+
+
+    .news-form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #172033;
       font-size: 13px;
+      font-weight: 800;
+    }
+
+
+    .news-form-group input,
+    .news-form-group textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #d8e0e8;
+      border-radius: 11px;
+      background: #ffffff;
+      color: #172033;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+
+    .news-form-group input {
+      min-height: 46px;
+      padding: 0 14px;
+    }
+
+
+    .news-form-group textarea {
+      min-height: 150px;
+      padding: 13px 14px;
+      resize: vertical;
       line-height: 1.6;
     }
 
-    .news-upload-text strong {
-      color: #168cff;
+
+    .news-form-group input:focus,
+    .news-form-group textarea:focus {
+      border-color: #168cff;
+      box-shadow: 0 0 0 3px rgba(22, 140, 255, .10);
     }
+
+
+    /* =========================================
+       UPLOAD
+    ========================================== */
+
+    .upload-area {
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 14px;
+      padding: 26px 20px;
+      text-align: center;
+      background: #f8fafc;
+      cursor: pointer;
+      transition:
+        border-color .2s ease,
+        background .2s ease;
+    }
+
+
+    .upload-area:hover,
+    .upload-area.dragover {
+      border-color: #168cff;
+      background: #f0f8ff;
+    }
+
+
+    .upload-area-icon {
+      margin-bottom: 8px;
+      font-size: 28px;
+    }
+
+
+    .upload-area strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #172033;
+      font-size: 14px;
+    }
+
+
+    .upload-area span {
+      color: #64748b;
+      font-size: 12px;
+    }
+
 
     #imageInput {
       display: none;
     }
 
-    .news-image-preview {
+
+    .selected-images {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
     }
 
-    .news-image-item {
+
+    .selected-image {
       position: relative;
       overflow: hidden;
+      border-radius: 11px;
       aspect-ratio: 16 / 10;
-      border-radius: 13px;
-      background: #e9eef4;
-      border: 1px solid #e0e7ef;
+      background: #e2e8f0;
     }
 
-    .news-image-item img {
+
+    .selected-image img {
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
     }
 
-    .news-image-remove {
+
+    .selected-image-remove {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 31px;
-      height: 31px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      top: 7px;
+      right: 7px;
+      width: 28px;
+      height: 28px;
       border: 0;
       border-radius: 50%;
       background: rgba(7, 17, 31, .82);
       color: white;
+      font-size: 16px;
       cursor: pointer;
-      font-size: 17px;
-      line-height: 1;
-    }
-
-    .news-image-remove:hover {
-      background: #ef4444;
-    }
-
-    .news-image-name {
-      position: absolute;
-      left: 8px;
-      right: 8px;
-      bottom: 8px;
-      overflow: hidden;
-      padding: 5px 8px;
-      border-radius: 7px;
-      background: rgba(7, 17, 31, .72);
-      color: white;
-      font-size: 10px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
 
 
-    /* VERÖFFENTLICHUNG */
+    /* =========================================
+       EDITOR ACTIONS
+    ========================================== */
 
-    .news-publish-box {
+    .news-editor-actions {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin-top: 27px;
-      padding: 17px 19px;
-      border: 1px solid #e3e9f0;
-      border-radius: 13px;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+
+    .news-secondary-button,
+    .news-primary-button {
+      min-height: 44px;
+      padding: 0 17px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+
+    .news-secondary-button {
+      border: 1px solid #dbe2ea;
+      background: #ffffff;
+      color: #475569;
+    }
+
+
+    .news-secondary-button:hover {
       background: #f8fafc;
     }
 
-    .news-publish-left {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
 
-    .news-publish-left input {
-      width: 18px;
-      height: 18px;
-      margin-top: 2px;
-      accent-color: #168cff;
-      cursor: pointer;
-    }
-
-    .news-publish-title {
-      color: #1e293b;
-      font-size: 14px;
-      font-weight: 850;
-    }
-
-    .news-publish-description {
-      margin-top: 3px;
-      color: #64748b;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    .news-form-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 25px;
-    }
-
-    .news-button {
-      min-height: 46px;
-      padding: 0 18px;
+    .news-primary-button {
       border: 0;
-      border-radius: 11px;
       background: #168cff;
       color: white;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 850;
-      cursor: pointer;
-      transition:
-        transform .2s ease,
-        background .2s ease,
-        opacity .2s ease;
-    }
-
-    .news-button:hover {
-      background: #0870d8;
-      transform: translateY(-1px);
-    }
-
-    .news-button:disabled {
-      opacity: .55;
-      cursor: wait;
-      transform: none;
-    }
-
-    .news-button.secondary {
-      background: #eef2f6;
-      color: #334155;
-    }
-
-    .news-button.secondary:hover {
-      background: #e2e8f0;
-    }
-
-    .news-status-message {
-      display: none;
-      margin-top: 18px;
-      padding: 12px 15px;
-      border-radius: 10px;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .news-status-message.success {
-      display: block;
-      background: #ecfdf3;
-      color: #087443;
-      border: 1px solid #b7ebcc;
-    }
-
-    .news-status-message.error {
-      display: block;
-      background: #fff1f2;
-      color: #be123c;
-      border: 1px solid #fecdd3;
     }
 
 
-    /* BESTEHENDE NEWS */
+    .news-primary-button:hover {
+      background: #0879e6;
+    }
 
-    .existing-news-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 20px;
+
+    /* =========================================
+       EXISTING NEWS
+    ========================================== */
+
+    .existing-news-heading {
       margin-bottom: 18px;
     }
 
-    .existing-news-head h2 {
+
+    .existing-news-heading h2 {
       margin: 0;
       color: #07111f;
-      font-size: 25px;
-      letter-spacing: -.5px;
+      font-size: 22px;
     }
 
-    .existing-news-head p {
-      margin: 5px 0 0;
-      color: #64748b;
-      font-size: 13px;
-    }
 
-    .news-list {
+    .existing-news {
       display: grid;
-      gap: 15px;
+      gap: 18px;
     }
+
 
     .news-card {
-      background: white;
-      border: 1px solid #e5eaf0;
+      overflow: hidden;
+      border: 1px solid #dfe5ec;
       border-radius: 17px;
-      padding: 23px;
-      box-shadow: 0 6px 20px rgba(7, 17, 31, .035);
+      background: white;
+      box-shadow: 0 8px 25px rgba(15, 23, 42, .045);
     }
+
+
+    .news-card-images {
+      display: grid;
+      width: 100%;
+    }
+
+
+    .news-card-images.single {
+      grid-template-columns: 1fr;
+    }
+
+
+    .news-card-images.double,
+    .news-card-images.multiple {
+      grid-template-columns: 1fr 1fr;
+    }
+
+
+    .news-card-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #e2e8f0;
+    }
+
+
+    .news-card-body {
+      padding: 23px;
+    }
+
 
     .news-card-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 18px;
+      gap: 20px;
     }
 
-    .news-card-title {
-      margin: 0;
-      color: #07111f;
-      font-size: 19px;
-      line-height: 1.3;
-    }
 
     .news-card-date {
-      margin-top: 6px;
-      color: #94a3b8;
+      margin-bottom: 7px;
+      color: #168cff;
       font-size: 11px;
-      font-weight: 750;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
 
+
+    .news-card h3 {
+      margin: 0;
+      color: #07111f;
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+
+    .news-card-content {
+      margin-top: 13px;
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+
+    .news-card-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+
+    .news-card-button {
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid #dbe2ea;
+      border-radius: 9px;
+      background: #ffffff;
+      color: #475569;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+
+    .news-card-button:hover {
+      background: #f8fafc;
+      color: #07111f;
+    }
+
+
+    .news-card-button.publish {
+      border-color: #b9e6d2;
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+
+    .news-card-button.unpublish {
+      border-color: #fde68a;
+      background: #fffbeb;
+      color: #a16207;
+    }
+
+
+    .news-card-button.delete {
+      border-color: #fecaca;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+
     .news-status {
-      flex: 0 0 auto;
-      padding: 6px 9px;
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 9px;
       border-radius: 999px;
       font-size: 10px;
       font-weight: 900;
+      letter-spacing: .8px;
       text-transform: uppercase;
-      letter-spacing: .7px;
     }
 
+
     .news-status.published {
-      background: #eaf8f0;
-      color: #087443;
+      background: #ecfdf5;
+      color: #047857;
     }
+
 
     .news-status.draft {
       background: #f1f5f9;
       color: #64748b;
     }
 
-    .news-card-content {
-      margin-top: 16px;
-      color: #475569;
-      font-size: 14px;
-      line-height: 1.7;
-      white-space: pre-line;
-    }
 
-    .news-card-images {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      margin-top: 17px;
-    }
-
-    .news-card-images img {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      display: block;
-      object-fit: cover;
-      border-radius: 9px;
-    }
-
-    .news-card-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 19px;
-      padding-top: 17px;
-      border-top: 1px solid #edf1f5;
-    }
-
-    .news-card-button {
-      min-height: 37px;
-      padding: 0 12px;
-      border: 0;
-      border-radius: 9px;
-      background: #eef2f6;
-      color: #334155;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .news-card-button:hover {
-      background: #e2e8f0;
-    }
-
-    .news-card-button.primary {
-      background: #eaf5ff;
-      color: #0870d8;
-    }
-
-    .news-card-button.primary:hover {
-      background: #dceeff;
-    }
-
-    .news-card-button.danger:hover {
-      background: #fee2e2;
-      color: #b91c1c;
-    }
-
-    .news-empty {
-      padding: 42px 25px;
+    .empty-news {
+      padding: 45px 25px;
       border: 1px dashed #cbd5e1;
-      border-radius: 17px;
+      border-radius: 16px;
       background: #f8fafc;
       text-align: center;
       color: #64748b;
@@ -575,11 +591,14 @@
     }
 
 
-    /* AUTHENTIFIZIERUNG */
+    /* =========================================
+       AUTH CHECK
+    ========================================== */
 
     body.auth-checking > * {
-      visibility: hidden !important;
+      visibility: hidden;
     }
+
 
     body.auth-checking::before {
       content: "Anmeldung wird geprüft …";
@@ -596,62 +615,52 @@
     }
 
 
+    /* =========================================
+       RESPONSIVE
+    ========================================== */
+
     @media (max-width: 760px) {
 
       .news-page {
-        padding: 28px 16px 60px;
+        padding: 30px 17px 60px;
       }
+
 
       .news-page-head {
-        display: block;
-      }
-
-      .news-public-link {
-        margin-top: 18px;
-      }
-
-      .news-editor {
-        padding: 22px;
-        border-radius: 16px;
-      }
-
-      .news-image-preview {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .news-card-images {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .news-publish-box {
-        align-items: flex-start;
+        align-items: stretch;
         flex-direction: column;
       }
 
-      .news-form-actions {
+
+      .news-create-button {
+        width: 100%;
+      }
+
+
+      .news-editor {
+        padding: 21px;
+      }
+
+
+      .selected-images {
+        grid-template-columns: 1fr 1fr;
+      }
+
+
+      .news-card-top {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+
+      .news-card-actions {
         flex-direction: column;
         align-items: stretch;
       }
 
-      .news-button {
+
+      .news-card-button {
         width: 100%;
-      }
-
-      .news-card-top {
-        flex-direction: column;
-      }
-
-    }
-
-
-    @media (max-width: 460px) {
-
-      .news-image-preview {
-        grid-template-columns: 1fr;
-      }
-
-      .news-card-images {
-        grid-template-columns: 1fr;
       }
 
     }
@@ -663,6 +672,30 @@
 
 <body class="auth-checking">
 
+  <style>
+    body.auth-checking > * {
+      visibility: hidden;
+    }
+
+    body.auth-checking::before {
+      content: "Anmeldung wird geprüft …";
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f7fa;
+      color: #172033;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      z-index: 99999;
+    }
+  </style>
+
+
+  <!-- =========================================
+       HEADER
+  ========================================== -->
 
   <header class="intern-header">
 
@@ -672,12 +705,10 @@
         href="./dashboard.html"
         class="intern-logo"
       >
-
         <img
           src="../logo.png"
           alt="RuhrGeBeats"
         >
-
       </a>
 
 
@@ -687,7 +718,6 @@
           id="userEmail"
           class="intern-user"
         ></span>
-
 
         <a
           href="../"
@@ -703,8 +733,11 @@
   </header>
 
 
-  <main class="news-page">
+  <!-- =========================================
+       MAIN
+  ========================================== -->
 
+  <main class="news-page">
 
     <div class="news-page-head">
 
@@ -717,249 +750,187 @@
           ← Zum Dashboard
         </a>
 
-
         <div class="news-eyebrow">
-          Website verwalten
+          Interner Bereich
         </div>
 
-
         <h1>
-          News
+          News verwalten
         </h1>
 
-
         <p class="news-page-intro">
-          Erstellt Neuigkeiten für eure Website,
-          ergänzt Bilder und entscheidet selbst,
-          wann ein Beitrag veröffentlicht wird.
+          Öffentliche Neuigkeiten von RuhrGeBeats
+          erstellen, bearbeiten und veröffentlichen.
         </p>
 
       </div>
 
 
-      <a
-        href="../"
-        class="news-public-link"
+      <button
+        type="button"
+        class="news-create-button"
+        id="createNewsButton"
       >
-        Öffentliche Website ↗
-      </a>
+        + Neue News
+      </button>
 
     </div>
 
 
-    <section class="news-editor">
+    <div
+      id="statusMessage"
+      class="news-status-message"
+    ></div>
 
+
+    <!-- =========================================
+         EDITOR
+    ========================================== -->
+
+    <section
+      class="news-editor"
+      id="newsEditor"
+    >
 
       <div class="news-editor-head">
 
         <h2 id="editorTitle">
-          Neue News erstellen
+          Neue News
         </h2>
 
-
-        <p>
-          Beiträge können zunächst als Entwurf gespeichert
-          und später veröffentlicht werden.
-        </p>
+        <button
+          type="button"
+          class="news-editor-close"
+          id="closeEditorButton"
+          aria-label="Editor schließen"
+        >
+          ×
+        </button>
 
       </div>
 
 
-      <form id="newsForm">
+      <div class="news-form-group">
+
+        <label for="newsTitle">
+          Überschrift
+        </label>
+
+        <input
+          type="text"
+          id="newsTitle"
+          placeholder="z. B. Neue Technik bei RuhrGeBeats"
+          maxlength="180"
+        >
+
+      </div>
 
 
-        <div class="news-form-group">
+      <div class="news-form-group">
 
-          <label
-            class="news-form-label"
-            for="title"
-          >
-            Überschrift <span>*</span>
-          </label>
+        <label for="newsContent">
+          Inhalt
+        </label>
 
+        <textarea
+          id="newsContent"
+          placeholder="Schreibt hier eure Neuigkeit..."
+        ></textarea>
 
-          <input
-            type="text"
-            id="title"
-            class="news-input"
-            maxlength="150"
-            placeholder="z. B. Neues Equipment für eure Events"
-            required
-          >
-
-        </div>
+      </div>
 
 
-        <div class="news-form-group">
+      <div class="news-form-group">
 
-          <label
-            class="news-form-label"
-            for="content"
-          >
-            Text <span>*</span>
-          </label>
+        <label>
+          Bilder
+        </label>
 
+        <div
+          class="upload-area"
+          id="uploadArea"
+        >
 
-          <textarea
-            id="content"
-            class="news-textarea"
-            placeholder="Schreibt hier eure Neuigkeit..."
-            required
-          ></textarea>
-
-        </div>
-
-
-        <div class="news-form-group">
-
-          <label class="news-form-label">
-            Bilder
-          </label>
-
-
-          <div
-            id="uploadArea"
-            class="news-upload-area"
-          >
-
-            <input
-              type="file"
-              id="imageInput"
-              accept="image/jpeg,image/png,image/webp,image/gif"
-              multiple
-            >
-
-
-            <div class="news-upload-icon">
-              🖼️
-            </div>
-
-
-            <div class="news-upload-title">
-              Bilder hier hineinziehen
-            </div>
-
-
-            <div class="news-upload-text">
-              oder <strong>Bilder auswählen</strong>
-              über den Explorer
-              <br>
-              JPG, PNG, WEBP oder GIF · mehrere Bilder möglich
-            </div>
-
+          <div class="upload-area-icon">
+            📷
           </div>
 
+          <strong>
+            Bilder auswählen oder hierher ziehen
+          </strong>
 
-          <div
-            id="imagePreview"
-            class="news-image-preview"
-          ></div>
-
-        </div>
-
-
-        <div class="news-publish-box">
-
-          <div class="news-publish-left">
-
-            <input
-              type="checkbox"
-              id="published"
-            >
-
-
-            <div>
-
-              <div class="news-publish-title">
-                News direkt veröffentlichen
-              </div>
-
-
-              <div class="news-publish-description">
-                Wenn aktiviert, erscheint die News direkt
-                auf der öffentlichen Website.
-              </div>
-
-            </div>
-
-          </div>
+          <span>
+            JPEG, PNG, WEBP oder GIF · maximal 10 MB pro Bild
+          </span>
 
         </div>
 
 
-        <div class="news-form-actions">
-
-          <button
-            type="submit"
-            id="saveButton"
-            class="news-button"
-          >
-            News speichern
-          </button>
-
-
-          <button
-            type="button"
-            id="cancelEditButton"
-            class="news-button secondary"
-            style="display:none;"
-          >
-            Bearbeiten abbrechen
-          </button>
-
-        </div>
+        <input
+          type="file"
+          id="imageInput"
+          accept="image/jpeg,image/png,image/webp,image/gif"
+          multiple
+        >
 
 
         <div
-          id="statusMessage"
-          class="news-status-message"
+          class="selected-images"
+          id="selectedImages"
         ></div>
 
-
-      </form>
-
-    </section>
-
-
-    <section>
-
-      <div class="existing-news-head">
-
-        <div>
-
-          <h2>
-            Bestehende News
-          </h2>
-
-
-          <p>
-            Entwürfe und veröffentlichte Beiträge verwalten.
-          </p>
-
-        </div>
-
       </div>
 
 
-      <div
-        id="existingNews"
-        class="news-list"
-      >
+      <div class="news-editor-actions">
 
-        <div class="news-empty">
-          News werden geladen ...
-        </div>
+        <button
+          type="button"
+          class="news-secondary-button"
+          id="cancelEditButton"
+        >
+          Abbrechen
+        </button>
+
+        <button
+          type="button"
+          class="news-primary-button"
+          id="saveNewsButton"
+        >
+          News speichern
+        </button>
 
       </div>
 
     </section>
 
+
+    <!-- =========================================
+         EXISTING NEWS
+    ========================================== -->
+
+    <div class="existing-news-heading">
+
+      <h2>
+        Vorhandene News
+      </h2>
+
+    </div>
+
+
+    <section
+      id="existingNews"
+      class="existing-news"
+    ></section>
 
   </main>
 
 
   <script>
 
+    /* =========================================
+       SUPABASE
+    ========================================== */
 
     const SUPABASE_URL =
       "https://spqsuedpmrxcbefpocho.supabase.co";
@@ -976,106 +947,102 @@
       );
 
 
-    /*
-      ------------------------------------------------
-      ELEMENTE
-      ------------------------------------------------
-    */
+    /* =========================================
+       ELEMENTE
+    ========================================== */
 
-    const newsForm =
-      document.getElementById("newsForm");
+    const createNewsButton =
+      document.getElementById(
+        "createNewsButton"
+      );
 
-    const titleInput =
-      document.getElementById("title");
 
-    const contentInput =
-      document.getElementById("content");
+    const closeEditorButton =
+      document.getElementById(
+        "closeEditorButton"
+      );
 
-    const publishedInput =
-      document.getElementById("published");
-
-    const saveButton =
-      document.getElementById("saveButton");
 
     const cancelEditButton =
-      document.getElementById("cancelEditButton");
+      document.getElementById(
+        "cancelEditButton"
+      );
+
+
+    const saveNewsButton =
+      document.getElementById(
+        "saveNewsButton"
+      );
+
+
+    const newsEditor =
+      document.getElementById(
+        "newsEditor"
+      );
+
 
     const editorTitle =
-      document.getElementById("editorTitle");
+      document.getElementById(
+        "editorTitle"
+      );
+
+
+    const newsTitle =
+      document.getElementById(
+        "newsTitle"
+      );
+
+
+    const newsContent =
+      document.getElementById(
+        "newsContent"
+      );
+
 
     const statusMessage =
-      document.getElementById("statusMessage");
+      document.getElementById(
+        "statusMessage"
+      );
+
 
     const existingNews =
-      document.getElementById("existingNews");
+      document.getElementById(
+        "existingNews"
+      );
+
 
     const uploadArea =
-      document.getElementById("uploadArea");
+      document.getElementById(
+        "uploadArea"
+      );
+
 
     const imageInput =
-      document.getElementById("imageInput");
+      document.getElementById(
+        "imageInput"
+      );
 
-    const imagePreview =
-      document.getElementById("imagePreview");
+
+    const selectedImages =
+      document.getElementById(
+        "selectedImages"
+      );
 
 
-    let editingId = null;
+    /* =========================================
+       STATE
+    ========================================== */
 
-    let existingImages = [];
+    let editingNewsId = null;
 
     let selectedFiles = [];
 
-
-    /*
-      ------------------------------------------------
-      HTML ESCAPE
-      ------------------------------------------------
-    */
-
-    function escapeHtml(value) {
-
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-    }
+    let existingImageUrls = [];
 
 
-    /*
-      ------------------------------------------------
-      DATUM
-      ------------------------------------------------
-    */
-
-    function formatDate(dateString) {
-
-      if (!dateString) {
-        return "";
-      }
-
-
-      return new Date(
-        dateString
-      ).toLocaleDateString(
-        "de-DE",
-        {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric"
-        }
-      );
-
-    }
-
-
-    /*
-      ------------------------------------------------
-      STATUS
-      ------------------------------------------------
-    */
+    /* =========================================
+       STATUS
+    ========================================== */
 
     function showStatus(
       message,
@@ -1086,39 +1053,196 @@
         message;
 
       statusMessage.className =
-        "news-status-message " +
-        type;
+        "news-status-message " + type;
 
     }
 
 
-    /*
-      ------------------------------------------------
-      BILDER AUSWÄHLEN
-      ------------------------------------------------
-    */
+    /* =========================================
+       LOGIN / AUTHENTICATION
+    ========================================== */
+
+    async function checkSession() {
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .auth
+            .getSession();
+
+
+        if (
+          error ||
+          !data ||
+          !data.session
+        ) {
+
+          window.location.replace("./");
+
+          return null;
+
+        }
+
+
+        const userEmail =
+          document.getElementById(
+            "userEmail"
+          );
+
+
+        if (userEmail) {
+
+          userEmail.textContent =
+            data.session.user.email || "";
+
+        }
+
+
+        /*
+          Erst wenn eine gültige Session
+          vorhanden ist, wird der Seiteninhalt
+          sichtbar.
+        */
+
+        document.body.classList.remove(
+          "auth-checking"
+        );
+
+
+        return data.session;
+
+      } catch (error) {
+
+        console.error(
+          "Fehler bei der Session-Prüfung:",
+          error
+        );
+
+
+        window.location.replace("./");
+
+        return null;
+
+      }
+
+    }
+
+
+    /* =========================================
+       EDITOR ÖFFNEN
+    ========================================== */
+
+    function openEditor(
+      news = null
+    ) {
+
+      newsEditor.classList.add(
+        "visible"
+      );
+
+
+      if (news) {
+
+        editingNewsId =
+          news.id;
+
+
+        editorTitle.textContent =
+          "News bearbeiten";
+
+
+        newsTitle.value =
+          news.title || "";
+
+
+        newsContent.value =
+          news.content || "";
+
+
+        existingImageUrls =
+          Array.isArray(
+            news.image_urls
+          )
+            ? [...news.image_urls]
+            : [];
+
+
+        selectedFiles = [];
+
+        renderSelectedImages();
+
+      } else {
+
+        editingNewsId = null;
+
+        selectedFiles = [];
+
+        existingImageUrls = [];
+
+        editorTitle.textContent =
+          "Neue News";
+
+
+        newsTitle.value =
+          "";
+
+
+        newsContent.value =
+          "";
+
+
+        renderSelectedImages();
+
+      }
+
+
+      newsEditor.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+
+    /* =========================================
+       EDITOR SCHLIESSEN
+    ========================================== */
+
+    function closeEditor() {
+
+      newsEditor.classList.remove(
+        "visible"
+      );
+
+
+      editingNewsId = null;
+
+      selectedFiles = [];
+
+      existingImageUrls = [];
+
+      newsTitle.value = "";
+
+      newsContent.value = "";
+
+      renderSelectedImages();
+
+    }
+
+
+    /* =========================================
+       UPLOAD AREA
+    ========================================== */
 
     uploadArea.addEventListener(
       "click",
       () => {
 
         imageInput.click();
-
-      }
-    );
-
-
-    imageInput.addEventListener(
-      "change",
-      event => {
-
-        addFiles(
-          Array.from(
-            event.target.files
-          )
-        );
-
-        imageInput.value = "";
 
       }
     );
@@ -1160,19 +1284,51 @@
           "dragover"
         );
 
-        addFiles(
+
+        const files =
           Array.from(
             event.dataTransfer.files
-          )
+          );
+
+
+        addSelectedFiles(
+          files
         );
 
       }
     );
 
 
-    function addFiles(files) {
+    imageInput.addEventListener(
+      "change",
+      () => {
 
-      const validTypes = [
+        const files =
+          Array.from(
+            imageInput.files
+          );
+
+
+        addSelectedFiles(
+          files
+        );
+
+
+        imageInput.value = "";
+
+      }
+    );
+
+
+    /* =========================================
+       DATEI PRÜFEN
+    ========================================== */
+
+    function addSelectedFiles(
+      files
+    ) {
+
+      const allowedTypes = [
         "image/jpeg",
         "image/png",
         "image/webp",
@@ -1180,72 +1336,64 @@
       ];
 
 
-      const validFiles =
-        files.filter(
-          file =>
-            validTypes.includes(
+      files.forEach(
+        file => {
+
+          if (
+            !allowedTypes.includes(
               file.type
             )
-        );
+          ) {
+
+            showStatus(
+              "Nur JPEG, PNG, WEBP und GIF sind erlaubt.",
+              "error"
+            );
+
+            return;
+
+          }
 
 
-      for (
-        const file of validFiles
-      ) {
+          if (
+            file.size >
+            10 * 1024 * 1024
+          ) {
 
-        if (
-          file.size >
-          10 * 1024 * 1024
-        ) {
+            showStatus(
+              "Ein Bild ist größer als 10 MB.",
+              "error"
+            );
 
-          showStatus(
-            "Ein Bild ist größer als 10 MB und wurde übersprungen.",
-            "error"
-          );
+            return;
 
-          continue;
+          }
 
-        }
-
-
-        const alreadySelected =
-          selectedFiles.some(
-            existing =>
-              existing.name ===
-                file.name &&
-              existing.size ===
-                file.size
-          );
-
-
-        if (!alreadySelected) {
 
           selectedFiles.push(
             file
           );
 
         }
+      );
 
-      }
 
-
-      renderImagePreview();
+      renderSelectedImages();
 
     }
 
 
-    /*
-      ------------------------------------------------
-      BILDVORSCHAU
-      ------------------------------------------------
-    */
+    /* =========================================
+       BILDER RENDERN
+    ========================================== */
 
-    function renderImagePreview() {
+    function renderSelectedImages() {
 
-      imagePreview.innerHTML = "";
+      selectedImages.innerHTML =
+        "";
 
 
-      existingImages.forEach(
+      existingImageUrls.forEach(
         (
           image,
           index
@@ -1256,8 +1404,9 @@
               "div"
             );
 
+
           wrapper.className =
-            "news-image-item";
+            "selected-image";
 
 
           const img =
@@ -1265,70 +1414,60 @@
               "img"
             );
 
+
           img.src =
             image.url;
+
 
           img.alt =
             "News Bild";
 
 
-          const removeButton =
+          const remove =
             document.createElement(
               "button"
             );
 
-          removeButton.type =
+
+          remove.type =
             "button";
 
-          removeButton.className =
-            "news-image-remove";
 
-          removeButton.textContent =
+          remove.className =
+            "selected-image-remove";
+
+
+          remove.textContent =
             "×";
 
 
-          removeButton.addEventListener(
+          remove.addEventListener(
             "click",
-            event => {
+            () => {
 
-              event.stopPropagation();
-
-              existingImages.splice(
+              existingImageUrls.splice(
                 index,
                 1
               );
 
-              renderImagePreview();
+
+              renderSelectedImages();
 
             }
           );
-
-
-          const name =
-            document.createElement(
-              "div"
-            );
-
-          name.className =
-            "news-image-name";
-
-          name.textContent =
-            "Gespeichert";
 
 
           wrapper.appendChild(
             img
           );
 
-          wrapper.appendChild(
-            removeButton
-          );
 
           wrapper.appendChild(
-            name
+            remove
           );
 
-          imagePreview.appendChild(
+
+          selectedImages.appendChild(
             wrapper
           );
 
@@ -1347,8 +1486,9 @@
               "div"
             );
 
+
           wrapper.className =
-            "news-image-item";
+            "selected-image";
 
 
           const img =
@@ -1357,83 +1497,73 @@
             );
 
 
-          const objectUrl =
-            URL.createObjectURL(
-              file
-            );
-
-
-          img.src =
-            objectUrl;
-
           img.alt =
             file.name;
 
 
-          img.onload =
-            () =>
-              URL.revokeObjectURL(
-                objectUrl
-              );
-
-
-          const removeButton =
+          const remove =
             document.createElement(
               "button"
             );
 
-          removeButton.type =
+
+          remove.type =
             "button";
 
-          removeButton.className =
-            "news-image-remove";
 
-          removeButton.textContent =
+          remove.className =
+            "selected-image-remove";
+
+
+          remove.textContent =
             "×";
 
 
-          removeButton.addEventListener(
+          remove.addEventListener(
             "click",
-            event => {
-
-              event.stopPropagation();
+            () => {
 
               selectedFiles.splice(
                 index,
                 1
               );
 
-              renderImagePreview();
+
+              renderSelectedImages();
 
             }
           );
 
 
-          const name =
-            document.createElement(
-              "div"
-            );
+          const reader =
+            new FileReader();
 
-          name.className =
-            "news-image-name";
 
-          name.textContent =
-            file.name;
+          reader.onload =
+            event => {
+
+              img.src =
+                event.target.result;
+
+            };
+
+
+          reader.readAsDataURL(
+            file
+          );
 
 
           wrapper.appendChild(
             img
           );
 
-          wrapper.appendChild(
-            removeButton
-          );
 
           wrapper.appendChild(
-            name
+            remove
           );
 
-          imagePreview.appendChild(
+
+          selectedImages.appendChild(
             wrapper
           );
 
@@ -1443,21 +1573,19 @@
     }
 
 
-    /*
-      ------------------------------------------------
-      BILDER HOCHLADEN
-      ------------------------------------------------
-    */
+    /* =========================================
+       BILDER HOCHLADEN
+    ========================================== */
 
     async function uploadImages() {
 
-      const uploadedImages = [
-        ...existingImages
-      ];
+      const uploadedImages =
+        [...existingImageUrls];
 
 
       for (
-        const file of selectedFiles
+        const file
+        of selectedFiles
       ) {
 
         const extension =
@@ -1467,12 +1595,14 @@
             .toLowerCase();
 
 
-        const uniqueName =
-          `${crypto.randomUUID()}.${extension}`;
+        const randomPart =
+          Math.random()
+            .toString(36)
+            .substring(2);
 
 
         const path =
-          `${new Date().getFullYear()}/${uniqueName}`;
+          `${Date.now()}-${randomPart}.${extension}`;
 
 
         const {
@@ -1486,9 +1616,11 @@
               file,
               {
                 cacheControl:
-                  "31536000",
+                  "3600",
+
                 upsert:
                   false,
+
                 contentType:
                   file.type
               }
@@ -1496,6 +1628,11 @@
 
 
         if (error) {
+
+          console.error(
+            error
+          );
+
 
           throw new Error(
             "Ein Bild konnte nicht hochgeladen werden."
@@ -1518,6 +1655,7 @@
         uploadedImages.push({
           url:
             data.publicUrl,
+
           path:
             path
         });
@@ -1530,73 +1668,18 @@
     }
 
 
-    /*
-      ------------------------------------------------
-      ENTFERNTE BILDER LÖSCHEN
-      ------------------------------------------------
-    */
-
-    async function deleteRemovedImages(
-      oldImages,
-      newImages
-    ) {
-
-      const newPaths =
-        new Set(
-          newImages
-            .map(
-              image =>
-                image.path
-            )
-            .filter(Boolean)
-        );
-
-
-      const removed =
-        oldImages.filter(
-          image =>
-            image.path &&
-            !newPaths.has(
-              image.path
-            )
-        );
-
-
-      if (!removed.length) {
-        return;
-      }
-
-
-      const paths =
-        removed.map(
-          image =>
-            image.path
-        );
-
-
-      await supabaseClient
-        .storage
-        .from("news-images")
-        .remove(
-          paths
-        );
-
-    }
-
-
-    /*
-      ------------------------------------------------
-      NEWS LADEN
-      ------------------------------------------------
-    */
+    /* =========================================
+       NEWS LADEN
+    ========================================== */
 
     async function loadNews() {
 
-      existingNews.innerHTML = `
-        <div class="news-empty">
-          News werden geladen ...
-        </div>
-      `;
+      existingNews.innerHTML =
+        `
+          <div class="empty-news">
+            News werden geladen …
+          </div>
+        `;
 
 
       const {
@@ -1621,11 +1704,18 @@
         );
 
 
-        existingNews.innerHTML = `
-          <div class="news-empty">
-            Fehler beim Laden der News.
-          </div>
-        `;
+        existingNews.innerHTML =
+          `
+            <div class="empty-news">
+              Die News konnten nicht geladen werden.
+            </div>
+          `;
+
+
+        showStatus(
+          "Die News konnten nicht geladen werden.",
+          "error"
+        );
 
 
         return;
@@ -1638,11 +1728,12 @@
         data.length === 0
       ) {
 
-        existingNews.innerHTML = `
-          <div class="news-empty">
-            Noch keine News vorhanden.
-          </div>
-        `;
+        existingNews.innerHTML =
+          `
+            <div class="empty-news">
+              Noch keine News vorhanden.
+            </div>
+          `;
 
 
         return;
@@ -1653,177 +1744,296 @@
       existingNews.innerHTML =
         data
           .map(
-            news => {
-
-              const statusClass =
-                news.published
-                  ? "published"
-                  : "draft";
-
-
-              const statusText =
-                news.published
-                  ? "Veröffentlicht"
-                  : "Entwurf";
-
-
-              const images =
-                Array.isArray(
-                  news.image_urls
-                )
-                  ? news.image_urls
-                  : [];
-
-
-              const imageHtml =
-                images.length
-                  ? `
-                    <div class="news-card-images">
-
-                      ${images
-                        .map(
-                          image =>
-                            `
-                              <img
-                                src="${escapeHtml(
-                                  image.url
-                                )}"
-                                alt="News Bild"
-                                loading="lazy"
-                              >
-                            `
-                        )
-                        .join("")
-                      }
-
-                    </div>
-                  `
-                  : "";
-
-
-              return `
-
-                <article class="news-card">
-
-                  <div class="news-card-top">
-
-                    <div>
-
-                      <h3 class="news-card-title">
-                        ${escapeHtml(
-                          news.title
-                        )}
-                      </h3>
-
-                      <div class="news-card-date">
-                        ${formatDate(
-                          news.published_at ||
-                          news.created_at
-                        )}
-                      </div>
-
-                    </div>
-
-
-                    <span
-                      class="news-status ${statusClass}"
-                    >
-                      ${statusText}
-                    </span>
-
-                  </div>
-
-
-                  <div class="news-card-content">
-                    ${escapeHtml(
-                      news.content
-                    )}
-                  </div>
-
-
-                  ${imageHtml}
-
-
-                  <div class="news-card-actions">
-
-                    <button
-                      type="button"
-                      class="news-card-button primary"
-                      onclick="editNews('${news.id}')"
-                    >
-                      Bearbeiten
-                    </button>
-
-
-                    <button
-                      type="button"
-                      class="news-card-button"
-                      onclick="togglePublished(
-                        '${news.id}',
-                        ${news.published}
-                      )"
-                    >
-                      ${
-                        news.published
-                          ? "Veröffentlichung zurücknehmen"
-                          : "Veröffentlichen"
-                      }
-                    </button>
-
-
-                    <button
-                      type="button"
-                      class="news-card-button danger"
-                      onclick="deleteNews('${news.id}')"
-                    >
-                      Löschen
-                    </button>
-
-                  </div>
-
-                </article>
-
-              `;
-
-            }
+            news =>
+              renderNewsCard(
+                news
+              )
           )
           .join("");
 
     }
 
 
-    /*
-      ------------------------------------------------
-      NEWS SPEICHERN
-      ------------------------------------------------
-    */
+    /* =========================================
+       HTML ESCAPEN
+    ========================================== */
 
-    newsForm.addEventListener(
-      "submit",
-      async event => {
+    function escapeHtml(
+      value
+    ) {
 
-        event.preventDefault();
+      return String(
+        value ?? ""
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
 
+    }
+
+
+    /* =========================================
+       DATUM FORMATIEREN
+    ========================================== */
+
+    function formatDate(
+      dateString
+    ) {
+
+      if (!dateString) {
+        return "";
+      }
+
+
+      return new Date(
+        dateString
+      ).toLocaleDateString(
+        "de-DE",
+        {
+          day:
+            "2-digit",
+
+          month:
+            "long",
+
+          year:
+            "numeric"
+        }
+      );
+
+    }
+
+
+    /* =========================================
+       NEWS CARD
+    ========================================== */
+
+    function renderNewsCard(
+      news
+    ) {
+
+      const images =
+        Array.isArray(
+          news.image_urls
+        )
+          ? news.image_urls
+          : [];
+
+
+      let imageHtml =
+        "";
+
+
+      if (
+        images.length
+      ) {
+
+        const layoutClass =
+          images.length === 1
+            ? "single"
+            : images.length === 2
+              ? "double"
+              : "multiple";
+
+
+        imageHtml =
+          `
+            <div
+              class="news-card-images ${layoutClass}"
+            >
+
+              ${images
+                .map(
+                  image =>
+                    `
+                      <img
+                        class="news-card-image"
+                        src="${escapeHtml(
+                          image.url
+                        )}"
+                        alt="News Bild"
+                      >
+                    `
+                )
+                .join("")}
+
+            </div>
+          `;
+
+      }
+
+
+      return `
+        <article class="news-card">
+
+          ${imageHtml}
+
+          <div class="news-card-body">
+
+            <div class="news-card-top">
+
+              <div>
+
+                <div class="news-card-date">
+                  ${formatDate(
+                    news.published_at ||
+                    news.created_at
+                  )}
+                </div>
+
+                <h3>
+                  ${escapeHtml(
+                    news.title
+                  )}
+                </h3>
+
+              </div>
+
+
+              <span
+                class="news-status ${
+                  news.published
+                    ? "published"
+                    : "draft"
+                }"
+              >
+                ${
+                  news.published
+                    ? "Veröffentlicht"
+                    : "Entwurf"
+                }
+              </span>
+
+            </div>
+
+
+            <div class="news-card-content">
+              ${escapeHtml(
+                news.content
+              )}
+            </div>
+
+
+            <div class="news-card-actions">
+
+              <button
+                type="button"
+                class="news-card-button"
+                onclick="editNews('${news.id}')"
+              >
+                Bearbeiten
+              </button>
+
+
+              <button
+                type="button"
+                class="news-card-button ${
+                  news.published
+                    ? "unpublish"
+                    : "publish"
+                }"
+                onclick="togglePublished(
+                  '${news.id}',
+                  ${news.published ? "true" : "false"}
+                )"
+              >
+                ${
+                  news.published
+                    ? "Veröffentlichung zurücknehmen"
+                    : "Veröffentlichen"
+                }
+              </button>
+
+
+              <button
+                type="button"
+                class="news-card-button delete"
+                onclick="deleteNews('${news.id}')"
+              >
+                Löschen
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+      `;
+
+    }
+
+
+    /* =========================================
+       NEWS ERSTELLEN
+    ========================================== */
+
+    createNewsButton.addEventListener(
+      "click",
+      () => {
+
+        openEditor();
+
+      }
+    );
+
+
+    closeEditorButton.addEventListener(
+      "click",
+      () => {
+
+        closeEditor();
+
+      }
+    );
+
+
+    cancelEditButton.addEventListener(
+      "click",
+      () => {
+
+        closeEditor();
+
+      }
+    );
+
+
+    /* =========================================
+       NEWS SPEICHERN
+    ========================================== */
+
+    saveNewsButton.addEventListener(
+      "click",
+      async () => {
 
         const title =
-          titleInput.value.trim();
+          newsTitle.value.trim();
 
 
         const content =
-          contentInput.value.trim();
+          newsContent.value.trim();
 
 
-        const published =
-          publishedInput.checked;
-
-
-        if (
-          !title ||
-          !content
-        ) {
+        if (!title) {
 
           showStatus(
-            "Bitte Überschrift und Text ausfüllen.",
+            "Bitte eine Überschrift eingeben.",
             "error"
           );
 
@@ -1832,146 +2042,129 @@
         }
 
 
-        saveButton.disabled =
+        if (!content) {
+
+          showStatus(
+            "Bitte einen Inhalt eingeben.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        saveNewsButton.disabled =
           true;
 
 
-        saveButton.textContent =
-          "Speichern ...";
+        saveNewsButton.textContent =
+          "Wird gespeichert …";
 
 
         try {
 
-          let oldImages = [];
-
-
-          if (editingId) {
-
-            const {
-              data
-            } =
-              await supabaseClient
-                .from("news")
-                .select(
-                  "image_urls"
-                )
-                .eq(
-                  "id",
-                  editingId
-                )
-                .single();
-
-
-            if (
-              data &&
-              Array.isArray(
-                data.image_urls
-              )
-            ) {
-
-              oldImages =
-                data.image_urls;
-
-            }
-
-          }
-
-
-          const allImages =
+          const imageUrls =
             await uploadImages();
 
 
-          let error;
+          const now =
+            new Date().toISOString();
 
 
-          if (editingId) {
+          if (
+            editingNewsId
+          ) {
 
-            const result =
+            const {
+              error
+            } =
               await supabaseClient
                 .from("news")
                 .update({
 
-                  title,
+                  title:
+                    title,
 
-                  content,
-
-                  published,
-
-                  published_at:
-                    published
-                      ? new Date().toISOString()
-                      : null,
-
-                  updated_at:
-                    new Date().toISOString(),
+                  content:
+                    content,
 
                   image_urls:
-                    allImages
+                    imageUrls,
+
+                  updated_at:
+                    now
 
                 })
                 .eq(
                   "id",
-                  editingId
+                  editingNewsId
                 );
 
 
-            error =
-              result.error;
+            if (error) {
+
+              throw error;
+
+            }
+
+
+            showStatus(
+              "News wurde erfolgreich aktualisiert.",
+              "success"
+            );
 
           } else {
 
-            const result =
+            const {
+              error
+            } =
               await supabaseClient
                 .from("news")
                 .insert({
 
-                  title,
+                  title:
+                    title,
 
-                  content,
-
-                  published,
-
-                  published_at:
-                    published
-                      ? new Date().toISOString()
-                      : null,
+                  content:
+                    content,
 
                   image_urls:
-                    allImages
+                    imageUrls,
+
+                  published:
+                    false,
+
+                  published_at:
+                    null,
+
+                  created_at:
+                    now,
+
+                  updated_at:
+                    now
 
                 });
 
 
-            error =
-              result.error;
+            if (error) {
+
+              throw error;
+
+            }
+
+
+            showStatus(
+              "News wurde erfolgreich erstellt.",
+              "success"
+            );
 
           }
 
 
-          if (error) {
-            throw error;
-          }
-
-
-          await deleteRemovedImages(
-            oldImages,
-            allImages
-          );
-
-
-          showStatus(
-            editingId
-              ? "News wurde erfolgreich aktualisiert."
-              : "News wurde erfolgreich gespeichert.",
-            "success"
-          );
-
-
-          resetEditor();
-
+          closeEditor();
 
           await loadNews();
-
 
         } catch (error) {
 
@@ -1981,18 +2174,17 @@
 
 
           showStatus(
-            error.message ||
-            "Beim Speichern ist ein Fehler aufgetreten.",
+            "Die News konnte nicht gespeichert werden.",
             "error"
           );
 
-
         } finally {
 
-          saveButton.disabled =
+          saveNewsButton.disabled =
             false;
 
-          saveButton.textContent =
+
+          saveNewsButton.textContent =
             "News speichern";
 
         }
@@ -2001,14 +2193,14 @@
     );
 
 
-    /*
-      ------------------------------------------------
-      NEWS BEARBEITEN
-      ------------------------------------------------
-    */
+    /* =========================================
+       NEWS BEARBEITEN
+    ========================================== */
 
     window.editNews =
-      async function(id) {
+      async function(
+        id
+      ) {
 
         const {
           data,
@@ -2024,146 +2216,41 @@
             .single();
 
 
-        if (
-          error ||
-          !data
-        ) {
+        if (error) {
+
+          console.error(
+            error
+          );
+
 
           showStatus(
             "Die News konnte nicht geladen werden.",
             "error"
           );
 
+
           return;
 
         }
 
 
-        editingId =
-          id;
-
-
-        titleInput.value =
-          data.title ||
-          "";
-
-
-        contentInput.value =
-          data.content ||
-          "";
-
-
-        publishedInput.checked =
-          Boolean(
-            data.published
-          );
-
-
-        existingImages =
-          Array.isArray(
-            data.image_urls
-          )
-            ? data.image_urls
-            : [];
-
-
-        selectedFiles =
-          [];
-
-
-        renderImagePreview();
-
-
-        editorTitle.textContent =
-          "News bearbeiten";
-
-
-        saveButton.textContent =
-          "Änderungen speichern";
-
-
-        cancelEditButton.style.display =
-          "inline-flex";
-
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
+        openEditor(
+          data
+        );
 
       };
 
 
-    /*
-      ------------------------------------------------
-      BEARBEITUNG ABBRECHEN
-      ------------------------------------------------
-    */
-
-    cancelEditButton.addEventListener(
-      "click",
-      () => {
-
-        resetEditor();
-
-      }
-    );
-
-
-    function resetEditor() {
-
-      editingId =
-        null;
-
-
-      existingImages =
-        [];
-
-
-      selectedFiles =
-        [];
-
-
-      newsForm.reset();
-
-
-      editorTitle.textContent =
-        "Neue News erstellen";
-
-
-      saveButton.textContent =
-        "News speichern";
-
-
-      cancelEditButton.style.display =
-        "none";
-
-
-      imagePreview.innerHTML =
-        "";
-
-
-      statusMessage.className =
-        "news-status-message";
-
-
-      statusMessage.textContent =
-        "";
-
-    }
-
-
-    /*
-      ------------------------------------------------
-      VERÖFFENTLICHUNG ÄNDERN
-      ------------------------------------------------
-    */
+    /* =========================================
+       VERÖFFENTLICHUNG ÄNDERN
+    ========================================== */
 
     window.togglePublished =
       async function(
         id,
         currentlyPublished
       ) {
+
 
         const newValue =
           !currentlyPublished;
@@ -2220,19 +2307,20 @@
         );
 
 
-        await loadNews();
+        loadNews();
 
       };
 
 
-    /*
-      ------------------------------------------------
-      NEWS LÖSCHEN
-      ------------------------------------------------
-    */
+    /* =========================================
+       NEWS LÖSCHEN
+    ========================================== */
 
     window.deleteNews =
-      async function(id) {
+      async function(
+        id
+      ) {
+
 
         const confirmed =
           confirm(
@@ -2245,20 +2333,27 @@
         }
 
 
+        /*
+          Zuerst Bildpfade laden,
+          damit auch die Bilder gelöscht werden.
+        */
+
         const {
           data: news
         } =
           await supabaseClient
             .from("news")
-            .select(
-              "image_urls"
-            )
+            .select("image_urls")
             .eq(
               "id",
               id
             )
             .single();
 
+
+        /*
+          News löschen
+        */
 
         const {
           error
@@ -2290,6 +2385,10 @@
         }
 
 
+        /*
+          Zugehörige Bilder löschen
+        */
+
         if (
           news &&
           Array.isArray(
@@ -2303,10 +2402,14 @@
                 image =>
                   image.path
               )
-              .filter(Boolean);
+              .filter(
+                Boolean
+              );
 
 
-          if (paths.length) {
+          if (
+            paths.length
+          ) {
 
             await supabaseClient
               .storage
@@ -2326,29 +2429,17 @@
         );
 
 
-        await loadNews();
+        loadNews();
 
       };
 
 
-    /*
-      ------------------------------------------------
-      AUTHENTIFIZIERUNG
-      ------------------------------------------------
+    /* =========================================
+       START
+       AUTHENTIFIZIERUNG ZUERST
+    ========================================== */
 
-      WICHTIG:
-      Die Session wird geprüft, bevor die Seite
-      sichtbar gemacht und bevor News geladen werden.
-
-      Ohne Session:
-      -> sofort zurück zu /intern/
-
-      Mit Session:
-      -> Seite freigeben
-      -> News laden
-    */
-
-    async function checkSession() {
+    (async () => {
 
       try {
 
@@ -2356,25 +2447,32 @@
           data,
           error
         } =
-          await supabaseClient.auth.getSession();
+          await supabaseClient
+            .auth
+            .getSession();
 
+
+        /*
+          Keine gültige Session:
+          niemals den News-Bereich anzeigen.
+        */
 
         if (
           error ||
           !data ||
-          !data.session ||
-          !data.session.user
+          !data.session
         ) {
 
-          window.location.replace(
-            "./"
-          );
+          window.location.replace("./");
 
-
-          return false;
+          return;
 
         }
 
+
+        /*
+          Angemeldeten Benutzer anzeigen.
+        */
 
         const userEmail =
           document.getElementById(
@@ -2385,19 +2483,26 @@
         if (userEmail) {
 
           userEmail.textContent =
-            data.session.user.email ||
-            "";
+            data.session.user.email || "";
 
         }
 
+
+        /*
+          Erst jetzt wird die Seite sichtbar.
+        */
 
         document.body.classList.remove(
           "auth-checking"
         );
 
 
-        return true;
+        /*
+          Und erst jetzt werden
+          die News aus Supabase geladen.
+        */
 
+        await loadNews();
 
       } catch (error) {
 
@@ -2407,45 +2512,11 @@
         );
 
 
-        window.location.replace(
-          "./"
-        );
-
-
-        return false;
+        window.location.replace("./");
 
       }
-
-    }
-
-
-    /*
-      ------------------------------------------------
-      START
-      ------------------------------------------------
-
-      GANZ WICHTIG:
-      Kein anderer Start-Code wird ausgeführt,
-      bevor die Session geprüft wurde.
-    */
-
-    (async function() {
-
-      const authenticated =
-        await checkSession();
-
-
-      if (!authenticated) {
-
-        return;
-
-      }
-
-
-      await loadNews();
 
     })();
-
 
   </script>
 
