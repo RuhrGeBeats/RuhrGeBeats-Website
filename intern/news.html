@@ -126,7 +126,7 @@
 
     /* =========================================
        EDITOR
-    ========================================= */
+    ========================================== */
 
     .news-editor {
       background: white;
@@ -220,7 +220,7 @@
 
     /* =========================================
        IMAGE UPLOAD
-    ========================================= */
+    ========================================== */
 
     .news-upload-area {
       position: relative;
@@ -357,7 +357,7 @@
 
     /* =========================================
        PUBLISH
-    ========================================= */
+    ========================================== */
 
     .news-publish-box {
       display: flex;
@@ -481,7 +481,7 @@
 
     /* =========================================
        EXISTING NEWS
-    ========================================= */
+    ========================================== */
 
     .existing-news-head {
       display: flex;
@@ -653,8 +653,32 @@
 
 
     /* =========================================
+       AUTH CHECK
+    ========================================== */
+
+    body.auth-checking > * {
+      visibility: hidden;
+    }
+
+
+    body.auth-checking::before {
+      content: "Anmeldung wird geprüft …";
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f7fa;
+      color: #172033;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      z-index: 99999;
+    }
+
+
+    /* =========================================
        RESPONSIVE
-    ========================================= */
+    ========================================== */
 
     @media (max-width: 760px) {
 
@@ -732,26 +756,6 @@
 
 
 <body class="auth-checking">
-
-  <style>
-    body.auth-checking > * {
-      visibility: hidden;
-    }
-
-    body.auth-checking::before {
-      content: "Anmeldung wird geprüft …";
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f5f7fa;
-      color: #172033;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      font-size: 15px;
-      z-index: 99999;
-    }
-  </style>
 
 
   <!-- =========================================
@@ -1196,45 +1200,6 @@
 
       statusMessage.className =
         "news-status-message " + type;
-
-    }
-
-
-    /* =========================================
-       LOGIN
-    ========================================== */
-
-    async function checkSession() {
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient.auth.getSession();
-
-
-      if (
-        error ||
-        !data.session
-      ) {
-
-        window.location.replace("./");
-
-        return null;
-
-      }
-
-
-      document.getElementById(
-        "userEmail"
-      ).textContent =
-        data.session.user.email;
-
-
-      document.body.classList.remove("auth-checking");
-
-
-      return data.session;
 
     }
 
@@ -2085,6 +2050,7 @@
             "error"
           );
 
+
         } finally {
 
           saveButton.disabled = false;
@@ -2422,43 +2388,88 @@
 
 
     /* =========================================
-       LOGOUT
-    ========================================== */
-
-    document
-      .getElementById("logoutButton")
-      .addEventListener(
-        "click",
-        async () => {
-
-          await supabaseClient
-            .auth
-            .signOut();
-
-
-          window.location.replace("./");
-
-        }
-      );
-
-
-    /* =========================================
-       START
+       START / AUTHENTIFIZIERUNG
     ========================================== */
 
     (async () => {
 
-      const session =
-        await checkSession();
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth.getSession();
 
 
-      if (session) {
+        /*
+          Keine gültige Session:
+          zurück zur Login-Seite.
+        */
 
-        loadNews();
+        if (
+          error ||
+          !data ||
+          !data.session
+        ) {
+
+          window.location.replace("./");
+
+          return;
+
+        }
+
+
+        /*
+          Eingeloggter Benutzer:
+          E-Mail anzeigen.
+        */
+
+        const userEmail =
+          document.getElementById(
+            "userEmail"
+          );
+
+
+        if (userEmail) {
+
+          userEmail.textContent =
+            data.session.user.email || "";
+
+        }
+
+
+        /*
+          Erst jetzt die Seite sichtbar machen.
+        */
+
+        document.body.classList.remove(
+          "auth-checking"
+        );
+
+
+        /*
+          News erst nach erfolgreicher
+          Authentifizierung laden.
+        */
+
+        await loadNews();
+
+
+      } catch (error) {
+
+        console.error(
+          "Fehler bei der Session-Prüfung:",
+          error
+        );
+
+
+        window.location.replace("./");
 
       }
 
     })();
+
 
   </script>
 
