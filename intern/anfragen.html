@@ -1,40 +1,30 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
-
   <title>Anfragen – RuhrGeBeats</title>
-
   <meta
     name="robots"
     content="noindex, nofollow"
   >
-
   <link
     rel="icon"
     href="../logo.png"
   >
-
   <link
     rel="stylesheet"
     href="./intern.css"
   >
-
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
   ></script>
-
   <script
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
   ></script>
-
 
   <style>
 
@@ -66,16 +56,12 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-
       padding: 9px 15px;
-
       background: white;
       border: 1px solid var(--border);
       border-radius: 999px;
-
       font-size: 13px;
       font-weight: 700;
-
       transition: .2s ease;
     }
 
@@ -93,15 +79,11 @@
       background: white;
       border: 1px solid var(--border);
       border-radius: 18px;
-
       padding: 20px;
-
       color: var(--muted);
       text-align: center;
-
       margin-bottom: 20px;
     }
-
 
     .request-status.error {
       color: var(--danger);
@@ -120,65 +102,46 @@
       gap: 20px;
     }
 
-
     .request-card {
       background: var(--white);
-
       border: 1px solid var(--border);
       border-radius: 22px;
-
       box-shadow:
         0 15px 40px rgba(7,17,31,.06);
-
       overflow: hidden;
     }
 
-
     .request-top {
       padding: 24px 26px;
-
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-
       gap: 20px;
-
       border-bottom: 1px solid var(--border);
     }
 
-
     .request-title {
       margin: 0;
-
       font-size: 22px;
       letter-spacing: -.025em;
     }
 
-
     .request-type {
       margin-top: 4px;
-
       color: var(--blue-dark);
-
       font-size: 13px;
       font-weight: 800;
     }
 
-
     .request-date {
       flex-shrink: 0;
-
       padding: 6px 11px;
-
       background: #eaf5ff;
       color: var(--blue-dark);
-
       border-radius: 999px;
-
       font-size: 12px;
       font-weight: 800;
     }
-
 
     .request-body {
       padding: 25px 26px;
@@ -191,44 +154,33 @@
 
     .request-grid {
       display: grid;
-
       grid-template-columns:
         repeat(2, minmax(0, 1fr));
-
       gap: 24px;
     }
-
 
     .request-section {
       min-width: 0;
     }
 
-
     .request-section.full {
       grid-column: 1 / -1;
     }
 
-
     .request-section h3 {
       margin: 0 0 12px;
-
       font-size: 13px;
-
       text-transform: uppercase;
       letter-spacing: .08em;
-
       color: var(--muted);
     }
-
 
     .request-info {
       display: flex;
       flex-direction: column;
       gap: 7px;
-
       font-size: 14px;
     }
-
 
     .request-row {
       display: flex;
@@ -236,28 +188,21 @@
       align-items: flex-start;
     }
 
-
     .request-label {
       flex: 0 0 125px;
-
       color: var(--muted);
       font-size: 13px;
     }
 
-
     .request-value {
       min-width: 0;
-
       font-weight: 650;
-
       overflow-wrap: anywhere;
     }
-
 
     .request-value a {
       color: var(--blue-dark);
     }
-
 
     .request-value a:hover {
       text-decoration: underline;
@@ -270,19 +215,13 @@
 
     .request-message {
       padding: 16px;
-
       background: var(--light);
-
       border-radius: 13px;
-
       color: #3f4b57;
-
       font-size: 14px;
-
       white-space: pre-wrap;
       overflow-wrap: anywhere;
     }
-
 
     .request-message.empty {
       color: var(--muted);
@@ -296,13 +235,9 @@
 
     .request-meta {
       padding: 13px 26px;
-
       background: #fafbfc;
-
       border-top: 1px solid var(--border);
-
       color: var(--muted);
-
       font-size: 11px;
     }
 
@@ -318,33 +253,27 @@
         flex-direction: column;
       }
 
-
       .request-top {
         padding: 21px;
         flex-direction: column;
       }
 
-
       .request-body {
         padding: 21px;
       }
-
 
       .request-grid {
         grid-template-columns: 1fr;
         gap: 25px;
       }
 
-
       .request-section.full {
         grid-column: auto;
       }
 
-
       .request-label {
         flex-basis: 105px;
       }
-
 
       .request-meta {
         padding: 13px 21px;
@@ -362,48 +291,35 @@
       justify-content: flex-end;
       flex-wrap: wrap;
       gap: 10px;
-
       padding: 14px 26px;
-
       background: #fafbfc;
       border-top: 1px solid var(--border);
     }
 
-
     .request-action-button {
       border: 1px solid #d5dfe7;
       border-radius: 10px;
-
       padding: 9px 14px;
-
       background: white;
       color: #334454;
-
       font: inherit;
       font-size: 12px;
       font-weight: 800;
-
       cursor: pointer;
-
       transition: .2s ease;
     }
-
 
     .request-action-button:hover {
       border-color: #a9d4f5;
       color: var(--blue-dark);
-
       transform: translateY(-1px);
     }
 
-
     .request-action-button.primary {
       border-color: #0b5e9f;
-
       background: #0b5e9f;
       color: white;
     }
-
 
     .request-action-button.primary:hover {
       background: #084f87;
@@ -418,383 +334,257 @@
     .offer-overlay {
       position: fixed;
       inset: 0;
-
       z-index: 9999;
-
       display: none;
-
       align-items: center;
       justify-content: center;
-
       padding: 22px;
-
       background: rgba(7,17,31,.62);
-
       backdrop-filter: blur(5px);
     }
-
 
     .offer-overlay.open {
       display: flex;
     }
 
-
     .offer-modal {
       width: min(980px, 100%);
-
       max-height:
         calc(100vh - 44px);
-
       overflow: auto;
-
       background: white;
-
       border: 1px solid #dce4eb;
       border-radius: 18px;
-
       box-shadow:
         0 25px 80px rgba(0,0,0,.25);
     }
 
-
     .offer-modal-head {
       position: sticky;
-
       top: 0;
-
       z-index: 2;
-
       display: flex;
-
       justify-content: space-between;
-
       gap: 20px;
-
       padding: 22px 26px;
-
       background:
         rgba(255,255,255,.97);
-
       border-bottom:
         1px solid #e5ebf0;
     }
 
-
     .offer-modal-head h2 {
       margin: 0 0 5px;
-
       font-size: 24px;
     }
 
-
     .offer-modal-head p {
       margin: 0;
-
       color: var(--muted);
-
       font-size: 13px;
     }
-
 
     .offer-close {
       width: 38px;
       height: 38px;
-
       border:
         1px solid #d9e1e8;
-
       border-radius: 50%;
-
       background: white;
       color: #34424e;
-
       font-size: 21px;
-
       cursor: pointer;
-
       flex-shrink: 0;
     }
-
 
     .offer-modal-body {
       padding: 26px;
     }
 
-
     .offer-form-grid {
       display: grid;
-
       grid-template-columns:
         repeat(2, minmax(0, 1fr));
-
       gap: 16px;
-
       margin-bottom: 26px;
     }
-
 
     .offer-field.full {
       grid-column: 1 / -1;
     }
 
-
     .offer-field label {
       display: block;
-
       margin-bottom: 7px;
-
       color: #40505e;
-
       font-size: 12px;
       font-weight: 800;
     }
-
 
     .offer-field input,
     .offer-field textarea {
       width: 100%;
-
       box-sizing: border-box;
-
       border:
         1px solid #d7e0e7;
-
       border-radius: 10px;
-
       padding: 10px 12px;
-
       background: #fbfcfd;
       color: #18232d;
-
       font: inherit;
       font-size: 14px;
-
       outline: none;
     }
-
 
     .offer-field input:focus,
     .offer-field textarea:focus {
       border-color: #168cff;
-
       box-shadow:
         0 0 0 3px
         rgba(22,140,255,.10);
-
       background: white;
     }
 
-
     .offer-items-head {
       display: flex;
-
       justify-content: space-between;
-
       align-items: center;
-
       gap: 15px;
-
       margin-bottom: 12px;
     }
 
-
     .offer-items-head h3 {
       margin: 0;
-
       font-size: 17px;
     }
-
 
     .add-item-button {
       border:
         1px solid #0b5e9f;
-
       border-radius: 9px;
-
       padding: 8px 12px;
-
       background: white;
-
       color: #0b5e9f;
-
       font: inherit;
       font-size: 12px;
       font-weight: 800;
-
       cursor: pointer;
     }
 
-
     .offer-items {
       display: grid;
-
       gap: 8px;
     }
 
-
     .offer-item-row {
       display: grid;
-
       grid-template-columns:
         minmax(0,1fr)
         75px
         125px
         120px
         38px;
-
       gap: 8px;
-
       align-items: center;
     }
 
-
     .offer-item-row input {
       width: 100%;
-
       min-width: 0;
-
       box-sizing: border-box;
-
       border:
         1px solid #d7e0e7;
-
       border-radius: 9px;
-
       padding: 9px 10px;
-
       background: #fbfcfd;
-
       font: inherit;
       font-size: 13px;
     }
 
-
     .offer-item-total {
       padding: 9px 8px;
-
       border-radius: 9px;
-
       background: #f3f7fa;
-
       color: #1e2c37;
-
       text-align: right;
-
       font-size: 13px;
       font-weight: 800;
     }
-
 
     .remove-item-button {
       width: 38px;
       height: 38px;
-
       border:
         1px solid #e0e5e9;
-
       border-radius: 9px;
-
       background: white;
       color: #7a8791;
-
       font-size: 18px;
-
       cursor: pointer;
     }
-
 
     .offer-summary {
       width:
         min(430px, 100%);
-
       margin:
         20px 0 0 auto;
-
       border-top:
         1px solid #dce4eb;
     }
 
-
     .offer-summary-row {
       display: flex;
-
       justify-content:
         space-between;
-
       gap: 20px;
-
       padding: 8px 0;
-
       color: #53616d;
-
       font-size: 14px;
     }
 
-
     .offer-summary-row.total {
       padding-top: 11px;
-
       border-top:
         1px solid #cdd7df;
-
       color: #16212a;
-
       font-size: 17px;
-
       font-weight: 900;
     }
 
-
     .offer-modal-foot {
       display: flex;
-
       justify-content:
         flex-end;
-
       gap: 10px;
-
       padding: 17px 26px;
-
       border-top:
         1px solid #e5ebf0;
-
       background: #fafbfc;
     }
-
 
     .offer-cancel,
     .offer-create-pdf {
       border-radius: 10px;
-
       padding: 10px 16px;
-
       font: inherit;
-
       font-size: 13px;
       font-weight: 800;
-
       cursor: pointer;
     }
-
 
     .offer-cancel {
       border:
         1px solid #d6dfe6;
-
       background: white;
       color: #42515d;
     }
 
-
     .offer-create-pdf {
       border:
         1px solid #0b5e9f;
-
       background: #0b5e9f;
-
       color: white;
     }
-
 
     @media (max-width: 700px) {
 
@@ -802,21 +592,17 @@
         justify-content: stretch;
       }
 
-
       .request-action-button {
         flex: 1;
       }
-
 
       .offer-form-grid {
         grid-template-columns: 1fr;
       }
 
-
       .offer-field.full {
         grid-column: auto;
       }
-
 
       .offer-item-row {
         grid-template-columns:
@@ -825,23 +611,18 @@
           110px
           105px
           38px;
-
         overflow-x: auto;
       }
-
 
       .offer-modal-body {
         padding: 20px;
       }
 
-
       .offer-modal-foot {
         padding: 15px 20px;
-
         flex-direction:
           column-reverse;
       }
-
 
       .offer-cancel,
       .offer-create-pdf {
@@ -851,12 +632,9 @@
     }
 
   </style>
-
 </head>
 
-
 <body>
-
 
   <!-- HEADER -->
 
@@ -876,14 +654,12 @@
 
       </a>
 
-
       <div class="intern-header-right">
 
         <span
           id="userEmail"
           class="intern-user"
         ></span>
-
 
         <a
           href="../"
@@ -899,11 +675,9 @@
   </header>
 
 
-
   <!-- MAIN -->
 
   <main class="intern-layout">
-
 
     <!-- PAGE HEADER -->
 
@@ -925,7 +699,6 @@
 
       </div>
 
-
       <a
         href="./dashboard.html"
         class="back-dashboard"
@@ -934,7 +707,6 @@
       </a>
 
     </section>
-
 
 
     <!-- STATUS -->
@@ -947,7 +719,6 @@
     </div>
 
 
-
     <!-- REQUESTS -->
 
     <section
@@ -955,9 +726,7 @@
       class="requests-list"
     ></section>
 
-
   </main>
-
 
 
   <!-- ANGEBOT MODAL -->
@@ -1006,7 +775,6 @@
       <div class="offer-modal-body">
 
         <div class="offer-form-grid">
-
 
           <div class="offer-field">
 
@@ -1204,7 +972,6 @@
   </div>
 
 
-
   <!-- FOOTER -->
 
   <footer class="intern-footer">
@@ -1225,7 +992,6 @@
   </footer>
 
 
-
   <!-- SUPABASE -->
 
   <script>
@@ -1233,10 +999,8 @@
     const SUPABASE_URL =
       "https://spqsuedpmrxcbefpocho.supabase.co";
 
-
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
-
 
     const supabaseClient =
       window.supabase.createClient(
@@ -1270,9 +1034,10 @@
         value === null ||
         value === undefined
       ) {
-        return "";
-      }
 
+        return "";
+
+      }
 
       return String(value)
         .replaceAll("&", "&amp;")
@@ -1287,9 +1052,10 @@
     function formatDate(value) {
 
       if (!value) {
-        return "–";
-      }
 
+        return "–";
+
+      }
 
       const date =
         new Date(
@@ -1312,9 +1078,10 @@
     function formatDateTime(value) {
 
       if (!value) {
-        return "–";
-      }
 
+        return "–";
+
+      }
 
       const date =
         new Date(value);
@@ -1341,9 +1108,10 @@
         value === undefined ||
         value === ""
       ) {
-        return "–";
-      }
 
+        return "–";
+
+      }
 
       return `${value} Gäste`;
 
@@ -1356,19 +1124,22 @@
     ) {
 
       if (!start && !end) {
-        return "–";
-      }
 
+        return "–";
+
+      }
 
       if (start && end) {
-        return `${start} – ${end} Uhr`;
-      }
 
+        return `${start} – ${end} Uhr`;
+
+      }
 
       if (start) {
-        return `ab ${start} Uhr`;
-      }
 
+        return `ab ${start} Uhr`;
+
+      }
 
       return `bis ${end} Uhr`;
 
@@ -1503,7 +1274,6 @@
 
           <div class="request-grid">
 
-
             <!-- EVENT -->
 
             <div class="request-section">
@@ -1511,7 +1281,6 @@
               <h3>
                 Veranstaltung
               </h3>
-
 
               <div class="request-info">
 
@@ -1522,9 +1291,11 @@
                   </span>
 
                   <span class="request-value">
+
                     ${formatDate(
                       request.event_date
                     )}
+
                   </span>
 
                 </div>
@@ -1537,9 +1308,11 @@
                   </span>
 
                   <span class="request-value">
+
                     ${formatGuests(
                       request.guests
                     )}
+
                   </span>
 
                 </div>
@@ -1565,10 +1338,12 @@
                   </span>
 
                   <span class="request-value">
+
                     ${formatTimeRange(
                       request.start_time,
                       request.end_time
                     )}
+
                   </span>
 
                 </div>
@@ -1586,9 +1361,7 @@
                 Kontakt
               </h3>
 
-
               <div class="request-info">
-
 
                 <div class="request-row">
 
@@ -1652,7 +1425,6 @@
                 Rechnungsadresse
               </h3>
 
-
               <div class="request-info">
 
                 <div class="request-row">
@@ -1688,8 +1460,10 @@
                   </span>
 
                   <span class="request-value">
+
                     ${billingZip}
                     ${billingCity}
+
                   </span>
 
                 </div>
@@ -1706,7 +1480,6 @@
               <h3>
                 Nachricht
               </h3>
-
 
               <div
                 class="
@@ -1732,6 +1505,7 @@
         <div class="request-meta">
 
           Anfrage eingegangen:
+
           ${formatDateTime(
             request.created_at
           )}
@@ -1882,6 +1656,7 @@
         requestStatus.textContent =
           "Noch keine Anfragen vorhanden.";
 
+
         return;
 
       }
@@ -1963,7 +1738,9 @@
     ) {
 
       if (!value) {
+
         return "";
+
       }
 
 
@@ -2027,7 +1804,9 @@
 
 
       if (!raw) {
+
         return 0;
+
       }
 
 
@@ -2095,6 +1874,7 @@
           "Die Anfrage konnte nicht gefunden werden."
         );
 
+
         return;
 
       }
@@ -2152,10 +1932,8 @@
           request.billing_name ||
             request.name ||
             "",
-
           request.billing_street ||
             "",
-
           `${
             request.billing_zip ||
             ""
@@ -2163,7 +1941,6 @@
             request.billing_city ||
             ""
           }`.trim()
-
         ]
         .filter(Boolean)
         .join("\n");
@@ -2281,7 +2058,6 @@
           )}"
         >
 
-
         <input
           class="offer-quantity"
           type="number"
@@ -2289,7 +2065,6 @@
           step="0.01"
           value="${quantity}"
         >
-
 
         <input
           class="offer-price"
@@ -2301,13 +2076,11 @@
           )}"
         >
 
-
         <div
           class="offer-item-total"
         >
           0,00 €
         </div>
-
 
         <button
           type="button"
@@ -2367,10 +2140,13 @@
     function collectOfferItems() {
 
       return [
+
         ...document.querySelectorAll(
           "#offerItems .offer-item-row"
         )
+
       ]
+
       .map(
         row => ({
 
@@ -2402,6 +2178,7 @@
 
         })
       )
+
       .filter(
         item =>
           item.description ||
@@ -2519,6 +2296,7 @@
 
                 canvas.width =
                   img.naturalWidth;
+
 
                 canvas.height =
                   img.naturalHeight;
@@ -2760,16 +2538,18 @@
 
 
         /*
-          Wasserzeichen
+          =========================================
+          ORIGINALES ANGEBOTS-WASSERZEICHEN
+          =========================================
         */
 
-        const logo =
+        const offerWatermark =
           await loadImageData(
-            "../logo.png"
+            "./angebot-wasserzeichen.png"
           );
 
 
-        if (logo) {
+        if (offerWatermark) {
 
           try {
 
@@ -2785,13 +2565,21 @@
               );
 
 
+              /*
+                Das ist das aus dem Original-
+                Angebot extrahierte Wasserzeichen.
+
+                Es wird quadratisch eingesetzt,
+                damit das Motiv nicht verzerrt wird.
+              */
+
               doc.addImage(
-                logo,
+                offerWatermark,
                 "PNG",
                 31,
-                83,
+                72,
                 148,
-                112
+                148
               );
 
 
@@ -2804,24 +2592,34 @@
             } else {
 
               doc.addImage(
-                logo,
+                offerWatermark,
                 "PNG",
                 31,
-                83,
+                72,
                 148,
-                112
+                148
               );
 
             }
 
-          } catch (e) {}
+          } catch (e) {
+
+            console.warn(
+              "Wasserzeichen konnte nicht eingefügt werden:",
+              e
+            );
+
+          }
 
         }
 
 
         /*
+          =========================================
           KOPF
+          =========================================
         */
+
 
         doc.setTextColor(
           ...dark
@@ -2914,8 +2712,11 @@
 
 
         /*
+          =========================================
           KUNDENADRESSE
+          =========================================
         */
+
 
         doc.setFont(
           "helvetica",
@@ -2956,8 +2757,11 @@
 
 
         /*
+          =========================================
           EINLEITUNG
+          =========================================
         */
+
 
         const intro =
           `Wir bedanken uns für Ihre Anfrage. Gerne teilen wir Ihnen unser Angebot für Ihre ${event}${
@@ -3000,8 +2804,11 @@
 
 
         /*
+          =========================================
           TABELLE
+          =========================================
         */
+
 
         doc.setTextColor(
           ...blue
@@ -3165,8 +2972,11 @@
 
 
         /*
+          =========================================
           SUMMEN
+          =========================================
         */
+
 
         const summaryY =
           Math.max(
@@ -3312,8 +3122,11 @@
 
 
         /*
+          =========================================
           SCHLUSSTEXT
+          =========================================
         */
+
 
         const closingY =
           Math.max(
@@ -3360,8 +3173,11 @@
 
 
         /*
+          =========================================
           FOOTER
+          =========================================
         */
+
 
         doc.setDrawColor(
           190,
@@ -3497,6 +3313,7 @@
             "Unbekannter Fehler"
           )
         );
+
 
       } finally {
 
@@ -4033,6 +3850,7 @@
           )
         );
 
+
       } finally {
 
         button.disabled =
@@ -4050,6 +3868,7 @@
     /*
       MODAL SCHLIESSEN
     */
+
 
     document
       .getElementById(
@@ -4126,7 +3945,9 @@
 
 
       if (!loggedIn) {
+
         return;
+
       }
 
 
@@ -4139,7 +3960,5 @@
 
   </script>
 
-
 </body>
-
 </html>
