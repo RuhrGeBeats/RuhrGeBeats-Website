@@ -731,7 +731,27 @@
 </head>
 
 
-<body>
+<body class="auth-checking">
+
+  <style>
+    body.auth-checking > * {
+      visibility: hidden;
+    }
+
+    body.auth-checking::before {
+      content: "Anmeldung wird geprüft …";
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f7fa;
+      color: #172033;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      z-index: 99999;
+    }
+  </style>
 
 
   <!-- =========================================
@@ -1153,6 +1173,7 @@
         return "";
       }
 
+
       return new Date(dateString).toLocaleDateString(
         "de-DE",
         {
@@ -1208,6 +1229,9 @@
         "userEmail"
       ).textContent =
         data.session.user.email;
+
+
+      document.body.classList.remove("auth-checking");
 
 
       return data.session;
