@@ -31,10 +31,38 @@
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
   ></script>
 
+
+  <style>
+
+    /*
+      Der interne Bereich bleibt unsichtbar,
+      bis eine gültige Supabase-Session bestätigt wurde.
+    */
+
+    body.auth-checking > * {
+      visibility: hidden;
+    }
+
+    body.auth-checking::before {
+      content: "Anmeldung wird geprüft …";
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f7fa;
+      color: #172033;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      z-index: 99999;
+    }
+
+  </style>
+
 </head>
 
 
-<body>
+<body class="auth-checking">
 
 
   <!-- HEADER -->
@@ -201,29 +229,68 @@
 
     async function checkLogin() {
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient.auth.getSession();
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth.getSession();
 
 
-      if (error || !data.session) {
+        /*
+          Keine gültige Session:
+          sofort zurück zur Login-Seite.
+        */
+
+        if (
+          error ||
+          !data ||
+          !data.session ||
+          !data.session.user
+        ) {
+
+          window.location.replace("./");
+
+          return;
+
+        }
+
+
+        /*
+          Gültige Session vorhanden.
+          Jetzt erst den internen Bereich freigeben.
+        */
+
+        document.getElementById(
+          "userEmail"
+        ).textContent =
+          data.session.user.email;
+
+
+        document.body.classList.remove(
+          "auth-checking"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Authentifizierungsprüfung fehlgeschlagen:",
+          error
+        );
+
 
         window.location.replace("./");
 
-        return;
-
       }
-
-
-      document.getElementById(
-        "userEmail"
-      ).textContent =
-        data.session.user.email;
 
     }
 
+
+    /*
+      Logout
+    */
 
     document.getElementById(
       "logoutButton"
@@ -231,13 +298,30 @@
       "click",
       async function() {
 
+        const button =
+          document.getElementById(
+            "logoutButton"
+          );
+
+
+        button.disabled = true;
+
+        button.textContent =
+          "Abmeldung …";
+
+
         await supabaseClient.auth.signOut();
+
 
         window.location.replace("./");
 
       }
     );
 
+
+    /*
+      Authentifizierung sofort prüfen.
+    */
 
     checkLogin();
 
