@@ -12,6 +12,10 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
+    /* ============================================================
+       AUTH CHECK
+    ============================================================ */
+
     body.auth-checking > * {
       visibility: hidden;
     }
@@ -30,6 +34,11 @@
       z-index: 99999;
     }
 
+
+    /* ============================================================
+       HEADER LOGO
+    ============================================================ */
+
     .intern-header img {
       width: 54px !important;
       height: 54px !important;
@@ -38,6 +47,11 @@
       object-fit: contain !important;
       display: block;
     }
+
+
+    /* ============================================================
+       PAGE
+    ============================================================ */
 
     .equipment-page {
       max-width: 1200px;
@@ -60,6 +74,11 @@
       color: #0870d8;
       text-decoration: underline;
     }
+
+
+    /* ============================================================
+       TOP
+    ============================================================ */
 
     .equipment-top {
       display: flex;
@@ -91,6 +110,11 @@
       line-height: 1.6;
     }
 
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+
     .primary-button {
       border: 0;
       border-radius: 12px;
@@ -107,6 +131,11 @@
       background: #0870d8;
     }
 
+
+    /* ============================================================
+       EQUIPMENT GRID
+    ============================================================ */
+
     .equipment-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -121,17 +150,29 @@
       box-shadow: 0 8px 25px rgba(7,17,31,.06);
     }
 
+
+    /* ============================================================
+       EQUIPMENT BILDER
+       
+       WICHTIG:
+       16:9 statt fester Höhe
+       contain statt cover
+       Dadurch wird nichts mehr abgeschnitten.
+    ============================================================ */
+
     .equipment-gallery {
       position: relative;
-      height: 260px;
-      background: #edf1f5;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #ffffff;
       overflow: hidden;
     }
 
     .equipment-gallery img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
       display: block;
     }
 
@@ -144,6 +185,11 @@
       color: #66717f;
       font-size: 14px;
     }
+
+
+    /* ============================================================
+       GALLERY BUTTONS
+    ============================================================ */
 
     .gallery-arrow {
       position: absolute;
@@ -188,6 +234,11 @@
       font-weight: 700;
     }
 
+
+    /* ============================================================
+       EQUIPMENT CONTENT
+    ============================================================ */
+
     .equipment-content {
       padding: 20px;
     }
@@ -218,6 +269,11 @@
       white-space: pre-wrap;
     }
 
+
+    /* ============================================================
+       STATUS
+    ============================================================ */
+
     .status-badge {
       flex-shrink: 0;
       border-radius: 999px;
@@ -235,6 +291,11 @@
       color: #c62828;
       background: #fdecec;
     }
+
+
+    /* ============================================================
+       ACTIONS
+    ============================================================ */
 
     .equipment-actions {
       display: flex;
@@ -280,6 +341,11 @@
       background: #f9dada;
     }
 
+
+    /* ============================================================
+       EMPTY STATE
+    ============================================================ */
+
     .empty-state {
       grid-column: 1 / -1;
       background: #fff;
@@ -297,7 +363,10 @@
       font-size: 18px;
     }
 
-    /* Modal */
+
+    /* ============================================================
+       MODAL
+    ============================================================ */
 
     .modal-backdrop {
       position: fixed;
@@ -351,6 +420,11 @@
     .modal-body {
       padding: 24px;
     }
+
+
+    /* ============================================================
+       FORM
+    ============================================================ */
 
     .form-group {
       margin-bottom: 18px;
@@ -409,6 +483,11 @@
       color: #17202b;
     }
 
+
+    /* ============================================================
+       UPLOAD
+    ============================================================ */
+
     .upload-box {
       border: 1px dashed #b9c4cf;
       border-radius: 13px;
@@ -426,6 +505,11 @@
       font-size: 12px;
       line-height: 1.45;
     }
+
+
+    /* ============================================================
+       IMAGE LIST
+    ============================================================ */
 
     .image-list {
       margin-top: 18px;
@@ -483,6 +567,11 @@
       color: #c62828;
     }
 
+
+    /* ============================================================
+       MODAL FOOTER
+    ============================================================ */
+
     .modal-footer {
       padding: 18px 24px;
       border-top: 1px solid #dfe5eb;
@@ -490,6 +579,11 @@
       justify-content: flex-end;
       gap: 9px;
     }
+
+
+    /* ============================================================
+       MESSAGES
+    ============================================================ */
 
     .message {
       display: none;
@@ -520,7 +614,13 @@
       color: #66717f;
     }
 
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+
     @media (max-width: 800px) {
+
       .equipment-grid {
         grid-template-columns: 1fr;
       }
@@ -535,7 +635,9 @@
       }
     }
 
+
     @media (max-width: 600px) {
+
       .equipment-page {
         padding-left: 16px;
         padding-right: 16px;
@@ -545,8 +647,13 @@
         font-size: 28px;
       }
 
+      /*
+        Auch auf dem Smartphone bleibt das Bild 16:9.
+        Keine feste Höhe mehr.
+      */
       .equipment-gallery {
-        height: 220px;
+        aspect-ratio: 16 / 9;
+        height: auto;
       }
 
       .modal-backdrop {
@@ -572,1546 +679,1463 @@
   </style>
 </head>
 
+
 <body class="auth-checking">
 
-<header class="intern-header">
-  <div class="intern-header-inner">
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
 
-    <a href="./dashboard.html" class="intern-logo">
-      <img
-        src="../logo.png"
-        alt="RuhrGeBeats"
-        width="54"
-        height="54"
-      >
+  <header class="intern-header">
+
+    <div class="intern-header-inner">
+
+      <a href="./dashboard.html" class="intern-logo">
+
+        <img
+          src="../logo.png"
+          alt="RuhrGeBeats"
+          width="54"
+          height="54"
+        >
+
+      </a>
+
+
+      <div class="intern-header-right">
+
+        <span
+          id="userEmail"
+          class="intern-user"
+        ></span>
+
+        <a
+          href="../"
+          class="intern-public-link"
+        >
+          Zur Website
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================================================
+       MAIN
+  ========================================================== -->
+
+  <main class="equipment-page">
+
+    <a
+      href="./dashboard.html"
+      class="equipment-back"
+    >
+      ← Zum Dashboard
     </a>
 
-    <div class="intern-header-right">
-      <span id="userEmail" class="intern-user"></span>
-      <a href="../" class="intern-public-link">Zur Website</a>
-    </div>
 
-  </div>
-</header>
+    <div class="equipment-top">
 
+      <div>
 
-<main class="equipment-page">
+        <div class="equipment-eyebrow">
+          Interner Bereich
+        </div>
 
-  <!-- NEU: Zurück zum Dashboard -->
-  <a href="./dashboard.html" class="equipment-back">
-    ← Zum Dashboard
-  </a>
+        <h1>
+          Equipment
+        </h1>
 
+        <p>
+          Verwalte das Equipment, das Kunden bei einer Anfrage
+          auswählen können.
+        </p>
 
-  <div class="equipment-top">
+      </div>
 
-    <div>
-      <div class="equipment-eyebrow">Interner Bereich</div>
-
-      <h1>Equipment</h1>
-
-      <p>
-        Verwalte das Equipment, das Kunden bei einer Anfrage
-        auswählen können.
-      </p>
-    </div>
-
-    <button
-      type="button"
-      class="primary-button"
-      id="addEquipmentButton"
-    >
-      + Equipment hinzufügen
-    </button>
-
-  </div>
-
-
-  <div id="pageMessage" class="message"></div>
-
-
-  <section id="equipmentGrid" class="equipment-grid">
-    <div class="loading">
-      Equipment wird geladen …
-    </div>
-  </section>
-
-</main>
-
-
-<footer class="intern-footer">
-  <span>RuhrGeBeats GbR · Interner Bereich</span>
-
-  <button
-    type="button"
-    id="logoutButton"
-    class="logout-button"
-  >
-    Abmelden
-  </button>
-</footer>
-
-
-<!-- ========================================================= -->
-<!-- EQUIPMENT MODAL -->
-<!-- ========================================================= -->
-
-<div
-  id="equipmentModal"
-  class="modal-backdrop"
-  aria-hidden="true"
->
-
-  <div class="modal">
-
-    <div class="modal-header">
-
-      <h2 id="modalTitle">
-        Equipment hinzufügen
-      </h2>
 
       <button
         type="button"
-        class="modal-close"
-        id="closeModalButton"
-        aria-label="Schließen"
+        class="primary-button"
+        id="addEquipmentButton"
       >
-        ×
+        + Equipment hinzufügen
       </button>
 
     </div>
 
 
-    <div class="modal-body">
+    <div
+      id="pageMessage"
+      class="message"
+    ></div>
 
-      <div id="modalMessage" class="message"></div>
+
+    <section
+      id="equipmentGrid"
+      class="equipment-grid"
+    >
+
+      <div class="loading">
+        Equipment wird geladen …
+      </div>
+
+    </section>
+
+  </main>
 
 
-      <form id="equipmentForm">
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
 
-        <input
-          type="hidden"
-          id="equipmentId"
+  <footer class="intern-footer">
+
+    <span>
+      RuhrGeBeats GbR · Interner Bereich
+    </span>
+
+
+    <button
+      type="button"
+      id="logoutButton"
+      class="logout-button"
+    >
+      Abmelden
+    </button>
+
+  </footer>
+
+
+  <!-- =========================================================
+       EQUIPMENT MODAL
+  ========================================================== -->
+
+  <div
+    id="equipmentModal"
+    class="modal-backdrop"
+    aria-hidden="true"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2 id="modalTitle">
+          Equipment hinzufügen
+        </h2>
+
+
+        <button
+          type="button"
+          class="modal-close"
+          id="closeModalButton"
+          aria-label="Schließen"
         >
+          ×
+        </button>
+
+      </div>
 
 
-        <div class="form-group">
+      <div class="modal-body">
 
-          <label for="equipmentName">
-            Name *
-          </label>
-
-          <input
-            type="text"
-            id="equipmentName"
-            required
-            placeholder="z. B. KLS-180 Lichtbar"
-          >
-
-        </div>
+        <div
+          id="modalMessage"
+          class="message"
+        ></div>
 
 
-        <div class="form-group">
-
-          <label for="equipmentCategory">
-            Kategorie
-          </label>
+        <form id="equipmentForm">
 
           <input
-            type="text"
-            id="equipmentCategory"
-            placeholder="z. B. Lichttechnik"
+            type="hidden"
+            id="equipmentId"
           >
 
-        </div>
 
+          <div class="form-group">
 
-        <div class="form-group">
-
-          <label for="equipmentDescription">
-            Beschreibung
-          </label>
-
-          <textarea
-            id="equipmentDescription"
-            placeholder="Kurze Beschreibung des Equipments …"
-          ></textarea>
-
-        </div>
-
-
-        <div class="checkbox-row">
-
-          <input
-            type="checkbox"
-            id="equipmentActive"
-            checked
-          >
-
-          <label for="equipmentActive">
-            Für Kunden sichtbar
-          </label>
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            Bilder
-          </label>
-
-          <div class="upload-box">
+            <label for="equipmentName">
+              Name *
+            </label>
 
             <input
-              type="file"
-              id="equipmentImages"
-              accept="image/jpeg,image/png,image/webp,image/gif"
-              multiple
+              type="text"
+              id="equipmentName"
+              required
+              placeholder="z. B. KLS-180 Lichtbar"
             >
 
-            <div class="upload-hint">
-              JPEG, PNG, WEBP oder GIF · maximal 10 MB pro Bild.
-              Mehrere Bilder können gleichzeitig ausgewählt werden.
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="equipmentCategory">
+              Kategorie
+            </label>
+
+            <input
+              type="text"
+              id="equipmentCategory"
+              placeholder="z. B. Lichttechnik"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="equipmentDescription">
+              Beschreibung
+            </label>
+
+            <textarea
+              id="equipmentDescription"
+              placeholder="Kurze Beschreibung des Equipments …"
+            ></textarea>
+
+          </div>
+
+
+          <div class="checkbox-row">
+
+            <input
+              type="checkbox"
+              id="equipmentActive"
+              checked
+            >
+
+            <label for="equipmentActive">
+              Für Kunden sichtbar
+            </label>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Bilder
+            </label>
+
+
+            <div class="upload-box">
+
+              <input
+                type="file"
+                id="equipmentImages"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                multiple
+              >
+
+
+              <div class="upload-hint">
+                JPEG, PNG, WEBP oder GIF · maximal 10 MB pro Bild.
+                Mehrere Bilder können gleichzeitig ausgewählt werden.
+              </div>
+
             </div>
 
           </div>
 
-        </div>
+
+          <div
+            id="imageList"
+            class="image-list"
+          ></div>
+
+        </form>
+
+      </div>
 
 
-        <div id="imageList" class="image-list"></div>
+      <div class="modal-footer">
 
-      </form>
+        <button
+          type="button"
+          class="secondary-button"
+          id="cancelModalButton"
+        >
+          Abbrechen
+        </button>
 
-    </div>
 
+        <button
+          type="submit"
+          form="equipmentForm"
+          class="primary-button"
+          id="saveEquipmentButton"
+        >
+          Speichern
+        </button>
 
-    <div class="modal-footer">
-
-      <button
-        type="button"
-        class="secondary-button"
-        id="cancelModalButton"
-      >
-        Abbrechen
-      </button>
-
-      <button
-        type="submit"
-        form="equipmentForm"
-        class="primary-button"
-        id="saveEquipmentButton"
-      >
-        Speichern
-      </button>
+      </div>
 
     </div>
 
   </div>
 
-</div>
 
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
 
-<script>
-/* ============================================================
-   SUPABASE
-============================================================ */
+  <script>
 
-const SUPABASE_URL =
-  "https://spqsuedpmrxcbefpocho.supabase.co";
+    /* ============================================================
+       SUPABASE
+    ============================================================ */
 
-const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
+    const SUPABASE_URL =
+      "https://spqsuedpmrxcbefpocho.supabase.co";
 
-const STORAGE_BUCKET = "equipment-images";
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+    const STORAGE_BUCKET =
+      "equipment-images";
 
-
-/* ============================================================
-   STATE
-============================================================ */
-
-let equipmentItems = [];
-
-let currentEquipment = null;
-
-let currentImages = [];
-
-let currentGalleryIndexes = {};
-
-
-/* ============================================================
-   ELEMENTS
-============================================================ */
-
-const equipmentGrid =
-  document.getElementById("equipmentGrid");
-
-const equipmentModal =
-  document.getElementById("equipmentModal");
-
-const equipmentForm =
-  document.getElementById("equipmentForm");
-
-const modalTitle =
-  document.getElementById("modalTitle");
-
-const equipmentId =
-  document.getElementById("equipmentId");
-
-const equipmentName =
-  document.getElementById("equipmentName");
-
-const equipmentCategory =
-  document.getElementById("equipmentCategory");
-
-const equipmentDescription =
-  document.getElementById("equipmentDescription");
-
-const equipmentActive =
-  document.getElementById("equipmentActive");
-
-const equipmentImages =
-  document.getElementById("equipmentImages");
-
-const imageList =
-  document.getElementById("imageList");
-
-const pageMessage =
-  document.getElementById("pageMessage");
-
-const modalMessage =
-  document.getElementById("modalMessage");
-
-const saveEquipmentButton =
-  document.getElementById("saveEquipmentButton");
-
-
-/* ============================================================
-   AUTH
-============================================================ */
-
-async function checkLogin() {
-
-  try {
-
-    const {
-      data,
-      error
-    } = await supabaseClient.auth.getSession();
-
-    if (
-      error ||
-      !data ||
-      !data.session ||
-      !data.session.user
-    ) {
-
-      window.location.replace("./");
-
-      return;
-    }
-
-    document.getElementById("userEmail").textContent =
-      data.session.user.email || "";
-
-    document.body.classList.remove("auth-checking");
-
-    await loadEquipment();
-
-  } catch (error) {
-
-    console.error(
-      "Authentifizierungsprüfung fehlgeschlagen:",
-      error
-    );
-
-    window.location.replace("./");
-  }
-}
-
-
-/* ============================================================
-   MESSAGES
-============================================================ */
-
-function showPageMessage(text, type = "success") {
-
-  pageMessage.textContent = text;
-
-  pageMessage.className =
-    "message show " + type;
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-}
-
-
-function clearPageMessage() {
-
-  pageMessage.textContent = "";
-
-  pageMessage.className =
-    "message";
-}
-
-
-function showModalMessage(text, type = "success") {
-
-  modalMessage.textContent = text;
-
-  modalMessage.className =
-    "message show " + type;
-
-}
-
-
-function clearModalMessage() {
-
-  modalMessage.textContent = "";
-
-  modalMessage.className =
-    "message";
-}
-
-
-/* ============================================================
-   LOAD EQUIPMENT
-============================================================ */
-
-async function loadEquipment() {
-
-  equipmentGrid.innerHTML =
-    '<div class="loading">Equipment wird geladen …</div>';
-
-  const {
-    data,
-    error
-  } = await supabaseClient
-    .from("equipment")
-    .select(`
-      *,
-      equipment_images (
-        id,
-        equipment_id,
-        storage_path,
-        sort_order,
-        created_at
-      )
-    `)
-    .order("sort_order", {
-      ascending: true
-    })
-    .order("created_at", {
-      ascending: true,
-      referencedTable: "equipment_images"
-    });
-
-
-  if (error) {
-
-    console.error(error);
-
-    equipmentGrid.innerHTML = `
-      <div class="empty-state">
-        <strong>Equipment konnte nicht geladen werden.</strong>
-        ${escapeHtml(error.message)}
-      </div>
-    `;
-
-    return;
-  }
-
-
-  equipmentItems = data || [];
-
-  equipmentItems.forEach(item => {
-
-    if (!Array.isArray(item.equipment_images)) {
-      item.equipment_images = [];
-    }
-
-    item.equipment_images.sort(
-      (a, b) =>
-        (a.sort_order || 0) -
-        (b.sort_order || 0)
-    );
-
-  });
-
-
-  renderEquipment();
-}
-
-
-/* ============================================================
-   STORAGE URL
-============================================================ */
-
-function getImageUrl(path) {
-
-  if (!path) {
-    return "";
-  }
-
-  const {
-    data
-  } = supabaseClient
-    .storage
-    .from(STORAGE_BUCKET)
-    .getPublicUrl(path);
-
-  return data.publicUrl;
-}
-
-
-/* ============================================================
-   RENDER
-============================================================ */
-
-function renderEquipment() {
-
-  if (!equipmentItems.length) {
-
-    equipmentGrid.innerHTML = `
-      <div class="empty-state">
-        <strong>Noch kein Equipment vorhanden.</strong>
-        Lege über „Equipment hinzufügen“ dein erstes Gerät an.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  equipmentGrid.innerHTML =
-    equipmentItems
-      .map(renderEquipmentCard)
-      .join("");
-
-
-  equipmentItems.forEach(item => {
-
-    if (!currentGalleryIndexes[item.id]) {
-      currentGalleryIndexes[item.id] = 0;
-    }
-
-  });
-
-
-  attachGalleryEvents();
-}
-
-
-/* ============================================================
-   EQUIPMENT CARD
-============================================================ */
-
-function renderEquipmentCard(item) {
-
-  const images =
-    Array.isArray(item.equipment_images)
-      ? item.equipment_images
-      : [];
-
-
-  let galleryHtml = "";
-
-
-  if (images.length) {
-
-    const index =
-      Math.min(
-        currentGalleryIndexes[item.id] || 0,
-        images.length - 1
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
       );
 
-    const image =
-      images[index];
+
+    /* ============================================================
+       STATE
+    ============================================================ */
+
+    let equipmentItems = [];
+
+    let currentEquipment = null;
+
+    let currentImages = [];
+
+    let currentGalleryIndexes = {};
 
 
-    galleryHtml = `
-      <img
-        src="${escapeAttribute(getImageUrl(image.storage_path))}"
-        alt="${escapeAttribute(item.name)}"
-      >
-    `;
+    /* ============================================================
+       ELEMENTS
+    ============================================================ */
+
+    const equipmentGrid =
+      document.getElementById(
+        "equipmentGrid"
+      );
+
+    const equipmentModal =
+      document.getElementById(
+        "equipmentModal"
+      );
+
+    const equipmentForm =
+      document.getElementById(
+        "equipmentForm"
+      );
+
+    const modalTitle =
+      document.getElementById(
+        "modalTitle"
+      );
+
+    const equipmentId =
+      document.getElementById(
+        "equipmentId"
+      );
+
+    const equipmentName =
+      document.getElementById(
+        "equipmentName"
+      );
+
+    const equipmentCategory =
+      document.getElementById(
+        "equipmentCategory"
+      );
+
+    const equipmentDescription =
+      document.getElementById(
+        "equipmentDescription"
+      );
+
+    const equipmentActive =
+      document.getElementById(
+        "equipmentActive"
+      );
+
+    const equipmentImages =
+      document.getElementById(
+        "equipmentImages"
+      );
+
+    const imageList =
+      document.getElementById(
+        "imageList"
+      );
+
+    const pageMessage =
+      document.getElementById(
+        "pageMessage"
+      );
+
+    const modalMessage =
+      document.getElementById(
+        "modalMessage"
+      );
+
+    const saveEquipmentButton =
+      document.getElementById(
+        "saveEquipmentButton"
+      );
 
 
-    if (images.length > 1) {
+    /* ============================================================
+       AUTH
+    ============================================================ */
 
-      galleryHtml += `
+    async function checkLogin() {
 
-        <button
-          type="button"
-          class="gallery-arrow gallery-prev"
-          data-gallery-action="prev"
-          data-equipment-id="${item.id}"
-          aria-label="Vorheriges Bild"
-        >
-          ‹
-        </button>
+      try {
 
-        <button
-          type="button"
-          class="gallery-arrow gallery-next"
-          data-gallery-action="next"
-          data-equipment-id="${item.id}"
-          aria-label="Nächstes Bild"
-        >
-          ›
-        </button>
+        const {
+          data,
+          error
+        } = await supabaseClient.auth.getSession();
 
-        <div class="gallery-counter">
-          ${index + 1} / ${images.length}
-        </div>
 
-      `;
+        if (
+          error ||
+          !data ||
+          !data.session ||
+          !data.session.user
+        ) {
+
+          window.location.replace("./");
+
+          return;
+        }
+
+
+        document.getElementById(
+          "userEmail"
+        ).textContent =
+          data.session.user.email || "";
+
+
+        document.body.classList.remove(
+          "auth-checking"
+        );
+
+
+        await loadEquipment();
+
+
+      } catch (error) {
+
+        console.error(
+          "Authentifizierungsprüfung fehlgeschlagen:",
+          error
+        );
+
+        window.location.replace("./");
+
+      }
+
     }
 
-  } else {
 
-    galleryHtml = `
-      <div class="gallery-empty">
-        Noch kein Bild vorhanden
-      </div>
-    `;
+    /* ============================================================
+       MESSAGES
+    ============================================================ */
 
-  }
+    function showPageMessage(
+      text,
+      type = "success"
+    ) {
 
+      pageMessage.textContent =
+        text;
 
-  return `
-
-    <article class="equipment-card">
-
-      <div class="equipment-gallery">
-        ${galleryHtml}
-      </div>
+      pageMessage.className =
+        "message show " + type;
 
 
-      <div class="equipment-content">
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
 
-        <div class="equipment-title-row">
+    }
 
-          <div>
 
-            <h2 class="equipment-title">
-              ${escapeHtml(item.name)}
-            </h2>
+    function clearPageMessage() {
+
+      pageMessage.textContent =
+        "";
+
+      pageMessage.className =
+        "message";
+
+    }
+
+
+    function showModalMessage(
+      text,
+      type = "success"
+    ) {
+
+      modalMessage.textContent =
+        text;
+
+      modalMessage.className =
+        "message show " + type;
+
+    }
+
+
+    function clearModalMessage() {
+
+      modalMessage.textContent =
+        "";
+
+      modalMessage.className =
+        "message";
+
+    }
+
+
+    /* ============================================================
+       LOAD EQUIPMENT
+    ============================================================ */
+
+    async function loadEquipment() {
+
+      equipmentGrid.innerHTML =
+        '<div class="loading">Equipment wird geladen …</div>';
+
+
+      const {
+        data,
+        error
+      } = await supabaseClient
+        .from("equipment")
+        .select(`
+          *,
+          equipment_images (
+            id,
+            equipment_id,
+            storage_path,
+            sort_order,
+            created_at
+          )
+        `)
+        .order(
+          "sort_order",
+          {
+            ascending: true
+          }
+        )
+        .order(
+          "created_at",
+          {
+            ascending: true,
+            referencedTable:
+              "equipment_images"
+          }
+        );
+
+
+      if (error) {
+
+        console.error(error);
+
+
+        equipmentGrid.innerHTML = `
+          <div class="empty-state">
+
+            <strong>
+              Equipment konnte nicht geladen werden.
+            </strong>
+
+            ${escapeHtml(error.message)}
+
+          </div>
+        `;
+
+        return;
+      }
+
+
+      equipmentItems =
+        data || [];
+
+
+      equipmentItems.forEach(
+        item => {
+
+          if (
+            !Array.isArray(
+              item.equipment_images
+            )
+          ) {
+
+            item.equipment_images =
+              [];
+
+          }
+
+
+          item.equipment_images.sort(
+            (a, b) =>
+              (a.sort_order || 0) -
+              (b.sort_order || 0)
+          );
+
+        }
+      );
+
+
+      renderEquipment();
+
+    }
+
+
+    /* ============================================================
+       STORAGE URL
+    ============================================================ */
+
+    function getImageUrl(path) {
+
+      if (!path) {
+        return "";
+      }
+
+
+      const {
+        data
+      } = supabaseClient
+        .storage
+        .from(STORAGE_BUCKET)
+        .getPublicUrl(path);
+
+
+      return data.publicUrl;
+
+    }
+
+
+    /* ============================================================
+       RENDER
+    ============================================================ */
+
+    function renderEquipment() {
+
+      if (!equipmentItems.length) {
+
+        equipmentGrid.innerHTML = `
+          <div class="empty-state">
+
+            <strong>
+              Noch kein Equipment vorhanden.
+            </strong>
+
+            Lege über
+            „Equipment hinzufügen“
+            dein erstes Gerät an.
+
+          </div>
+        `;
+
+        return;
+      }
+
+
+      equipmentGrid.innerHTML =
+        equipmentItems
+          .map(
+            renderEquipmentCard
+          )
+          .join("");
+
+
+      equipmentItems.forEach(
+        item => {
+
+          if (
+            currentGalleryIndexes[
+              item.id
+            ] === undefined
+          ) {
+
+            currentGalleryIndexes[
+              item.id
+            ] = 0;
+
+          }
+
+        }
+      );
+
+
+      attachGalleryEvents();
+
+    }
+
+
+    /* ============================================================
+       EQUIPMENT CARD
+    ============================================================ */
+
+    function renderEquipmentCard(item) {
+
+      const images =
+        Array.isArray(
+          item.equipment_images
+        )
+          ? item.equipment_images
+          : [];
+
+
+      let galleryHtml =
+        "";
+
+
+      if (images.length) {
+
+        const index =
+          Math.min(
+            currentGalleryIndexes[
+              item.id
+            ] || 0,
+            images.length - 1
+          );
+
+
+        const image =
+          images[index];
+
+
+        galleryHtml = `
+          <img
+            src="${escapeAttribute(
+              getImageUrl(
+                image.storage_path
+              )
+            )}"
+            alt="${escapeAttribute(
+              item.name
+            )}"
+          >
+        `;
+
+
+        if (images.length > 1) {
+
+          galleryHtml += `
+
+            <button
+              type="button"
+              class="gallery-arrow gallery-prev"
+              data-gallery-action="prev"
+              data-equipment-id="${item.id}"
+              aria-label="Vorheriges Bild"
+            >
+              ‹
+            </button>
+
+
+            <button
+              type="button"
+              class="gallery-arrow gallery-next"
+              data-gallery-action="next"
+              data-equipment-id="${item.id}"
+              aria-label="Nächstes Bild"
+            >
+              ›
+            </button>
+
+
+            <div class="gallery-counter">
+              ${index + 1} / ${images.length}
+            </div>
+
+          `;
+
+        }
+
+
+      } else {
+
+        galleryHtml = `
+          <div class="gallery-empty">
+            Noch kein Bild vorhanden
+          </div>
+        `;
+
+      }
+
+
+      return `
+
+        <article class="equipment-card">
+
+          <div class="equipment-gallery">
+            ${galleryHtml}
+          </div>
+
+
+          <div class="equipment-content">
+
+            <div class="equipment-title-row">
+
+              <div>
+
+                <h2 class="equipment-title">
+                  ${escapeHtml(item.name)}
+                </h2>
+
+
+                ${
+                  item.category
+                    ? `
+                      <div class="equipment-category">
+                        ${escapeHtml(
+                          item.category
+                        )}
+                      </div>
+                    `
+                    : ""
+                }
+
+              </div>
+
+
+              <span
+                class="status-badge ${
+                  item.active
+                    ? "status-active"
+                    : "status-inactive"
+                }"
+              >
+                ${
+                  item.active
+                    ? "Sichtbar"
+                    : "Ausgeblendet"
+                }
+              </span>
+
+            </div>
+
 
             ${
-              item.category
+              item.description
                 ? `
-                  <div class="equipment-category">
-                    ${escapeHtml(item.category)}
+                  <div class="equipment-description">
+                    ${escapeHtml(
+                      item.description
+                    )}
                   </div>
                 `
                 : ""
             }
 
-          </div>
 
+            <div class="equipment-actions">
 
-          <span
-            class="status-badge ${
-              item.active
-                ? "status-active"
-                : "status-inactive"
-            }"
-          >
-            ${
-              item.active
-                ? "Sichtbar"
-                : "Ausgeblendet"
-            }
-          </span>
-
-        </div>
-
-
-        ${
-          item.description
-            ? `
-              <div class="equipment-description">
-                ${escapeHtml(item.description)}
-              </div>
-            `
-            : ""
-        }
-
-
-        <div class="equipment-actions">
-
-          <button
-            type="button"
-            class="secondary-button"
-            data-action="edit"
-            data-id="${item.id}"
-          >
-            Bearbeiten
-          </button>
-
-
-          <button
-            type="button"
-            class="${
-              item.active
-                ? "secondary-button"
-                : "success-button"
-            }"
-            data-action="toggle"
-            data-id="${item.id}"
-          >
-            ${
-              item.active
-                ? "Ausblenden"
-                : "Aktivieren"
-            }
-          </button>
-
-
-          <button
-            type="button"
-            class="danger-button"
-            data-action="delete"
-            data-id="${item.id}"
-          >
-            Löschen
-          </button>
-
-        </div>
-
-      </div>
-
-    </article>
-
-  `;
-}
-
-
-/* ============================================================
-   GALLERY EVENTS
-============================================================ */
-
-function attachGalleryEvents() {
-
-  document
-    .querySelectorAll("[data-gallery-action]")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        function() {
-
-          const id =
-            this.dataset.equipmentId;
-
-          const action =
-            this.dataset.galleryAction;
-
-          const item =
-            equipmentItems.find(
-              equipment =>
-                equipment.id === id
-            );
-
-          if (!item) {
-            return;
-          }
-
-
-          const images =
-            item.equipment_images || [];
-
-
-          if (images.length <= 1) {
-            return;
-          }
-
-
-          let index =
-            currentGalleryIndexes[id] || 0;
-
-
-          if (action === "next") {
-            index =
-              (index + 1) % images.length;
-          }
-
-          if (action === "prev") {
-            index =
-              (index - 1 + images.length) %
-              images.length;
-          }
-
-
-          currentGalleryIndexes[id] =
-            index;
-
-
-          renderEquipment();
-        }
-      );
-
-    });
-
-
-  document
-    .querySelectorAll("[data-action]")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        async function() {
-
-          const action =
-            this.dataset.action;
-
-          const id =
-            this.dataset.id;
-
-
-          if (action === "edit") {
-            openEditModal(id);
-          }
-
-
-          if (action === "toggle") {
-            await toggleEquipment(id);
-          }
-
-
-          if (action === "delete") {
-            await deleteEquipment(id);
-          }
-
-        }
-      );
-
-    });
-}
-
-
-/* ============================================================
-   OPEN MODAL
-============================================================ */
-
-function openCreateModal() {
-
-  currentEquipment = null;
-
-  currentImages = [];
-
-  equipmentId.value = "";
-
-  equipmentName.value = "";
-
-  equipmentCategory.value = "";
-
-  equipmentDescription.value = "";
-
-  equipmentActive.checked = true;
-
-  equipmentImages.value = "";
-
-  modalTitle.textContent =
-    "Equipment hinzufügen";
-
-  saveEquipmentButton.textContent =
-    "Speichern";
-
-  clearModalMessage();
-
-  renderImageList();
-
-  equipmentModal.classList.add("open");
-
-  equipmentModal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-}
-
-
-function openEditModal(id) {
-
-  const item =
-    equipmentItems.find(
-      equipment =>
-        equipment.id === id
-    );
-
-  if (!item) {
-    return;
-  }
-
-
-  currentEquipment = item;
-
-
-  currentImages =
-    [...(item.equipment_images || [])]
-      .sort(
-        (a, b) =>
-          (a.sort_order || 0) -
-          (b.sort_order || 0)
-      );
-
-
-  equipmentId.value =
-    item.id;
-
-  equipmentName.value =
-    item.name || "";
-
-  equipmentCategory.value =
-    item.category || "";
-
-  equipmentDescription.value =
-    item.description || "";
-
-  equipmentActive.checked =
-    !!item.active;
-
-  equipmentImages.value = "";
-
-
-  modalTitle.textContent =
-    "Equipment bearbeiten";
-
-  saveEquipmentButton.textContent =
-    "Änderungen speichern";
-
-
-  clearModalMessage();
-
-  renderImageList();
-
-
-  equipmentModal.classList.add("open");
-
-  equipmentModal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-}
-
-
-/* ============================================================
-   CLOSE MODAL
-============================================================ */
-
-function closeModal() {
-
-  equipmentModal.classList.remove("open");
-
-  equipmentModal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-  currentEquipment = null;
-
-  currentImages = [];
-
-  clearModalMessage();
-
-}
-
-
-/* ============================================================
-   IMAGE LIST
-============================================================ */
-
-function renderImageList() {
-
-  if (!currentImages.length) {
-
-    imageList.innerHTML = "";
-
-    return;
-  }
-
-
-  imageList.innerHTML =
-    currentImages
-      .map(
-        (image, index) => {
-
-          const imageUrl =
-            getImageUrl(
-              image.storage_path
-            );
-
-
-          return `
-
-            <div
-              class="image-item"
-              data-image-id="${image.id}"
-            >
-
-              <img
-                src="${escapeAttribute(imageUrl)}"
-                alt="Equipment Bild ${index + 1}"
+              <button
+                type="button"
+                class="secondary-button"
+                data-action="edit"
+                data-id="${item.id}"
               >
+                Bearbeiten
+              </button>
 
 
-              <div class="image-name">
-                Bild ${index + 1}
-              </div>
+              <button
+                type="button"
+                class="${
+                  item.active
+                    ? "secondary-button"
+                    : "success-button"
+                }"
+                data-action="toggle"
+                data-id="${item.id}"
+              >
+                ${
+                  item.active
+                    ? "Ausblenden"
+                    : "Aktivieren"
+                }
+              </button>
 
 
-              <div class="image-actions">
-
-                <button
-                  type="button"
-                  class="small-button"
-                  title="Nach links"
-                  data-image-action="up"
-                  data-image-id="${image.id}"
-                  ${
-                    index === 0
-                      ? "disabled"
-                      : ""
-                  }
-                >
-                  ↑
-                </button>
-
-                <button
-                  type="button"
-                  class="small-button"
-                  title="Nach rechts"
-                  data-image-action="down"
-                  data-image-id="${image.id}"
-                  ${
-                    index ===
-                    currentImages.length - 1
-                      ? "disabled"
-                      : ""
-                  }
-                >
-                  ↓
-                </button>
-
-                <button
-                  type="button"
-                  class="small-button delete"
-                  title="Bild löschen"
-                  data-image-action="delete"
-                  data-image-id="${image.id}"
-                >
-                  ×
-                </button>
-
-              </div>
+              <button
+                type="button"
+                class="danger-button"
+                data-action="delete"
+                data-id="${item.id}"
+              >
+                Löschen
+              </button>
 
             </div>
 
-          `;
-        }
-      )
-      .join("");
+          </div>
 
+        </article>
 
-  document
-    .querySelectorAll("[data-image-action]")
-    .forEach(button => {
+      `;
 
-      button.addEventListener(
-        "click",
-        async function() {
-
-          const action =
-            this.dataset.imageAction;
-
-          const id =
-            this.dataset.imageId;
-
-
-          if (action === "up") {
-            moveImage(id, -1);
-          }
-
-          if (action === "down") {
-            moveImage(id, 1);
-          }
-
-          if (action === "delete") {
-            await removeImage(id);
-          }
-
-        }
-      );
-
-    });
-}
-
-
-/* ============================================================
-   MOVE IMAGE
-============================================================ */
-
-function moveImage(id, direction) {
-
-  const index =
-    currentImages.findIndex(
-      image =>
-        image.id === id
-    );
-
-  if (index === -1) {
-    return;
-  }
-
-
-  const newIndex =
-    index + direction;
-
-
-  if (
-    newIndex < 0 ||
-    newIndex >= currentImages.length
-  ) {
-    return;
-  }
-
-
-  const temp =
-    currentImages[index];
-
-  currentImages[index] =
-    currentImages[newIndex];
-
-  currentImages[newIndex] =
-    temp;
-
-
-  renderImageList();
-}
-
-
-/* ============================================================
-   DELETE IMAGE
-============================================================ */
-
-async function removeImage(id) {
-
-  const image =
-    currentImages.find(
-      item =>
-        item.id === id
-    );
-
-  if (!image) {
-    return;
-  }
-
-
-  if (
-    !confirm(
-      "Möchtest du dieses Bild wirklich löschen?"
-    )
-  ) {
-    return;
-  }
-
-
-  const {
-    error: storageError
-  } = await supabaseClient
-    .storage
-    .from(STORAGE_BUCKET)
-    .remove([
-      image.storage_path
-    ]);
-
-
-  if (storageError) {
-
-    console.error(storageError);
-
-    showModalMessage(
-      "Das Bild konnte nicht aus dem Speicher gelöscht werden.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  const {
-    error: dbError
-  } = await supabaseClient
-    .from("equipment_images")
-    .delete()
-    .eq("id", id);
-
-
-  if (dbError) {
-
-    console.error(dbError);
-
-    showModalMessage(
-      "Das Bild wurde aus dem Speicher entfernt, konnte aber nicht aus der Datenbank entfernt werden.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  currentImages =
-    currentImages.filter(
-      item =>
-        item.id !== id
-    );
-
-
-  renderImageList();
-
-  showModalMessage(
-    "Bild gelöscht.",
-    "success"
-  );
-
-}
-
-
-/* ============================================================
-   SAVE EQUIPMENT
-============================================================ */
-
-equipmentForm.addEventListener(
-  "submit",
-  async function(event) {
-
-    event.preventDefault();
-
-    clearModalMessage();
-
-
-    const name =
-      equipmentName.value.trim();
-
-    const category =
-      equipmentCategory.value.trim();
-
-    const description =
-      equipmentDescription.value.trim();
-
-    const active =
-      equipmentActive.checked;
-
-
-    if (!name) {
-
-      showModalMessage(
-        "Bitte gib einen Namen für das Equipment ein.",
-        "error"
-      );
-
-      return;
     }
 
 
-    saveEquipmentButton.disabled =
-      true;
+    /* ============================================================
+       GALLERY EVENTS
+    ============================================================ */
 
-    saveEquipmentButton.textContent =
-      "Speichern …";
+    function attachGalleryEvents() {
 
+      document
+        .querySelectorAll(
+          "[data-gallery-action]"
+        )
+        .forEach(
+          button => {
 
-    try {
+            button.addEventListener(
+              "click",
+              function() {
 
-      let savedEquipment;
+                const id =
+                  this.dataset.equipmentId;
 
-
-      if (equipmentId.value) {
-
-        const {
-          data,
-          error
-        } = await supabaseClient
-          .from("equipment")
-          .update({
-            name,
-            category,
-            description,
-            active,
-            updated_at: new Date().toISOString()
-          })
-          .eq("id", equipmentId.value)
-          .select()
-          .single();
+                const action =
+                  this.dataset.galleryAction;
 
 
-        if (error) {
-          throw error;
-        }
+                const item =
+                  equipmentItems.find(
+                    equipment =>
+                      equipment.id === id
+                  );
 
 
-        savedEquipment = data;
-
-      } else {
-
-        const {
-          data,
-          error
-        } = await supabaseClient
-          .from("equipment")
-          .insert({
-            name,
-            category,
-            description,
-            active,
-            sort_order:
-              equipmentItems.length
-          })
-          .select()
-          .single();
+                if (!item) {
+                  return;
+                }
 
 
-        if (error) {
-          throw error;
-        }
+                const images =
+                  item.equipment_images || [];
 
 
-        savedEquipment = data;
-
-      }
-
-
-      /* Bilder hochladen */
-
-      const files =
-        Array.from(
-          equipmentImages.files || []
-        );
+                if (images.length <= 1) {
+                  return;
+                }
 
 
-      if (files.length) {
-
-        const existingCount =
-          currentImages.length;
-
-
-        for (
-          let i = 0;
-          i < files.length;
-          i++
-        ) {
-
-          const file =
-            files[i];
+                let index =
+                  currentGalleryIndexes[id] ||
+                  0;
 
 
-          if (
-            file.size >
-            10 * 1024 * 1024
-          ) {
+                if (action === "next") {
 
-            throw new Error(
-              `Das Bild "${file.name}" ist größer als 10 MB.`
-            );
-          }
+                  index =
+                    (index + 1) %
+                    images.length;
+
+                }
 
 
-          const extension =
-            getFileExtension(file.name);
+                if (action === "prev") {
+
+                  index =
+                    (
+                      index -
+                      1 +
+                      images.length
+                    ) %
+                    images.length;
+
+                }
 
 
-          const path =
-            `${savedEquipment.id}/${crypto.randomUUID()}${extension}`;
+                currentGalleryIndexes[id] =
+                  index;
 
 
-          const {
-            error: uploadError
-          } = await supabaseClient
-            .storage
-            .from(STORAGE_BUCKET)
-            .upload(
-              path,
-              file,
-              {
-                cacheControl: "3600",
-                upsert: false,
-                contentType: file.type
+                renderEquipment();
+
               }
             );
 
-
-          if (uploadError) {
-            throw uploadError;
           }
+        );
 
 
-          const {
-            error: imageDbError
-          } = await supabaseClient
-            .from("equipment_images")
-            .insert({
-              equipment_id:
-                savedEquipment.id,
-              storage_path:
-                path,
-              sort_order:
-                existingCount + i
-            });
+      document
+        .querySelectorAll(
+          "[data-action]"
+        )
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              async function() {
+
+                const action =
+                  this.dataset.action;
+
+                const id =
+                  this.dataset.id;
 
 
-          if (imageDbError) {
-            throw imageDbError;
+                if (
+                  action === "edit"
+                ) {
+
+                  openEditModal(id);
+
+                }
+
+
+                if (
+                  action === "toggle"
+                ) {
+
+                  await toggleEquipment(id);
+
+                }
+
+
+                if (
+                  action === "delete"
+                ) {
+
+                  await deleteEquipment(id);
+
+                }
+
+              }
+            );
+
           }
+        );
 
-        }
+    }
+
+
+    /* ============================================================
+       CREATE MODAL
+    ============================================================ */
+
+    function openCreateModal() {
+
+      currentEquipment =
+        null;
+
+      currentImages =
+        [];
+
+      equipmentId.value =
+        "";
+
+      equipmentName.value =
+        "";
+
+      equipmentCategory.value =
+        "";
+
+      equipmentDescription.value =
+        "";
+
+      equipmentActive.checked =
+        true;
+
+      equipmentImages.value =
+        "";
+
+
+      modalTitle.textContent =
+        "Equipment hinzufügen";
+
+
+      saveEquipmentButton.textContent =
+        "Speichern";
+
+
+      clearModalMessage();
+
+      renderImageList();
+
+
+      equipmentModal.classList.add(
+        "open"
+      );
+
+
+      equipmentModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+    }
+
+
+    /* ============================================================
+       EDIT MODAL
+    ============================================================ */
+
+    function openEditModal(id) {
+
+      const item =
+        equipmentItems.find(
+          equipment =>
+            equipment.id === id
+        );
+
+
+      if (!item) {
+        return;
+      }
+
+
+      currentEquipment =
+        item;
+
+
+      currentImages =
+        [...(
+          item.equipment_images || []
+        )]
+          .sort(
+            (a, b) =>
+              (a.sort_order || 0) -
+              (b.sort_order || 0)
+          );
+
+
+      equipmentId.value =
+        item.id;
+
+      equipmentName.value =
+        item.name || "";
+
+      equipmentCategory.value =
+        item.category || "";
+
+      equipmentDescription.value =
+        item.description || "";
+
+      equipmentActive.checked =
+        !!item.active;
+
+      equipmentImages.value =
+        "";
+
+
+      modalTitle.textContent =
+        "Equipment bearbeiten";
+
+
+      saveEquipmentButton.textContent =
+        "Änderungen speichern";
+
+
+      clearModalMessage();
+
+      renderImageList();
+
+
+      equipmentModal.classList.add(
+        "open"
+      );
+
+
+      equipmentModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+    }
+
+
+    /* ============================================================
+       CLOSE MODAL
+    ============================================================ */
+
+    function closeModal() {
+
+      equipmentModal.classList.remove(
+        "open"
+      );
+
+
+      equipmentModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      currentEquipment =
+        null;
+
+      currentImages =
+        [];
+
+      clearModalMessage();
+
+    }
+
+
+    /* ============================================================
+       IMAGE LIST
+    ============================================================ */
+
+    function renderImageList() {
+
+      if (!currentImages.length) {
+
+        imageList.innerHTML =
+          "";
+
+        return;
+      }
+
+
+      imageList.innerHTML =
+        currentImages
+          .map(
+            (image, index) => {
+
+              const imageUrl =
+                getImageUrl(
+                  image.storage_path
+                );
+
+
+              return `
+
+                <div
+                  class="image-item"
+                  data-image-id="${image.id}"
+                >
+
+                  <img
+                    src="${escapeAttribute(
+                      imageUrl
+                    )}"
+                    alt="Equipment Bild ${index + 1}"
+                  >
+
+
+                  <div class="image-name">
+                    Bild ${index + 1}
+                  </div>
+
+
+                  <div class="image-actions">
+
+                    <button
+                      type="button"
+                      class="small-button"
+                      title="Nach oben"
+                      data-image-action="up"
+                      data-image-id="${image.id}"
+                      ${
+                        index === 0
+                          ? "disabled"
+                          : ""
+                      }
+                    >
+                      ↑
+                    </button>
+
+
+                    <button
+                      type="button"
+                      class="small-button"
+                      title="Nach unten"
+                      data-image-action="down"
+                      data-image-id="${image.id}"
+                      ${
+                        index ===
+                        currentImages.length - 1
+                          ? "disabled"
+                          : ""
+                      }
+                    >
+                      ↓
+                    </button>
+
+
+                    <button
+                      type="button"
+                      class="small-button delete"
+                      title="Bild löschen"
+                      data-image-action="delete"
+                      data-image-id="${image.id}"
+                    >
+                      ×
+                    </button>
+
+                  </div>
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("");
+
+
+      document
+        .querySelectorAll(
+          "[data-image-action]"
+        )
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              async function() {
+
+                const action =
+                  this.dataset.imageAction;
+
+                const id =
+                  this.dataset.imageId;
+
+
+                if (
+                  action === "up"
+                ) {
+
+                  moveImage(
+                    id,
+                    -1
+                  );
+
+                }
+
+
+                if (
+                  action === "down"
+                ) {
+
+                  moveImage(
+                    id,
+                    1
+                  );
+
+                }
+
+
+                if (
+                  action === "delete"
+                ) {
+
+                  await removeImage(id);
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    /* ============================================================
+       MOVE IMAGE
+    ============================================================ */
+
+    function moveImage(
+      id,
+      direction
+    ) {
+
+      const index =
+        currentImages.findIndex(
+          image =>
+            image.id === id
+        );
+
+
+      if (index === -1) {
+        return;
+      }
+
+
+      const newIndex =
+        index + direction;
+
+
+      if (
+        newIndex < 0 ||
+        newIndex >= currentImages.length
+      ) {
+
+        return;
 
       }
 
 
-      closeModal();
-
-      await loadEquipment();
-
-      showPageMessage(
-        equipmentId.value
-          ? "Equipment wurde aktualisiert."
-          : "Equipment wurde angelegt.",
-        "success"
-      );
+      const temp =
+        currentImages[index];
 
 
-    } catch (error) {
+      currentImages[index] =
+        currentImages[newIndex];
 
-      console.error(error);
+      currentImages[newIndex] =
+        temp;
 
-      showModalMessage(
-        error.message ||
-          "Das Equipment konnte nicht gespeichert werden.",
-        "error"
-      );
 
-    } finally {
-
-      saveEquipmentButton.disabled =
-        false;
-
-      saveEquipmentButton.textContent =
-        equipmentId.value
-          ? "Änderungen speichern"
-          : "Speichern";
+      renderImageList();
 
     }
 
-  }
-);
 
+    /* ============================================================
+       DELETE IMAGE
+    ============================================================ */
 
-/* ============================================================
-   TOGGLE EQUIPMENT
-============================================================ */
+    async function removeImage(id) {
 
-async function toggleEquipment(id) {
-
-  const item =
-    equipmentItems.find(
-      equipment =>
-        equipment.id === id
-    );
-
-  if (!item) {
-    return;
-  }
-
-
-  const {
-    error
-  } = await supabaseClient
-    .from("equipment")
-    .update({
-      active: !item.active,
-      updated_at:
-        new Date().toISOString()
-    })
-    .eq("id", id);
-
-
-  if (error) {
-
-    console.error(error);
-
-    showPageMessage(
-      "Der Status konnte nicht geändert werden.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  await loadEquipment();
-
-  showPageMessage(
-    item.active
-      ? "Equipment wurde für Kunden ausgeblendet."
-      : "Equipment wurde für Kunden aktiviert.",
-    "success"
-  );
-
-}
-
-
-/* ============================================================
-   DELETE EQUIPMENT
-============================================================ */
-
-async function deleteEquipment(id) {
-
-  const item =
-    equipmentItems.find(
-      equipment =>
-        equipment.id === id
-    );
-
-  if (!item) {
-    return;
-  }
-
-
-  if (
-    !confirm(
-      `Möchtest du „${item.name}“ wirklich löschen? Alle zugehörigen Bilder werden ebenfalls gelöscht.`
-    )
-  ) {
-    return;
-  }
-
-
-  try {
-
-    const images =
-      item.equipment_images || [];
-
-
-    if (images.length) {
-
-      const paths =
-        images.map(
-          image =>
-            image.storage_path
+      const image =
+        currentImages.find(
+          item =>
+            item.id === id
         );
+
+
+      if (!image) {
+        return;
+      }
+
+
+      if (
+        !confirm(
+          "Möchtest du dieses Bild wirklich löschen?"
+        )
+      ) {
+
+        return;
+
+      }
 
 
       const {
@@ -2119,187 +2143,711 @@ async function deleteEquipment(id) {
       } = await supabaseClient
         .storage
         .from(STORAGE_BUCKET)
-        .remove(paths);
+        .remove([
+          image.storage_path
+        ]);
 
 
       if (storageError) {
-        throw storageError;
+
+        console.error(
+          storageError
+        );
+
+
+        showModalMessage(
+          "Das Bild konnte nicht aus dem Speicher gelöscht werden.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const {
+        error: dbError
+      } = await supabaseClient
+        .from("equipment_images")
+        .delete()
+        .eq(
+          "id",
+          id
+        );
+
+
+      if (dbError) {
+
+        console.error(
+          dbError
+        );
+
+
+        showModalMessage(
+          "Das Bild wurde aus dem Speicher entfernt, konnte aber nicht aus der Datenbank entfernt werden.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      currentImages =
+        currentImages.filter(
+          item =>
+            item.id !== id
+        );
+
+
+      renderImageList();
+
+
+      showModalMessage(
+        "Bild gelöscht.",
+        "success"
+      );
+
+    }
+
+
+    /* ============================================================
+       SAVE EQUIPMENT
+    ============================================================ */
+
+    equipmentForm.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+        clearModalMessage();
+
+
+        const name =
+          equipmentName.value.trim();
+
+        const category =
+          equipmentCategory.value.trim();
+
+        const description =
+          equipmentDescription.value.trim();
+
+        const active =
+          equipmentActive.checked;
+
+
+        if (!name) {
+
+          showModalMessage(
+            "Bitte gib einen Namen für das Equipment ein.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        saveEquipmentButton.disabled =
+          true;
+
+        saveEquipmentButton.textContent =
+          "Speichern …";
+
+
+        try {
+
+          let savedEquipment;
+
+
+          /* ======================================================
+             EXISTING EQUIPMENT
+          ====================================================== */
+
+          if (equipmentId.value) {
+
+            const {
+              data,
+              error
+            } = await supabaseClient
+              .from("equipment")
+              .update({
+
+                name,
+
+                category,
+
+                description,
+
+                active,
+
+                updated_at:
+                  new Date().toISOString()
+
+              })
+              .eq(
+                "id",
+                equipmentId.value
+              )
+              .select()
+              .single();
+
+
+            if (error) {
+              throw error;
+            }
+
+
+            savedEquipment =
+              data;
+
+
+          }
+
+
+          /* ======================================================
+             NEW EQUIPMENT
+          ====================================================== */
+
+          else {
+
+            const {
+              data,
+              error
+            } = await supabaseClient
+              .from("equipment")
+              .insert({
+
+                name,
+
+                category,
+
+                description,
+
+                active,
+
+                sort_order:
+                  equipmentItems.length
+
+              })
+              .select()
+              .single();
+
+
+            if (error) {
+              throw error;
+            }
+
+
+            savedEquipment =
+              data;
+
+          }
+
+
+          /* ======================================================
+             BILDER HOCHLADEN
+          ====================================================== */
+
+          const files =
+            Array.from(
+              equipmentImages.files || []
+            );
+
+
+          if (files.length) {
+
+            const existingCount =
+              currentImages.length;
+
+
+            for (
+              let i = 0;
+              i < files.length;
+              i++
+            ) {
+
+              const file =
+                files[i];
+
+
+              if (
+                file.size >
+                10 * 1024 * 1024
+              ) {
+
+                throw new Error(
+                  `Das Bild "${file.name}" ist größer als 10 MB.`
+                );
+
+              }
+
+
+              const extension =
+                getFileExtension(
+                  file.name
+                );
+
+
+              const path =
+                `${savedEquipment.id}/${crypto.randomUUID()}${extension}`;
+
+
+              const {
+                error: uploadError
+              } = await supabaseClient
+                .storage
+                .from(STORAGE_BUCKET)
+                .upload(
+                  path,
+                  file,
+                  {
+                    cacheControl:
+                      "3600",
+
+                    upsert:
+                      false,
+
+                    contentType:
+                      file.type
+                  }
+                );
+
+
+              if (uploadError) {
+                throw uploadError;
+              }
+
+
+              const {
+                error: imageDbError
+              } = await supabaseClient
+                .from("equipment_images")
+                .insert({
+
+                  equipment_id:
+                    savedEquipment.id,
+
+                  storage_path:
+                    path,
+
+                  sort_order:
+                    existingCount + i
+
+                });
+
+
+              if (imageDbError) {
+                throw imageDbError;
+              }
+
+            }
+
+          }
+
+
+          closeModal();
+
+
+          await loadEquipment();
+
+
+          showPageMessage(
+            equipmentId.value
+              ? "Equipment wurde aktualisiert."
+              : "Equipment wurde angelegt.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            error
+          );
+
+
+          showModalMessage(
+            error.message ||
+              "Das Equipment konnte nicht gespeichert werden.",
+            "error"
+          );
+
+
+        } finally {
+
+          saveEquipmentButton.disabled =
+            false;
+
+
+          saveEquipmentButton.textContent =
+            equipmentId.value
+              ? "Änderungen speichern"
+              : "Speichern";
+
+        }
+
+      }
+    );
+
+
+    /* ============================================================
+       TOGGLE EQUIPMENT
+    ============================================================ */
+
+    async function toggleEquipment(id) {
+
+      const item =
+        equipmentItems.find(
+          equipment =>
+            equipment.id === id
+        );
+
+
+      if (!item) {
+        return;
+      }
+
+
+      const {
+        error
+      } = await supabaseClient
+        .from("equipment")
+        .update({
+
+          active:
+            !item.active,
+
+          updated_at:
+            new Date().toISOString()
+
+        })
+        .eq(
+          "id",
+          id
+        );
+
+
+      if (error) {
+
+        console.error(
+          error
+        );
+
+
+        showPageMessage(
+          "Der Status konnte nicht geändert werden.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      await loadEquipment();
+
+
+      showPageMessage(
+        item.active
+          ? "Equipment wurde für Kunden ausgeblendet."
+          : "Equipment wurde für Kunden aktiviert.",
+        "success"
+      );
+
+    }
+
+
+    /* ============================================================
+       DELETE EQUIPMENT
+    ============================================================ */
+
+    async function deleteEquipment(id) {
+
+      const item =
+        equipmentItems.find(
+          equipment =>
+            equipment.id === id
+        );
+
+
+      if (!item) {
+        return;
+      }
+
+
+      if (
+        !confirm(
+          `Möchtest du „${item.name}“ wirklich löschen? Alle zugehörigen Bilder werden ebenfalls gelöscht.`
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      try {
+
+        const images =
+          item.equipment_images ||
+          [];
+
+
+        if (images.length) {
+
+          const paths =
+            images.map(
+              image =>
+                image.storage_path
+            );
+
+
+          const {
+            error: storageError
+          } = await supabaseClient
+            .storage
+            .from(STORAGE_BUCKET)
+            .remove(
+              paths
+            );
+
+
+          if (storageError) {
+            throw storageError;
+          }
+
+        }
+
+
+        const {
+          error
+        } = await supabaseClient
+          .from("equipment")
+          .delete()
+          .eq(
+            "id",
+            id
+          );
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        delete currentGalleryIndexes[
+          id
+        ];
+
+
+        await loadEquipment();
+
+
+        showPageMessage(
+          "Equipment wurde gelöscht.",
+          "success"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          error
+        );
+
+
+        showPageMessage(
+          error.message ||
+            "Das Equipment konnte nicht gelöscht werden.",
+          "error"
+        );
+
       }
 
     }
 
 
-    const {
-      error
-    } = await supabaseClient
-      .from("equipment")
-      .delete()
-      .eq("id", id);
+    /* ============================================================
+       FILE EXTENSION
+    ============================================================ */
 
-
-    if (error) {
-      throw error;
-    }
-
-
-    delete currentGalleryIndexes[id];
-
-    await loadEquipment();
-
-    showPageMessage(
-      "Equipment wurde gelöscht.",
-      "success"
-    );
-
-
-  } catch (error) {
-
-    console.error(error);
-
-    showPageMessage(
-      error.message ||
-        "Das Equipment konnte nicht gelöscht werden.",
-      "error"
-    );
-
-  }
-
-}
-
-
-/* ============================================================
-   IMAGE UPLOAD HELPERS
-============================================================ */
-
-function getFileExtension(filename) {
-
-  const index =
-    filename.lastIndexOf(".");
-
-  if (index === -1) {
-    return "";
-  }
-
-  return filename
-    .substring(index)
-    .toLowerCase();
-}
-
-
-/* ============================================================
-   HTML ESCAPING
-============================================================ */
-
-function escapeHtml(value) {
-
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-
-function escapeAttribute(value) {
-  return escapeHtml(value);
-}
-
-
-/* ============================================================
-   MODAL EVENTS
-============================================================ */
-
-document
-  .getElementById("addEquipmentButton")
-  .addEventListener(
-    "click",
-    openCreateModal
-  );
-
-
-document
-  .getElementById("closeModalButton")
-  .addEventListener(
-    "click",
-    closeModal
-  );
-
-
-document
-  .getElementById("cancelModalButton")
-  .addEventListener(
-    "click",
-    closeModal
-  );
-
-
-equipmentModal.addEventListener(
-  "click",
-  function(event) {
-
-    if (
-      event.target === equipmentModal
+    function getFileExtension(
+      filename
     ) {
-      closeModal();
+
+      const index =
+        filename.lastIndexOf(".");
+
+
+      if (index === -1) {
+        return "";
+      }
+
+
+      return filename
+        .substring(index)
+        .toLowerCase();
+
     }
 
-  }
-);
 
+    /* ============================================================
+       HTML ESCAPING
+    ============================================================ */
 
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (
-      event.key === "Escape" &&
-      equipmentModal.classList.contains("open")
+    function escapeHtml(
+      value
     ) {
-      closeModal();
-    }
 
-  }
-);
-
-
-/* ============================================================
-   LOGOUT
-============================================================ */
-
-document
-  .getElementById("logoutButton")
-  .addEventListener(
-    "click",
-    async function() {
-
-      const button =
-        document.getElementById(
-          "logoutButton"
+      return String(
+        value ?? ""
+      )
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+        .replaceAll(
+          "'",
+          "&#039;"
         );
 
-
-      button.disabled = true;
-
-      button.textContent =
-        "Abmeldung …";
+    }
 
 
-      await supabaseClient.auth.signOut();
+    function escapeAttribute(
+      value
+    ) {
 
-      window.location.replace("./");
+      return escapeHtml(
+        value
+      );
 
     }
-  );
 
 
-/* ============================================================
-   START
-============================================================ */
+    /* ============================================================
+       MODAL EVENTS
+    ============================================================ */
 
-checkLogin();
+    document
+      .getElementById(
+        "addEquipmentButton"
+      )
+      .addEventListener(
+        "click",
+        openCreateModal
+      );
 
-</script>
+
+    document
+      .getElementById(
+        "closeModalButton"
+      )
+      .addEventListener(
+        "click",
+        closeModal
+      );
+
+
+    document
+      .getElementById(
+        "cancelModalButton"
+      )
+      .addEventListener(
+        "click",
+        closeModal
+      );
+
+
+    equipmentModal.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          event.target ===
+          equipmentModal
+        ) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape" &&
+          equipmentModal.classList.contains(
+            "open"
+          )
+        ) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+
+    /* ============================================================
+       LOGOUT
+    ============================================================ */
+
+    document
+      .getElementById(
+        "logoutButton"
+      )
+      .addEventListener(
+        "click",
+        async function() {
+
+          const button =
+            document.getElementById(
+              "logoutButton"
+            );
+
+
+          button.disabled =
+            true;
+
+          button.textContent =
+            "Abmeldung …";
+
+
+          await supabaseClient.auth.signOut();
+
+
+          window.location.replace(
+            "./"
+          );
+
+        }
+      );
+
+
+    /* ============================================================
+       START
+    ============================================================ */
+
+    checkLogin();
+
+  </script>
 
 </body>
 </html>
