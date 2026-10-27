@@ -112,8 +112,16 @@
 
     .hero {
       background:
-        radial-gradient(circle at 20% 20%, rgba(22,140,255,.18), transparent 35%),
-        linear-gradient(135deg, #07111f, #0d1c2e);
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(22,140,255,.18),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #07111f,
+          #0d1c2e
+        );
       color: white;
       padding: 155px 24px 85px;
     }
@@ -281,7 +289,9 @@
       font: inherit;
       color: var(--text);
       outline: none;
-      transition: border-color .2s ease, box-shadow .2s ease;
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
     }
 
     input:focus,
@@ -373,6 +383,26 @@
       transform: none;
     }
 
+    .secondary-button {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 15px 20px;
+      margin-top: 12px;
+      background: white;
+      color: var(--text);
+      font: inherit;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .secondary-button:hover {
+      border-color: #b7c4d0;
+      background: #f8fafc;
+    }
+
     .form-hint {
       margin: 14px 0 0;
       color: var(--muted);
@@ -388,6 +418,185 @@
     #formStatus {
       padding: 12px 14px;
       border-radius: 10px;
+      text-align: center;
+    }
+
+    /* EQUIPMENT */
+
+    #equipmentStep {
+      margin-top: 10px;
+    }
+
+    .equipment-intro {
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .equipment-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      background: white;
+      cursor: pointer;
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+    }
+
+    .equipment-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(7,17,31,.08);
+    }
+
+    .equipment-card.selected {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(22,140,255,.12);
+    }
+
+    .equipment-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #eef2f6;
+      overflow: hidden;
+    }
+
+    .equipment-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .equipment-no-image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .equipment-image-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(7,17,31,.72);
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .equipment-image-button:hover {
+      background: rgba(7,17,31,.92);
+    }
+
+    .equipment-image-button.prev {
+      left: 10px;
+    }
+
+    .equipment-image-button.next {
+      right: 10px;
+    }
+
+    .equipment-counter {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(7,17,31,.72);
+      color: white;
+      font-size: 11px;
+      z-index: 2;
+    }
+
+    .equipment-content {
+      padding: 16px;
+    }
+
+    .equipment-name {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 0 0 4px;
+    }
+
+    .equipment-category {
+      font-size: 12px;
+      color: var(--blue-dark);
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .equipment-description {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .equipment-check {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: transparent;
+      z-index: 4;
+      box-shadow: 0 3px 10px rgba(0,0,0,.12);
+    }
+
+    .equipment-card.selected .equipment-check {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .equipment-empty {
+      padding: 26px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .equipment-loading {
+      padding: 26px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .equipment-selection-info {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #f4f8fc;
+      color: var(--muted);
+      font-size: 13px;
       text-align: center;
     }
 
@@ -424,201 +633,6 @@
       color: white;
     }
 
-    /* EQUIPMENT AUSWAHL */
-
-    #equipmentStep {
-      margin-top: 28px;
-      padding-top: 8px;
-    }
-
-    .equipment-intro {
-      color: var(--muted);
-      margin: 0 0 22px;
-    }
-
-    .equipment-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .equipment-card {
-      position: relative;
-      overflow: hidden;
-      border: 2px solid var(--border);
-      border-radius: 16px;
-      background: #fff;
-      cursor: pointer;
-      transition: .2s ease;
-    }
-
-    .equipment-card:hover {
-      border-color: #a8d4ff;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 28px rgba(7,17,31,.08);
-    }
-
-    .equipment-card.selected {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(22,140,255,.10);
-      background: #f7fbff;
-    }
-
-    .equipment-image-wrap {
-      position: relative;
-      aspect-ratio: 16 / 10;
-      background: #eef2f6;
-      overflow: hidden;
-    }
-
-    .equipment-image {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .equipment-no-image {
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .equipment-nav {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 8px;
-      pointer-events: none;
-    }
-
-    .equipment-nav button {
-      pointer-events: auto;
-      width: 34px;
-      height: 34px;
-      border: 0;
-      border-radius: 50%;
-      background: rgba(7,17,31,.72);
-      color: #fff;
-      font-size: 20px;
-      line-height: 1;
-      display: grid;
-      place-items: center;
-    }
-
-    .equipment-counter {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(7,17,31,.72);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .equipment-check {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,.94);
-      color: var(--blue);
-      font-weight: 900;
-      box-shadow: 0 3px 10px rgba(0,0,0,.12);
-      opacity: 0;
-      transform: scale(.8);
-      transition: .2s ease;
-    }
-
-    .equipment-card.selected .equipment-check {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .equipment-body {
-      padding: 17px;
-    }
-
-    .equipment-category {
-      color: var(--blue-dark);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin-bottom: 5px;
-    }
-
-    .equipment-body h3 {
-      margin: 0 0 6px;
-      font-size: 18px;
-    }
-
-    .equipment-body p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .equipment-actions {
-      margin-top: 24px;
-    }
-
-    .equipment-back-button {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 13px 18px;
-      margin-top: 10px;
-      background: #fff;
-      color: var(--text);
-      font: inherit;
-      font-weight: 750;
-      cursor: pointer;
-    }
-
-    .equipment-back-button:hover {
-      border-color: var(--blue);
-      color: var(--blue-dark);
-    }
-
-    .equipment-note {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      text-align: center;
-    }
-
-    #equipmentStatus {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      display: none;
-    }
-
-    .equipment-loading,
-    .equipment-empty {
-      grid-column: 1 / -1;
-      padding: 25px;
-      text-align: center;
-      color: var(--muted);
-      border: 1px dashed var(--border);
-      border-radius: 14px;
-      background: #fff;
-    }
-
     /* RESPONSIVE */
 
     @media (max-width: 850px) {
@@ -635,7 +649,7 @@
       }
 
       .equipment-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -678,6 +692,10 @@
       }
 
       .event-types {
+        grid-template-columns: 1fr;
+      }
+
+      .equipment-grid {
         grid-template-columns: 1fr;
       }
 
@@ -821,441 +839,462 @@
 
         <form id="requestForm">
 
+          <!-- =====================================================
+               FORMULAR
+               ===================================================== -->
 
-          <!-- EVENT -->
+          <div id="formStep">
 
-          <div class="section-title">
-            1. Eure Veranstaltung
-          </div>
+            <!-- EVENT -->
+
+            <div class="section-title">
+              1. Eure Veranstaltung
+            </div>
 
 
-          <div class="form-group full">
+            <div class="form-group full">
 
-            <label>
-              Veranstaltungsart <span class="required">*</span>
-            </label>
+              <label>
+                Veranstaltungsart <span class="required">*</span>
+              </label>
 
-            <div class="event-types">
+              <div class="event-types">
 
-              <div class="event-option">
+                <div class="event-option">
+
+                  <input
+                    type="radio"
+                    id="birthday"
+                    name="Veranstaltungsart"
+                    value="Geburtstag"
+                    required
+                  >
+
+                  <label for="birthday">
+                    Geburtstag
+                  </label>
+
+                </div>
+
+
+                <div class="event-option">
+
+                  <input
+                    type="radio"
+                    id="wedding"
+                    name="Veranstaltungsart"
+                    value="Hochzeit"
+                  >
+
+                  <label for="wedding">
+                    Hochzeit
+                  </label>
+
+                </div>
+
+
+                <div class="event-option">
+
+                  <input
+                    type="radio"
+                    id="private"
+                    name="Veranstaltungsart"
+                    value="Private Feier"
+                  >
+
+                  <label for="private">
+                    Private Feier
+                  </label>
+
+                </div>
+
+
+                <div class="event-option">
+
+                  <input
+                    type="radio"
+                    id="company"
+                    name="Veranstaltungsart"
+                    value="Firmenfeier"
+                  >
+
+                  <label for="company">
+                    Firmenfeier
+                  </label>
+
+                </div>
+
+
+                <div class="event-option">
+
+                  <input
+                    type="radio"
+                    id="abiball"
+                    name="Veranstaltungsart"
+                    value="Abiball"
+                  >
+
+                  <label for="abiball">
+                    Abiball
+                  </label>
+
+                </div>
+
+
+                <div class="event-option">
+
+                  <input
+                    type="radio"
+                    id="other"
+                    name="Veranstaltungsart"
+                    value="Sonstige Veranstaltung"
+                  >
+
+                  <label for="other">
+                    Sonstige Veranstaltung
+                  </label>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="form-grid" style="margin-top:18px;">
+
+              <div class="form-group">
+
+                <label for="date">
+                  Veranstaltungsdatum <span class="required">*</span>
+                </label>
 
                 <input
-                  type="radio"
-                  id="birthday"
-                  name="Veranstaltungsart"
-                  value="Geburtstag"
+                  type="date"
+                  id="date"
+                  name="Veranstaltungsdatum"
                   required
                 >
 
-                <label for="birthday">
-                  Geburtstag
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="guests">
+                  Anzahl Gäste <span class="required">*</span>
                 </label>
+
+                <input
+                  type="number"
+                  id="guests"
+                  name="Anzahl Gäste"
+                  min="1"
+                  placeholder="z. B. 80"
+                  required
+                >
 
               </div>
 
 
-              <div class="event-option">
+              <div class="form-group full">
+
+                <label for="location">
+                  Veranstaltungsort <span class="required">*</span>
+                </label>
 
                 <input
-                  type="radio"
-                  id="wedding"
-                  name="Veranstaltungsart"
-                  value="Hochzeit"
+                  type="text"
+                  id="location"
+                  name="Veranstaltungsort"
+                  placeholder="z. B. Ruhrgebiet"
+                  required
                 >
-
-                <label for="wedding">
-                  Hochzeit
-                </label>
 
               </div>
 
 
-              <div class="event-option">
+              <div class="form-group">
+
+                <label for="startTime">
+                  Gewünschter Beginn
+                </label>
 
                 <input
-                  type="radio"
-                  id="private"
-                  name="Veranstaltungsart"
-                  value="Private Feier"
+                  type="time"
+                  id="startTime"
+                  name="Gewünschter Beginn"
                 >
-
-                <label for="private">
-                  Private Feier
-                </label>
 
               </div>
 
 
-              <div class="event-option">
+              <div class="form-group">
 
-                <input
-                  type="radio"
-                  id="company"
-                  name="Veranstaltungsart"
-                  value="Firmenfeier"
-                >
-
-                <label for="company">
-                  Firmenfeier
+                <label for="endTime">
+                  Gewünschtes Ende
                 </label>
 
-              </div>
-
-
-              <div class="event-option">
-
                 <input
-                  type="radio"
-                  id="abiball"
-                  name="Veranstaltungsart"
-                  value="Abiball"
+                  type="time"
+                  id="endTime"
+                  name="Gewünschtes Ende"
                 >
-
-                <label for="abiball">
-                  Abiball
-                </label>
-
-              </div>
-
-
-              <div class="event-option">
-
-                <input
-                  type="radio"
-                  id="other"
-                  name="Veranstaltungsart"
-                  value="Sonstige Veranstaltung"
-                >
-
-                <label for="other">
-                  Sonstige Veranstaltung
-                </label>
 
               </div>
 
             </div>
 
-          </div>
+
+            <!-- CONTACT -->
+
+            <div class="section-title">
+              2. Eure Kontaktdaten
+            </div>
 
 
-          <div class="form-grid" style="margin-top:18px;">
+            <div class="form-grid">
 
-            <div class="form-group">
+              <div class="form-group">
 
-              <label for="date">
-                Veranstaltungsdatum <span class="required">*</span>
-              </label>
+                <label for="name">
+                  Name <span class="required">*</span>
+                </label>
 
-              <input
-                type="date"
-                id="date"
-                name="Veranstaltungsdatum"
-                required
-              >
+                <input
+                  type="text"
+                  id="name"
+                  name="Name"
+                  placeholder="Vor- und Nachname"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="email">
+                  E-Mail <span class="required">*</span>
+                </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="E-Mail"
+                  placeholder="name@beispiel.de"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group full">
+
+                <label for="phone">
+                  Telefon
+                </label>
+
+                <input
+                  type="tel"
+                  id="phone"
+                  name="Telefon"
+                  placeholder="z. B. 0176 12345678"
+                >
+
+              </div>
 
             </div>
 
 
-            <div class="form-group">
+            <!-- BILLING ADDRESS -->
 
-              <label for="guests">
-                Anzahl Gäste <span class="required">*</span>
-              </label>
+            <div class="section-title">
+              3. Rechnungsadresse
+            </div>
 
-              <input
-                type="number"
-                id="guests"
-                name="Anzahl Gäste"
-                min="1"
-                placeholder="z. B. 80"
-                required
-              >
 
+            <p
+              class="field-hint"
+              style="margin-top:-5px; margin-bottom:18px;"
+            >
+              Bitte gebt hier die Adresse an, auf die eine spätere Rechnung
+              ausgestellt werden soll. Bei einer Firmenfeier könnt ihr hier
+              auch die Firmendaten eintragen.
+            </p>
+
+
+            <div class="form-grid">
+
+              <div class="form-group full">
+
+                <label for="billingName">
+                  Name / Firma <span class="required">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="billingName"
+                  name="Rechnungsname"
+                  placeholder="Vor- und Nachname oder Firmenname"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group full">
+
+                <label for="billingStreet">
+                  Straße & Hausnummer <span class="required">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="billingStreet"
+                  name="Rechnungsstraße"
+                  placeholder="z. B. Musterstraße 44"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="billingZip">
+                  PLZ <span class="required">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="billingZip"
+                  name="Rechnungs-PLZ"
+                  placeholder="54321"
+                  inputmode="numeric"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="billingCity">
+                  Ort <span class="required">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="billingCity"
+                  name="Rechnungsort"
+                  placeholder="Musterstadt"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div class="section-title">
+              4. Weitere Wünsche
             </div>
 
 
             <div class="form-group full">
 
-              <label for="location">
-                Veranstaltungsort <span class="required">*</span>
+              <label for="message">
+                Nachricht
               </label>
 
-              <input
-                type="text"
-                id="location"
-                name="Veranstaltungsort"
-                placeholder="z. B. Ruhrgebiet"
-                required
-              >
+              <textarea
+                id="message"
+                name="Nachricht"
+                placeholder="Erzählt uns gerne mehr über eure Feier, Musikwünsche, besondere Programmpunkte oder sonstige Fragen."
+              ></textarea>
 
             </div>
 
 
-            <div class="form-group">
-
-              <label for="startTime">
-                Gewünschter Beginn
-              </label>
-
-              <input
-                type="time"
-                id="startTime"
-                name="Gewünschter Beginn"
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="endTime">
-                Gewünschtes Ende
-              </label>
-
-              <input
-                type="time"
-                id="endTime"
-                name="Gewünschtes Ende"
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- CONTACT -->
-
-          <div class="section-title">
-            2. Eure Kontaktdaten
-          </div>
-
-
-          <div class="form-grid">
-
-            <div class="form-group">
-
-              <label for="name">
-                Name <span class="required">*</span>
-              </label>
-
-              <input
-                type="text"
-                id="name"
-                name="Name"
-                placeholder="Vor- und Nachname"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="email">
-                E-Mail <span class="required">*</span>
-              </label>
-
-              <input
-                type="email"
-                id="email"
-                name="E-Mail"
-                placeholder="name@beispiel.de"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group full">
-
-              <label for="phone">
-                Telefon
-              </label>
-
-              <input
-                type="tel"
-                id="phone"
-                name="Telefon"
-                placeholder="z. B. 0176 12345678"
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- BILLING ADDRESS -->
-
-          <div class="section-title">
-            3. Rechnungsadresse
-          </div>
-
-          <p class="field-hint" style="margin-top:-5px; margin-bottom:18px;">
-            Bitte gebt hier die Adresse an, auf die eine spätere Rechnung
-            ausgestellt werden soll. Bei einer Firmenfeier könnt ihr hier
-            auch die Firmendaten eintragen.
-          </p>
-
-
-          <div class="form-grid">
-
-            <div class="form-group full">
-
-              <label for="billingName">
-                Name / Firma <span class="required">*</span>
-              </label>
-
-              <input
-                type="text"
-                id="billingName"
-                name="Rechnungsname"
-                placeholder="Vor- und Nachname oder Firmenname"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group full">
-
-              <label for="billingStreet">
-                Straße & Hausnummer <span class="required">*</span>
-              </label>
-
-              <input
-                type="text"
-                id="billingStreet"
-                name="Rechnungsstraße"
-                placeholder="z. B. Musterstraße 44"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="billingZip">
-                PLZ <span class="required">*</span>
-              </label>
-
-              <input
-                type="text"
-                id="billingZip"
-                name="Rechnungs-PLZ"
-                placeholder="54321"
-                inputmode="numeric"
-                required
-              >
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="billingCity">
-                Ort <span class="required">*</span>
-              </label>
-
-              <input
-                type="text"
-                id="billingCity"
-                name="Rechnungsort"
-                placeholder="Musterstadt"
-                required
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- MESSAGE -->
-
-          <div class="section-title">
-            4. Weitere Wünsche
-          </div>
-
-
-          <div class="form-group full">
-
-            <label for="message">
-              Nachricht
-            </label>
-
-            <textarea
-              id="message"
-              name="Nachricht"
-              placeholder="Erzählt uns gerne mehr über eure Feier, Musikwünsche, besondere Programmpunkte oder sonstige Fragen."
-            ></textarea>
-
-          </div>
-
-
-          <button
-            type="button"
-            class="submit-button"
-            id="continueEquipmentButton"
-          >
-            Weiter zur Equipment-Auswahl →
-          </button>
-
-
-          <p class="form-hint">
-            Deine Anfrage wird an RuhrGeBeats übermittelt
-            und ist selbstverständlich unverbindlich.
-            Es gelten unsere
-            <a href="../datenschutz.html">
-              Datenschutzhinweise
-            </a>.
-          </p>
-
-
-          <p
-            id="formStatus"
-            class="form-hint"
-            style="display:none; margin-top:14px; font-weight:700;"
-          ></p>
-
-        </form>
-
-
-        <!-- ===================================================== -->
-        <!-- EQUIPMENT STEP                                        -->
-        <!-- ===================================================== -->
-
-        <section
-          id="equipmentStep"
-          hidden
-          aria-hidden="true"
-        >
-
-          <div class="section-title" style="margin-top:24px;">
-            5. Equipment auswählen
-          </div>
-
-          <p class="equipment-intro">
-            Wählt hier gerne zusätzliches Equipment für eure Feier aus.
-            Die Auswahl ist zunächst unverbindlich. Ihr könnt auch ohne
-            zusätzliches Equipment fortfahren.
-          </p>
-
-          <div
-            id="equipmentGrid"
-            class="equipment-grid"
-          >
-            <div class="equipment-loading">
-              Equipment wird geladen …
-            </div>
-          </div>
-
-
-          <div class="equipment-actions">
+            <!-- CONTINUE -->
 
             <button
               type="button"
               class="submit-button"
-              id="finalSubmitButton"
+              id="continueEquipmentButton"
+            >
+              Weiter zur Equipment-Auswahl →
+            </button>
+
+
+            <p class="form-hint">
+              Die Equipment-Auswahl ist optional. Ihr könnt die Anfrage
+              auch ohne zusätzliches Equipment absenden.
+            </p>
+
+          </div>
+
+
+          <!-- =====================================================
+               EQUIPMENT
+               ===================================================== -->
+
+          <div
+            id="equipmentStep"
+            hidden
+          >
+
+            <div class="section-title">
+              5. Equipment auswählen
+            </div>
+
+
+            <p class="equipment-intro">
+              Wählt hier gerne zusätzliches Equipment für eure Feier aus.
+              Die Auswahl ist zunächst unverbindlich. Ihr könnt auch ohne
+              zusätzliches Equipment fortfahren.
+            </p>
+
+
+            <div
+              id="equipmentLoading"
+              class="equipment-loading"
+            >
+              Equipment wird geladen …
+            </div>
+
+
+            <div
+              id="equipmentGrid"
+              class="equipment-grid"
+              style="display:none;"
+            ></div>
+
+
+            <div
+              id="equipmentEmpty"
+              class="equipment-empty"
+              style="display:none;"
+            >
+              Aktuell ist kein zusätzliches Equipment verfügbar.
+            </div>
+
+
+            <div
+              id="equipmentSelectionInfo"
+              class="equipment-selection-info"
+            >
+              Kein zusätzliches Equipment ausgewählt.
+            </div>
+
+
+            <button
+              type="submit"
+              class="submit-button"
+              id="submitButton"
             >
               Anfrage absenden
             </button>
@@ -1263,24 +1302,34 @@
 
             <button
               type="button"
+              class="secondary-button"
               id="backToFormButton"
-              class="equipment-back-button"
             >
               ← Zurück zum Formular
             </button>
 
 
-            <p class="equipment-note">
+            <p class="form-hint">
               Die Auswahl dient nur zur Vorbereitung eurer Anfrage und ist
               noch keine verbindliche Buchung.
             </p>
 
-
-            <div id="equipmentStatus"></div>
-
           </div>
 
-        </section>
+
+          <!-- STATUS -->
+
+          <p
+            id="formStatus"
+            class="form-hint"
+            style="
+              display:none;
+              margin-top:14px;
+              font-weight:700;
+            "
+          ></p>
+
+        </form>
 
       </section>
 
@@ -1341,6 +1390,10 @@
 
   <script>
 
+    /* =========================================================
+       SUPABASE
+       ========================================================= */
+
     const SUPABASE_URL =
       "https://spqsuedpmrxcbefpocho.supabase.co";
 
@@ -1354,26 +1407,31 @@
       );
 
 
+    /* =========================================================
+       ELEMENTE
+       ========================================================= */
+
     const requestForm =
       document.getElementById("requestForm");
 
-    const continueEquipmentButton =
-      document.getElementById("continueEquipmentButton");
+    const submitButton =
+      document.getElementById("submitButton");
 
-    const finalSubmitButton =
-      document.getElementById("finalSubmitButton");
+    const continueEquipmentButton =
+      document.getElementById(
+        "continueEquipmentButton"
+      );
 
     const backToFormButton =
-      document.getElementById("backToFormButton");
+      document.getElementById(
+        "backToFormButton"
+      );
+
+    const formStep =
+      document.getElementById("formStep");
 
     const equipmentStep =
       document.getElementById("equipmentStep");
-
-    const equipmentGrid =
-      document.getElementById("equipmentGrid");
-
-    const equipmentStatus =
-      document.getElementById("equipmentStatus");
 
     const formStatus =
       document.getElementById("formStatus");
@@ -1381,544 +1439,666 @@
     const dateInput =
       document.getElementById("date");
 
-    const STORAGE_BUCKET =
-      "equipment-images";
+    const equipmentLoading =
+      document.getElementById("equipmentLoading");
 
+    const equipmentGrid =
+      document.getElementById("equipmentGrid");
+
+    const equipmentEmpty =
+      document.getElementById("equipmentEmpty");
+
+    const equipmentSelectionInfo =
+      document.getElementById(
+        "equipmentSelectionInfo"
+      );
+
+
+    /* =========================================================
+       EQUIPMENT STATE
+       ========================================================= */
 
     let equipmentItems = [];
 
-    const selectedEquipmentIds =
-      new Set();
+    let selectedEquipment = [];
 
-    const equipmentImageIndexes =
-      new Map();
+    let equipmentImageIndexes = {};
 
 
-    /* Mindestdatum = heute */
+    /* =========================================================
+       MINDESTDATUM = HEUTE
+       ========================================================= */
 
-    if (dateInput) {
+    function setMinimumDate() {
 
-      const today =
-        new Date().toISOString().split("T")[0];
-
-      dateInput.min = today;
-
-    }
-
-
-    /* HTML sicher ausgeben */
-
-    function escapeHtml(value) {
-
-      if (
-        value === null ||
-        value === undefined
-      ) {
-        return "";
-      }
-
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-    }
-
-
-    /* Statusmeldung */
-
-    function setEquipmentStatus(
-      message,
-      type = "info"
-    ) {
-
-      if (!equipmentStatus) {
+      if (!dateInput) {
         return;
       }
 
-      equipmentStatus.style.display =
-        message ? "block" : "none";
+      const today =
+        new Date()
+          .toISOString()
+          .split("T")[0];
 
-      equipmentStatus.textContent =
-        message || "";
-
-      equipmentStatus.style.background =
-        type === "success"
-          ? "#eaf8f0"
-          : type === "error"
-            ? "#fff0f0"
-            : "#eef6ff";
-
-      equipmentStatus.style.color =
-        type === "success"
-          ? "#138a4b"
-          : type === "error"
-            ? "#c62828"
-            : "#0870d8";
-
+      dateInput.min = today;
     }
 
-
-    /* Öffentliche Storage-URL */
-
-    function publicImageUrl(storagePath) {
-
-      if (!storagePath) {
-        return "";
-      }
-
-      const result =
-        supabaseClient.storage
-          .from(STORAGE_BUCKET)
-          .getPublicUrl(storagePath);
-
-      return result?.data?.publicUrl || "";
-
-    }
+    setMinimumDate();
 
 
-    /* Equipment aus Supabase laden */
+    /* =========================================================
+       EQUIPMENT LADEN
+       ========================================================= */
 
     async function loadEquipment() {
 
-      equipmentGrid.innerHTML =
-        '<div class="equipment-loading">Equipment wird geladen …</div>';
+      equipmentLoading.style.display =
+        "block";
 
+      equipmentGrid.style.display =
+        "none";
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .from("equipment")
-          .select(
-            "id,name,category,description,active,sort_order,equipment_images(id,storage_path,sort_order)"
-          )
-          .eq("active", true)
-          .order(
-            "sort_order",
-            {
+      equipmentEmpty.style.display =
+        "none";
+
+      try {
+
+        const {
+          data: equipment,
+          error
+        } =
+          await supabaseClient
+            .from("equipment")
+            .select(`
+              id,
+              name,
+              category,
+              description,
+              sort_order,
+              equipment_images (
+                id,
+                storage_path,
+                sort_order
+              )
+            `)
+            .eq("active", true)
+            .order("sort_order", {
               ascending: true
-            }
-          )
-          .order(
-            "name",
-            {
-              ascending: true
-            }
-          );
+            });
 
 
-      if (error) {
+        if (error) {
+          throw error;
+        }
+
+
+        equipmentItems =
+          (equipment || []).map(item => {
+
+            const images =
+              (item.equipment_images || [])
+                .sort(
+                  (a, b) =>
+                    (a.sort_order || 0) -
+                    (b.sort_order || 0)
+                )
+                .map(image => {
+
+                  const {
+                    data
+                  } =
+                    supabaseClient
+                      .storage
+                      .from("equipment-images")
+                      .getPublicUrl(
+                        image.storage_path
+                      );
+
+                  return {
+                    id: image.id,
+                    url: data.publicUrl
+                  };
+
+                });
+
+
+            return {
+              ...item,
+              images
+            };
+
+          });
+
+
+        equipmentImageIndexes = {};
+
+
+        if (!equipmentItems.length) {
+
+          equipmentGrid.innerHTML = "";
+
+          equipmentLoading.style.display =
+            "none";
+
+          equipmentEmpty.style.display =
+            "block";
+
+          return;
+        }
+
+
+        renderEquipment();
+
+      } catch (error) {
 
         console.error(
-          "Equipment konnte nicht geladen werden:",
+          "Fehler beim Laden des Equipments:",
           error
         );
 
-        equipmentGrid.innerHTML =
-          '<div class="equipment-empty">Das Equipment konnte gerade nicht geladen werden. Ihr könnt die Anfrage trotzdem ohne Equipment-Auswahl absenden.</div>';
 
-        return;
+        equipmentItems = [];
+
+        equipmentGrid.innerHTML = "";
+
+        equipmentLoading.style.display =
+          "none";
+
+        equipmentEmpty.style.display =
+          "block";
+
+        equipmentEmpty.textContent =
+          "Aktuell ist kein zusätzliches Equipment verfügbar.";
 
       }
-
-
-      equipmentItems =
-        (data || []).map(item => ({
-
-          ...item,
-
-          equipment_images:
-            [...(item.equipment_images || [])]
-              .sort(
-                (a, b) =>
-                  (a.sort_order || 0) -
-                  (b.sort_order || 0)
-              )
-
-        }));
-
-
-      renderEquipment();
 
     }
 
 
-    /* Equipment-Karten darstellen */
+    /* =========================================================
+       EQUIPMENT RENDERN
+       ========================================================= */
 
     function renderEquipment() {
 
-      if (!equipmentItems.length) {
+      equipmentLoading.style.display =
+        "none";
 
-        equipmentGrid.innerHTML =
-          '<div class="equipment-empty">Aktuell ist kein zusätzliches Equipment verfügbar.</div>';
+      equipmentEmpty.style.display =
+        "none";
 
-        return;
+      equipmentGrid.style.display =
+        "grid";
 
-      }
+      equipmentGrid.innerHTML = "";
 
 
-      equipmentGrid.innerHTML =
-        equipmentItems
-          .map(item => {
+      equipmentItems.forEach(
+        (item, itemIndex) => {
 
-            const images =
-              item.equipment_images || [];
+          const isSelected =
+            selectedEquipment.includes(
+              item.id
+            );
 
-            const index =
-              equipmentImageIndexes.get(item.id) || 0;
+
+          if (
+            equipmentImageIndexes[item.id] === undefined
+          ) {
+            equipmentImageIndexes[item.id] = 0;
+          }
+
+
+          const imageIndex =
+            equipmentImageIndexes[item.id];
+
+
+          const images =
+            item.images || [];
+
+
+          const currentImage =
+            images.length
+              ? images[
+                  Math.min(
+                    imageIndex,
+                    images.length - 1
+                  )
+                ]
+              : null;
+
+
+          const card =
+            document.createElement("div");
+
+          card.className =
+            "equipment-card" +
+            (isSelected
+              ? " selected"
+              : "");
+
+
+          card.dataset.id =
+            item.id;
+
+
+          const check =
+            document.createElement("div");
+
+          check.className =
+            "equipment-check";
+
+          check.textContent =
+            "✓";
+
+
+          const imageWrap =
+            document.createElement("div");
+
+          imageWrap.className =
+            "equipment-image-wrap";
+
+
+          if (currentImage) {
 
             const image =
-              images[index];
+              document.createElement("img");
 
-            const imageUrl =
+            image.className =
+              "equipment-image";
+
+            image.src =
+              currentImage.url;
+
+            image.alt =
+              item.name || "Equipment";
+
+            image.loading =
+              "lazy";
+
+            imageWrap.appendChild(
               image
-                ? publicImageUrl(
-                    image.storage_path
-                  )
-                : "";
+            );
 
-            const selected =
-              selectedEquipmentIds.has(
+
+            if (images.length > 1) {
+
+              const previousButton =
+                document.createElement("button");
+
+              previousButton.type =
+                "button";
+
+              previousButton.className =
+                "equipment-image-button prev";
+
+              previousButton.innerHTML =
+                "‹";
+
+              previousButton.setAttribute(
+                "aria-label",
+                "Vorheriges Bild"
+              );
+
+
+              previousButton.addEventListener(
+                "click",
+                function(event) {
+
+                  event.stopPropagation();
+
+                  equipmentImageIndexes[item.id] =
+                    (
+                      imageIndex -
+                      1 +
+                      images.length
+                    ) %
+                    images.length;
+
+                  renderEquipment();
+
+                }
+              );
+
+
+              const nextButton =
+                document.createElement("button");
+
+              nextButton.type =
+                "button";
+
+              nextButton.className =
+                "equipment-image-button next";
+
+              nextButton.innerHTML =
+                "›";
+
+              nextButton.setAttribute(
+                "aria-label",
+                "Nächstes Bild"
+              );
+
+
+              nextButton.addEventListener(
+                "click",
+                function(event) {
+
+                  event.stopPropagation();
+
+                  equipmentImageIndexes[item.id] =
+                    (
+                      imageIndex +
+                      1
+                    ) %
+                    images.length;
+
+                  renderEquipment();
+
+                }
+              );
+
+
+              imageWrap.appendChild(
+                previousButton
+              );
+
+              imageWrap.appendChild(
+                nextButton
+              );
+
+
+              const counter =
+                document.createElement("div");
+
+              counter.className =
+                "equipment-counter";
+
+              counter.textContent =
+                `${imageIndex + 1} / ${images.length}`;
+
+              imageWrap.appendChild(
+                counter
+              );
+
+            }
+
+          } else {
+
+            const noImage =
+              document.createElement("div");
+
+            noImage.className =
+              "equipment-no-image";
+
+            noImage.textContent =
+              "Kein Bild vorhanden";
+
+            imageWrap.appendChild(
+              noImage
+            );
+
+          }
+
+
+          const content =
+            document.createElement("div");
+
+          content.className =
+            "equipment-content";
+
+
+          if (item.category) {
+
+            const category =
+              document.createElement("div");
+
+            category.className =
+              "equipment-category";
+
+            category.textContent =
+              item.category;
+
+            content.appendChild(
+              category
+            );
+
+          }
+
+
+          const name =
+            document.createElement("div");
+
+          name.className =
+            "equipment-name";
+
+          name.textContent =
+            item.name;
+
+          content.appendChild(
+            name
+          );
+
+
+          if (item.description) {
+
+            const description =
+              document.createElement("p");
+
+            description.className =
+              "equipment-description";
+
+            description.textContent =
+              item.description;
+
+            content.appendChild(
+              description
+            );
+
+          }
+
+
+          card.appendChild(
+            check
+          );
+
+          card.appendChild(
+            imageWrap
+          );
+
+          card.appendChild(
+            content
+          );
+
+
+          card.addEventListener(
+            "click",
+            function() {
+
+              toggleEquipment(
                 item.id
               );
 
-
-            return `
-
-              <article
-                class="equipment-card${selected ? " selected" : ""}"
-                data-equipment-id="${escapeHtml(item.id)}"
-                tabindex="0"
-                role="button"
-                aria-pressed="${selected ? "true" : "false"}"
-              >
-
-                <div class="equipment-image-wrap">
-
-                  ${
-                    imageUrl
-
-                      ? `
-                        <img
-                          class="equipment-image"
-                          src="${escapeHtml(imageUrl)}"
-                          alt="${escapeHtml(item.name)}"
-                        >
-                      `
-
-                      : `
-                        <div class="equipment-no-image">
-                          Kein Bild vorhanden
-                        </div>
-                      `
-                  }
-
-
-                  <div class="equipment-check">
-                    ✓
-                  </div>
-
-
-                  ${
-                    images.length > 1
-
-                      ? `
-
-                        <div class="equipment-nav">
-
-                          <button
-                            type="button"
-                            class="equipment-prev"
-                            aria-label="Vorheriges Bild"
-                          >
-                            ‹
-                          </button>
-
-                          <button
-                            type="button"
-                            class="equipment-next"
-                            aria-label="Nächstes Bild"
-                          >
-                            ›
-                          </button>
-
-                        </div>
-
-                        <div class="equipment-counter">
-                          ${index + 1} / ${images.length}
-                        </div>
-
-                      `
-
-                      : ""
-                  }
-
-                </div>
-
-
-                <div class="equipment-body">
-
-                  ${
-                    item.category
-
-                      ? `
-                        <div class="equipment-category">
-                          ${escapeHtml(item.category)}
-                        </div>
-                      `
-
-                      : ""
-                  }
-
-                  <h3>
-                    ${escapeHtml(item.name)}
-                  </h3>
-
-
-                  ${
-                    item.description
-
-                      ? `
-                        <p>
-                          ${escapeHtml(item.description)}
-                        </p>
-                      `
-
-                      : ""
-                  }
-
-                </div>
-
-              </article>
-
-            `;
-
-          })
-          .join("");
-
-
-      /* Auswahl */
-
-      equipmentGrid
-        .querySelectorAll(".equipment-card")
-        .forEach(card => {
-
-          const id =
-            card.dataset.equipmentId;
-
-
-          card.addEventListener(
-            "click",
-            event => {
-
-              if (
-                event.target.closest(
-                  ".equipment-nav"
-                )
-              ) {
-                return;
-              }
-
-              toggleEquipment(id);
-
             }
           );
 
 
-          card.addEventListener(
-            "keydown",
-            event => {
-
-              if (
-                event.key === "Enter" ||
-                event.key === " "
-              ) {
-
-                event.preventDefault();
-
-                toggleEquipment(id);
-
-              }
-
-            }
+          equipmentGrid.appendChild(
+            card
           );
 
-        });
+        }
+      );
 
 
-      /* Vorheriges Bild */
-
-      equipmentGrid
-        .querySelectorAll(".equipment-prev")
-        .forEach(button => {
-
-          button.addEventListener(
-            "click",
-            event => {
-
-              event.stopPropagation();
-
-              changeEquipmentImage(
-                button
-                  .closest(".equipment-card")
-                  .dataset.equipmentId,
-                -1
-              );
-
-            }
-          );
-
-        });
-
-
-      /* Nächstes Bild */
-
-      equipmentGrid
-        .querySelectorAll(".equipment-next")
-        .forEach(button => {
-
-          button.addEventListener(
-            "click",
-            event => {
-
-              event.stopPropagation();
-
-              changeEquipmentImage(
-                button
-                  .closest(".equipment-card")
-                  .dataset.equipmentId,
-                1
-              );
-
-            }
-          );
-
-        });
+      updateEquipmentSelectionInfo();
 
     }
 
 
-    /* Equipment auswählen / abwählen */
+    /* =========================================================
+       EQUIPMENT AUSWÄHLEN / ABWÄHLEN
+       ========================================================= */
 
-    function toggleEquipment(id) {
+    function toggleEquipment(
+      equipmentId
+    ) {
 
-      if (
-        selectedEquipmentIds.has(id)
-      ) {
+      const index =
+        selectedEquipment.indexOf(
+          equipmentId
+        );
 
-        selectedEquipmentIds.delete(id);
+
+      if (index === -1) {
+
+        selectedEquipment.push(
+          equipmentId
+        );
 
       } else {
 
-        selectedEquipmentIds.add(id);
+        selectedEquipment.splice(
+          index,
+          1
+        );
 
       }
+
 
       renderEquipment();
 
     }
 
 
-    /* Bild wechseln */
+    /* =========================================================
+       AUSWAHL-INFO
+       ========================================================= */
 
-    function changeEquipmentImage(
-      id,
-      direction
-    ) {
+    function updateEquipmentSelectionInfo() {
 
-      const item =
-        equipmentItems.find(
-          x => x.id === id
-        );
+      if (!selectedEquipment.length) {
 
+        equipmentSelectionInfo.textContent =
+          "Kein zusätzliches Equipment ausgewählt.";
 
-      if (
-        !item ||
-        !item.equipment_images?.length
-      ) {
         return;
       }
 
 
       const count =
-        item.equipment_images.length;
-
-      const current =
-        equipmentImageIndexes.get(id) || 0;
+        selectedEquipment.length;
 
 
-      equipmentImageIndexes.set(
-        id,
-        (
-          current +
-          direction +
-          count
-        ) % count
-      );
-
-
-      renderEquipment();
+      equipmentSelectionInfo.textContent =
+        count === 1
+          ? "1 zusätzliches Equipment ausgewählt."
+          : `${count} zusätzliche Equipment-Artikel ausgewählt.`;
 
     }
 
 
-    /* Zum Equipment-Schritt */
-
-    function showEquipmentStep() {
-
-      requestForm.style.display =
-        "none";
-
-      equipmentStep.hidden =
-        false;
-
-      equipmentStep.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-      setEquipmentStatus("");
-
-      equipmentStep.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    }
-
-
-    /* Zurück zum Formular */
-
-    function showFormStep() {
-
-      equipmentStep.hidden =
-        true;
-
-      equipmentStep.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-      requestForm.style.display =
-        "block";
-
-      requestForm.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    }
-
-
-    /* Weiter zur Equipment-Auswahl */
+    /* =========================================================
+       ZUM EQUIPMENT
+       ========================================================= */
 
     continueEquipmentButton.addEventListener(
       "click",
-      async () => {
+      async function() {
+
+        /*
+         * Wichtig:
+         * checkValidity() prüft das Formular,
+         * ohne selbst zum ungültigen Feld zu springen.
+         */
+
+        if (!requestForm.checkValidity()) {
+
+          requestForm.reportValidity();
+
+          return;
+        }
+
+
+        formStatus.style.display =
+          "none";
+
+
+        formStep.style.display =
+          "none";
+
+
+        equipmentStep.hidden =
+          false;
+
+
+        if (!equipmentItems.length) {
+
+          await loadEquipment();
+
+        } else {
+
+          renderEquipment();
+
+        }
+
+
+        setTimeout(
+          function() {
+
+            equipmentStep.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          },
+          50
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       ZURÜCK ZUM FORMULAR
+       ========================================================= */
+
+    backToFormButton.addEventListener(
+      "click",
+      function() {
+
+        equipmentStep.hidden =
+          true;
+
+        formStep.style.display =
+          "block";
+
+
+        setTimeout(
+          function() {
+
+            formStep.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          },
+          50
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       FORMULAR ABSENDEN
+       ========================================================= */
+
+    requestForm.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
 
         formStatus.style.display =
           "none";
@@ -1927,66 +2107,12 @@
           "";
 
 
-        if (
-          !requestForm.reportValidity()
-        ) {
-          return;
-        }
+        /*
+         * Sicherheitshalber auch beim endgültigen
+         * Absenden noch einmal validieren.
+         */
 
-
-        continueEquipmentButton.disabled =
-          true;
-
-        continueEquipmentButton.textContent =
-          "Equipment wird geladen …";
-
-
-        try {
-
-          if (
-            !equipmentItems.length
-          ) {
-            await loadEquipment();
-          }
-
-          showEquipmentStep();
-
-        } finally {
-
-          continueEquipmentButton.disabled =
-            false;
-
-          continueEquipmentButton.textContent =
-            "Weiter zur Equipment-Auswahl →";
-
-        }
-
-      }
-    );
-
-
-    /* Zurück */
-
-    backToFormButton.addEventListener(
-      "click",
-      showFormStep
-    );
-
-
-    /* ==========================================================
-       FINALE ANFRAGE
-       ========================================================== */
-
-    finalSubmitButton.addEventListener(
-      "click",
-      async () => {
-
-
-        if (
-          !requestForm.reportValidity()
-        ) {
-
-          showFormStep();
+        if (!requestForm.checkValidity()) {
 
           requestForm.reportValidity();
 
@@ -1995,20 +2121,10 @@
         }
 
 
-        setEquipmentStatus(
-          "Anfrage wird gesendet …"
-        );
-
-
-        finalSubmitButton.disabled =
-          true;
-
-        backToFormButton.disabled =
-          true;
-
-
         const formData =
-          new FormData(requestForm);
+          new FormData(
+            requestForm
+          );
 
 
         const selectedEvent =
@@ -2018,29 +2134,27 @@
 
 
         const guestsValue =
-          formData.get("Anzahl Gäste");
+          formData.get(
+            "Anzahl Gäste"
+          );
 
-
-        /*
-          Das bestehende Anfrage-Payload
-          bleibt unverändert.
-        */
 
         const payload = {
 
-          /* Veranstaltung */
-
           name:
-            formData.get("Name")?.trim() ||
-            "",
+            formData
+              .get("Name")
+              ?.trim() || "",
 
           email:
-            formData.get("E-Mail")?.trim() ||
-            "",
+            formData
+              .get("E-Mail")
+              ?.trim() || "",
 
           phone:
-            formData.get("Telefon")?.trim() ||
-            null,
+            formData
+              .get("Telefon")
+              ?.trim() || null,
 
           event_type:
             selectedEvent?.value ||
@@ -2057,9 +2171,9 @@
               : null,
 
           location:
-            formData.get(
-              "Veranstaltungsort"
-            )?.trim() || "",
+            formData
+              .get("Veranstaltungsort")
+              ?.trim() || "",
 
           start_time:
             formData.get(
@@ -2071,175 +2185,160 @@
               "Gewünschtes Ende"
             ) || null,
 
-
-          /* Weitere Wünsche */
-
           technical_wishes:
             null,
 
           message:
-            formData.get(
-              "Nachricht"
-            )?.trim() || null,
-
-
-          /* Rechnungsadresse */
+            formData
+              .get("Nachricht")
+              ?.trim() || null,
 
           billing_name:
-            formData.get(
-              "Rechnungsname"
-            )?.trim() || "",
+            formData
+              .get("Rechnungsname")
+              ?.trim() || "",
 
           billing_street:
-            formData.get(
-              "Rechnungsstraße"
-            )?.trim() || "",
+            formData
+              .get("Rechnungsstraße")
+              ?.trim() || "",
 
           billing_zip:
-            formData.get(
-              "Rechnungs-PLZ"
-            )?.trim() || "",
+            formData
+              .get("Rechnungs-PLZ")
+              ?.trim() || "",
 
           billing_city:
-            formData.get(
-              "Rechnungsort"
-            )?.trim() || ""
+            formData
+              .get("Rechnungsort")
+              ?.trim() || ""
 
         };
+
+
+        submitButton.disabled =
+          true;
+
+        submitButton.textContent =
+          "Anfrage wird gesendet …";
 
 
         try {
 
           /*
-            Anfrage speichern und ID zurückholen
-          */
+           * Die komplette Speicherung läuft über
+           * die Supabase-Funktion.
+           *
+           * selectedEquipment kann [] sein.
+           * Dann wird einfach keine
+           * inquiry_equipment-Zeile angelegt.
+           */
 
           const {
-            data: inquiry,
+            data: inquiryId,
             error
           } =
-            await supabaseClient
-              .from("anfragen")
-              .insert([payload])
-              .select("id")
-              .single();
+            await supabaseClient.rpc(
+              "submit_ruhrgebeats_inquiry",
+              {
+                p_payload:
+                  payload,
 
-
-          if (error) {
-            throw error;
-          }
-
-
-          /*
-            Ausgewähltes Equipment speichern
-          */
-
-          const selectedItems =
-            equipmentItems.filter(
-              item =>
-                selectedEquipmentIds.has(
-                  item.id
-                )
+                p_equipment_ids:
+                  selectedEquipment
+              }
             );
 
 
-          if (
-            selectedItems.length
-          ) {
+          if (error) {
 
-            const equipmentRows =
-              selectedItems.map(
-                item => ({
-
-                  inquiry_id:
-                    String(
-                      inquiry.id
-                    ),
-
-                  equipment_id:
-                    item.id,
-
-                  equipment_name_snapshot:
-                    item.name
-
-                })
-              );
-
-
-            const {
-              error: equipmentError
-            } =
-              await supabaseClient
-                .from("inquiry_equipment")
-                .insert(
-                  equipmentRows
-                );
-
-
-            if (equipmentError) {
-
-              console.error(
-                "Equipment-Auswahl konnte nicht gespeichert werden:",
-                equipmentError
-              );
-
-              throw new Error(
-                "Die Anfrage wurde gespeichert, aber die Equipment-Auswahl konnte nicht übernommen werden."
-              );
-
-            }
+            throw error;
 
           }
 
 
-          /*
-            Erfolg
-          */
-
-          setEquipmentStatus(
-            "✓ Vielen Dank! Eure Anfrage wurde erfolgreich übermittelt. Wir melden uns persönlich bei euch.",
-            "success"
+          console.log(
+            "Anfrage erfolgreich gespeichert:",
+            inquiryId
           );
 
 
+          formStatus.style.display =
+            "block";
+
+          formStatus.style.background =
+            "#eaf8f0";
+
+          formStatus.style.color =
+            "#138a4b";
+
+          formStatus.textContent =
+            "✓ Vielen Dank! Eure Anfrage wurde erfolgreich übermittelt. Wir melden uns persönlich bei euch.";
+
+
+          /*
+           * Formular zurücksetzen
+           */
+
           requestForm.reset();
 
-          selectedEquipmentIds.clear();
+
+          selectedEquipment =
+            [];
+
+          equipmentItems =
+            [];
+
+          equipmentImageIndexes =
+            {};
 
 
-          if (dateInput) {
-
-            const today =
-              new Date()
-                .toISOString()
-                .split("T")[0];
-
-            dateInput.min =
-              today;
-
-          }
+          setMinimumDate();
 
 
-          backToFormButton.style.display =
+          /*
+           * Zurück zum ersten Schritt
+           */
+
+          equipmentStep.hidden =
+            true;
+
+          formStep.style.display =
+            "block";
+
+
+          equipmentGrid.innerHTML =
+            "";
+
+          equipmentGrid.style.display =
             "none";
 
-          finalSubmitButton.textContent =
-            "Anfrage erfolgreich gesendet ✓";
+          equipmentEmpty.style.display =
+            "none";
+
+          equipmentLoading.style.display =
+            "block";
 
 
-          window.scrollTo({
+          equipmentSelectionInfo.textContent =
+            "Kein zusätzliches Equipment ausgewählt.";
 
-            top:
-              equipmentStatus
-                .getBoundingClientRect()
-                .top +
-              window.scrollY -
-              140,
 
-            behavior:
-              "smooth"
+          /*
+           * Erfolgsmeldung sichtbar machen
+           */
 
-          });
+          setTimeout(
+            function() {
+
+              formStatus.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+              });
+
+            },
+            100
+          );
 
 
         } catch (error) {
@@ -2250,33 +2349,50 @@
           );
 
 
-          setEquipmentStatus(
+          formStatus.style.display =
+            "block";
 
-            "Leider konnte die Anfrage gerade nicht vollständig gespeichert werden. Bitte versucht es erneut oder schreibt uns direkt an ruhrgebeats@gmail.com.",
+          formStatus.style.background =
+            "#fff0f0";
 
-            "error"
+          formStatus.style.color =
+            "#c62828";
 
+
+          /*
+           * Etwas ausführlichere Fehlermeldung
+           * für die Konsole, aber für Kunden
+           * weiterhin verständlich.
+           */
+
+          formStatus.textContent =
+            "Leider konnte die Anfrage gerade nicht vollständig gespeichert werden. Bitte versucht es erneut oder schreibt uns direkt an ruhrgebeats@gmail.com.";
+
+
+          setTimeout(
+            function() {
+
+              formStatus.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+              });
+
+            },
+            100
           );
 
+        } finally {
 
-          finalSubmitButton.disabled =
+          submitButton.disabled =
             false;
 
-          backToFormButton.disabled =
-            false;
+          submitButton.textContent =
+            "Anfrage absenden";
 
         }
 
       }
     );
-
-
-    /*
-      Equipment bereits beim Laden
-      vorbereiten.
-    */
-
-    loadEquipment();
 
   </script>
 
