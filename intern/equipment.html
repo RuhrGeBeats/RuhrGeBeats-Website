@@ -7,13 +7,17 @@
   <title>Equipment | RuhrGeBeats</title>
 
   <link rel="stylesheet" href="./intern.css">
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    /* =========================================
-       EQUIPMENT – SEITENSPEZIFISCHE STYLES
-       ========================================= */
+    .intern-header img {
+      width: 54px !important;
+      height: 54px !important;
+      max-width: 54px !important;
+      max-height: 54px !important;
+      object-fit: contain !important;
+      display: block;
+    }
 
     .equipment-page {
       max-width: 1200px;
@@ -225,8 +229,6 @@
       text-align: center;
       color: var(--muted);
     }
-
-    /* Modal */
 
     .modal-backdrop {
       position: fixed;
@@ -471,7 +473,12 @@
 
 <header class="intern-header">
   <a href="./dashboard.html">
-    <img src="/logo.png" alt="RuhrGeBeats">
+    <img
+      src="/logo.png"
+      alt="RuhrGeBeats"
+      width="54"
+      height="54"
+    >
   </a>
 </header>
 
@@ -496,17 +503,20 @@
 
 </main>
 
-<!-- =========================================
-     MODAL
-     ========================================= -->
-
 <div class="modal-backdrop" id="equipmentModal">
 
   <div class="modal">
 
     <div class="modal-header">
       <h2 id="modalTitle">Equipment hinzufügen</h2>
-      <button class="close-btn" id="closeModalBtn" type="button">×</button>
+
+      <button
+        class="close-btn"
+        id="closeModalBtn"
+        type="button"
+      >
+        ×
+      </button>
     </div>
 
     <form id="equipmentForm">
@@ -517,6 +527,7 @@
 
         <div class="form-group">
           <label for="equipmentName">Name *</label>
+
           <input
             type="text"
             id="equipmentName"
@@ -527,6 +538,7 @@
 
         <div class="form-group">
           <label for="equipmentCategory">Kategorie</label>
+
           <input
             type="text"
             id="equipmentCategory"
@@ -536,6 +548,7 @@
 
         <div class="form-group">
           <label for="equipmentDescription">Beschreibung</label>
+
           <textarea
             id="equipmentDescription"
             placeholder="Kurze Beschreibung des Equipments …"
@@ -544,6 +557,7 @@
 
         <div class="form-group">
           <label for="equipmentSortOrder">Reihenfolge</label>
+
           <input
             type="number"
             id="equipmentSortOrder"
@@ -553,11 +567,19 @@
         </div>
 
         <label class="checkbox-row">
-          <input type="checkbox" id="equipmentActive" checked>
-          <span>Auf der öffentlichen Anfrage-Seite anzeigen</span>
+          <input
+            type="checkbox"
+            id="equipmentActive"
+            checked
+          >
+
+          <span>
+            Auf der öffentlichen Anfrage-Seite anzeigen
+          </span>
         </label>
 
         <div class="form-group">
+
           <label>Bilder</label>
 
           <div class="upload-box">
@@ -570,35 +592,48 @@
             >
 
             <div class="upload-help">
-              Mehrere Bilder möglich. JPG, PNG, WEBP oder GIF, maximal 10 MB pro Bild.
+              Mehrere Bilder möglich. JPG, PNG, WEBP oder GIF,
+              maximal 10 MB pro Bild.
             </div>
 
           </div>
 
-          <div class="image-list" id="imageList"></div>
+          <div
+            class="image-list"
+            id="imageList"
+          ></div>
+
         </div>
 
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="secondary-btn" id="cancelBtn">
+
+        <button
+          type="button"
+          class="secondary-btn"
+          id="cancelBtn"
+        >
           Abbrechen
         </button>
 
-        <button type="submit" class="primary-btn" id="saveBtn">
+        <button
+          type="submit"
+          class="primary-btn"
+          id="saveBtn"
+        >
           Speichern
         </button>
+
       </div>
 
     </form>
 
   </div>
+
 </div>
 
 <script>
-/* =========================================
-   SUPABASE
-   ========================================= */
 
 const SUPABASE_URL =
   "https://spqsuedpmrxcbefpocho.supabase.co";
@@ -612,59 +647,78 @@ const supabaseClient =
     SUPABASE_KEY
   );
 
-const STORAGE_BUCKET = "equipment-images";
-
-
-/* =========================================
-   DOM
-   ========================================= */
+const STORAGE_BUCKET =
+  "equipment-images";
 
 const equipmentContainer =
-  document.getElementById("equipmentContainer");
+  document.getElementById(
+    "equipmentContainer"
+  );
 
 const equipmentModal =
-  document.getElementById("equipmentModal");
+  document.getElementById(
+    "equipmentModal"
+  );
 
 const equipmentForm =
-  document.getElementById("equipmentForm");
+  document.getElementById(
+    "equipmentForm"
+  );
 
 const modalTitle =
-  document.getElementById("modalTitle");
+  document.getElementById(
+    "modalTitle"
+  );
 
 const equipmentId =
-  document.getElementById("equipmentId");
+  document.getElementById(
+    "equipmentId"
+  );
 
 const equipmentName =
-  document.getElementById("equipmentName");
+  document.getElementById(
+    "equipmentName"
+  );
 
 const equipmentCategory =
-  document.getElementById("equipmentCategory");
+  document.getElementById(
+    "equipmentCategory"
+  );
 
 const equipmentDescription =
-  document.getElementById("equipmentDescription");
+  document.getElementById(
+    "equipmentDescription"
+  );
 
 const equipmentSortOrder =
-  document.getElementById("equipmentSortOrder");
+  document.getElementById(
+    "equipmentSortOrder"
+  );
 
 const equipmentActive =
-  document.getElementById("equipmentActive");
+  document.getElementById(
+    "equipmentActive"
+  );
 
 const equipmentImages =
-  document.getElementById("equipmentImages");
+  document.getElementById(
+    "equipmentImages"
+  );
 
 const imageList =
-  document.getElementById("imageList");
+  document.getElementById(
+    "imageList"
+  );
 
 const messageBox =
-  document.getElementById("message");
+  document.getElementById(
+    "message"
+  );
 
 const saveBtn =
-  document.getElementById("saveBtn");
-
-
-/* =========================================
-   STATE
-   ========================================= */
+  document.getElementById(
+    "saveBtn"
+  );
 
 let equipmentData = [];
 
@@ -673,11 +727,14 @@ let currentImages = [];
 let pendingImageFiles = [];
 
 
-/* =========================================
+/* ================================
    MESSAGE
-   ========================================= */
+   ================================ */
 
-function showMessage(text, type = "success") {
+function showMessage(
+  text,
+  type = "success"
+) {
 
   messageBox.textContent = text;
 
@@ -685,14 +742,17 @@ function showMessage(text, type = "success") {
     "message show " + type;
 
   setTimeout(() => {
-    messageBox.className = "message";
+
+    messageBox.className =
+      "message";
+
   }, 4500);
 }
 
 
-/* =========================================
+/* ================================
    AUTH
-   ========================================= */
+   ================================ */
 
 async function checkAuth() {
 
@@ -702,14 +762,22 @@ async function checkAuth() {
   } = await supabaseClient.auth.getSession();
 
   if (error) {
+
     console.error(error);
 
-    window.location.replace("/intern/index.html");
+    window.location.replace(
+      "/intern/index.html"
+    );
+
     return false;
   }
 
   if (!data.session) {
-    window.location.replace("/intern/index.html");
+
+    window.location.replace(
+      "/intern/index.html"
+    );
+
     return false;
   }
 
@@ -717,26 +785,30 @@ async function checkAuth() {
 }
 
 
-/* =========================================
-   STORAGE URL
-   ========================================= */
+/* ================================
+   IMAGE URL
+   ================================ */
 
-function getImageUrl(storagePath) {
+function getImageUrl(
+  storagePath
+) {
 
   const {
     data
   } = supabaseClient
     .storage
     .from(STORAGE_BUCKET)
-    .getPublicUrl(storagePath);
+    .getPublicUrl(
+      storagePath
+    );
 
   return data.publicUrl;
 }
 
 
-/* =========================================
-   LOAD EQUIPMENT
-   ========================================= */
+/* ================================
+   LOAD
+   ================================ */
 
 async function loadEquipment() {
 
@@ -778,15 +850,16 @@ async function loadEquipment() {
     return;
   }
 
-  equipmentData = data || [];
+  equipmentData =
+    data || [];
 
   renderEquipment();
 }
 
 
-/* =========================================
-   RENDER EQUIPMENT
-   ========================================= */
+/* ================================
+   RENDER
+   ================================ */
 
 function renderEquipment() {
 
@@ -795,9 +868,11 @@ function renderEquipment() {
     equipmentContainer.innerHTML = `
       <div class="empty-state">
         <h3>Noch kein Equipment vorhanden</h3>
+
         <p>
-          Lege dein erstes Equipment an, damit Kunden es später
-          bei einer Anfrage auswählen können.
+          Lege dein erstes Equipment an,
+          damit Kunden es später bei einer
+          Anfrage auswählen können.
         </p>
       </div>
     `;
@@ -807,56 +882,74 @@ function renderEquipment() {
 
   equipmentContainer.innerHTML = `
     <div class="equipment-grid">
-      ${equipmentData.map(renderEquipmentCard).join("")}
+      ${
+        equipmentData
+          .map(
+            renderEquipmentCard
+          )
+          .join("")
+      }
     </div>
   `;
 
-  equipmentData.forEach((equipment, index) => {
+  equipmentData.forEach(
+    equipment => {
 
-    const images =
-      (equipment.equipment_images || [])
-        .sort((a, b) =>
-          (a.sort_order || 0) -
-          (b.sort_order || 0)
+      const images =
+        (
+          equipment.equipment_images ||
+          []
+        )
+        .slice()
+        .sort(
+          (a, b) =>
+            (a.sort_order || 0) -
+            (b.sort_order || 0)
         );
 
-    if (images.length > 1) {
+      if (images.length > 1) {
 
-      window["equipmentImages_" + equipment.id] = images;
+        window[
+          "equipmentImages_" +
+          equipment.id
+        ] = images;
 
-      window["equipmentIndex_" + equipment.id] = 0;
+        window[
+          "equipmentIndex_" +
+          equipment.id
+        ] = 0;
+      }
     }
-  });
+  );
 }
 
 
-/* =========================================
-   EQUIPMENT CARD
-   ========================================= */
+/* ================================
+   CARD
+   ================================ */
 
-function renderEquipmentCard(equipment) {
+function renderEquipmentCard(
+  equipment
+) {
 
   const images =
-    (equipment.equipment_images || [])
-      .sort((a, b) =>
+    (
+      equipment.equipment_images ||
+      []
+    )
+    .slice()
+    .sort(
+      (a, b) =>
         (a.sort_order || 0) -
         (b.sort_order || 0)
-      );
+    );
 
   const firstImage =
     images.length
-      ? getImageUrl(images[0].storage_path)
+      ? getImageUrl(
+          images[0].storage_path
+        )
       : null;
-
-  const statusClass =
-    equipment.active
-      ? "active"
-      : "inactive";
-
-  const statusText =
-    equipment.active
-      ? "Öffentlich sichtbar"
-      : "Versteckt";
 
   return `
     <article class="equipment-card">
@@ -920,23 +1013,39 @@ function renderEquipmentCard(equipment) {
         <div class="equipment-topline">
 
           <div>
+
             <h2 class="equipment-name">
-              ${escapeHtml(equipment.name)}
+              ${escapeHtml(
+                equipment.name
+              )}
             </h2>
 
             ${
               equipment.category
                 ? `
                   <span class="category">
-                    ${escapeHtml(equipment.category)}
+                    ${escapeHtml(
+                      equipment.category
+                    )}
                   </span>
                 `
                 : ""
             }
+
           </div>
 
-          <span class="status ${statusClass}">
-            ${statusText}
+          <span
+            class="status ${
+              equipment.active
+                ? "active"
+                : "inactive"
+            }"
+          >
+            ${
+              equipment.active
+                ? "Öffentlich sichtbar"
+                : "Versteckt"
+            }
           </span>
 
         </div>
@@ -945,7 +1054,9 @@ function renderEquipmentCard(equipment) {
           equipment.description
             ? `
               <p class="equipment-description">
-                ${escapeHtml(equipment.description)}
+                ${escapeHtml(
+                  equipment.description
+                )}
               </p>
             `
             : ""
@@ -966,7 +1077,11 @@ function renderEquipmentCard(equipment) {
             class="secondary-btn"
             onclick="toggleEquipment('${equipment.id}')"
           >
-            ${equipment.active ? "Verstecken" : "Aktivieren"}
+            ${
+              equipment.active
+                ? "Verstecken"
+                : "Aktivieren"
+            }
           </button>
 
           <button
@@ -986,47 +1101,70 @@ function renderEquipmentCard(equipment) {
 }
 
 
-/* =========================================
+/* ================================
    IMAGE NAVIGATION
-   ========================================= */
+   ================================ */
 
-function changeImage(equipmentId, direction) {
+function changeImage(
+  id,
+  direction
+) {
 
   const images =
-    window["equipmentImages_" + equipmentId];
+    window[
+      "equipmentImages_" +
+      id
+    ];
 
-  if (!images || !images.length) return;
+  if (
+    !images ||
+    !images.length
+  ) {
+    return;
+  }
 
   let index =
-    window["equipmentIndex_" + equipmentId] || 0;
+    window[
+      "equipmentIndex_" +
+      id
+    ] || 0;
 
   index += direction;
 
   if (index < 0) {
-    index = images.length - 1;
+    index =
+      images.length - 1;
   }
 
-  if (index >= images.length) {
+  if (
+    index >= images.length
+  ) {
     index = 0;
   }
 
-  window["equipmentIndex_" + equipmentId] =
-    index;
+  window[
+    "equipmentIndex_" +
+    id
+  ] = index;
 
   const image =
     document.getElementById(
-      "gallery-image-" + equipmentId
+      "gallery-image-" +
+      id
     );
 
   const counter =
     document.getElementById(
-      "image-counter-" + equipmentId
+      "image-counter-" +
+      id
     );
 
   if (image) {
 
     image.src =
-      getImageUrl(images[index].storage_path);
+      getImageUrl(
+        images[index].storage_path
+      );
   }
 
   if (counter) {
@@ -1037,9 +1175,9 @@ function changeImage(equipmentId, direction) {
 }
 
 
-/* =========================================
-   OPEN MODAL
-   ========================================= */
+/* ================================
+   MODAL
+   ================================ */
 
 function openModal() {
 
@@ -1047,9 +1185,11 @@ function openModal() {
 
   equipmentId.value = "";
 
-  equipmentActive.checked = true;
+  equipmentActive.checked =
+    true;
 
-  equipmentSortOrder.value = 0;
+  equipmentSortOrder.value =
+    0;
 
   currentImages = [];
 
@@ -1062,32 +1202,36 @@ function openModal() {
   modalTitle.textContent =
     "Equipment hinzufügen";
 
-  equipmentModal.classList.add("open");
+  equipmentModal.classList.add(
+    "open"
+  );
 }
 
-
-/* =========================================
-   CLOSE MODAL
-   ========================================= */
 
 function closeModal() {
 
-  equipmentModal.classList.remove("open");
+  equipmentModal.classList.remove(
+    "open"
+  );
 }
 
 
-/* =========================================
-   EDIT EQUIPMENT
-   ========================================= */
+/* ================================
+   EDIT
+   ================================ */
 
-async function editEquipment(id) {
+async function editEquipment(
+  id
+) {
 
   const equipment =
-    equipmentData.find(item =>
-      item.id === id
+    equipmentData.find(
+      item => item.id === id
     );
 
-  if (!equipment) return;
+  if (!equipment) {
+    return;
+  }
 
   equipmentId.value =
     equipment.id;
@@ -1108,12 +1252,16 @@ async function editEquipment(id) {
     equipment.active !== false;
 
   currentImages =
-    (equipment.equipment_images || [])
-      .slice()
-      .sort((a, b) =>
+    (
+      equipment.equipment_images ||
+      []
+    )
+    .slice()
+    .sort(
+      (a, b) =>
         (a.sort_order || 0) -
         (b.sort_order || 0)
-      );
+    );
 
   pendingImageFiles = [];
 
@@ -1124,124 +1272,159 @@ async function editEquipment(id) {
 
   renderModalImages();
 
-  equipmentModal.classList.add("open");
+  equipmentModal.classList.add(
+    "open"
+  );
 }
 
 
-/* =========================================
-   RENDER MODAL IMAGES
-   ========================================= */
+/* ================================
+   MODAL IMAGES
+   ================================ */
 
 function renderModalImages() {
 
   imageList.innerHTML = "";
 
-  currentImages.forEach((image, index) => {
+  currentImages.forEach(
+    (image, index) => {
 
-    const item =
-      document.createElement("div");
+      const item =
+        document.createElement(
+          "div"
+        );
 
-    item.className = "image-item";
+      item.className =
+        "image-item";
 
-    item.innerHTML = `
-      <img
-        src="${escapeAttribute(
-          getImageUrl(image.storage_path)
-        )}"
-        alt="Equipment Bild ${index + 1}"
-      >
-
-      <div class="image-item-controls">
-
-        <button
-          type="button"
-          class="small-btn"
-          ${index === 0 ? "disabled" : ""}
-          onclick="moveImage(${index}, -1)"
+      item.innerHTML = `
+        <img
+          src="${escapeAttribute(
+            getImageUrl(
+              image.storage_path
+            )
+          )}"
+          alt="Equipment Bild ${
+            index + 1
+          }"
         >
-          ←
-        </button>
 
-        <button
-          type="button"
-          class="small-btn"
-          ${index === currentImages.length - 1 ? "disabled" : ""}
-          onclick="moveImage(${index}, 1)"
+        <div class="image-item-controls">
+
+          <button
+            type="button"
+            class="small-btn"
+            ${
+              index === 0
+                ? "disabled"
+                : ""
+            }
+            onclick="moveImage(${index}, -1)"
+          >
+            ←
+          </button>
+
+          <button
+            type="button"
+            class="small-btn"
+            ${
+              index ===
+              currentImages.length - 1
+                ? "disabled"
+                : ""
+            }
+            onclick="moveImage(${index}, 1)"
+          >
+            →
+          </button>
+
+          <button
+            type="button"
+            class="small-btn delete"
+            onclick="removeImage(${index})"
+          >
+            ×
+          </button>
+
+        </div>
+      `;
+
+      imageList.appendChild(
+        item
+      );
+    }
+  );
+
+  pendingImageFiles.forEach(
+    (file, index) => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+      item.className =
+        "image-item";
+
+      const previewUrl =
+        URL.createObjectURL(
+          file
+        );
+
+      item.innerHTML = `
+        <img
+          src="${previewUrl}"
+          alt="Neues Bild"
         >
-          →
-        </button>
 
-        <button
-          type="button"
-          class="small-btn delete"
-          onclick="removeImage(${index})"
-        >
-          ×
-        </button>
+        <div class="image-item-controls">
 
-      </div>
-    `;
+          <span
+            style="
+              flex:1;
+              font-size:12px;
+              padding:7px;
+              color:var(--muted);
+            "
+          >
+            Neues Bild
+          </span>
 
-    imageList.appendChild(item);
-  });
+          <button
+            type="button"
+            class="small-btn delete"
+            onclick="removePendingImage(${index})"
+          >
+            ×
+          </button>
 
-  pendingImageFiles.forEach((file, index) => {
+        </div>
+      `;
 
-    const item =
-      document.createElement("div");
-
-    item.className = "image-item";
-
-    const previewUrl =
-      URL.createObjectURL(file);
-
-    item.innerHTML = `
-      <img
-        src="${previewUrl}"
-        alt="Neues Bild"
-      >
-
-      <div class="image-item-controls">
-
-        <span
-          style="
-            flex:1;
-            font-size:12px;
-            padding:7px;
-            color:var(--muted);
-          "
-        >
-          Neues Bild
-        </span>
-
-        <button
-          type="button"
-          class="small-btn delete"
-          onclick="removePendingImage(${index})"
-        >
-          ×
-        </button>
-
-      </div>
-    `;
-
-    imageList.appendChild(item);
-  });
+      imageList.appendChild(
+        item
+      );
+    }
+  );
 }
 
 
-/* =========================================
+/* ================================
    MOVE IMAGE
-   ========================================= */
+   ================================ */
 
-function moveImage(index, direction) {
+function moveImage(
+  index,
+  direction
+) {
 
   const newIndex =
     index + direction;
 
   if (
     newIndex < 0 ||
-    newIndex >= currentImages.length
+    newIndex >=
+      currentImages.length
   ) {
     return;
   }
@@ -1258,23 +1441,28 @@ function moveImage(index, direction) {
 }
 
 
-/* =========================================
+/* ================================
    REMOVE IMAGE
-   ========================================= */
+   ================================ */
 
-async function removeImage(index) {
+async function removeImage(
+  index
+) {
 
   const image =
     currentImages[index];
 
-  if (!image) return;
+  if (!image) {
+    return;
+  }
 
-  const confirmed =
-    confirm(
+  if (
+    !confirm(
       "Dieses Bild wirklich löschen?"
-    );
-
-  if (!confirmed) return;
+    )
+  ) {
+    return;
+  }
 
   const {
     error
@@ -1316,7 +1504,10 @@ async function removeImage(index) {
     return;
   }
 
-  currentImages.splice(index, 1);
+  currentImages.splice(
+    index,
+    1
+  );
 
   renderModalImages();
 
@@ -1326,11 +1517,13 @@ async function removeImage(index) {
 }
 
 
-/* =========================================
-   REMOVE PENDING IMAGE
-   ========================================= */
+/* ================================
+   REMOVE NEW IMAGE
+   ================================ */
 
-function removePendingImage(index) {
+function removePendingImage(
+  index
+) {
 
   pendingImageFiles.splice(
     index,
@@ -1341,20 +1534,27 @@ function removePendingImage(index) {
 }
 
 
-/* =========================================
-   SELECT NEW IMAGES
-   ========================================= */
+/* ================================
+   NEW IMAGES
+   ================================ */
 
 equipmentImages.addEventListener(
   "change",
   function () {
 
     const files =
-      Array.from(this.files || []);
+      Array.from(
+        this.files || []
+      );
 
-    for (const file of files) {
+    for (
+      const file of files
+    ) {
 
-      if (file.size > 10 * 1024 * 1024) {
+      if (
+        file.size >
+        10 * 1024 * 1024
+      ) {
 
         showMessage(
           `${file.name} ist größer als 10 MB.`,
@@ -1371,7 +1571,11 @@ equipmentImages.addEventListener(
         "image/gif"
       ];
 
-      if (!allowedTypes.includes(file.type)) {
+      if (
+        !allowedTypes.includes(
+          file.type
+        )
+      ) {
 
         showMessage(
           `${file.name} ist kein unterstütztes Bildformat.`,
@@ -1381,7 +1585,9 @@ equipmentImages.addEventListener(
         continue;
       }
 
-      pendingImageFiles.push(file);
+      pendingImageFiles.push(
+        file
+      );
     }
 
     this.value = "";
@@ -1391,9 +1597,9 @@ equipmentImages.addEventListener(
 );
 
 
-/* =========================================
-   SAVE EQUIPMENT
-   ========================================= */
+/* ================================
+   SAVE
+   ================================ */
 
 equipmentForm.addEventListener(
   "submit",
@@ -1412,29 +1618,40 @@ equipmentForm.addEventListener(
         equipmentId.value.trim();
 
       const payload = {
-        name: equipmentName.value.trim(),
-        category: equipmentCategory.value.trim() || null,
-        description: equipmentDescription.value.trim() || null,
-        active: equipmentActive.checked,
+
+        name:
+          equipmentName.value.trim(),
+
+        category:
+          equipmentCategory.value.trim() ||
+          null,
+
+        description:
+          equipmentDescription.value.trim() ||
+          null,
+
+        active:
+          equipmentActive.checked,
+
         sort_order:
           parseInt(
             equipmentSortOrder.value,
             10
           ) || 0,
+
         updated_at:
           new Date().toISOString()
       };
 
       if (!payload.name) {
+
         throw new Error(
           "Bitte einen Namen eingeben."
         );
       }
 
 
-      /* -----------------------------
-         UPDATE
-         ----------------------------- */
+      /* UPDATE */
 
       if (id) {
 
@@ -1451,9 +1668,8 @@ equipmentForm.addEventListener(
 
       }
 
-      /* -----------------------------
-         INSERT
-         ----------------------------- */
+
+      /* INSERT */
 
       else {
 
@@ -1475,12 +1691,11 @@ equipmentForm.addEventListener(
       }
 
 
-      /* -----------------------------
-         UPLOAD NEW IMAGES
-         ----------------------------- */
-
       const savedEquipmentId =
         equipmentId.value;
+
+
+      /* UPLOAD */
 
       if (
         pendingImageFiles.length
@@ -1506,7 +1721,6 @@ equipmentForm.addEventListener(
           const storagePath =
             `${savedEquipmentId}/${uniqueName}`;
 
-
           const {
             error: uploadError
           } = await supabaseClient
@@ -1525,7 +1739,6 @@ equipmentForm.addEventListener(
             throw uploadError;
           }
 
-
           const {
             error: imageDbError
           } = await supabaseClient
@@ -1533,8 +1746,10 @@ equipmentForm.addEventListener(
             .insert({
               equipment_id:
                 savedEquipmentId,
+
               storage_path:
                 storagePath,
+
               sort_order:
                 nextSortOrder
             });
@@ -1548,9 +1763,7 @@ equipmentForm.addEventListener(
       }
 
 
-      /* -----------------------------
-         UPDATE IMAGE ORDER
-         ----------------------------- */
+      /* IMAGE ORDER */
 
       for (
         let index = 0;
@@ -1558,17 +1771,16 @@ equipmentForm.addEventListener(
         index++
       ) {
 
-        const image =
-          currentImages[index];
-
         await supabaseClient
           .from("equipment_images")
           .update({
             sort_order: index
           })
-          .eq("id", image.id);
+          .eq(
+            "id",
+            currentImages[index].id
+          );
       }
-
 
       showMessage(
         "Equipment erfolgreich gespeichert."
@@ -1599,25 +1811,31 @@ equipmentForm.addEventListener(
 );
 
 
-/* =========================================
-   TOGGLE ACTIVE
-   ========================================= */
+/* ================================
+   TOGGLE
+   ================================ */
 
-async function toggleEquipment(id) {
+async function toggleEquipment(
+  id
+) {
 
   const equipment =
-    equipmentData.find(item =>
-      item.id === id
+    equipmentData.find(
+      item => item.id === id
     );
 
-  if (!equipment) return;
+  if (!equipment) {
+    return;
+  }
 
   const {
     error
   } = await supabaseClient
     .from("equipment")
     .update({
-      active: !equipment.active,
+      active:
+        !equipment.active,
+
       updated_at:
         new Date().toISOString()
     })
@@ -1645,36 +1863,36 @@ async function toggleEquipment(id) {
 }
 
 
-/* =========================================
-   DELETE EQUIPMENT
-   ========================================= */
+/* ================================
+   DELETE
+   ================================ */
 
-async function deleteEquipment(id) {
+async function deleteEquipment(
+  id
+) {
 
   const equipment =
-    equipmentData.find(item =>
-      item.id === id
+    equipmentData.find(
+      item => item.id === id
     );
 
-  if (!equipment) return;
+  if (!equipment) {
+    return;
+  }
 
-  const confirmed =
-    confirm(
+  if (
+    !confirm(
       `„${equipment.name}“ wirklich löschen?\n\nDabei werden auch alle zugehörigen Bilder gelöscht.`
-    );
-
-  if (!confirmed) return;
-
+    )
+  ) {
+    return;
+  }
 
   try {
 
     const images =
-      equipment.equipment_images || [];
-
-
-    /* -----------------------------
-       STORAGE FILES
-       ----------------------------- */
+      equipment.equipment_images ||
+      [];
 
     if (images.length) {
 
@@ -1695,11 +1913,6 @@ async function deleteEquipment(id) {
         throw storageError;
       }
     }
-
-
-    /* -----------------------------
-       DATABASE
-       ----------------------------- */
 
     const {
       error
@@ -1731,54 +1944,79 @@ async function deleteEquipment(id) {
 }
 
 
-/* =========================================
+/* ================================
    HELPERS
-   ========================================= */
+   ================================ */
 
-function escapeHtml(value) {
+function escapeHtml(
+  value
+) {
 
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+  return String(
+    value ?? ""
+  )
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 }
 
 
-function escapeAttribute(value) {
+function escapeAttribute(
+  value
+) {
 
   return escapeHtml(value);
 }
 
 
-/* =========================================
+/* ================================
    BUTTONS
-   ========================================= */
+   ================================ */
 
 document
-  .getElementById("addEquipmentBtn")
+  .getElementById(
+    "addEquipmentBtn"
+  )
   .addEventListener(
     "click",
     openModal
   );
 
 document
-  .getElementById("closeModalBtn")
+  .getElementById(
+    "closeModalBtn"
+  )
   .addEventListener(
     "click",
     closeModal
   );
 
 document
-  .getElementById("cancelBtn")
+  .getElementById(
+    "cancelBtn"
+  )
   .addEventListener(
     "click",
     closeModal
-);
+  );
 
-
-/* Klick außerhalb des Modals */
 
 equipmentModal.addEventListener(
   "click",
@@ -1794,15 +2032,15 @@ equipmentModal.addEventListener(
 );
 
 
-/* ESC */
-
 document.addEventListener(
   "keydown",
   function (event) {
 
     if (
       event.key === "Escape" &&
-      equipmentModal.classList.contains("open")
+      equipmentModal.classList.contains(
+        "open"
+      )
     ) {
       closeModal();
     }
@@ -1810,9 +2048,9 @@ document.addEventListener(
 );
 
 
-/* =========================================
-   START
-   ========================================= */
+/* ================================
+   INIT
+   ================================ */
 
 (async function init() {
 
