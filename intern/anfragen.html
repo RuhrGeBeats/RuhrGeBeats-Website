@@ -7,7 +7,6 @@
   <title>Anfragen – RuhrGeBeats</title>
 
   <link rel="icon" href="../logo.png">
-
   <link rel="stylesheet" href="./intern.css">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -16,7 +15,21 @@
   <style>
 
     /* =========================================================
-       ANFRAGEN
+       HEADER
+       ========================================================= */
+
+    .intern-header img {
+      width: 54px !important;
+      height: 54px !important;
+      max-width: 54px !important;
+      max-height: 54px !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+
+    /* =========================================================
+       PAGE HEADER
        ========================================================= */
 
     .page-header {
@@ -37,11 +50,19 @@
     }
 
 
+    /* =========================================================
+       REQUEST LIST
+       ========================================================= */
+
     .request-list {
       display: grid;
       gap: 20px;
     }
 
+
+    /* =========================================================
+       REQUEST CARD
+       ========================================================= */
 
     .request-card {
       background: #fff;
@@ -51,7 +72,6 @@
       box-shadow: 0 8px 25px rgba(7,17,31,.05);
     }
 
-
     .request-card-header {
       display: flex;
       justify-content: space-between;
@@ -60,19 +80,16 @@
       margin-bottom: 20px;
     }
 
-
     .request-card-header h2 {
       margin: 0;
       font-size: 21px;
     }
-
 
     .request-date {
       color: #66717f;
       font-size: 13px;
       margin-top: 4px;
     }
-
 
     .request-status {
       padding: 6px 11px;
@@ -85,23 +102,24 @@
     }
 
 
+    /* =========================================================
+       REQUEST GRID
+       ========================================================= */
+
     .request-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 22px;
     }
 
-
     .request-section {
       border-top: 1px solid #e7ebef;
       padding-top: 16px;
     }
 
-
     .request-section.full {
       grid-column: 1 / -1;
     }
-
 
     .request-section-title {
       margin: 0 0 11px;
@@ -113,6 +131,10 @@
     }
 
 
+    /* =========================================================
+       REQUEST ROWS
+       ========================================================= */
+
     .request-row {
       display: grid;
       grid-template-columns: 125px 1fr;
@@ -121,16 +143,18 @@
       font-size: 14px;
     }
 
-
     .request-row strong {
       font-weight: 750;
     }
-
 
     .request-row span {
       word-break: break-word;
     }
 
+
+    /* =========================================================
+       MESSAGE
+       ========================================================= */
 
     .request-message {
       white-space: pre-wrap;
@@ -147,15 +171,14 @@
     .equipment-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
     }
-
 
     .equipment-tag {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 8px 11px;
+      gap: 8px;
+      padding: 9px 13px;
       border-radius: 10px;
       background: #edf7ff;
       border: 1px solid #cfe8ff;
@@ -164,15 +187,19 @@
       font-weight: 700;
     }
 
+    .equipment-tag-icon {
+      font-size: 14px;
+    }
 
     .equipment-empty {
       color: #66717f;
       font-size: 13px;
+      padding: 3px 0;
     }
 
 
     /* =========================================================
-       BUTTONS
+       ACTIONS
        ========================================================= */
 
     .request-actions {
@@ -183,7 +210,6 @@
       padding-top: 18px;
       border-top: 1px solid #e7ebef;
     }
-
 
     .action-button {
       border: 0;
@@ -196,17 +222,14 @@
       transition: .2s ease;
     }
 
-
     .action-button.pdf {
       background: #07111f;
       color: #fff;
     }
 
-
     .action-button.pdf:hover {
       background: #168cff;
     }
-
 
     .action-button:disabled {
       opacity: .6;
@@ -230,7 +253,21 @@
 
 
     /* =========================================================
-       RESPONSIVE
+       ERROR
+       ========================================================= */
+
+    .error-state {
+      padding: 25px;
+      text-align: center;
+      color: #a32929;
+      background: #fff4f4;
+      border: 1px solid #f0cccc;
+      border-radius: 18px;
+    }
+
+
+    /* =========================================================
+       MOBILE
        ========================================================= */
 
     @media (max-width: 750px) {
@@ -260,6 +297,9 @@
         width: 100%;
       }
 
+      .request-row {
+        grid-template-columns: 105px 1fr;
+      }
     }
 
   </style>
@@ -268,886 +308,1147 @@
 
 <body>
 
-  <!-- =========================================================
-       HEADER
-       ========================================================= -->
 
-  <header class="intern-header">
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
 
-    <div class="intern-header-inner">
+<header class="intern-header">
 
-      <a href="./dashboard.html">
-        <img
-          src="../logo.png"
-          alt="RuhrGeBeats"
-        >
-      </a>
+  <div class="intern-header-inner">
 
-      <div class="intern-header-title">
-        Anfragen
-      </div>
-
-      <a
-        href="./dashboard.html"
-        class="intern-back"
+    <a href="./dashboard.html">
+      <img
+        src="../logo.png"
+        alt="RuhrGeBeats"
       >
-        ← Dashboard
-      </a>
+    </a>
 
+    <div class="intern-header-title">
+      Anfragen
     </div>
 
-  </header>
-
-
-  <!-- =========================================================
-       MAIN
-       ========================================================= -->
-
-  <main class="intern-main">
-
-    <div class="page-header">
-
-      <div>
-
-        <h1>
-          Anfragen
-        </h1>
-
-        <p>
-          Eingegangene Kundenanfragen und ausgewähltes Equipment.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div
-      id="requestList"
-      class="request-list"
+    <a
+      href="./dashboard.html"
+      class="intern-back"
     >
+      ← Dashboard
+    </a>
 
-      <div class="loading">
-        Anfragen werden geladen …
-      </div>
+  </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main class="intern-main">
+
+  <div class="page-header">
+
+    <div>
+
+      <h1>
+        Anfragen
+      </h1>
+
+      <p>
+        Eingegangene Kundenanfragen und ausgewähltes Equipment.
+      </p>
 
     </div>
 
-  </main>
+  </div>
 
 
-  <!-- =========================================================
-       SCRIPT
-       ========================================================= -->
+  <div
+    id="requestList"
+    class="request-list"
+  >
 
-  <script>
+    <div class="loading">
+      Anfragen werden geladen …
+    </div>
 
-    /* =========================================================
-       SUPABASE
-       ========================================================= */
+  </div>
 
-    const SUPABASE_URL =
-      "https://spqsuedpmrxcbefpocho.supabase.co";
-
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
+</main>
 
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+
+<script>
+
+/* =========================================================
+   SUPABASE
+   ========================================================= */
+
+const SUPABASE_URL =
+  "https://spqsuedpmrxcbefpocho.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const requestList =
+  document.getElementById("requestList");
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function formatDate(value) {
+
+  if (!value) {
+    return "–";
+  }
+
+  const date =
+    new Date(value + "T00:00:00");
+
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat(
+    "de-DE"
+  ).format(date);
+}
+
+
+function formatTime(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  return String(value).slice(0, 5);
+}
+
+
+function formatTimeRange(start, end) {
+
+  const startTime =
+    formatTime(start);
+
+  const endTime =
+    formatTime(end);
+
+  if (startTime && endTime) {
+    return `${startTime} – ${endTime} Uhr`;
+  }
+
+  if (startTime) {
+    return `${startTime} Uhr`;
+  }
+
+  if (endTime) {
+    return `bis ${endTime} Uhr`;
+  }
+
+  return "–";
+}
+
+
+function formatGuests(guests) {
+
+  if (
+    guests === null ||
+    guests === undefined ||
+    guests === ""
+  ) {
+    return "–";
+  }
+
+  return String(guests);
+}
+
+
+function escapeHtml(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return "";
+  }
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+/* =========================================================
+   LOAD EQUIPMENT FOR REQUESTS
+   ========================================================= */
+
+async function loadInquiryEquipment(inquiryIds) {
+
+  if (!inquiryIds.length) {
+    return {};
+  }
+
+
+  const { data, error } =
+    await supabaseClient
+
+      .from("inquiry_equipment")
+
+      .select(`
+        id,
+        inquiry_id,
+        equipment_id,
+        equipment_name_snapshot,
+        created_at
+      `)
+
+      .in(
+        "inquiry_id",
+        inquiryIds
       );
 
 
-    /* =========================================================
-       ELEMENTE
-       ========================================================= */
+  if (error) {
+    console.error(
+      "Fehler beim Laden des Equipments:",
+      error
+    );
 
-    const requestList =
-      document.getElementById(
-        "requestList"
-      );
+    throw error;
+  }
 
 
-    /* =========================================================
-       DATUM
-       ========================================================= */
+  const equipmentByInquiry = {};
 
-    function formatDate(
-      value
+
+  (data || []).forEach(item => {
+
+    const inquiryId =
+      String(item.inquiry_id);
+
+
+    if (
+      !equipmentByInquiry[inquiryId]
     ) {
-
-      if (!value) {
-        return "–";
-      }
-
-
-      const date =
-        new Date(
-          value + "T00:00:00"
-        );
-
-
-      if (Number.isNaN(
-        date.getTime()
-      )) {
-        return value;
-      }
-
-
-      return new Intl.DateTimeFormat(
-        "de-DE"
-      ).format(date);
-
+      equipmentByInquiry[inquiryId] = [];
     }
 
 
-    /* =========================================================
-       UHRZEIT
-       ========================================================= */
+    equipmentByInquiry[inquiryId].push(
+      item
+    );
 
-    function formatTime(
-      value
-    ) {
+  });
 
-      if (!value) {
-        return "";
-      }
 
+  return equipmentByInquiry;
+}
 
-      return String(value)
-        .slice(0, 5);
 
-    }
+/* =========================================================
+   LOAD REQUESTS
+   ========================================================= */
 
+async function loadRequests() {
 
-    function formatTimeRange(
-      start,
-      end
-    ) {
+  requestList.innerHTML = `
+    <div class="loading">
+      Anfragen werden geladen …
+    </div>
+  `;
 
-      const startTime =
-        formatTime(start);
 
-      const endTime =
-        formatTime(end);
+  try {
 
-
-      if (
-        startTime &&
-        endTime
-      ) {
-
-        return `${startTime} – ${endTime} Uhr`;
-
-      }
-
-
-      if (startTime) {
-        return `${startTime} Uhr`;
-      }
-
-
-      if (endTime) {
-        return `bis ${endTime} Uhr`;
-      }
-
-
-      return "–";
-
-    }
-
-
-    /* =========================================================
-       GÄSTE
-       ========================================================= */
-
-    function formatGuests(
-      guests
-    ) {
-
-      if (
-        guests === null ||
-        guests === undefined ||
-        guests === ""
-      ) {
-
-        return "–";
-
-      }
-
-
-      return `${guests}`;
-
-    }
-
-
-    /* =========================================================
-       HTML ESCAPEN
-       ========================================================= */
-
-    function escapeHtml(
-      value
-    ) {
-
-      if (
-        value === null ||
-        value === undefined
-      ) {
-
-        return "";
-
-      }
-
-
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
-    }
-
-
-    /* =========================================================
-       EQUIPMENT FÜR ANFRAGEN LADEN
-       ========================================================= */
-
-    async function loadInquiryEquipment(
-      inquiryIds
-    ) {
-
-      if (!inquiryIds.length) {
-        return {};
-      }
-
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .from("inquiry_equipment")
-          .select(`
-            inquiry_id,
-            equipment_id,
-            equipment_name_snapshot
-          `)
-          .in(
-            "inquiry_id",
-            inquiryIds
-          );
-
-
-      if (error) {
-
-        console.error(
-          "Fehler beim Laden des Equipments:",
-          error
-        );
-
-        throw error;
-
-      }
-
-
-      const equipmentByInquiry = {};
-
-
-      (data || []).forEach(
-        item => {
-
-          if (
-            !equipmentByInquiry[
-              item.inquiry_id
-            ]
-          ) {
-
-            equipmentByInquiry[
-              item.inquiry_id
-            ] = [];
-
-          }
-
-
-          equipmentByInquiry[
-            item.inquiry_id
-          ].push(item);
-
-        }
-      );
-
-
-      return equipmentByInquiry;
-
-    }
-
-
-    /* =========================================================
+    /* -----------------------------------------------------
        ANFRAGEN LADEN
-       ========================================================= */
+       ----------------------------------------------------- */
 
-    async function loadRequests() {
+    const {
+      data: requests,
+      error: requestsError
+    } = await supabaseClient
 
-      requestList.innerHTML = `
-        <div class="loading">
-          Anfragen werden geladen …
-        </div>
-      `;
+      .from("anfragen")
 
+      .select("*")
 
-      try {
-
-        const {
-          data: requests,
-          error
-        } =
-          await supabaseClient
-            .from("anfragen")
-            .select("*")
-            .order(
-              "created_at",
-              {
-                ascending: false
-              }
-            );
-
-
-        if (error) {
-          throw error;
-        }
-
-
-        const requestData =
-          requests || [];
-
-
-        /*
-         * Alle IDs sammeln.
-         */
-
-        const inquiryIds =
-          requestData
-            .map(
-              request =>
-                String(request.id)
-            );
-
-
-        /*
-         * Equipment zu diesen Anfragen laden.
-         */
-
-        const equipmentByInquiry =
-          await loadInquiryEquipment(
-            inquiryIds
-          );
-
-
-        /*
-         * Für die PDF-Funktion global
-         * verfügbar machen.
-         */
-
-        window.__requests =
-          requestData;
-
-        window.__inquiryEquipment =
-          equipmentByInquiry;
-
-
-        renderRequests(
-          requestData,
-          equipmentByInquiry
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          "Fehler beim Laden der Anfragen:",
-          error
-        );
-
-
-        requestList.innerHTML = `
-          <div class="empty-state">
-            Die Anfragen konnten nicht geladen werden.
-          </div>
-        `;
-
-      }
-
-    }
-
-
-    /* =========================================================
-       ANFRAGEN RENDERN
-       ========================================================= */
-
-    function renderRequests(
-      requests,
-      equipmentByInquiry
-    ) {
-
-      if (!requests.length) {
-
-        requestList.innerHTML = `
-          <div class="empty-state">
-            Aktuell sind keine Anfragen vorhanden.
-          </div>
-        `;
-
-        return;
-
-      }
-
-
-      requestList.innerHTML = "";
-
-
-      requests.forEach(
-        (
-          request,
-          index
-        ) => {
-
-          const equipment =
-            equipmentByInquiry[
-              String(request.id)
-            ] || [];
-
-
-          const card =
-            document.createElement(
-              "article"
-            );
-
-          card.className =
-            "request-card";
-
-
-          /*
-           * EQUIPMENT HTML
-           */
-
-          let equipmentHtml = "";
-
-
-          if (
-            equipment.length
-          ) {
-
-            equipmentHtml = `
-              <div class="equipment-list">
-
-                ${equipment.map(
-                  item => `
-                    <span class="equipment-tag">
-                      🎛️
-                      ${escapeHtml(
-                        item.equipment_name_snapshot
-                      )}
-                    </span>
-                  `
-                ).join("")}
-
-              </div>
-            `;
-
-          } else {
-
-            equipmentHtml = `
-              <div class="equipment-empty">
-                Kein zusätzliches Equipment ausgewählt.
-              </div>
-            `;
-
-          }
-
-
-          /*
-           * NACHRICHT
-           */
-
-          const message =
-            request.message ||
-            "Keine zusätzliche Nachricht angegeben.";
-
-
-          /*
-           * CARD
-           */
-
-          card.innerHTML = `
-
-            <div class="request-card-header">
-
-              <div>
-
-                <h2>
-                  ${escapeHtml(
-                    request.billing_name ||
-                    request.name ||
-                    "Unbekannte Anfrage"
-                  )}
-                </h2>
-
-                <div class="request-date">
-                  Anfrage vom
-                  ${escapeHtml(
-                    request.created_at
-                      ? new Intl.DateTimeFormat(
-                          "de-DE",
-                          {
-                            dateStyle: "medium",
-                            timeStyle: "short"
-                          }
-                        ).format(
-                          new Date(
-                            request.created_at
-                          )
-                        )
-                      : "–"
-                  )}
-                </div>
-
-              </div>
-
-
-              <div class="request-status">
-                Neue Anfrage
-              </div>
-
-            </div>
-
-
-            <div class="request-grid">
-
-
-              <!-- VERANSTALTUNG -->
-
-              <div class="request-section">
-
-                <div class="request-section-title">
-                  Veranstaltung
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Art:</strong>
-                  <span>
-                    ${escapeHtml(
-                      request.event_type ||
-                      "–"
-                    )}
-                  </span>
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Datum:</strong>
-                  <span>
-                    ${escapeHtml(
-                      formatDate(
-                        request.event_date
-                      )
-                    )}
-                  </span>
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Gäste:</strong>
-                  <span>
-                    ${escapeHtml(
-                      formatGuests(
-                        request.guests
-                      )
-                    )}
-                  </span>
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Ort:</strong>
-                  <span>
-                    ${escapeHtml(
-                      request.location ||
-                      "–"
-                    )}
-                  </span>
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Zeit:</strong>
-                  <span>
-                    ${escapeHtml(
-                      formatTimeRange(
-                        request.start_time,
-                        request.end_time
-                      )
-                    )}
-                  </span>
-                </div>
-
-              </div>
-
-
-              <!-- KONTAKT -->
-
-              <div class="request-section">
-
-                <div class="request-section-title">
-                  Kontakt
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Name:</strong>
-                  <span>
-                    ${escapeHtml(
-                      request.name ||
-                      "–"
-                    )}
-                  </span>
-                </div>
-
-
-                <div class="request-row">
-                  <strong>E-Mail:</strong>
-                  <span>
-                    ${escapeHtml(
-                      request.email ||
-                      "–"
-                    )}
-                  </span>
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Telefon:</strong>
-                  <span>
-                    ${escapeHtml(
-                      request.phone ||
-                      "–"
-                    )}
-                  </span>
-                </div>
-
-              </div>
-
-
-              <!-- EQUIPMENT -->
-
-              <div class="request-section full">
-
-                <div class="request-section-title">
-                  Equipment
-                </div>
-
-
-                ${equipmentHtml}
-
-              </div>
-
-
-              <!-- NACHRICHT -->
-
-              <div class="request-section full">
-
-                <div class="request-section-title">
-                  Nachricht
-                </div>
-
-
-                <div class="request-message">
-                  ${escapeHtml(
-                    message
-                  )}
-                </div>
-
-              </div>
-
-
-              <!-- RECHNUNGSADRESSE -->
-
-              <div class="request-section full">
-
-                <div class="request-section-title">
-                  Rechnungsadresse
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Name / Firma:</strong>
-                  <span>
-                    ${escapeHtml(
-                      request.billing_name ||
-                      request.name ||
-                      "–"
-                    )}
-                  </span>
-                </div>
-
-
-                <div class="request-row">
-                  <strong>Straße:</strong>
-                  <span>
-                    ${escapeHtml(
-                      request.billing_street ||
-                      "–"
-                    )}
-                  </span>
-                </div>
-
-
-                <div class="request-row">
-                  <strong>PLZ / Ort:</strong>
-                  <span>
-                    ${escapeHtml(
-                      `${
-                        request.billing_zip ||
-                        ""
-                      } ${
-                        request.billing_city ||
-                        ""
-                      }`.trim() ||
-                      "–"
-                    )}
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <div class="request-actions">
-
-              <button
-                type="button"
-                class="action-button pdf"
-                onclick="createRequestPdf(this)"
-              >
-                🧾 Anfrage als PDF erstellen
-              </button>
-
-            </div>
-
-          `;
-
-
-          requestList.appendChild(
-            card
-          );
-
+      .order(
+        "created_at",
+        {
+          ascending: false
         }
       );
 
+
+    if (requestsError) {
+      throw requestsError;
     }
 
 
-    /* =========================================================
-       ANFRAGE ALS PDF
-       ========================================================= */
-
-    async function createRequestPdf(
-      button
-    ) {
-
-      const cards =
-        [
-          ...document.querySelectorAll(
-            ".request-card"
-          )
-        ];
+    const requestData =
+      requests || [];
 
 
-      const index =
-        cards.indexOf(
-          button.closest(
-            ".request-card"
-          )
-        );
+    /* -----------------------------------------------------
+       IDS DER ANFRAGEN
+       ----------------------------------------------------- */
+
+    const inquiryIds =
+      requestData.map(
+        request => String(request.id)
+      );
 
 
-      const request =
-        window.__requests?.[
-          index
-        ];
+    /* -----------------------------------------------------
+       EQUIPMENT LADEN
+       ----------------------------------------------------- */
+
+    const equipmentByInquiry =
+      await loadInquiryEquipment(
+        inquiryIds
+      );
 
 
-      if (!request) {
+    /* -----------------------------------------------------
+       GLOBAL SPEICHERN
+       ----------------------------------------------------- */
 
-        alert(
-          "Die Anfrage konnte nicht gefunden werden."
-        );
+    window.__requests =
+      requestData;
 
-        return;
-
-      }
+    window.__inquiryEquipment =
+      equipmentByInquiry;
 
 
-      if (
-        !window.jspdf?.jsPDF
-      ) {
+    /* -----------------------------------------------------
+       ANZEIGEN
+       ----------------------------------------------------- */
 
-        alert(
-          "Die PDF-Bibliothek konnte nicht geladen werden."
-        );
+    renderRequests(
+      requestData,
+      equipmentByInquiry
+    );
 
-        return;
 
-      }
+  } catch (error) {
+
+    console.error(
+      "Fehler beim Laden der Anfragen:",
+      error
+    );
+
+
+    requestList.innerHTML = `
+
+      <div class="error-state">
+
+        <strong>
+          Die Anfragen konnten nicht geladen werden.
+        </strong>
+
+        <br><br>
+
+        Bitte überprüfe die Supabase-Verbindung
+        und die Berechtigungen.
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER REQUESTS
+   ========================================================= */
+
+function renderRequests(
+  requests,
+  equipmentByInquiry
+) {
+
+  if (!requests.length) {
+
+    requestList.innerHTML = `
+
+      <div class="empty-state">
+        Aktuell sind keine Anfragen vorhanden.
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  requestList.innerHTML = "";
+
+
+  requests.forEach(
+    (request, index) => {
+
+
+      /* ---------------------------------------------------
+         EQUIPMENT ZUR ANFRAGE
+         --------------------------------------------------- */
+
+      const inquiryId =
+        String(request.id);
 
 
       const equipment =
-        window.__inquiryEquipment?.[
-          String(request.id)
-        ] || [];
+        equipmentByInquiry[inquiryId] || [];
 
 
-      button.disabled =
-        true;
+      /* ---------------------------------------------------
+         EQUIPMENT HTML
+         --------------------------------------------------- */
+
+      let equipmentHtml = "";
 
 
-      const oldText =
-        button.textContent;
+      if (equipment.length) {
+
+        equipmentHtml = `
+
+          <div class="equipment-list">
+
+            ${equipment.map(item => `
+
+              <span class="equipment-tag">
+
+                <span class="equipment-tag-icon">
+                  🎛️
+                </span>
+
+                ${escapeHtml(
+                  item.equipment_name_snapshot ||
+                  "Unbenanntes Equipment"
+                )}
+
+              </span>
+
+            `).join("")}
+
+          </div>
+
+        `;
+
+      } else {
+
+        equipmentHtml = `
+
+          <div class="equipment-empty">
+            Kein zusätzliches Equipment ausgewählt.
+          </div>
+
+        `;
+
+      }
 
 
-      button.textContent =
-        "PDF wird erstellt …";
+      /* ---------------------------------------------------
+         NACHRICHT
+         --------------------------------------------------- */
+
+      const message =
+        request.message ||
+        "Keine zusätzliche Nachricht angegeben.";
 
 
-      try {
+      /* ---------------------------------------------------
+         CARD
+         --------------------------------------------------- */
 
-        const {
-          jsPDF
-        } =
-          window.jspdf;
-
-
-        const doc =
-          new jsPDF({
-            unit: "mm",
-            format: "a4"
-          });
+      const card =
+        document.createElement("article");
 
 
-        /*
-         * GRUNDEINSTELLUNGEN
-         */
+      card.className =
+        "request-card";
 
-        doc.setTextColor(
-          35,
-          35,
-          35
-        );
 
+      card.dataset.requestId =
+        String(request.id);
+
+
+      card.innerHTML = `
+
+        <!-- HEADER -->
+
+        <div class="request-card-header">
+
+          <div>
+
+            <h2>
+              ${escapeHtml(
+                request.billing_name ||
+                request.name ||
+                "Unbekannte Anfrage"
+              )}
+            </h2>
+
+            <div class="request-date">
+
+              Anfrage vom
+
+              ${
+                request.created_at
+                  ? escapeHtml(
+                      new Intl.DateTimeFormat(
+                        "de-DE",
+                        {
+                          dateStyle: "medium",
+                          timeStyle: "short"
+                        }
+                      ).format(
+                        new Date(
+                          request.created_at
+                        )
+                      )
+                    )
+                  : "–"
+              }
+
+            </div>
+
+          </div>
+
+
+          <div class="request-status">
+            Neue Anfrage
+          </div>
+
+        </div>
+
+
+
+        <!-- GRID -->
+
+        <div class="request-grid">
+
+
+          <!-- VERANSTALTUNG -->
+
+          <div class="request-section">
+
+            <div class="request-section-title">
+              Veranstaltung
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Art:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  request.event_type || "–"
+                )}
+              </span>
+
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Datum:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  formatDate(
+                    request.event_date
+                  )
+                )}
+              </span>
+
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Gäste:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  formatGuests(
+                    request.guests
+                  )
+                )}
+              </span>
+
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Ort:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  request.location || "–"
+                )}
+              </span>
+
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Zeit:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  formatTimeRange(
+                    request.start_time,
+                    request.end_time
+                  )
+                )}
+              </span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- KONTAKT -->
+
+          <div class="request-section">
+
+            <div class="request-section-title">
+              Kontakt
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Name:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  request.name || "–"
+                )}
+              </span>
+
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                E-Mail:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  request.email || "–"
+                )}
+              </span>
+
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Telefon:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  request.phone || "–"
+                )}
+              </span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- EQUIPMENT -->
+
+          <div class="request-section full">
+
+            <div class="request-section-title">
+              Equipment
+            </div>
+
+            ${equipmentHtml}
+
+          </div>
+
+
+
+          <!-- NACHRICHT -->
+
+          <div class="request-section full">
+
+            <div class="request-section-title">
+              Nachricht
+            </div>
+
+
+            <div class="request-message">
+              ${escapeHtml(message)}
+            </div>
+
+          </div>
+
+
+
+          <!-- RECHNUNGSADRESSE -->
+
+          <div class="request-section full">
+
+            <div class="request-section-title">
+              Rechnungsadresse
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Name / Firma:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  request.billing_name ||
+                  request.name ||
+                  "–"
+                )}
+              </span>
+
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                Straße:
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  request.billing_street ||
+                  "–"
+                )}
+              </span>
+
+            </div>
+
+
+            <div class="request-row">
+
+              <strong>
+                PLZ / Ort:
+              </strong>
+
+              <span>
+
+                ${escapeHtml(
+
+                  `${request.billing_zip || ""} ${
+                    request.billing_city || ""
+                  }`.trim() || "–"
+
+                )}
+
+              </span>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="request-actions">
+
+          <button
+            type="button"
+            class="action-button pdf"
+            onclick="createRequestPdf(this)"
+          >
+
+            🧾 Anfrage als PDF erstellen
+
+          </button>
+
+        </div>
+
+      `;
+
+
+      requestList.appendChild(card);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CREATE PDF
+   ========================================================= */
+
+async function createRequestPdf(button) {
+
+  const card =
+    button.closest(".request-card");
+
+
+  if (!card) {
+
+    alert(
+      "Die Anfrage konnte nicht gefunden werden."
+    );
+
+    return;
+  }
+
+
+  const requestId =
+    card.dataset.requestId;
+
+
+  const request =
+    window.__requests?.find(
+      item =>
+        String(item.id) ===
+        String(requestId)
+    );
+
+
+  if (!request) {
+
+    alert(
+      "Die Anfrage konnte nicht gefunden werden."
+    );
+
+    return;
+  }
+
+
+  if (!window.jspdf?.jsPDF) {
+
+    alert(
+      "Die PDF-Bibliothek konnte nicht geladen werden."
+    );
+
+    return;
+  }
+
+
+  const equipment =
+    window.__inquiryEquipment?.[
+      String(request.id)
+    ] || [];
+
+
+  button.disabled = true;
+
+
+  const oldText =
+    button.textContent;
+
+
+  button.textContent =
+    "PDF wird erstellt …";
+
+
+  try {
+
+    const {
+      jsPDF
+    } = window.jspdf;
+
+
+    const doc =
+      new jsPDF({
+        unit: "mm",
+        format: "a4"
+      });
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    doc.setTextColor(
+      35,
+      35,
+      35
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+
+    doc.setFontSize(22);
+
+
+    doc.text(
+      "ANFRAGE",
+      20,
+      18
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.setFontSize(9);
+
+
+    doc.text(
+      "RuhrGeBeats · Tom Karpa & Lenny Günther",
+      20,
+      26
+    );
+
+
+    doc.text(
+      "ruhrgebeats@gmail.com",
+      20,
+      31
+    );
+
+
+    let y = 46;
+
+
+    /* =====================================================
+       SECTION FUNCTION
+       ===================================================== */
+
+    function section(title) {
+
+      if (y > 255) {
+
+        doc.addPage();
+
+        y = 20;
+
+      }
+
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+
+      doc.setFontSize(9);
+
+
+      doc.setTextColor(
+        27,
+        67,
+        112
+      );
+
+
+      doc.text(
+        title.toUpperCase(),
+        20,
+        y
+      );
+
+
+      doc.setDrawColor(
+        205,
+        205,
+        205
+      );
+
+
+      doc.line(
+        20,
+        y + 2,
+        190,
+        y + 2
+      );
+
+
+      y += 9;
+
+
+      doc.setTextColor(
+        35,
+        35,
+        35
+      );
+
+    }
+
+
+    /* =====================================================
+       ANFRAGE VON
+       ===================================================== */
+
+    section(
+      "Anfrage von"
+    );
+
+
+    const customerName =
+      request.billing_name ||
+      request.name ||
+      "–";
+
+
+    const customerLines =
+      doc.splitTextToSize(
+        String(customerName),
+        170
+      );
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.text(
+      customerLines,
+      20,
+      y
+    );
+
+
+    y +=
+      Math.max(
+        6,
+        customerLines.length * 4.5
+      );
+
+
+    if (request.billing_street) {
+
+      doc.text(
+        String(
+          request.billing_street
+        ),
+        20,
+        y
+      );
+
+      y += 5;
+
+    }
+
+
+    const zipCity =
+      `${request.billing_zip || ""} ${
+        request.billing_city || ""
+      }`.trim();
+
+
+    doc.text(
+      zipCity || "–",
+      20,
+      y
+    );
+
+
+    y += 12;
+
+
+
+    /* =====================================================
+       VERANSTALTUNG
+       ===================================================== */
+
+    section(
+      "Veranstaltung"
+    );
+
+
+    const eventRows = [
+
+      [
+        "Art",
+        request.event_type || "–"
+      ],
+
+      [
+        "Datum",
+        formatDate(
+          request.event_date
+        )
+      ],
+
+      [
+        "Gäste",
+        formatGuests(
+          request.guests
+        )
+      ],
+
+      [
+        "Ort",
+        request.location || "–"
+      ],
+
+      [
+        "Zeit",
+        formatTimeRange(
+          request.start_time,
+          request.end_time
+        )
+      ]
+
+    ];
+
+
+    eventRows.forEach(
+      ([label, value]) => {
 
         doc.setFont(
           "helvetica",
@@ -1155,15 +1456,10 @@
         );
 
 
-        doc.setFontSize(
-          22
-        );
-
-
         doc.text(
-          "ANFRAGE",
+          `${label}:`,
           20,
-          18
+          y
         );
 
 
@@ -1173,370 +1469,102 @@
         );
 
 
-        doc.setFontSize(
-          9
-        );
+        const lines =
+          doc.splitTextToSize(
+            String(value),
+            145
+          );
 
 
         doc.text(
-          "RuhrGeBeats · Tom Karpa & Lenny Günther",
-          20,
-          26
+          lines,
+          43,
+          y
         );
 
 
-        doc.text(
-          "ruhrgebeats@gmail.com",
-          20,
-          31
+        y += Math.max(
+          6,
+          lines.length * 4.5
         );
 
+      }
+    );
 
-        let y =
-          46;
+
+    y += 5;
 
 
-        /*
-         * SEKTIONSFUNKTION
-         */
 
-        function section(
-          title
-        ) {
+    /* =====================================================
+       KONTAKT
+       ===================================================== */
 
-          /*
-           * Neue Seite falls nötig.
-           */
+    section(
+      "Kontakt"
+    );
 
-          if (
-            y > 255
-          ) {
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.text(
+      `Name: ${request.name || "–"}`,
+      20,
+      y
+    );
+
+    y += 5;
+
+
+    doc.text(
+      `E-Mail: ${request.email || "–"}`,
+      20,
+      y
+    );
+
+    y += 5;
+
+
+    doc.text(
+      `Telefon: ${request.phone || "–"}`,
+      20,
+      y
+    );
+
+    y += 10;
+
+
+
+    /* =====================================================
+       EQUIPMENT
+       ===================================================== */
+
+    section(
+      "Ausgewähltes Equipment"
+    );
+
+
+    if (equipment.length) {
+
+      equipment.forEach(
+        item => {
+
+          if (y > 270) {
 
             doc.addPage();
 
             y = 20;
 
+            section(
+              "Ausgewähltes Equipment"
+            );
+
           }
 
-
-          doc.setFont(
-            "helvetica",
-            "bold"
-          );
-
-
-          doc.setFontSize(
-            9
-          );
-
-
-          doc.setTextColor(
-            27,
-            67,
-            112
-          );
-
-
-          doc.text(
-            title.toUpperCase(),
-            20,
-            y
-          );
-
-
-          doc.setDrawColor(
-            205,
-            205,
-            205
-          );
-
-
-          doc.line(
-            20,
-            y + 2,
-            190,
-            y + 2
-          );
-
-
-          y += 9;
-
-
-          doc.setTextColor(
-            35,
-            35,
-            35
-          );
-
-        }
-
-
-        /*
-         * ANFRAGE VON
-         */
-
-        section(
-          "Anfrage von"
-        );
-
-
-        doc.text(
-          doc.splitTextToSize(
-            request.billing_name ||
-            request.name ||
-            "–",
-            170
-          ),
-          20,
-          y
-        );
-
-
-        y += 6;
-
-
-        if (
-          request.billing_street
-        ) {
-
-          doc.text(
-            request.billing_street,
-            20,
-            y
-          );
-
-          y += 5;
-
-        }
-
-
-        doc.text(
-          `${
-            request.billing_zip ||
-            ""
-          } ${
-            request.billing_city ||
-            ""
-          }`.trim() ||
-          "–",
-          20,
-          y
-        );
-
-
-        y += 12;
-
-
-        /*
-         * VERANSTALTUNG
-         */
-
-        section(
-          "Veranstaltung"
-        );
-
-
-        [
-          [
-            "Art",
-            request.event_type ||
-            "–"
-          ],
-
-          [
-            "Datum",
-            formatDate(
-              request.event_date
-            )
-          ],
-
-          [
-            "Gäste",
-            formatGuests(
-              request.guests
-            )
-          ],
-
-          [
-            "Ort",
-            request.location ||
-            "–"
-          ],
-
-          [
-            "Zeit",
-            formatTimeRange(
-              request.start_time,
-              request.end_time
-            )
-          ]
-
-        ].forEach(
-          ([label, value]) => {
-
-            doc.setFont(
-              "helvetica",
-              "bold"
-            );
-
-
-            doc.text(
-              label + ":",
-              20,
-              y
-            );
-
-
-            doc.setFont(
-              "helvetica",
-              "normal"
-            );
-
-
-            const lines =
-              doc.splitTextToSize(
-                String(value),
-                145
-              );
-
-
-            doc.text(
-              lines,
-              43,
-              y
-            );
-
-
-            y +=
-              Math.max(
-                6,
-                lines.length * 4.5
-              );
-
-          }
-        );
-
-
-        y += 5;
-
-
-        /*
-         * KONTAKT
-         */
-
-        section(
-          "Kontakt"
-        );
-
-
-        doc.text(
-          `Name: ${
-            request.name ||
-            "–"
-          }`,
-          20,
-          y
-        );
-
-
-        y += 5;
-
-
-        doc.text(
-          `E-Mail: ${
-            request.email ||
-            "–"
-          }`,
-          20,
-          y
-        );
-
-
-        y += 5;
-
-
-        doc.text(
-          `Telefon: ${
-            request.phone ||
-            "–"
-          }`,
-          20,
-          y
-        );
-
-
-        y += 10;
-
-
-        /*
-         * EQUIPMENT
-         */
-
-        section(
-          "Equipment"
-        );
-
-
-        if (
-          equipment.length
-        ) {
-
-          equipment.forEach(
-            item => {
-
-              if (
-                y > 270
-              ) {
-
-                doc.addPage();
-
-                y = 20;
-
-                section(
-                  "Equipment"
-                );
-
-              }
-
-
-              doc.setFont(
-                "helvetica",
-                "normal"
-              );
-
-
-              doc.text(
-                "•",
-                21,
-                y
-              );
-
-
-              const lines =
-                doc.splitTextToSize(
-                  item.equipment_name_snapshot ||
-                  "Unbekanntes Equipment",
-                  160
-                );
-
-
-              doc.text(
-                lines,
-                27,
-                y
-              );
-
-
-              y +=
-                Math.max(
-                  5,
-                  lines.length * 4.5
-                );
-
-            }
-          );
-
-        } else {
 
           doc.setFont(
             "helvetica",
@@ -1545,201 +1573,253 @@
 
 
           doc.text(
-            "Kein zusätzliches Equipment ausgewählt.",
-            20,
+            "•",
+            21,
             y
           );
 
 
-          y += 5;
+          const equipmentName =
+            item.equipment_name_snapshot ||
+            "Unbekanntes Equipment";
+
+
+          const equipmentLines =
+            doc.splitTextToSize(
+              String(equipmentName),
+              160
+            );
+
+
+          doc.text(
+            equipmentLines,
+            27,
+            y
+          );
+
+
+          y += Math.max(
+            5,
+            equipmentLines.length * 4.5
+          );
 
         }
+      );
+
+    } else {
+
+      doc.setFont(
+        "helvetica",
+        "normal"
+      );
 
 
-        y += 8;
+      doc.text(
+        "Kein zusätzliches Equipment ausgewählt.",
+        20,
+        y
+      );
 
 
-        /*
-         * NACHRICHT
-         */
-
-        section(
-          "Nachricht"
-        );
-
-
-        const message =
-          request.message ||
-          "Keine zusätzliche Nachricht angegeben.";
-
-
-        const messageLines =
-          doc.splitTextToSize(
-            message,
-            170
-          );
-
-
-        doc.text(
-          messageLines,
-          20,
-          y
-        );
-
-
-        y +=
-          messageLines.length *
-          4.5 +
-          8;
-
-
-        /*
-         * RECHNUNGSADRESSE
-         */
-
-        section(
-          "Rechnungsadresse"
-        );
-
-
-        const address =
-          [
-            request.billing_name ||
-              request.name,
-
-            request.billing_street,
-
-            `${
-              request.billing_zip ||
-              ""
-            } ${
-              request.billing_city ||
-              ""
-            }`.trim()
-
-          ]
-          .filter(Boolean)
-          .join("\n");
-
-
-        const addressLines =
-          doc.splitTextToSize(
-            address ||
-              "Keine Rechnungsadresse angegeben.",
-            170
-          );
-
-
-        doc.text(
-          addressLines,
-          20,
-          y
-        );
-
-
-        /*
-         * FOOTER
-         */
-
-        doc.setDrawColor(
-          190,
-          190,
-          190
-        );
-
-
-        doc.line(
-          20,
-          278,
-          190,
-          278
-        );
-
-
-        doc.setFont(
-          "helvetica",
-          "normal"
-        );
-
-
-        doc.setFontSize(
-          8
-        );
-
-
-        doc.setTextColor(
-          100,
-          100,
-          100
-        );
-
-
-        doc.text(
-          "RuhrGeBeats GbR · Ruhrgebiet · NRW",
-          20,
-          285
-        );
-
-
-        /*
-         * DATEINAME
-         */
-
-        const customerName =
-          (
-            request.billing_name ||
-            request.name ||
-            "Anfrage"
-          )
-          .replace(
-            /[^a-zA-Z0-9äöüÄÖÜß_-]+/g,
-            "_"
-          );
-
-
-        const eventDate =
-          request.event_date ||
-          "ohne_Datum";
-
-
-        doc.save(
-          `RuhrGeBeats_Anfrage_${customerName}_${eventDate}.pdf`
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          "PDF-Fehler:",
-          error
-        );
-
-
-        alert(
-          "Die PDF konnte nicht erstellt werden."
-        );
-
-
-      } finally {
-
-        button.disabled =
-          false;
-
-        button.textContent =
-          oldText;
-
-      }
+      y += 5;
 
     }
 
 
-    /* =========================================================
-       START
-       ========================================================= */
+    y += 8;
 
-    loadRequests();
 
-  </script>
+
+    /* =====================================================
+       NACHRICHT
+       ===================================================== */
+
+    section(
+      "Nachricht"
+    );
+
+
+    const message =
+      request.message ||
+      "Keine zusätzliche Nachricht angegeben.";
+
+
+    const messageLines =
+      doc.splitTextToSize(
+        String(message),
+        170
+      );
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.text(
+      messageLines,
+      20,
+      y
+    );
+
+
+    y +=
+      messageLines.length * 4.5 +
+      8;
+
+
+
+    /* =====================================================
+       RECHNUNGSADRESSE
+       ===================================================== */
+
+    section(
+      "Rechnungsadresse"
+    );
+
+
+    const addressParts = [
+
+      request.billing_name ||
+      request.name,
+
+      request.billing_street,
+
+      `${request.billing_zip || ""} ${
+        request.billing_city || ""
+      }`.trim()
+
+    ].filter(Boolean);
+
+
+    const address =
+      addressParts.join("\n");
+
+
+    const addressLines =
+      doc.splitTextToSize(
+        address ||
+        "Keine Rechnungsadresse angegeben.",
+        170
+      );
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.text(
+      addressLines,
+      20,
+      y
+    );
+
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    doc.setDrawColor(
+      190,
+      190,
+      190
+    );
+
+
+    doc.line(
+      20,
+      278,
+      190,
+      278
+    );
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setTextColor(
+      100,
+      100,
+      100
+    );
+
+
+    doc.text(
+      "RuhrGeBeats GbR · Ruhrgebiet · NRW",
+      20,
+      285
+    );
+
+
+
+    /* =====================================================
+       DATEINAME
+       ===================================================== */
+
+    const safeCustomerName =
+      String(
+        request.billing_name ||
+        request.name ||
+        "Anfrage"
+      )
+      .replace(
+        /[^a-zA-Z0-9äöüÄÖÜß_-]+/g,
+        "_"
+      );
+
+
+    const eventDate =
+      request.event_date ||
+      "ohne_Datum";
+
+
+    doc.save(
+      `RuhrGeBeats_Anfrage_${safeCustomerName}_${eventDate}.pdf`
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "PDF-Fehler:",
+      error
+    );
+
+
+    alert(
+      "Die PDF konnte nicht erstellt werden."
+    );
+
+
+  } finally {
+
+    button.disabled = false;
+
+    button.textContent =
+      oldText;
+
+  }
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+loadRequests();
+
+</script>
 
 </body>
 </html>
