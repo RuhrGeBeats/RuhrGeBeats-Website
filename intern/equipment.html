@@ -1,15 +1,35 @@
-```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Equipment | RuhrGeBeats</title>
+
+  <title>Equipment – RuhrGeBeats</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="../logo.png">
 
   <link rel="stylesheet" href="./intern.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
+    body.auth-checking > * {
+      visibility: hidden;
+    }
+
+    body.auth-checking::before {
+      content: "Anmeldung wird geprüft …";
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f7fa;
+      color: #172033;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      z-index: 99999;
+    }
+
     .intern-header img {
       width: 54px !important;
       height: 54px !important;
@@ -22,66 +42,69 @@
     .equipment-page {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 42px 24px 70px;
+      padding: 34px 24px 70px;
     }
 
-    .page-head {
+    .equipment-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #168cff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .equipment-back:hover {
+      color: #0870d8;
+      text-decoration: underline;
+    }
+
+    .equipment-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: flex-end;
       gap: 20px;
       margin-bottom: 30px;
     }
 
-    .page-head h1 {
-      margin: 0 0 8px;
-      font-size: 32px;
-      color: var(--text);
+    .equipment-eyebrow {
+      color: #168cff;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 7px;
     }
 
-    .page-head p {
+    .equipment-top h1 {
+      margin: 0 0 7px;
+      font-size: 34px;
+      line-height: 1.1;
+      color: #07111f;
+    }
+
+    .equipment-top p {
       margin: 0;
-      color: var(--muted);
+      color: #66717f;
+      line-height: 1.6;
     }
 
-    .primary-btn,
-    .secondary-btn,
-    .danger-btn {
+    .primary-button {
       border: 0;
       border-radius: 12px;
-      padding: 12px 18px;
-      font: inherit;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .2s ease;
-    }
-
-    .primary-btn {
-      background: var(--blue);
+      background: #168cff;
       color: white;
+      padding: 13px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 7px 18px rgba(22,140,255,.18);
     }
 
-    .primary-btn:hover {
-      background: var(--blue-dark);
-      transform: translateY(-1px);
-    }
-
-    .secondary-btn {
-      background: #eef2f6;
-      color: var(--text);
-    }
-
-    .secondary-btn:hover {
-      background: #e3e8ee;
-    }
-
-    .danger-btn {
-      background: #fee2e2;
-      color: var(--danger);
-    }
-
-    .danger-btn:hover {
-      background: #fecaca;
+    .primary-button:hover {
+      background: #0870d8;
     }
 
     .equipment-grid {
@@ -91,37 +114,38 @@
     }
 
     .equipment-card {
-      background: var(--white);
-      border: 1px solid var(--border);
+      background: #fff;
+      border: 1px solid #dfe5eb;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(7, 17, 31, .06);
+      box-shadow: 0 8px 25px rgba(7,17,31,.06);
     }
 
-    .equipment-images {
+    .equipment-gallery {
       position: relative;
-      height: 270px;
+      height: 260px;
       background: #edf1f5;
       overflow: hidden;
     }
 
-    .equipment-images img {
+    .equipment-gallery img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
     }
 
-    .no-image {
+    .gallery-empty {
+      width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--muted);
-      font-weight: 600;
+      color: #66717f;
+      font-size: 14px;
     }
 
-    .image-arrow {
+    .gallery-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -129,116 +153,161 @@
       height: 38px;
       border: 0;
       border-radius: 50%;
-      background: rgba(7, 17, 31, .72);
-      color: white;
-      font-size: 22px;
+      background: rgba(7,17,31,.78);
+      color: #fff;
+      font-size: 21px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 2;
     }
 
-    .image-arrow:hover {
-      background: rgba(7, 17, 31, .9);
+    .gallery-arrow:hover {
+      background: rgba(22,140,255,.95);
     }
 
-    .image-arrow.prev {
+    .gallery-prev {
       left: 12px;
     }
 
-    .image-arrow.next {
+    .gallery-next {
       right: 12px;
     }
 
-    .image-counter {
+    .gallery-counter {
       position: absolute;
-      bottom: 12px;
+      bottom: 11px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(7, 17, 31, .75);
-      color: white;
-      border-radius: 20px;
+      background: rgba(7,17,31,.78);
+      color: #fff;
+      border-radius: 999px;
       padding: 5px 10px;
       font-size: 12px;
+      font-weight: 700;
     }
 
     .equipment-content {
       padding: 20px;
     }
 
-    .equipment-topline {
+    .equipment-title-row {
       display: flex;
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
     }
 
-    .equipment-name {
+    .equipment-title {
       margin: 0;
       font-size: 21px;
-      color: var(--text);
+      color: #07111f;
     }
 
-    .category {
-      display: inline-block;
-      margin-top: 7px;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #eaf4ff;
-      color: var(--blue-dark);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .status {
-      flex-shrink: 0;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .status.active {
-      background: #e6f7ee;
-      color: var(--success);
-    }
-
-    .status.inactive {
-      background: #f1f3f5;
-      color: var(--muted);
+    .equipment-category {
+      color: #66717f;
+      font-size: 13px;
+      margin-top: 4px;
     }
 
     .equipment-description {
-      margin: 14px 0 20px;
-      color: var(--muted);
+      margin: 15px 0 18px;
+      color: #4e5a67;
       line-height: 1.55;
       white-space: pre-wrap;
     }
 
+    .status-badge {
+      flex-shrink: 0;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .status-active {
+      color: #138a4b;
+      background: #e7f7ef;
+    }
+
+    .status-inactive {
+      color: #c62828;
+      background: #fdecec;
+    }
+
     .equipment-actions {
       display: flex;
-      gap: 9px;
       flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .secondary-button,
+    .danger-button,
+    .success-button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 13px;
+      font-size: 13px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .secondary-button {
+      background: #eef2f6;
+      color: #17202b;
+    }
+
+    .secondary-button:hover {
+      background: #e1e7ed;
+    }
+
+    .success-button {
+      background: #e7f7ef;
+      color: #138a4b;
+    }
+
+    .success-button:hover {
+      background: #d7f1e4;
+    }
+
+    .danger-button {
+      background: #fdecec;
+      color: #c62828;
+    }
+
+    .danger-button:hover {
+      background: #f9dada;
     }
 
     .empty-state {
-      background: var(--white);
-      border: 1px dashed var(--border);
-      border-radius: 20px;
-      padding: 55px 25px;
+      grid-column: 1 / -1;
+      background: #fff;
+      border: 1px dashed #cfd7df;
+      border-radius: 18px;
+      padding: 45px 25px;
       text-align: center;
-      color: var(--muted);
+      color: #66717f;
     }
+
+    .empty-state strong {
+      display: block;
+      color: #17202b;
+      margin-bottom: 7px;
+      font-size: 18px;
+    }
+
+    /* Modal */
 
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(7, 17, 31, .65);
+      background: rgba(7,17,31,.62);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      z-index: 1000;
+      z-index: 5000;
     }
 
     .modal-backdrop.open {
@@ -247,35 +316,35 @@
 
     .modal {
       width: min(760px, 100%);
-      max-height: 90vh;
+      max-height: calc(100vh - 40px);
       overflow-y: auto;
-      background: white;
-      border-radius: 22px;
+      background: #fff;
+      border-radius: 20px;
       box-shadow: 0 25px 70px rgba(0,0,0,.25);
     }
 
     .modal-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: center;
       padding: 22px 24px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #dfe5eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
     }
 
     .modal-header h2 {
       margin: 0;
-      font-size: 22px;
+      font-size: 21px;
+      color: #07111f;
     }
 
-    .close-btn {
+    .modal-close {
+      border: 0;
+      background: #eef2f6;
       width: 36px;
       height: 36px;
-      border: 0;
       border-radius: 50%;
-      background: #eef2f6;
-      color: var(--text);
-      font-size: 22px;
+      font-size: 20px;
       cursor: pointer;
     }
 
@@ -290,8 +359,9 @@
     .form-group label {
       display: block;
       margin-bottom: 7px;
-      font-weight: 700;
-      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+      color: #17202b;
     }
 
     .form-group input,
@@ -299,120 +369,135 @@
     .form-group select {
       width: 100%;
       box-sizing: border-box;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      padding: 12px 13px;
+      border: 1px solid #cfd7df;
+      border-radius: 10px;
+      padding: 11px 12px;
       font: inherit;
-      color: var(--text);
-      background: white;
-      outline: none;
+      color: #17202b;
+      background: #fff;
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
     }
 
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(22, 140, 255, .1);
-    }
-
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
+      outline: none;
+      border-color: #168cff;
+      box-shadow: 0 0 0 3px rgba(22,140,255,.12);
     }
 
     .checkbox-row {
       display: flex;
       align-items: center;
       gap: 9px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .checkbox-row input {
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
+    }
+
+    .checkbox-row label {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: #17202b;
     }
 
     .upload-box {
-      border: 2px dashed var(--border);
-      border-radius: 14px;
-      padding: 18px;
-      background: #fafbfc;
+      border: 1px dashed #b9c4cf;
+      border-radius: 13px;
+      padding: 16px;
+      background: #f8fafc;
     }
 
-    .upload-box input {
+    .upload-box input[type="file"] {
       width: 100%;
     }
 
-    .upload-help {
+    .upload-hint {
       margin-top: 8px;
-      font-size: 13px;
-      color: var(--muted);
+      color: #66717f;
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     .image-list {
-      margin-top: 15px;
+      margin-top: 18px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
 
     .image-item {
-      position: relative;
-      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid #dfe5eb;
       border-radius: 12px;
-      overflow: hidden;
-      background: #f4f6f8;
+      padding: 8px;
+      background: #fff;
     }
 
     .image-item img {
-      width: 100%;
-      aspect-ratio: 1;
+      width: 74px;
+      height: 58px;
       object-fit: cover;
-      display: block;
+      border-radius: 8px;
+      background: #edf1f5;
     }
 
-    .image-item-controls {
+    .image-name {
+      font-size: 12px;
+      color: #4e5a67;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .image-actions {
       display: flex;
       gap: 5px;
-      padding: 7px;
-      background: white;
     }
 
-    .small-btn {
-      flex: 1;
+    .small-button {
+      width: 32px;
+      height: 32px;
       border: 0;
       border-radius: 8px;
-      padding: 7px 5px;
-      font-size: 12px;
-      font-weight: 700;
+      background: #eef2f6;
       cursor: pointer;
-      background: #edf1f5;
-      color: var(--text);
+      font-weight: 800;
     }
 
-    .small-btn:hover {
-      background: #dfe5eb;
+    .small-button:hover {
+      background: #dfe6ed;
     }
 
-    .small-btn.delete {
-      color: var(--danger);
-      background: #fee2e2;
+    .small-button.delete {
+      color: #c62828;
     }
 
     .modal-footer {
+      padding: 18px 24px;
+      border-top: 1px solid #dfe5eb;
       display: flex;
       justify-content: flex-end;
-      gap: 10px;
-      padding: 18px 24px;
-      border-top: 1px solid var(--border);
+      gap: 9px;
     }
 
     .message {
       display: none;
-      margin-bottom: 20px;
-      padding: 13px 15px;
+      margin-bottom: 18px;
       border-radius: 11px;
-      font-weight: 600;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .message.show {
@@ -420,19 +505,19 @@
     }
 
     .message.success {
-      background: #e6f7ee;
-      color: var(--success);
+      background: #e7f7ef;
+      color: #138a4b;
     }
 
     .message.error {
-      background: #fee2e2;
-      color: var(--danger);
+      background: #fdecec;
+      color: #c62828;
     }
 
     .loading {
-      padding: 50px;
       text-align: center;
-      color: var(--muted);
+      padding: 45px;
+      color: #66717f;
     }
 
     @media (max-width: 800px) {
@@ -440,147 +525,241 @@
         grid-template-columns: 1fr;
       }
 
-      .page-head {
+      .equipment-top {
+        align-items: flex-start;
         flex-direction: column;
       }
 
-      .image-list {
-        grid-template-columns: repeat(2, 1fr);
+      .primary-button {
+        width: 100%;
       }
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       .equipment-page {
-        padding: 28px 16px 50px;
+        padding-left: 16px;
+        padding-right: 16px;
       }
 
-      .equipment-images {
+      .equipment-top h1 {
+        font-size: 28px;
+      }
+
+      .equipment-gallery {
         height: 220px;
       }
 
-      .modal-body {
-        padding: 18px;
+      .modal-backdrop {
+        padding: 10px;
       }
 
+      .modal-body,
+      .modal-header,
       .modal-footer {
-        padding: 15px 18px;
+        padding-left: 17px;
+        padding-right: 17px;
+      }
+
+      .image-item {
+        grid-template-columns: 60px minmax(0, 1fr);
+      }
+
+      .image-item .image-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-end;
       }
     }
   </style>
 </head>
 
-<body>
+<body class="auth-checking">
 
 <header class="intern-header">
-  <a href="./dashboard.html">
-    <img
-      src="/logo.png"
-      alt="RuhrGeBeats"
-      width="54"
-      height="54"
-    >
-  </a>
+  <div class="intern-header-inner">
+
+    <a href="./dashboard.html" class="intern-logo">
+      <img
+        src="../logo.png"
+        alt="RuhrGeBeats"
+        width="54"
+        height="54"
+      >
+    </a>
+
+    <div class="intern-header-right">
+      <span id="userEmail" class="intern-user"></span>
+      <a href="../" class="intern-public-link">Zur Website</a>
+    </div>
+
+  </div>
 </header>
+
 
 <main class="equipment-page">
 
-  <div class="page-head">
+  <!-- NEU: Zurück zum Dashboard -->
+  <a href="./dashboard.html" class="equipment-back">
+    ← Zum Dashboard
+  </a>
+
+
+  <div class="equipment-top">
+
     <div>
+      <div class="equipment-eyebrow">Interner Bereich</div>
+
       <h1>Equipment</h1>
-      <p>Verwalte das Equipment, das Kunden bei ihrer Anfrage auswählen können.</p>
+
+      <p>
+        Verwalte das Equipment, das Kunden bei einer Anfrage
+        auswählen können.
+      </p>
     </div>
 
-    <button class="primary-btn" id="addEquipmentBtn">
+    <button
+      type="button"
+      class="primary-button"
+      id="addEquipmentButton"
+    >
       + Equipment hinzufügen
     </button>
+
   </div>
 
-  <div id="message" class="message"></div>
 
-  <div id="equipmentContainer">
-    <div class="loading">Equipment wird geladen …</div>
-  </div>
+  <div id="pageMessage" class="message"></div>
+
+
+  <section id="equipmentGrid" class="equipment-grid">
+    <div class="loading">
+      Equipment wird geladen …
+    </div>
+  </section>
 
 </main>
 
-<div class="modal-backdrop" id="equipmentModal">
+
+<footer class="intern-footer">
+  <span>RuhrGeBeats GbR · Interner Bereich</span>
+
+  <button
+    type="button"
+    id="logoutButton"
+    class="logout-button"
+  >
+    Abmelden
+  </button>
+</footer>
+
+
+<!-- ========================================================= -->
+<!-- EQUIPMENT MODAL -->
+<!-- ========================================================= -->
+
+<div
+  id="equipmentModal"
+  class="modal-backdrop"
+  aria-hidden="true"
+>
 
   <div class="modal">
 
     <div class="modal-header">
-      <h2 id="modalTitle">Equipment hinzufügen</h2>
+
+      <h2 id="modalTitle">
+        Equipment hinzufügen
+      </h2>
 
       <button
-        class="close-btn"
-        id="closeModalBtn"
         type="button"
+        class="modal-close"
+        id="closeModalButton"
+        aria-label="Schließen"
       >
         ×
       </button>
+
     </div>
 
-    <form id="equipmentForm">
 
-      <div class="modal-body">
+    <div class="modal-body">
 
-        <input type="hidden" id="equipmentId">
+      <div id="modalMessage" class="message"></div>
+
+
+      <form id="equipmentForm">
+
+        <input
+          type="hidden"
+          id="equipmentId"
+        >
+
 
         <div class="form-group">
-          <label for="equipmentName">Name *</label>
+
+          <label for="equipmentName">
+            Name *
+          </label>
 
           <input
             type="text"
             id="equipmentName"
-            placeholder="z. B. KLS-180 Lichtbar"
             required
+            placeholder="z. B. KLS-180 Lichtbar"
           >
+
         </div>
 
+
         <div class="form-group">
-          <label for="equipmentCategory">Kategorie</label>
+
+          <label for="equipmentCategory">
+            Kategorie
+          </label>
 
           <input
             type="text"
             id="equipmentCategory"
             placeholder="z. B. Lichttechnik"
           >
+
         </div>
 
+
         <div class="form-group">
-          <label for="equipmentDescription">Beschreibung</label>
+
+          <label for="equipmentDescription">
+            Beschreibung
+          </label>
 
           <textarea
             id="equipmentDescription"
             placeholder="Kurze Beschreibung des Equipments …"
           ></textarea>
+
         </div>
 
-        <div class="form-group">
-          <label for="equipmentSortOrder">Reihenfolge</label>
 
-          <input
-            type="number"
-            id="equipmentSortOrder"
-            value="0"
-            min="0"
-          >
-        </div>
+        <div class="checkbox-row">
 
-        <label class="checkbox-row">
           <input
             type="checkbox"
             id="equipmentActive"
             checked
           >
 
-          <span>
-            Auf der öffentlichen Anfrage-Seite anzeigen
-          </span>
-        </label>
+          <label for="equipmentActive">
+            Für Kunden sichtbar
+          </label>
+
+        </div>
+
 
         <div class="form-group">
 
-          <label>Bilder</label>
+          <label>
+            Bilder
+          </label>
 
           <div class="upload-box">
 
@@ -591,228 +770,227 @@
               multiple
             >
 
-            <div class="upload-help">
-              Mehrere Bilder möglich. JPG, PNG, WEBP oder GIF,
-              maximal 10 MB pro Bild.
+            <div class="upload-hint">
+              JPEG, PNG, WEBP oder GIF · maximal 10 MB pro Bild.
+              Mehrere Bilder können gleichzeitig ausgewählt werden.
             </div>
 
           </div>
 
-          <div
-            class="image-list"
-            id="imageList"
-          ></div>
-
         </div>
 
-      </div>
 
-      <div class="modal-footer">
+        <div id="imageList" class="image-list"></div>
 
-        <button
-          type="button"
-          class="secondary-btn"
-          id="cancelBtn"
-        >
-          Abbrechen
-        </button>
+      </form>
 
-        <button
-          type="submit"
-          class="primary-btn"
-          id="saveBtn"
-        >
-          Speichern
-        </button>
+    </div>
 
-      </div>
 
-    </form>
+    <div class="modal-footer">
+
+      <button
+        type="button"
+        class="secondary-button"
+        id="cancelModalButton"
+      >
+        Abbrechen
+      </button>
+
+      <button
+        type="submit"
+        form="equipmentForm"
+        class="primary-button"
+        id="saveEquipmentButton"
+      >
+        Speichern
+      </button>
+
+    </div>
 
   </div>
 
 </div>
 
+
 <script>
+/* ============================================================
+   SUPABASE
+============================================================ */
 
 const SUPABASE_URL =
   "https://spqsuedpmrxcbefpocho.supabase.co";
 
-const SUPABASE_KEY =
+const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_m-jonK9Ca3K10OKxaorcgQ_9P5OhVGr";
+
+const STORAGE_BUCKET = "equipment-images";
 
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_PUBLISHABLE_KEY
   );
 
-const STORAGE_BUCKET =
-  "equipment-images";
 
-const equipmentContainer =
-  document.getElementById(
-    "equipmentContainer"
-  );
+/* ============================================================
+   STATE
+============================================================ */
 
-const equipmentModal =
-  document.getElementById(
-    "equipmentModal"
-  );
+let equipmentItems = [];
 
-const equipmentForm =
-  document.getElementById(
-    "equipmentForm"
-  );
-
-const modalTitle =
-  document.getElementById(
-    "modalTitle"
-  );
-
-const equipmentId =
-  document.getElementById(
-    "equipmentId"
-  );
-
-const equipmentName =
-  document.getElementById(
-    "equipmentName"
-  );
-
-const equipmentCategory =
-  document.getElementById(
-    "equipmentCategory"
-  );
-
-const equipmentDescription =
-  document.getElementById(
-    "equipmentDescription"
-  );
-
-const equipmentSortOrder =
-  document.getElementById(
-    "equipmentSortOrder"
-  );
-
-const equipmentActive =
-  document.getElementById(
-    "equipmentActive"
-  );
-
-const equipmentImages =
-  document.getElementById(
-    "equipmentImages"
-  );
-
-const imageList =
-  document.getElementById(
-    "imageList"
-  );
-
-const messageBox =
-  document.getElementById(
-    "message"
-  );
-
-const saveBtn =
-  document.getElementById(
-    "saveBtn"
-  );
-
-let equipmentData = [];
+let currentEquipment = null;
 
 let currentImages = [];
 
-let pendingImageFiles = [];
+let currentGalleryIndexes = {};
 
 
-/* ================================
-   MESSAGE
-   ================================ */
+/* ============================================================
+   ELEMENTS
+============================================================ */
 
-function showMessage(
-  text,
-  type = "success"
-) {
+const equipmentGrid =
+  document.getElementById("equipmentGrid");
 
-  messageBox.textContent = text;
+const equipmentModal =
+  document.getElementById("equipmentModal");
 
-  messageBox.className =
+const equipmentForm =
+  document.getElementById("equipmentForm");
+
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const equipmentId =
+  document.getElementById("equipmentId");
+
+const equipmentName =
+  document.getElementById("equipmentName");
+
+const equipmentCategory =
+  document.getElementById("equipmentCategory");
+
+const equipmentDescription =
+  document.getElementById("equipmentDescription");
+
+const equipmentActive =
+  document.getElementById("equipmentActive");
+
+const equipmentImages =
+  document.getElementById("equipmentImages");
+
+const imageList =
+  document.getElementById("imageList");
+
+const pageMessage =
+  document.getElementById("pageMessage");
+
+const modalMessage =
+  document.getElementById("modalMessage");
+
+const saveEquipmentButton =
+  document.getElementById("saveEquipmentButton");
+
+
+/* ============================================================
+   AUTH
+============================================================ */
+
+async function checkLogin() {
+
+  try {
+
+    const {
+      data,
+      error
+    } = await supabaseClient.auth.getSession();
+
+    if (
+      error ||
+      !data ||
+      !data.session ||
+      !data.session.user
+    ) {
+
+      window.location.replace("./");
+
+      return;
+    }
+
+    document.getElementById("userEmail").textContent =
+      data.session.user.email || "";
+
+    document.body.classList.remove("auth-checking");
+
+    await loadEquipment();
+
+  } catch (error) {
+
+    console.error(
+      "Authentifizierungsprüfung fehlgeschlagen:",
+      error
+    );
+
+    window.location.replace("./");
+  }
+}
+
+
+/* ============================================================
+   MESSAGES
+============================================================ */
+
+function showPageMessage(text, type = "success") {
+
+  pageMessage.textContent = text;
+
+  pageMessage.className =
     "message show " + type;
 
-  setTimeout(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
-    messageBox.className =
-      "message";
-
-  }, 4500);
 }
 
 
-/* ================================
-   AUTH
-   ================================ */
+function clearPageMessage() {
 
-async function checkAuth() {
+  pageMessage.textContent = "";
 
-  const {
-    data,
-    error
-  } = await supabaseClient.auth.getSession();
-
-  if (error) {
-
-    console.error(error);
-
-    window.location.replace(
-      "/intern/index.html"
-    );
-
-    return false;
-  }
-
-  if (!data.session) {
-
-    window.location.replace(
-      "/intern/index.html"
-    );
-
-    return false;
-  }
-
-  return true;
+  pageMessage.className =
+    "message";
 }
 
 
-/* ================================
-   IMAGE URL
-   ================================ */
+function showModalMessage(text, type = "success") {
 
-function getImageUrl(
-  storagePath
-) {
+  modalMessage.textContent = text;
 
-  const {
-    data
-  } = supabaseClient
-    .storage
-    .from(STORAGE_BUCKET)
-    .getPublicUrl(
-      storagePath
-    );
+  modalMessage.className =
+    "message show " + type;
 
-  return data.publicUrl;
 }
 
 
-/* ================================
-   LOAD
-   ================================ */
+function clearModalMessage() {
+
+  modalMessage.textContent = "";
+
+  modalMessage.className =
+    "message";
+}
+
+
+/* ============================================================
+   LOAD EQUIPMENT
+============================================================ */
 
 async function loadEquipment() {
 
-  equipmentContainer.innerHTML =
+  equipmentGrid.innerHTML =
     '<div class="loading">Equipment wird geladen …</div>';
 
   const {
@@ -824,6 +1002,7 @@ async function loadEquipment() {
       *,
       equipment_images (
         id,
+        equipment_id,
         storage_path,
         sort_order,
         created_at
@@ -833,261 +1012,278 @@ async function loadEquipment() {
       ascending: true
     })
     .order("created_at", {
-      ascending: true
+      ascending: true,
+      referencedTable: "equipment_images"
     });
+
 
   if (error) {
 
     console.error(error);
 
-    equipmentContainer.innerHTML = `
+    equipmentGrid.innerHTML = `
       <div class="empty-state">
         <strong>Equipment konnte nicht geladen werden.</strong>
-        <p>${escapeHtml(error.message)}</p>
+        ${escapeHtml(error.message)}
       </div>
     `;
 
     return;
   }
 
-  equipmentData =
-    data || [];
 
-  renderEquipment();
-}
+  equipmentItems = data || [];
 
+  equipmentItems.forEach(item => {
 
-/* ================================
-   RENDER
-   ================================ */
-
-function renderEquipment() {
-
-  if (!equipmentData.length) {
-
-    equipmentContainer.innerHTML = `
-      <div class="empty-state">
-        <h3>Noch kein Equipment vorhanden</h3>
-
-        <p>
-          Lege dein erstes Equipment an,
-          damit Kunden es später bei einer
-          Anfrage auswählen können.
-        </p>
-      </div>
-    `;
-
-    return;
-  }
-
-  equipmentContainer.innerHTML = `
-    <div class="equipment-grid">
-      ${
-        equipmentData
-          .map(
-            renderEquipmentCard
-          )
-          .join("")
-      }
-    </div>
-  `;
-
-  equipmentData.forEach(
-    equipment => {
-
-      const images =
-        (
-          equipment.equipment_images ||
-          []
-        )
-        .slice()
-        .sort(
-          (a, b) =>
-            (a.sort_order || 0) -
-            (b.sort_order || 0)
-        );
-
-      if (images.length > 1) {
-
-        window[
-          "equipmentImages_" +
-          equipment.id
-        ] = images;
-
-        window[
-          "equipmentIndex_" +
-          equipment.id
-        ] = 0;
-      }
+    if (!Array.isArray(item.equipment_images)) {
+      item.equipment_images = [];
     }
-  );
-}
 
-
-/* ================================
-   CARD
-   ================================ */
-
-function renderEquipmentCard(
-  equipment
-) {
-
-  const images =
-    (
-      equipment.equipment_images ||
-      []
-    )
-    .slice()
-    .sort(
+    item.equipment_images.sort(
       (a, b) =>
         (a.sort_order || 0) -
         (b.sort_order || 0)
     );
 
-  const firstImage =
-    images.length
-      ? getImageUrl(
-          images[0].storage_path
-        )
-      : null;
+  });
+
+
+  renderEquipment();
+}
+
+
+/* ============================================================
+   STORAGE URL
+============================================================ */
+
+function getImageUrl(path) {
+
+  if (!path) {
+    return "";
+  }
+
+  const {
+    data
+  } = supabaseClient
+    .storage
+    .from(STORAGE_BUCKET)
+    .getPublicUrl(path);
+
+  return data.publicUrl;
+}
+
+
+/* ============================================================
+   RENDER
+============================================================ */
+
+function renderEquipment() {
+
+  if (!equipmentItems.length) {
+
+    equipmentGrid.innerHTML = `
+      <div class="empty-state">
+        <strong>Noch kein Equipment vorhanden.</strong>
+        Lege über „Equipment hinzufügen“ dein erstes Gerät an.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  equipmentGrid.innerHTML =
+    equipmentItems
+      .map(renderEquipmentCard)
+      .join("");
+
+
+  equipmentItems.forEach(item => {
+
+    if (!currentGalleryIndexes[item.id]) {
+      currentGalleryIndexes[item.id] = 0;
+    }
+
+  });
+
+
+  attachGalleryEvents();
+}
+
+
+/* ============================================================
+   EQUIPMENT CARD
+============================================================ */
+
+function renderEquipmentCard(item) {
+
+  const images =
+    Array.isArray(item.equipment_images)
+      ? item.equipment_images
+      : [];
+
+
+  let galleryHtml = "";
+
+
+  if (images.length) {
+
+    const index =
+      Math.min(
+        currentGalleryIndexes[item.id] || 0,
+        images.length - 1
+      );
+
+    const image =
+      images[index];
+
+
+    galleryHtml = `
+      <img
+        src="${escapeAttribute(getImageUrl(image.storage_path))}"
+        alt="${escapeAttribute(item.name)}"
+      >
+    `;
+
+
+    if (images.length > 1) {
+
+      galleryHtml += `
+
+        <button
+          type="button"
+          class="gallery-arrow gallery-prev"
+          data-gallery-action="prev"
+          data-equipment-id="${item.id}"
+          aria-label="Vorheriges Bild"
+        >
+          ‹
+        </button>
+
+        <button
+          type="button"
+          class="gallery-arrow gallery-next"
+          data-gallery-action="next"
+          data-equipment-id="${item.id}"
+          aria-label="Nächstes Bild"
+        >
+          ›
+        </button>
+
+        <div class="gallery-counter">
+          ${index + 1} / ${images.length}
+        </div>
+
+      `;
+    }
+
+  } else {
+
+    galleryHtml = `
+      <div class="gallery-empty">
+        Noch kein Bild vorhanden
+      </div>
+    `;
+
+  }
+
 
   return `
+
     <article class="equipment-card">
 
-      <div
-        class="equipment-images"
-        id="gallery-${equipment.id}"
-      >
-
-        ${
-          firstImage
-            ? `
-              <img
-                id="gallery-image-${equipment.id}"
-                src="${escapeAttribute(firstImage)}"
-                alt="${escapeAttribute(equipment.name)}"
-              >
-            `
-            : `
-              <div class="no-image">
-                Kein Bild vorhanden
-              </div>
-            `
-        }
-
-        ${
-          images.length > 1
-            ? `
-              <button
-                class="image-arrow prev"
-                type="button"
-                onclick="changeImage('${equipment.id}', -1)"
-                aria-label="Vorheriges Bild"
-              >
-                ‹
-              </button>
-
-              <button
-                class="image-arrow next"
-                type="button"
-                onclick="changeImage('${equipment.id}', 1)"
-                aria-label="Nächstes Bild"
-              >
-                ›
-              </button>
-
-              <div
-                class="image-counter"
-                id="image-counter-${equipment.id}"
-              >
-                1 / ${images.length}
-              </div>
-            `
-            : ""
-        }
-
+      <div class="equipment-gallery">
+        ${galleryHtml}
       </div>
+
 
       <div class="equipment-content">
 
-        <div class="equipment-topline">
+        <div class="equipment-title-row">
 
           <div>
 
-            <h2 class="equipment-name">
-              ${escapeHtml(
-                equipment.name
-              )}
+            <h2 class="equipment-title">
+              ${escapeHtml(item.name)}
             </h2>
 
             ${
-              equipment.category
+              item.category
                 ? `
-                  <span class="category">
-                    ${escapeHtml(
-                      equipment.category
-                    )}
-                  </span>
+                  <div class="equipment-category">
+                    ${escapeHtml(item.category)}
+                  </div>
                 `
                 : ""
             }
 
           </div>
 
+
           <span
-            class="status ${
-              equipment.active
-                ? "active"
-                : "inactive"
+            class="status-badge ${
+              item.active
+                ? "status-active"
+                : "status-inactive"
             }"
           >
             ${
-              equipment.active
-                ? "Öffentlich sichtbar"
-                : "Versteckt"
+              item.active
+                ? "Sichtbar"
+                : "Ausgeblendet"
             }
           </span>
 
         </div>
 
+
         ${
-          equipment.description
+          item.description
             ? `
-              <p class="equipment-description">
-                ${escapeHtml(
-                  equipment.description
-                )}
-              </p>
+              <div class="equipment-description">
+                ${escapeHtml(item.description)}
+              </div>
             `
             : ""
         }
+
 
         <div class="equipment-actions">
 
           <button
             type="button"
-            class="secondary-btn"
-            onclick="editEquipment('${equipment.id}')"
+            class="secondary-button"
+            data-action="edit"
+            data-id="${item.id}"
           >
             Bearbeiten
           </button>
 
+
           <button
             type="button"
-            class="secondary-btn"
-            onclick="toggleEquipment('${equipment.id}')"
+            class="${
+              item.active
+                ? "secondary-button"
+                : "success-button"
+            }"
+            data-action="toggle"
+            data-id="${item.id}"
           >
             ${
-              equipment.active
-                ? "Verstecken"
+              item.active
+                ? "Ausblenden"
                 : "Aktivieren"
             }
           </button>
 
+
           <button
             type="button"
-            class="danger-btn"
-            onclick="deleteEquipment('${equipment.id}')"
+            class="danger-button"
+            data-action="delete"
+            data-id="${item.id}"
           >
             Löschen
           </button>
@@ -1097,375 +1293,444 @@ function renderEquipmentCard(
       </div>
 
     </article>
+
   `;
 }
 
 
-/* ================================
-   IMAGE NAVIGATION
-   ================================ */
+/* ============================================================
+   GALLERY EVENTS
+============================================================ */
 
-function changeImage(
-  id,
-  direction
-) {
+function attachGalleryEvents() {
 
-  const images =
-    window[
-      "equipmentImages_" +
-      id
-    ];
+  document
+    .querySelectorAll("[data-gallery-action]")
+    .forEach(button => {
 
-  if (
-    !images ||
-    !images.length
-  ) {
-    return;
-  }
+      button.addEventListener(
+        "click",
+        function() {
 
-  let index =
-    window[
-      "equipmentIndex_" +
-      id
-    ] || 0;
+          const id =
+            this.dataset.equipmentId;
 
-  index += direction;
+          const action =
+            this.dataset.galleryAction;
 
-  if (index < 0) {
-    index =
-      images.length - 1;
-  }
+          const item =
+            equipmentItems.find(
+              equipment =>
+                equipment.id === id
+            );
 
-  if (
-    index >= images.length
-  ) {
-    index = 0;
-  }
+          if (!item) {
+            return;
+          }
 
-  window[
-    "equipmentIndex_" +
-    id
-  ] = index;
 
-  const image =
-    document.getElementById(
-      "gallery-image-" +
-      id
-    );
+          const images =
+            item.equipment_images || [];
 
-  const counter =
-    document.getElementById(
-      "image-counter-" +
-      id
-    );
 
-  if (image) {
+          if (images.length <= 1) {
+            return;
+          }
 
-    image.src =
-      getImageUrl(
-        images[index].storage_path
+
+          let index =
+            currentGalleryIndexes[id] || 0;
+
+
+          if (action === "next") {
+            index =
+              (index + 1) % images.length;
+          }
+
+          if (action === "prev") {
+            index =
+              (index - 1 + images.length) %
+              images.length;
+          }
+
+
+          currentGalleryIndexes[id] =
+            index;
+
+
+          renderEquipment();
+        }
       );
-  }
 
-  if (counter) {
+    });
 
-    counter.textContent =
-      `${index + 1} / ${images.length}`;
-  }
+
+  document
+    .querySelectorAll("[data-action]")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        async function() {
+
+          const action =
+            this.dataset.action;
+
+          const id =
+            this.dataset.id;
+
+
+          if (action === "edit") {
+            openEditModal(id);
+          }
+
+
+          if (action === "toggle") {
+            await toggleEquipment(id);
+          }
+
+
+          if (action === "delete") {
+            await deleteEquipment(id);
+          }
+
+        }
+      );
+
+    });
 }
 
 
-/* ================================
-   MODAL
-   ================================ */
+/* ============================================================
+   OPEN MODAL
+============================================================ */
 
-function openModal() {
+function openCreateModal() {
 
-  equipmentForm.reset();
-
-  equipmentId.value = "";
-
-  equipmentActive.checked =
-    true;
-
-  equipmentSortOrder.value =
-    0;
+  currentEquipment = null;
 
   currentImages = [];
 
-  pendingImageFiles = [];
+  equipmentId.value = "";
 
-  imageList.innerHTML = "";
+  equipmentName.value = "";
+
+  equipmentCategory.value = "";
+
+  equipmentDescription.value = "";
+
+  equipmentActive.checked = true;
 
   equipmentImages.value = "";
 
   modalTitle.textContent =
     "Equipment hinzufügen";
 
-  equipmentModal.classList.add(
-    "open"
+  saveEquipmentButton.textContent =
+    "Speichern";
+
+  clearModalMessage();
+
+  renderImageList();
+
+  equipmentModal.classList.add("open");
+
+  equipmentModal.setAttribute(
+    "aria-hidden",
+    "false"
   );
+
 }
 
 
-function closeModal() {
+function openEditModal(id) {
 
-  equipmentModal.classList.remove(
-    "open"
-  );
-}
-
-
-/* ================================
-   EDIT
-   ================================ */
-
-async function editEquipment(
-  id
-) {
-
-  const equipment =
-    equipmentData.find(
-      item => item.id === id
+  const item =
+    equipmentItems.find(
+      equipment =>
+        equipment.id === id
     );
 
-  if (!equipment) {
+  if (!item) {
     return;
   }
 
-  equipmentId.value =
-    equipment.id;
 
-  equipmentName.value =
-    equipment.name || "";
+  currentEquipment = item;
 
-  equipmentCategory.value =
-    equipment.category || "";
-
-  equipmentDescription.value =
-    equipment.description || "";
-
-  equipmentSortOrder.value =
-    equipment.sort_order || 0;
-
-  equipmentActive.checked =
-    equipment.active !== false;
 
   currentImages =
-    (
-      equipment.equipment_images ||
-      []
-    )
-    .slice()
-    .sort(
-      (a, b) =>
-        (a.sort_order || 0) -
-        (b.sort_order || 0)
-    );
+    [...(item.equipment_images || [])]
+      .sort(
+        (a, b) =>
+          (a.sort_order || 0) -
+          (b.sort_order || 0)
+      );
 
-  pendingImageFiles = [];
+
+  equipmentId.value =
+    item.id;
+
+  equipmentName.value =
+    item.name || "";
+
+  equipmentCategory.value =
+    item.category || "";
+
+  equipmentDescription.value =
+    item.description || "";
+
+  equipmentActive.checked =
+    !!item.active;
 
   equipmentImages.value = "";
+
 
   modalTitle.textContent =
     "Equipment bearbeiten";
 
-  renderModalImages();
+  saveEquipmentButton.textContent =
+    "Änderungen speichern";
 
-  equipmentModal.classList.add(
-    "open"
+
+  clearModalMessage();
+
+  renderImageList();
+
+
+  equipmentModal.classList.add("open");
+
+  equipmentModal.setAttribute(
+    "aria-hidden",
+    "false"
   );
+
 }
 
 
-/* ================================
-   MODAL IMAGES
-   ================================ */
+/* ============================================================
+   CLOSE MODAL
+============================================================ */
 
-function renderModalImages() {
+function closeModal() {
 
-  imageList.innerHTML = "";
+  equipmentModal.classList.remove("open");
 
-  currentImages.forEach(
-    (image, index) => {
+  equipmentModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
 
-      const item =
-        document.createElement(
-          "div"
-        );
+  currentEquipment = null;
 
-      item.className =
-        "image-item";
+  currentImages = [];
 
-      item.innerHTML = `
-        <img
-          src="${escapeAttribute(
+  clearModalMessage();
+
+}
+
+
+/* ============================================================
+   IMAGE LIST
+============================================================ */
+
+function renderImageList() {
+
+  if (!currentImages.length) {
+
+    imageList.innerHTML = "";
+
+    return;
+  }
+
+
+  imageList.innerHTML =
+    currentImages
+      .map(
+        (image, index) => {
+
+          const imageUrl =
             getImageUrl(
               image.storage_path
-            )
-          )}"
-          alt="Equipment Bild ${
-            index + 1
-          }"
-        >
+            );
 
-        <div class="image-item-controls">
 
-          <button
-            type="button"
-            class="small-btn"
-            ${
-              index === 0
-                ? "disabled"
-                : ""
-            }
-            onclick="moveImage(${index}, -1)"
-          >
-            ←
-          </button>
+          return `
 
-          <button
-            type="button"
-            class="small-btn"
-            ${
-              index ===
-              currentImages.length - 1
-                ? "disabled"
-                : ""
-            }
-            onclick="moveImage(${index}, 1)"
-          >
-            →
-          </button>
+            <div
+              class="image-item"
+              data-image-id="${image.id}"
+            >
 
-          <button
-            type="button"
-            class="small-btn delete"
-            onclick="removeImage(${index})"
-          >
-            ×
-          </button>
+              <img
+                src="${escapeAttribute(imageUrl)}"
+                alt="Equipment Bild ${index + 1}"
+              >
 
-        </div>
-      `;
 
-      imageList.appendChild(
-        item
+              <div class="image-name">
+                Bild ${index + 1}
+              </div>
+
+
+              <div class="image-actions">
+
+                <button
+                  type="button"
+                  class="small-button"
+                  title="Nach links"
+                  data-image-action="up"
+                  data-image-id="${image.id}"
+                  ${
+                    index === 0
+                      ? "disabled"
+                      : ""
+                  }
+                >
+                  ↑
+                </button>
+
+                <button
+                  type="button"
+                  class="small-button"
+                  title="Nach rechts"
+                  data-image-action="down"
+                  data-image-id="${image.id}"
+                  ${
+                    index ===
+                    currentImages.length - 1
+                      ? "disabled"
+                      : ""
+                  }
+                >
+                  ↓
+                </button>
+
+                <button
+                  type="button"
+                  class="small-button delete"
+                  title="Bild löschen"
+                  data-image-action="delete"
+                  data-image-id="${image.id}"
+                >
+                  ×
+                </button>
+
+              </div>
+
+            </div>
+
+          `;
+        }
+      )
+      .join("");
+
+
+  document
+    .querySelectorAll("[data-image-action]")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        async function() {
+
+          const action =
+            this.dataset.imageAction;
+
+          const id =
+            this.dataset.imageId;
+
+
+          if (action === "up") {
+            moveImage(id, -1);
+          }
+
+          if (action === "down") {
+            moveImage(id, 1);
+          }
+
+          if (action === "delete") {
+            await removeImage(id);
+          }
+
+        }
       );
-    }
-  );
 
-  pendingImageFiles.forEach(
-    (file, index) => {
-
-      const item =
-        document.createElement(
-          "div"
-        );
-
-      item.className =
-        "image-item";
-
-      const previewUrl =
-        URL.createObjectURL(
-          file
-        );
-
-      item.innerHTML = `
-        <img
-          src="${previewUrl}"
-          alt="Neues Bild"
-        >
-
-        <div class="image-item-controls">
-
-          <span
-            style="
-              flex:1;
-              font-size:12px;
-              padding:7px;
-              color:var(--muted);
-            "
-          >
-            Neues Bild
-          </span>
-
-          <button
-            type="button"
-            class="small-btn delete"
-            onclick="removePendingImage(${index})"
-          >
-            ×
-          </button>
-
-        </div>
-      `;
-
-      imageList.appendChild(
-        item
-      );
-    }
-  );
+    });
 }
 
 
-/* ================================
+/* ============================================================
    MOVE IMAGE
-   ================================ */
+============================================================ */
 
-function moveImage(
-  index,
-  direction
-) {
+function moveImage(id, direction) {
+
+  const index =
+    currentImages.findIndex(
+      image =>
+        image.id === id
+    );
+
+  if (index === -1) {
+    return;
+  }
+
 
   const newIndex =
     index + direction;
 
+
   if (
     newIndex < 0 ||
-    newIndex >=
-      currentImages.length
+    newIndex >= currentImages.length
   ) {
     return;
   }
 
-  [
-    currentImages[index],
-    currentImages[newIndex]
-  ] = [
-    currentImages[newIndex],
-    currentImages[index]
-  ];
 
-  renderModalImages();
+  const temp =
+    currentImages[index];
+
+  currentImages[index] =
+    currentImages[newIndex];
+
+  currentImages[newIndex] =
+    temp;
+
+
+  renderImageList();
 }
 
 
-/* ================================
-   REMOVE IMAGE
-   ================================ */
+/* ============================================================
+   DELETE IMAGE
+============================================================ */
 
-async function removeImage(
-  index
-) {
+async function removeImage(id) {
 
   const image =
-    currentImages[index];
+    currentImages.find(
+      item =>
+        item.id === id
+    );
 
   if (!image) {
     return;
   }
 
+
   if (
     !confirm(
-      "Dieses Bild wirklich löschen?"
+      "Möchtest du dieses Bild wirklich löschen?"
     )
   ) {
     return;
   }
 
+
   const {
-    error
+    error: storageError
   } = await supabaseClient
     .storage
     .from(STORAGE_BUCKET)
@@ -1473,253 +1738,204 @@ async function removeImage(
       image.storage_path
     ]);
 
-  if (error) {
 
-    console.error(error);
+  if (storageError) {
 
-    showMessage(
-      "Bild konnte nicht gelöscht werden.",
+    console.error(storageError);
+
+    showModalMessage(
+      "Das Bild konnte nicht aus dem Speicher gelöscht werden.",
       "error"
     );
 
     return;
   }
+
 
   const {
     error: dbError
   } = await supabaseClient
     .from("equipment_images")
     .delete()
-    .eq("id", image.id);
+    .eq("id", id);
+
 
   if (dbError) {
 
     console.error(dbError);
 
-    showMessage(
-      "Bild wurde aus dem Speicher entfernt, konnte aber nicht aus der Datenbank gelöscht werden.",
+    showModalMessage(
+      "Das Bild wurde aus dem Speicher entfernt, konnte aber nicht aus der Datenbank entfernt werden.",
       "error"
     );
 
     return;
   }
 
-  currentImages.splice(
-    index,
-    1
+
+  currentImages =
+    currentImages.filter(
+      item =>
+        item.id !== id
+    );
+
+
+  renderImageList();
+
+  showModalMessage(
+    "Bild gelöscht.",
+    "success"
   );
 
-  renderModalImages();
-
-  showMessage(
-    "Bild gelöscht."
-  );
 }
 
 
-/* ================================
-   REMOVE NEW IMAGE
-   ================================ */
-
-function removePendingImage(
-  index
-) {
-
-  pendingImageFiles.splice(
-    index,
-    1
-  );
-
-  renderModalImages();
-}
-
-
-/* ================================
-   NEW IMAGES
-   ================================ */
-
-equipmentImages.addEventListener(
-  "change",
-  function () {
-
-    const files =
-      Array.from(
-        this.files || []
-      );
-
-    for (
-      const file of files
-    ) {
-
-      if (
-        file.size >
-        10 * 1024 * 1024
-      ) {
-
-        showMessage(
-          `${file.name} ist größer als 10 MB.`,
-          "error"
-        );
-
-        continue;
-      }
-
-      const allowedTypes = [
-        "image/jpeg",
-        "image/png",
-        "image/webp",
-        "image/gif"
-      ];
-
-      if (
-        !allowedTypes.includes(
-          file.type
-        )
-      ) {
-
-        showMessage(
-          `${file.name} ist kein unterstütztes Bildformat.`,
-          "error"
-        );
-
-        continue;
-      }
-
-      pendingImageFiles.push(
-        file
-      );
-    }
-
-    this.value = "";
-
-    renderModalImages();
-  }
-);
-
-
-/* ================================
-   SAVE
-   ================================ */
+/* ============================================================
+   SAVE EQUIPMENT
+============================================================ */
 
 equipmentForm.addEventListener(
   "submit",
-  async function (event) {
+  async function(event) {
 
     event.preventDefault();
 
-    saveBtn.disabled = true;
+    clearModalMessage();
 
-    saveBtn.textContent =
-      "Speichert …";
+
+    const name =
+      equipmentName.value.trim();
+
+    const category =
+      equipmentCategory.value.trim();
+
+    const description =
+      equipmentDescription.value.trim();
+
+    const active =
+      equipmentActive.checked;
+
+
+    if (!name) {
+
+      showModalMessage(
+        "Bitte gib einen Namen für das Equipment ein.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    saveEquipmentButton.disabled =
+      true;
+
+    saveEquipmentButton.textContent =
+      "Speichern …";
+
 
     try {
 
-      const id =
-        equipmentId.value.trim();
-
-      const payload = {
-
-        name:
-          equipmentName.value.trim(),
-
-        category:
-          equipmentCategory.value.trim() ||
-          null,
-
-        description:
-          equipmentDescription.value.trim() ||
-          null,
-
-        active:
-          equipmentActive.checked,
-
-        sort_order:
-          parseInt(
-            equipmentSortOrder.value,
-            10
-          ) || 0,
-
-        updated_at:
-          new Date().toISOString()
-      };
-
-      if (!payload.name) {
-
-        throw new Error(
-          "Bitte einen Namen eingeben."
-        );
-      }
+      let savedEquipment;
 
 
-      /* UPDATE */
-
-      if (id) {
-
-        const {
-          error
-        } = await supabaseClient
-          .from("equipment")
-          .update(payload)
-          .eq("id", id);
-
-        if (error) {
-          throw error;
-        }
-
-      }
-
-
-      /* INSERT */
-
-      else {
+      if (equipmentId.value) {
 
         const {
           data,
           error
         } = await supabaseClient
           .from("equipment")
-          .insert(payload)
+          .update({
+            name,
+            category,
+            description,
+            active,
+            updated_at: new Date().toISOString()
+          })
+          .eq("id", equipmentId.value)
           .select()
           .single();
+
 
         if (error) {
           throw error;
         }
 
-        equipmentId.value =
-          data.id;
+
+        savedEquipment = data;
+
+      } else {
+
+        const {
+          data,
+          error
+        } = await supabaseClient
+          .from("equipment")
+          .insert({
+            name,
+            category,
+            description,
+            active,
+            sort_order:
+              equipmentItems.length
+          })
+          .select()
+          .single();
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        savedEquipment = data;
+
       }
 
 
-      const savedEquipmentId =
-        equipmentId.value;
+      /* Bilder hochladen */
+
+      const files =
+        Array.from(
+          equipmentImages.files || []
+        );
 
 
-      /* UPLOAD */
+      if (files.length) {
 
-      if (
-        pendingImageFiles.length
-      ) {
-
-        let nextSortOrder =
+        const existingCount =
           currentImages.length;
 
+
         for (
-          const file
-          of pendingImageFiles
+          let i = 0;
+          i < files.length;
+          i++
         ) {
 
+          const file =
+            files[i];
+
+
+          if (
+            file.size >
+            10 * 1024 * 1024
+          ) {
+
+            throw new Error(
+              `Das Bild "${file.name}" ist größer als 10 MB.`
+            );
+          }
+
+
           const extension =
-            file.name
-              .split(".")
-              .pop()
-              .toLowerCase();
+            getFileExtension(file.name);
 
-          const uniqueName =
-            `${crypto.randomUUID()}.${extension}`;
 
-          const storagePath =
-            `${savedEquipmentId}/${uniqueName}`;
+          const path =
+            `${savedEquipment.id}/${crypto.randomUUID()}${extension}`;
+
 
           const {
             error: uploadError
@@ -1727,17 +1943,20 @@ equipmentForm.addEventListener(
             .storage
             .from(STORAGE_BUCKET)
             .upload(
-              storagePath,
+              path,
               file,
               {
                 cacheControl: "3600",
-                upsert: false
+                upsert: false,
+                contentType: file.type
               }
             );
+
 
           if (uploadError) {
             throw uploadError;
           }
+
 
           const {
             error: imageDbError
@@ -1745,154 +1964,146 @@ equipmentForm.addEventListener(
             .from("equipment_images")
             .insert({
               equipment_id:
-                savedEquipmentId,
-
+                savedEquipment.id,
               storage_path:
-                storagePath,
-
+                path,
               sort_order:
-                nextSortOrder
+                existingCount + i
             });
+
 
           if (imageDbError) {
             throw imageDbError;
           }
 
-          nextSortOrder++;
         }
+
       }
 
-
-      /* IMAGE ORDER */
-
-      for (
-        let index = 0;
-        index < currentImages.length;
-        index++
-      ) {
-
-        await supabaseClient
-          .from("equipment_images")
-          .update({
-            sort_order: index
-          })
-          .eq(
-            "id",
-            currentImages[index].id
-          );
-      }
-
-      showMessage(
-        "Equipment erfolgreich gespeichert."
-      );
 
       closeModal();
 
       await loadEquipment();
 
+      showPageMessage(
+        equipmentId.value
+          ? "Equipment wurde aktualisiert."
+          : "Equipment wurde angelegt.",
+        "success"
+      );
+
+
     } catch (error) {
 
       console.error(error);
 
-      showMessage(
+      showModalMessage(
         error.message ||
-        "Beim Speichern ist ein Fehler aufgetreten.",
+          "Das Equipment konnte nicht gespeichert werden.",
         "error"
       );
 
     } finally {
 
-      saveBtn.disabled = false;
+      saveEquipmentButton.disabled =
+        false;
 
-      saveBtn.textContent =
-        "Speichern";
+      saveEquipmentButton.textContent =
+        equipmentId.value
+          ? "Änderungen speichern"
+          : "Speichern";
+
     }
+
   }
 );
 
 
-/* ================================
-   TOGGLE
-   ================================ */
+/* ============================================================
+   TOGGLE EQUIPMENT
+============================================================ */
 
-async function toggleEquipment(
-  id
-) {
+async function toggleEquipment(id) {
 
-  const equipment =
-    equipmentData.find(
-      item => item.id === id
+  const item =
+    equipmentItems.find(
+      equipment =>
+        equipment.id === id
     );
 
-  if (!equipment) {
+  if (!item) {
     return;
   }
+
 
   const {
     error
   } = await supabaseClient
     .from("equipment")
     .update({
-      active:
-        !equipment.active,
-
+      active: !item.active,
       updated_at:
         new Date().toISOString()
     })
     .eq("id", id);
 
+
   if (error) {
 
     console.error(error);
 
-    showMessage(
-      "Status konnte nicht geändert werden.",
+    showPageMessage(
+      "Der Status konnte nicht geändert werden.",
       "error"
     );
 
     return;
   }
 
-  showMessage(
-    equipment.active
-      ? "Equipment wurde versteckt."
-      : "Equipment wurde aktiviert."
-  );
 
   await loadEquipment();
+
+  showPageMessage(
+    item.active
+      ? "Equipment wurde für Kunden ausgeblendet."
+      : "Equipment wurde für Kunden aktiviert.",
+    "success"
+  );
+
 }
 
 
-/* ================================
-   DELETE
-   ================================ */
+/* ============================================================
+   DELETE EQUIPMENT
+============================================================ */
 
-async function deleteEquipment(
-  id
-) {
+async function deleteEquipment(id) {
 
-  const equipment =
-    equipmentData.find(
-      item => item.id === id
+  const item =
+    equipmentItems.find(
+      equipment =>
+        equipment.id === id
     );
 
-  if (!equipment) {
+  if (!item) {
     return;
   }
 
+
   if (
     !confirm(
-      `„${equipment.name}“ wirklich löschen?\n\nDabei werden auch alle zugehörigen Bilder gelöscht.`
+      `Möchtest du „${item.name}“ wirklich löschen? Alle zugehörigen Bilder werden ebenfalls gelöscht.`
     )
   ) {
     return;
   }
 
+
   try {
 
     const images =
-      equipment.equipment_images ||
-      [];
+      item.equipment_images || [];
+
 
     if (images.length) {
 
@@ -1902,6 +2113,7 @@ async function deleteEquipment(
             image.storage_path
         );
 
+
       const {
         error: storageError
       } = await supabaseClient
@@ -1909,10 +2121,13 @@ async function deleteEquipment(
         .from(STORAGE_BUCKET)
         .remove(paths);
 
+
       if (storageError) {
         throw storageError;
       }
+
     }
+
 
     const {
       error
@@ -1921,97 +2136,98 @@ async function deleteEquipment(
       .delete()
       .eq("id", id);
 
+
     if (error) {
       throw error;
     }
 
-    showMessage(
-      "Equipment gelöscht."
-    );
+
+    delete currentGalleryIndexes[id];
 
     await loadEquipment();
+
+    showPageMessage(
+      "Equipment wurde gelöscht.",
+      "success"
+    );
+
 
   } catch (error) {
 
     console.error(error);
 
-    showMessage(
+    showPageMessage(
       error.message ||
-      "Equipment konnte nicht gelöscht werden.",
+        "Das Equipment konnte nicht gelöscht werden.",
       "error"
     );
+
   }
+
 }
 
 
-/* ================================
-   HELPERS
-   ================================ */
+/* ============================================================
+   IMAGE UPLOAD HELPERS
+============================================================ */
 
-function escapeHtml(
-  value
-) {
+function getFileExtension(filename) {
 
-  return String(
-    value ?? ""
-  )
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+  const index =
+    filename.lastIndexOf(".");
+
+  if (index === -1) {
+    return "";
+  }
+
+  return filename
+    .substring(index)
+    .toLowerCase();
 }
 
 
-function escapeAttribute(
-  value
-) {
+/* ============================================================
+   HTML ESCAPING
+============================================================ */
 
+function escapeHtml(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+function escapeAttribute(value) {
   return escapeHtml(value);
 }
 
 
-/* ================================
-   BUTTONS
-   ================================ */
+/* ============================================================
+   MODAL EVENTS
+============================================================ */
 
 document
-  .getElementById(
-    "addEquipmentBtn"
-  )
+  .getElementById("addEquipmentButton")
   .addEventListener(
     "click",
-    openModal
+    openCreateModal
   );
 
+
 document
-  .getElementById(
-    "closeModalBtn"
-  )
+  .getElementById("closeModalButton")
   .addEventListener(
     "click",
     closeModal
   );
 
+
 document
-  .getElementById(
-    "cancelBtn"
-  )
+  .getElementById("cancelModalButton")
   .addEventListener(
     "click",
     closeModal
@@ -2020,52 +2236,70 @@ document
 
 equipmentModal.addEventListener(
   "click",
-  function (event) {
+  function(event) {
 
     if (
-      event.target ===
-      equipmentModal
+      event.target === equipmentModal
     ) {
       closeModal();
     }
+
   }
 );
 
 
 document.addEventListener(
   "keydown",
-  function (event) {
+  function(event) {
 
     if (
       event.key === "Escape" &&
-      equipmentModal.classList.contains(
-        "open"
-      )
+      equipmentModal.classList.contains("open")
     ) {
       closeModal();
     }
+
   }
 );
 
 
-/* ================================
-   INIT
-   ================================ */
+/* ============================================================
+   LOGOUT
+============================================================ */
 
-(async function init() {
+document
+  .getElementById("logoutButton")
+  .addEventListener(
+    "click",
+    async function() {
 
-  const authenticated =
-    await checkAuth();
+      const button =
+        document.getElementById(
+          "logoutButton"
+        );
 
-  if (!authenticated) {
-    return;
-  }
 
-  await loadEquipment();
+      button.disabled = true;
 
-})();
+      button.textContent =
+        "Abmeldung …";
+
+
+      await supabaseClient.auth.signOut();
+
+      window.location.replace("./");
+
+    }
+  );
+
+
+/* ============================================================
+   START
+============================================================ */
+
+checkLogin();
+
 </script>
 
 </body>
 </html>
-```
