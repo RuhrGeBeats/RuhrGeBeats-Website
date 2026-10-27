@@ -424,6 +424,201 @@
       color: white;
     }
 
+    /* EQUIPMENT AUSWAHL */
+
+    #equipmentStep {
+      margin-top: 28px;
+      padding-top: 8px;
+    }
+
+    .equipment-intro {
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .equipment-card {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      background: #fff;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .equipment-card:hover {
+      border-color: #a8d4ff;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(7,17,31,.08);
+    }
+
+    .equipment-card.selected {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(22,140,255,.10);
+      background: #f7fbff;
+    }
+
+    .equipment-image-wrap {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: #eef2f6;
+      overflow: hidden;
+    }
+
+    .equipment-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .equipment-no-image {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .equipment-nav {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+      pointer-events: none;
+    }
+
+    .equipment-nav button {
+      pointer-events: auto;
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(7,17,31,.72);
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .equipment-counter {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(7,17,31,.72);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .equipment-check {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,.94);
+      color: var(--blue);
+      font-weight: 900;
+      box-shadow: 0 3px 10px rgba(0,0,0,.12);
+      opacity: 0;
+      transform: scale(.8);
+      transition: .2s ease;
+    }
+
+    .equipment-card.selected .equipment-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .equipment-body {
+      padding: 17px;
+    }
+
+    .equipment-category {
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 5px;
+    }
+
+    .equipment-body h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .equipment-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .equipment-actions {
+      margin-top: 24px;
+    }
+
+    .equipment-back-button {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 18px;
+      margin-top: 10px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .equipment-back-button:hover {
+      border-color: var(--blue);
+      color: var(--blue-dark);
+    }
+
+    .equipment-note {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    #equipmentStatus {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .equipment-loading,
+    .equipment-empty {
+      grid-column: 1 / -1;
+      padding: 25px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      background: #fff;
+    }
+
     /* RESPONSIVE */
 
     @media (max-width: 850px) {
@@ -437,6 +632,10 @@
 
       .event-types {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .equipment-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -562,6 +761,7 @@
 
           <div>
             <strong>Persönliche Planung</strong>
+
             <span>
               Wir besprechen eure Wünsche direkt mit euch.
             </span>
@@ -578,6 +778,7 @@
 
           <div>
             <strong>DJ & Licht</strong>
+
             <span>
               Professionelle Musik- und Lichttechnik für eure Feier.
             </span>
@@ -594,6 +795,7 @@
 
           <div>
             <strong>Ruhrgebiet & NRW</strong>
+
             <span>
               Wir sind in Gladbeck zuhause und in ganz NRW unterwegs.
             </span>
@@ -636,6 +838,7 @@
             <div class="event-types">
 
               <div class="event-option">
+
                 <input
                   type="radio"
                   id="birthday"
@@ -643,74 +846,91 @@
                   value="Geburtstag"
                   required
                 >
+
                 <label for="birthday">
                   Geburtstag
                 </label>
+
               </div>
 
 
               <div class="event-option">
+
                 <input
                   type="radio"
                   id="wedding"
                   name="Veranstaltungsart"
                   value="Hochzeit"
                 >
+
                 <label for="wedding">
                   Hochzeit
                 </label>
+
               </div>
 
 
               <div class="event-option">
+
                 <input
                   type="radio"
                   id="private"
                   name="Veranstaltungsart"
                   value="Private Feier"
                 >
+
                 <label for="private">
                   Private Feier
                 </label>
+
               </div>
 
 
               <div class="event-option">
+
                 <input
                   type="radio"
                   id="company"
                   name="Veranstaltungsart"
                   value="Firmenfeier"
                 >
+
                 <label for="company">
                   Firmenfeier
                 </label>
+
               </div>
 
 
               <div class="event-option">
+
                 <input
                   type="radio"
                   id="abiball"
                   name="Veranstaltungsart"
                   value="Abiball"
                 >
+
                 <label for="abiball">
                   Abiball
                 </label>
+
               </div>
 
 
               <div class="event-option">
+
                 <input
                   type="radio"
                   id="other"
                   name="Veranstaltungsart"
                   value="Sonstige Veranstaltung"
                 >
+
                 <label for="other">
                   Sonstige Veranstaltung
                 </label>
+
               </div>
 
             </div>
@@ -973,11 +1193,11 @@
 
 
           <button
-            type="submit"
+            type="button"
             class="submit-button"
-            id="submitButton"
+            id="continueEquipmentButton"
           >
-            Unverbindliche Anfrage senden
+            Weiter zur Equipment-Auswahl →
           </button>
 
 
@@ -998,6 +1218,69 @@
           ></p>
 
         </form>
+
+
+        <!-- ===================================================== -->
+        <!-- EQUIPMENT STEP                                        -->
+        <!-- ===================================================== -->
+
+        <section
+          id="equipmentStep"
+          hidden
+          aria-hidden="true"
+        >
+
+          <div class="section-title" style="margin-top:24px;">
+            5. Equipment auswählen
+          </div>
+
+          <p class="equipment-intro">
+            Wählt hier gerne zusätzliches Equipment für eure Feier aus.
+            Die Auswahl ist zunächst unverbindlich. Ihr könnt auch ohne
+            zusätzliches Equipment fortfahren.
+          </p>
+
+          <div
+            id="equipmentGrid"
+            class="equipment-grid"
+          >
+            <div class="equipment-loading">
+              Equipment wird geladen …
+            </div>
+          </div>
+
+
+          <div class="equipment-actions">
+
+            <button
+              type="button"
+              class="submit-button"
+              id="finalSubmitButton"
+            >
+              Anfrage absenden
+            </button>
+
+
+            <button
+              type="button"
+              id="backToFormButton"
+              class="equipment-back-button"
+            >
+              ← Zurück zum Formular
+            </button>
+
+
+            <p class="equipment-note">
+              Die Auswahl dient nur zur Vorbereitung eurer Anfrage und ist
+              noch keine verbindliche Buchung.
+            </p>
+
+
+            <div id="equipmentStatus"></div>
+
+          </div>
+
+        </section>
 
       </section>
 
@@ -1074,14 +1357,41 @@
     const requestForm =
       document.getElementById("requestForm");
 
-    const submitButton =
-      document.getElementById("submitButton");
+    const continueEquipmentButton =
+      document.getElementById("continueEquipmentButton");
+
+    const finalSubmitButton =
+      document.getElementById("finalSubmitButton");
+
+    const backToFormButton =
+      document.getElementById("backToFormButton");
+
+    const equipmentStep =
+      document.getElementById("equipmentStep");
+
+    const equipmentGrid =
+      document.getElementById("equipmentGrid");
+
+    const equipmentStatus =
+      document.getElementById("equipmentStatus");
 
     const formStatus =
       document.getElementById("formStatus");
 
     const dateInput =
       document.getElementById("date");
+
+    const STORAGE_BUCKET =
+      "equipment-images";
+
+
+    let equipmentItems = [];
+
+    const selectedEquipmentIds =
+      new Set();
+
+    const equipmentImageIndexes =
+      new Map();
 
 
     /* Mindestdatum = heute */
@@ -1096,17 +1406,605 @@
     }
 
 
-    /* Formular absenden */
+    /* HTML sicher ausgeben */
 
-    requestForm.addEventListener(
-      "submit",
-      async function(event) {
+    function escapeHtml(value) {
 
-        event.preventDefault();
+      if (
+        value === null ||
+        value === undefined
+      ) {
+        return "";
+      }
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
 
 
-        formStatus.style.display = "none";
-        formStatus.textContent = "";
+    /* Statusmeldung */
+
+    function setEquipmentStatus(
+      message,
+      type = "info"
+    ) {
+
+      if (!equipmentStatus) {
+        return;
+      }
+
+      equipmentStatus.style.display =
+        message ? "block" : "none";
+
+      equipmentStatus.textContent =
+        message || "";
+
+      equipmentStatus.style.background =
+        type === "success"
+          ? "#eaf8f0"
+          : type === "error"
+            ? "#fff0f0"
+            : "#eef6ff";
+
+      equipmentStatus.style.color =
+        type === "success"
+          ? "#138a4b"
+          : type === "error"
+            ? "#c62828"
+            : "#0870d8";
+
+    }
+
+
+    /* Öffentliche Storage-URL */
+
+    function publicImageUrl(storagePath) {
+
+      if (!storagePath) {
+        return "";
+      }
+
+      const result =
+        supabaseClient.storage
+          .from(STORAGE_BUCKET)
+          .getPublicUrl(storagePath);
+
+      return result?.data?.publicUrl || "";
+
+    }
+
+
+    /* Equipment aus Supabase laden */
+
+    async function loadEquipment() {
+
+      equipmentGrid.innerHTML =
+        '<div class="equipment-loading">Equipment wird geladen …</div>';
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("equipment")
+          .select(
+            "id,name,category,description,active,sort_order,equipment_images(id,storage_path,sort_order)"
+          )
+          .eq("active", true)
+          .order(
+            "sort_order",
+            {
+              ascending: true
+            }
+          )
+          .order(
+            "name",
+            {
+              ascending: true
+            }
+          );
+
+
+      if (error) {
+
+        console.error(
+          "Equipment konnte nicht geladen werden:",
+          error
+        );
+
+        equipmentGrid.innerHTML =
+          '<div class="equipment-empty">Das Equipment konnte gerade nicht geladen werden. Ihr könnt die Anfrage trotzdem ohne Equipment-Auswahl absenden.</div>';
+
+        return;
+
+      }
+
+
+      equipmentItems =
+        (data || []).map(item => ({
+
+          ...item,
+
+          equipment_images:
+            [...(item.equipment_images || [])]
+              .sort(
+                (a, b) =>
+                  (a.sort_order || 0) -
+                  (b.sort_order || 0)
+              )
+
+        }));
+
+
+      renderEquipment();
+
+    }
+
+
+    /* Equipment-Karten darstellen */
+
+    function renderEquipment() {
+
+      if (!equipmentItems.length) {
+
+        equipmentGrid.innerHTML =
+          '<div class="equipment-empty">Aktuell ist kein zusätzliches Equipment verfügbar.</div>';
+
+        return;
+
+      }
+
+
+      equipmentGrid.innerHTML =
+        equipmentItems
+          .map(item => {
+
+            const images =
+              item.equipment_images || [];
+
+            const index =
+              equipmentImageIndexes.get(item.id) || 0;
+
+            const image =
+              images[index];
+
+            const imageUrl =
+              image
+                ? publicImageUrl(
+                    image.storage_path
+                  )
+                : "";
+
+            const selected =
+              selectedEquipmentIds.has(
+                item.id
+              );
+
+
+            return `
+
+              <article
+                class="equipment-card${selected ? " selected" : ""}"
+                data-equipment-id="${escapeHtml(item.id)}"
+                tabindex="0"
+                role="button"
+                aria-pressed="${selected ? "true" : "false"}"
+              >
+
+                <div class="equipment-image-wrap">
+
+                  ${
+                    imageUrl
+
+                      ? `
+                        <img
+                          class="equipment-image"
+                          src="${escapeHtml(imageUrl)}"
+                          alt="${escapeHtml(item.name)}"
+                        >
+                      `
+
+                      : `
+                        <div class="equipment-no-image">
+                          Kein Bild vorhanden
+                        </div>
+                      `
+                  }
+
+
+                  <div class="equipment-check">
+                    ✓
+                  </div>
+
+
+                  ${
+                    images.length > 1
+
+                      ? `
+
+                        <div class="equipment-nav">
+
+                          <button
+                            type="button"
+                            class="equipment-prev"
+                            aria-label="Vorheriges Bild"
+                          >
+                            ‹
+                          </button>
+
+                          <button
+                            type="button"
+                            class="equipment-next"
+                            aria-label="Nächstes Bild"
+                          >
+                            ›
+                          </button>
+
+                        </div>
+
+                        <div class="equipment-counter">
+                          ${index + 1} / ${images.length}
+                        </div>
+
+                      `
+
+                      : ""
+                  }
+
+                </div>
+
+
+                <div class="equipment-body">
+
+                  ${
+                    item.category
+
+                      ? `
+                        <div class="equipment-category">
+                          ${escapeHtml(item.category)}
+                        </div>
+                      `
+
+                      : ""
+                  }
+
+                  <h3>
+                    ${escapeHtml(item.name)}
+                  </h3>
+
+
+                  ${
+                    item.description
+
+                      ? `
+                        <p>
+                          ${escapeHtml(item.description)}
+                        </p>
+                      `
+
+                      : ""
+                  }
+
+                </div>
+
+              </article>
+
+            `;
+
+          })
+          .join("");
+
+
+      /* Auswahl */
+
+      equipmentGrid
+        .querySelectorAll(".equipment-card")
+        .forEach(card => {
+
+          const id =
+            card.dataset.equipmentId;
+
+
+          card.addEventListener(
+            "click",
+            event => {
+
+              if (
+                event.target.closest(
+                  ".equipment-nav"
+                )
+              ) {
+                return;
+              }
+
+              toggleEquipment(id);
+
+            }
+          );
+
+
+          card.addEventListener(
+            "keydown",
+            event => {
+
+              if (
+                event.key === "Enter" ||
+                event.key === " "
+              ) {
+
+                event.preventDefault();
+
+                toggleEquipment(id);
+
+              }
+
+            }
+          );
+
+        });
+
+
+      /* Vorheriges Bild */
+
+      equipmentGrid
+        .querySelectorAll(".equipment-prev")
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            event => {
+
+              event.stopPropagation();
+
+              changeEquipmentImage(
+                button
+                  .closest(".equipment-card")
+                  .dataset.equipmentId,
+                -1
+              );
+
+            }
+          );
+
+        });
+
+
+      /* Nächstes Bild */
+
+      equipmentGrid
+        .querySelectorAll(".equipment-next")
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            event => {
+
+              event.stopPropagation();
+
+              changeEquipmentImage(
+                button
+                  .closest(".equipment-card")
+                  .dataset.equipmentId,
+                1
+              );
+
+            }
+          );
+
+        });
+
+    }
+
+
+    /* Equipment auswählen / abwählen */
+
+    function toggleEquipment(id) {
+
+      if (
+        selectedEquipmentIds.has(id)
+      ) {
+
+        selectedEquipmentIds.delete(id);
+
+      } else {
+
+        selectedEquipmentIds.add(id);
+
+      }
+
+      renderEquipment();
+
+    }
+
+
+    /* Bild wechseln */
+
+    function changeEquipmentImage(
+      id,
+      direction
+    ) {
+
+      const item =
+        equipmentItems.find(
+          x => x.id === id
+        );
+
+
+      if (
+        !item ||
+        !item.equipment_images?.length
+      ) {
+        return;
+      }
+
+
+      const count =
+        item.equipment_images.length;
+
+      const current =
+        equipmentImageIndexes.get(id) || 0;
+
+
+      equipmentImageIndexes.set(
+        id,
+        (
+          current +
+          direction +
+          count
+        ) % count
+      );
+
+
+      renderEquipment();
+
+    }
+
+
+    /* Zum Equipment-Schritt */
+
+    function showEquipmentStep() {
+
+      requestForm.style.display =
+        "none";
+
+      equipmentStep.hidden =
+        false;
+
+      equipmentStep.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      setEquipmentStatus("");
+
+      equipmentStep.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+
+    /* Zurück zum Formular */
+
+    function showFormStep() {
+
+      equipmentStep.hidden =
+        true;
+
+      equipmentStep.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      requestForm.style.display =
+        "block";
+
+      requestForm.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+
+    /* Weiter zur Equipment-Auswahl */
+
+    continueEquipmentButton.addEventListener(
+      "click",
+      async () => {
+
+        formStatus.style.display =
+          "none";
+
+        formStatus.textContent =
+          "";
+
+
+        if (
+          !requestForm.reportValidity()
+        ) {
+          return;
+        }
+
+
+        continueEquipmentButton.disabled =
+          true;
+
+        continueEquipmentButton.textContent =
+          "Equipment wird geladen …";
+
+
+        try {
+
+          if (
+            !equipmentItems.length
+          ) {
+            await loadEquipment();
+          }
+
+          showEquipmentStep();
+
+        } finally {
+
+          continueEquipmentButton.disabled =
+            false;
+
+          continueEquipmentButton.textContent =
+            "Weiter zur Equipment-Auswahl →";
+
+        }
+
+      }
+    );
+
+
+    /* Zurück */
+
+    backToFormButton.addEventListener(
+      "click",
+      showFormStep
+    );
+
+
+    /* ==========================================================
+       FINALE ANFRAGE
+       ========================================================== */
+
+    finalSubmitButton.addEventListener(
+      "click",
+      async () => {
+
+
+        if (
+          !requestForm.reportValidity()
+        ) {
+
+          showFormStep();
+
+          requestForm.reportValidity();
+
+          return;
+
+        }
+
+
+        setEquipmentStatus(
+          "Anfrage wird gesendet …"
+        );
+
+
+        finalSubmitButton.disabled =
+          true;
+
+        backToFormButton.disabled =
+          true;
 
 
         const formData =
@@ -1123,24 +2021,35 @@
           formData.get("Anzahl Gäste");
 
 
+        /*
+          Das bestehende Anfrage-Payload
+          bleibt unverändert.
+        */
+
         const payload = {
 
           /* Veranstaltung */
 
           name:
-            formData.get("Name")?.trim() || "",
+            formData.get("Name")?.trim() ||
+            "",
 
           email:
-            formData.get("E-Mail")?.trim() || "",
+            formData.get("E-Mail")?.trim() ||
+            "",
 
           phone:
-            formData.get("Telefon")?.trim() || null,
+            formData.get("Telefon")?.trim() ||
+            null,
 
           event_type:
-            selectedEvent?.value || null,
+            selectedEvent?.value ||
+            null,
 
           event_date:
-            formData.get("Veranstaltungsdatum") || null,
+            formData.get(
+              "Veranstaltungsdatum"
+            ) || null,
 
           guests:
             guestsValue
@@ -1148,13 +2057,19 @@
               : null,
 
           location:
-            formData.get("Veranstaltungsort")?.trim() || "",
+            formData.get(
+              "Veranstaltungsort"
+            )?.trim() || "",
 
           start_time:
-            formData.get("Gewünschter Beginn") || null,
+            formData.get(
+              "Gewünschter Beginn"
+            ) || null,
 
           end_time:
-            formData.get("Gewünschtes Ende") || null,
+            formData.get(
+              "Gewünschtes Ende"
+            ) || null,
 
 
           /* Weitere Wünsche */
@@ -1163,38 +2078,51 @@
             null,
 
           message:
-            formData.get("Nachricht")?.trim() || null,
+            formData.get(
+              "Nachricht"
+            )?.trim() || null,
 
 
           /* Rechnungsadresse */
 
           billing_name:
-            formData.get("Rechnungsname")?.trim() || "",
+            formData.get(
+              "Rechnungsname"
+            )?.trim() || "",
 
           billing_street:
-            formData.get("Rechnungsstraße")?.trim() || "",
+            formData.get(
+              "Rechnungsstraße"
+            )?.trim() || "",
 
           billing_zip:
-            formData.get("Rechnungs-PLZ")?.trim() || "",
+            formData.get(
+              "Rechnungs-PLZ"
+            )?.trim() || "",
 
           billing_city:
-            formData.get("Rechnungsort")?.trim() || ""
+            formData.get(
+              "Rechnungsort"
+            )?.trim() || ""
 
         };
 
 
-        submitButton.disabled = true;
-
-        submitButton.textContent =
-          "Anfrage wird gesendet …";
-
-
         try {
 
-          const { error } =
+          /*
+            Anfrage speichern und ID zurückholen
+          */
+
+          const {
+            data: inquiry,
+            error
+          } =
             await supabaseClient
               .from("anfragen")
-              .insert([payload]);
+              .insert([payload])
+              .select("id")
+              .single();
 
 
           if (error) {
@@ -1202,37 +2130,115 @@
           }
 
 
-          formStatus.style.display = "block";
+          /*
+            Ausgewähltes Equipment speichern
+          */
 
-          formStatus.style.background =
-            "#eaf8f0";
+          const selectedItems =
+            equipmentItems.filter(
+              item =>
+                selectedEquipmentIds.has(
+                  item.id
+                )
+            );
 
-          formStatus.style.color =
-            "#138a4b";
 
-          formStatus.textContent =
-            "✓ Vielen Dank! Eure Anfrage wurde erfolgreich übermittelt. Wir melden uns persönlich bei euch.";
+          if (
+            selectedItems.length
+          ) {
+
+            const equipmentRows =
+              selectedItems.map(
+                item => ({
+
+                  inquiry_id:
+                    String(
+                      inquiry.id
+                    ),
+
+                  equipment_id:
+                    item.id,
+
+                  equipment_name_snapshot:
+                    item.name
+
+                })
+              );
+
+
+            const {
+              error: equipmentError
+            } =
+              await supabaseClient
+                .from("inquiry_equipment")
+                .insert(
+                  equipmentRows
+                );
+
+
+            if (equipmentError) {
+
+              console.error(
+                "Equipment-Auswahl konnte nicht gespeichert werden:",
+                equipmentError
+              );
+
+              throw new Error(
+                "Die Anfrage wurde gespeichert, aber die Equipment-Auswahl konnte nicht übernommen werden."
+              );
+
+            }
+
+          }
+
+
+          /*
+            Erfolg
+          */
+
+          setEquipmentStatus(
+            "✓ Vielen Dank! Eure Anfrage wurde erfolgreich übermittelt. Wir melden uns persönlich bei euch.",
+            "success"
+          );
 
 
           requestForm.reset();
+
+          selectedEquipmentIds.clear();
 
 
           if (dateInput) {
 
             const today =
-              new Date().toISOString().split("T")[0];
+              new Date()
+                .toISOString()
+                .split("T")[0];
 
-            dateInput.min = today;
+            dateInput.min =
+              today;
 
           }
 
 
+          backToFormButton.style.display =
+            "none";
+
+          finalSubmitButton.textContent =
+            "Anfrage erfolgreich gesendet ✓";
+
+
           window.scrollTo({
+
             top:
-              formStatus.getBoundingClientRect().top +
+              equipmentStatus
+                .getBoundingClientRect()
+                .top +
               window.scrollY -
               140,
-            behavior: "smooth"
+
+            behavior:
+              "smooth"
+
           });
 
 
@@ -1244,29 +2250,33 @@
           );
 
 
-          formStatus.style.display = "block";
+          setEquipmentStatus(
 
-          formStatus.style.background =
-            "#fff0f0";
+            "Leider konnte die Anfrage gerade nicht vollständig gespeichert werden. Bitte versucht es erneut oder schreibt uns direkt an ruhrgebeats@gmail.com.",
 
-          formStatus.style.color =
-            "#c62828";
+            "error"
 
-          formStatus.textContent =
-            "Leider konnte die Anfrage gerade nicht gesendet werden. Bitte versucht es erneut oder schreibt uns direkt an ruhrgebeats@gmail.com.";
+          );
 
 
-        } finally {
+          finalSubmitButton.disabled =
+            false;
 
-          submitButton.disabled = false;
-
-          submitButton.textContent =
-            "Unverbindliche Anfrage senden";
+          backToFormButton.disabled =
+            false;
 
         }
 
       }
     );
+
+
+    /*
+      Equipment bereits beim Laden
+      vorbereiten.
+    */
+
+    loadEquipment();
 
   </script>
 
